@@ -308,7 +308,7 @@ Partial Class HARK301S3
         Me.txt長期貸出番号.Location = New System.Drawing.Point(130, 10)
         Me.txt長期貸出番号.MaxLength = 13
         Me.txt長期貸出番号.Name = "txt長期貸出番号"
-        Me.txt長期貸出番号.Size = New System.Drawing.Size(118, 24)
+        Me.txt長期貸出番号.Size = New System.Drawing.Size(269, 24)
         Me.txt長期貸出番号.TabIndex = 11
         Me.txt長期貸出番号.Tag = "ID1"
         '
