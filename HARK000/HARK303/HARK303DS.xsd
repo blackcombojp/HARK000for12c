@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HARK303DS" targetNamespace="http://tempuri.org/HARK303DS.xsd" xmlns:mstns="http://tempuri.org/HARK303DS.xsd" xmlns="http://tempuri.org/HARK303DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HARK303DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="HARK303DS" msprop:Generator_UserDSName="HARK303DS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ds一覧" msprop:Generator_TableClassName="ds一覧DataTable" msprop:Generator_TableVarName="tableds一覧" msprop:Generator_RowChangedName="ds一覧RowChanged" msprop:Generator_TablePropName="ds一覧" msprop:Generator_RowDeletingName="ds一覧RowDeleting" msprop:Generator_RowChangingName="ds一覧RowChanging" msprop:Generator_RowEvHandlerName="ds一覧RowChangeEventHandler" msprop:Generator_RowDeletedName="ds一覧RowDeleted" msprop:Generator_RowClassName="ds一覧Row" msprop:Generator_UserTableName="ds一覧" msprop:Generator_RowEvArgName="ds一覧RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DLT販売許可証管理情報_ID" msprop:Generator_ColumnVarNameInTable="columnDLT販売許可証管理情報_ID" msprop:Generator_ColumnPropNameInRow="DLT販売許可証管理情報_ID" msprop:Generator_ColumnPropNameInTable="DLT販売許可証管理情報_IDColumn" msprop:Generator_UserColumnName="DLT販売許可証管理情報_ID" type="xs:long" minOccurs="0" />
+              <xs:element name="事業所コード" msprop:Generator_ColumnVarNameInTable="column事業所コード" msprop:Generator_ColumnPropNameInRow="事業所コード" msprop:Generator_ColumnPropNameInTable="事業所コードColumn" msprop:Generator_UserColumnName="事業所コード" type="xs:int" minOccurs="0" />
+              <xs:element name="事業所名" msprop:Generator_ColumnVarNameInTable="column事業所名" msprop:Generator_ColumnPropNameInRow="事業所名" msprop:Generator_ColumnPropNameInTable="事業所名Column" msprop:Generator_UserColumnName="事業所名" type="xs:string" minOccurs="0" />
+              <xs:element name="得意先コード" msprop:Generator_ColumnVarNameInTable="column得意先コード" msprop:Generator_ColumnPropNameInRow="得意先コード" msprop:Generator_ColumnPropNameInTable="得意先コードColumn" msprop:Generator_UserColumnName="得意先コード" type="xs:long" minOccurs="0" />
+              <xs:element name="得意先名" msprop:Generator_ColumnVarNameInTable="column得意先名" msprop:Generator_ColumnPropNameInRow="得意先名" msprop:Generator_ColumnPropNameInTable="得意先名Column" msprop:Generator_UserColumnName="得意先名" type="xs:string" minOccurs="0" />
+              <xs:element name="許可証区分" msprop:Generator_ColumnVarNameInTable="column許可証区分" msprop:Generator_ColumnPropNameInRow="許可証区分" msprop:Generator_ColumnPropNameInTable="許可証区分Column" msprop:Generator_UserColumnName="許可証区分" type="xs:int" minOccurs="0" />
+              <xs:element name="許可証区分名" msprop:Generator_ColumnVarNameInTable="column許可証区分名" msprop:Generator_ColumnPropNameInRow="許可証区分名" msprop:Generator_ColumnPropNameInTable="許可証区分名Column" msprop:Generator_UserColumnName="許可証区分名" type="xs:string" minOccurs="0" />
+              <xs:element name="許可証番号" msprop:Generator_ColumnVarNameInTable="column許可証番号" msprop:Generator_ColumnPropNameInRow="許可証番号" msprop:Generator_ColumnPropNameInTable="許可証番号Column" msprop:Generator_UserColumnName="許可証番号" type="xs:string" minOccurs="0" />
+              <xs:element name="許可開始日付" msprop:Generator_ColumnVarNameInTable="column許可開始日付" msprop:Generator_ColumnPropNameInRow="許可開始日付" msprop:Generator_ColumnPropNameInTable="許可開始日付Column" msprop:Generator_UserColumnName="許可開始日付" type="xs:string" minOccurs="0" />
+              <xs:element name="許可終了日付" msprop:Generator_ColumnVarNameInTable="column許可終了日付" msprop:Generator_ColumnPropNameInRow="許可終了日付" msprop:Generator_ColumnPropNameInTable="許可終了日付Column" msprop:Generator_UserColumnName="許可終了日付" type="xs:string" minOccurs="0" />
+              <xs:element name="取引停止区分" msprop:Generator_ColumnVarNameInTable="column取引停止区分" msprop:Generator_ColumnPropNameInRow="取引停止区分" msprop:Generator_ColumnPropNameInTable="取引停止区分Column" msprop:Generator_UserColumnName="取引停止区分" type="xs:int" minOccurs="0" />
+              <xs:element name="取引停止区分名" msprop:Generator_ColumnVarNameInTable="column取引停止区分名" msprop:Generator_ColumnPropNameInRow="取引停止区分名" msprop:Generator_ColumnPropNameInTable="取引停止区分名Column" msprop:Generator_UserColumnName="取引停止区分名" type="xs:string" minOccurs="0" />
+              <xs:element name="画像" msprop:Generator_ColumnVarNameInTable="column画像" msprop:Generator_ColumnPropNameInRow="画像" msprop:Generator_ColumnPropNameInTable="画像Column" msprop:Generator_UserColumnName="画像" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="削除区分" msprop:Generator_ColumnVarNameInTable="column削除区分" msprop:Generator_ColumnPropNameInRow="削除区分" msprop:Generator_ColumnPropNameInTable="削除区分Column" msprop:Generator_UserColumnName="削除区分" type="xs:unsignedByte" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

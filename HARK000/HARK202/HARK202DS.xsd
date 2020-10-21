@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HARK202DS" targetNamespace="http://tempuri.org/HARK202DS.xsd" xmlns:mstns="http://tempuri.org/HARK202DS.xsd" xmlns="http://tempuri.org/HARK202DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HARK202DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="HARK202DS" msprop:Generator_UserDSName="HARK202DS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ds未処理" msprop:Generator_TableClassName="ds未処理DataTable" msprop:Generator_TableVarName="tableds未処理" msprop:Generator_TablePropName="ds未処理" msprop:Generator_RowDeletingName="ds未処理RowDeleting" msprop:Generator_RowChangingName="ds未処理RowChanging" msprop:Generator_RowEvHandlerName="ds未処理RowChangeEventHandler" msprop:Generator_RowDeletedName="ds未処理RowDeleted" msprop:Generator_UserTableName="ds未処理" msprop:Generator_RowChangedName="ds未処理RowChanged" msprop:Generator_RowEvArgName="ds未処理RowChangeEvent" msprop:Generator_RowClassName="ds未処理Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ds未出力" msprop:Generator_TableClassName="ds未出力DataTable" msprop:Generator_TableVarName="tableds未出力" msprop:Generator_TablePropName="ds未出力" msprop:Generator_RowDeletingName="ds未出力RowDeleting" msprop:Generator_RowChangingName="ds未出力RowChanging" msprop:Generator_RowEvHandlerName="ds未出力RowChangeEventHandler" msprop:Generator_RowDeletedName="ds未出力RowDeleted" msprop:Generator_UserTableName="ds未出力" msprop:Generator_RowChangedName="ds未出力RowChanged" msprop:Generator_RowEvArgName="ds未出力RowChangeEvent" msprop:Generator_RowClassName="ds未出力Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ds履歴" msprop:Generator_TableClassName="ds履歴DataTable" msprop:Generator_TableVarName="tableds履歴" msprop:Generator_TablePropName="ds履歴" msprop:Generator_RowDeletingName="ds履歴RowDeleting" msprop:Generator_RowChangingName="ds履歴RowChanging" msprop:Generator_RowEvHandlerName="ds履歴RowChangeEventHandler" msprop:Generator_RowDeletedName="ds履歴RowDeleted" msprop:Generator_UserTableName="ds履歴" msprop:Generator_RowChangedName="ds履歴RowChanged" msprop:Generator_RowEvArgName="ds履歴RowChangeEvent" msprop:Generator_RowClassName="ds履歴Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

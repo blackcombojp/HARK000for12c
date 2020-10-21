@@ -1,0 +1,507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F981067F-D79E-4718-8FCA-53CD36B6DC4B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>HARK000.HARK_Sub</StartupObject>
+    <RootNamespace>HARK000</RootNamespace>
+    <AssemblyName>HARK000</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>HARK000.xml</DocumentationFile>
+    <NoWarn>42017,42018,42019,42032,42036,42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41998,41999,42004,42016,42020,42021,42022,42024,42025,42026,42029,42030,42031,42099,42104,42105,42106,42107,42108,42109</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>none</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>HARK000.xml</DocumentationFile>
+    <NoWarn>42017,42018,42019,42032,42036,42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41998,41999,42004,42016,42020,42021,42022,42024,42025,42026,42029,42030,42031,42099,42104,42105,42106,42107,42108,42109</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>Off</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>HARK_Resource\HARK000.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ExcelCreator.Creator.v10, Version=10.0.5270.1703, Culture=neutral, PublicKeyToken=e70d0f98050da475, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\XlsCrt10\Bin\ExcelCreator.Creator.v10.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelCreator.Document.v10, Version=10.0.5270.1703, Culture=neutral, PublicKeyToken=40e5e8c862e0994c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\XlsCrt10\Bin\ExcelCreator.Document.v10.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelCreator.Shared.v10, Version=10.0.5270.1703, Culture=neutral, PublicKeyToken=411a8845f4d5d1b9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\XlsCrt10\Bin\ExcelCreator.Shared.v10.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelCreator.View.v10, Version=10.0.5270.1703, Culture=neutral, PublicKeyToken=ef668955e9772a61, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\XlsCrt10\Bin\ExcelCreator.View.v10.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelCreator.Xls.Core.v10, Version=10.0.5270.1703, Culture=neutral, PublicKeyToken=53fa96998d653c73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\XlsCrt10\Bin\ExcelCreator.Xls.Core.v10.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelCreator.Xlsx.Core.v10, Version=10.0.5270.1703, Culture=neutral, PublicKeyToken=afb069e70259a56a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\XlsCrt10\Bin\ExcelCreator.Xlsx.Core.v10.dll</HintPath>
+    </Reference>
+    <Reference Include="GrapeCity.Framework.InputMan.v24, Version=2.4.4004.2012, Culture=neutral, PublicKeyToken=fdd90f5c44b73170" />
+    <Reference Include="GrapeCity.Framework.MultiRow.v24, Version=2.4.4004.2012, Culture=neutral, PublicKeyToken=fdd90f5c44b73170" />
+    <Reference Include="GrapeCity.Framework.PlusPak.v24, Version=2.4.4004.2012, Culture=neutral, PublicKeyToken=fdd90f5c44b73170" />
+    <Reference Include="GrapeCity.Win.Editors.v100, Version=10.0.4004.2012, Culture=neutral, PublicKeyToken=0ce01a33ce55ca12, processorArchitecture=MSIL" />
+    <Reference Include="GrapeCity.Win.MultiRow.v100, Version=10.0.4004.2012, Culture=neutral, PublicKeyToken=0f7a722ee3c2bdd9, processorArchitecture=MSIL" />
+    <Reference Include="GrapeCity.Win.PlusPak.Calendar.v100, Version=10.0.4004.2012, Culture=neutral, PublicKeyToken=63a9ba12b6923243" />
+    <Reference Include="GrapeCity.Win.PlusPak.v100, Version=10.0.4004.2012, Culture=neutral, PublicKeyToken=63a9ba12b6923243, processorArchitecture=MSIL" />
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.0.0.999, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.0.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NAppUpdate.Framework">
+      <HintPath>..\..\..\NAppUpdate\src\NAppUpdate.Framework\bin\Release\net40\NAppUpdate.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\oracle\ora1220\ODP.NET\bin\4\Oracle.DataAccess.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="TKMP">
+      <HintPath>..\packages\TKMP.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HARK001\HARK001.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK001\HARK001.Designer.vb">
+      <DependentUpon>HARK001.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK101\HARK101.Designer.vb">
+      <DependentUpon>HARK101.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK101\HARK101.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK102\HARK102.designer.vb">
+      <DependentUpon>HARK102.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK102\HARK102.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK201\HARK201.designer.vb">
+      <DependentUpon>HARK201.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK201\HARK201.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK202\HARK202.designer.vb">
+      <DependentUpon>HARK202.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK202\HARK202.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK202\HARK202DS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HARK202DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301S1\HARK301S1.designer.vb">
+      <DependentUpon>HARK301S1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301S1\HARK301S1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK301S2\HARK301S2.designer.vb">
+      <DependentUpon>HARK301S2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301S2\HARK301S2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK301S3\HARK301S3.designer.vb">
+      <DependentUpon>HARK301S3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301S3\HARK301S3.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK301S3\HARK301S3DS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HARK301S3DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301S3\HARK301S3Template.Designer.vb">
+      <DependentUpon>HARK301S3Template.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301S3\HARK301S3Template.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HARK301\HARK301.designer.vb">
+      <DependentUpon>HARK301.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301\HARK301.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK302\HARK302.designer.vb">
+      <DependentUpon>HARK302.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK302\HARK302.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK303\HARK303.Designer.vb">
+      <DependentUpon>HARK303.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK303\HARK303.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK303\HARK303DS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HARK303DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HARK303\HARK303Template.Designer.vb">
+      <DependentUpon>HARK303Template.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK303\HARK303Template.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HARK304\HARK304.designer.vb">
+      <DependentUpon>HARK304.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK304\HARK304.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK401\HARK401.designer.vb">
+      <DependentUpon>HARK401.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK401\HARK401.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK402\HARK402.designer.vb">
+      <DependentUpon>HARK402.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK402\HARK402.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK403\HARK403.Designer.vb">
+      <DependentUpon>HARK403.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK403\HARK403.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK501\HARK501.designer.vb">
+      <DependentUpon>HARK501.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK501\HARK501.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK503\HARK503.designer.vb">
+      <DependentUpon>HARK503.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK503\HARK503.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK504\HARK504.designer.vb">
+      <DependentUpon>HARK504.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK504\HARK504.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK504\HARK504DS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HARK504DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HARK504\HARK504Template.Designer.vb">
+      <DependentUpon>HARK504Template.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK504\HARK504Template.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HARK505\HARK505.designer.vb">
+      <DependentUpon>HARK505.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK505\HARK505.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK990\HARK990.Designer.vb">
+      <DependentUpon>HARK990.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK990\HARK990.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK_Runtime\HARK_Common.vb" />
+    <Compile Include="HARK_Runtime\HARK_DBCommon.vb" />
+    <Compile Include="HARK_Runtime\HARK_Define.vb" />
+    <Compile Include="HARK_Runtime\HARK_Public.vb" />
+    <Compile Include="HARK_Runtime\HARK_Structure.vb" />
+    <Compile Include="HARK_Runtime\HARK_Sub.vb" />
+    <Compile Include="HARK_Runtime\HARK_Update.vb" />
+    <Compile Include="HARK_Runtime\HARK_Xml.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="HARK001\HARK001.resx">
+      <DependentUpon>HARK001.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK101\HARK101.resx">
+      <DependentUpon>HARK101.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK102\HARK102.resx">
+      <DependentUpon>HARK102.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK201\HARK201.resx">
+      <DependentUpon>HARK201.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK202\HARK202.resx">
+      <DependentUpon>HARK202.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK301S1\HARK301S1.resx">
+      <DependentUpon>HARK301S1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK301S2\HARK301S2.resx">
+      <DependentUpon>HARK301S2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK301S3\HARK301S3.resx">
+      <DependentUpon>HARK301S3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK301S3\HARK301S3Template.resx">
+      <DependentUpon>HARK301S3Template.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK301\HARK301.resx">
+      <DependentUpon>HARK301.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK302\HARK302.resx">
+      <DependentUpon>HARK302.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK303\HARK303.resx">
+      <DependentUpon>HARK303.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK303\HARK303Template.resx">
+      <DependentUpon>HARK303Template.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK304\HARK304.resx">
+      <DependentUpon>HARK304.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK401\HARK401.resx">
+      <DependentUpon>HARK401.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK402\HARK402.resx">
+      <DependentUpon>HARK402.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK403\HARK403.resx">
+      <DependentUpon>HARK403.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK501\HARK501.resx">
+      <DependentUpon>HARK501.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK503\HARK503.resx">
+      <DependentUpon>HARK503.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK504\HARK504.resx">
+      <DependentUpon>HARK504.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK504\HARK504Template.resx">
+      <DependentUpon>HARK504Template.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK505\HARK505.resx">
+      <DependentUpon>HARK505.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK990\HARK990.resx">
+      <DependentUpon>HARK990.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HARK202\HARK202DS.xsc">
+      <DependentUpon>HARK202DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK202\HARK202DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HARK202DS.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="HARK202\HARK202DS.xss">
+      <DependentUpon>HARK202DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK301S3\HARK301S3DS.xsc">
+      <DependentUpon>HARK301S3DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK301S3\HARK301S3DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HARK301S3DS.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="HARK301S3\HARK301S3DS.xss">
+      <DependentUpon>HARK301S3DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK303\HARK303DS.xsc">
+      <DependentUpon>HARK303DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK303\HARK303DS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HARK303DS.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HARK303\HARK303DS.xss">
+      <DependentUpon>HARK303DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK504\HARK504DS.xsc">
+      <DependentUpon>HARK504DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK504\HARK504DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HARK504DS.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="HARK504\HARK504DS.xss">
+      <DependentUpon>HARK504DS.xsd</DependentUpon>
+    </None>
+    <None Include="log4net.config" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HARK_Resource\Execute.gif" />
+    <Content Include="HARK_Resource\ajax-loader.gif" />
+    <Content Include="HARK_Resource\HARK000.ico" />
+    <Content Include="HARK_Resource\logout.png" />
+    <None Include="HARK_Resource\logout2.gif" />
+    <Content Include="HARK_Resource\maximize.png" />
+    <Content Include="HARK_Resource\minimize.png" />
+    <Content Include="HARK_Resource\Service package.png" />
+    <None Include="HARK_Resource\SideBtn.png" />
+    <None Include="HARK_Resource\SideBtn.gif" />
+    <Content Include="HARK_Resource\Visual Studio Team Services.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+</Project>
