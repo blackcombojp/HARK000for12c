@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F981067F-D79E-4718-8FCA-53CD36B6DC4B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>HARK000.HARK_Sub</StartupObject>
+    <StartupObject>Sub Main</StartupObject>
     <RootNamespace>HARK000</RootNamespace>
     <AssemblyName>HARK000</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -333,6 +333,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>

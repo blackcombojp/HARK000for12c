@@ -22,6 +22,12 @@ Public Class HARK_Sub
     ''' </summary>
     Public Shared Sub Main()
 
+        'ThreadExceptionイベントハンドラを追加
+        AddHandler Application.ThreadException, AddressOf Application_ThreadException
+        'ThreadExceptionが発生しないようにする
+        Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException)
+        AddHandler AppDomain.CurrentDomain.UnhandledException, AddressOf CurrentDomain_UnhandledException
+
         Dim hasHandle As Boolean = False
         Dim intCnt As Integer = 0
 
@@ -194,6 +200,46 @@ Public Class HARK_Sub
 
             Fmlording.Dispose()
 
+        End Try
+
+    End Sub
+    ''' <summary>
+    ''' CurrentDomain_UnhandledException
+    ''' </summary>
+    ''' <param name="sender">オブジェクト識別クラス</param>
+    ''' <param name="e">イベントデータクラス</param>
+    Private Shared Sub CurrentDomain_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs)
+
+        Dim ErrMsg As String
+
+        Try
+            ErrMsg = CStr(DirectCast(e.ExceptionObject, Exception).HResult) & "-" & DirectCast(e.ExceptionObject, Exception).Message
+
+            log.Error(Set_ErrMSG(999, ErrMsg))
+            MsgBox(MSG_COM902 & vbCr & DirectCast(e.ExceptionObject, Exception).HResult & vbCr & DirectCast(e.ExceptionObject, Exception).Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+        Finally
+            'アプリケーションを終了する
+            Environment.Exit(1)
+        End Try
+
+    End Sub
+    ''' <summary>
+    ''' Application_ThreadException
+    ''' </summary>
+    ''' <param name="sender">オブジェクト識別クラス</param>
+    ''' <param name="e">イベントデータクラス</param>
+    Private Shared Sub Application_ThreadException(sender As Object, e As ThreadExceptionEventArgs)
+
+        Dim ErrMsg As String
+
+        Try
+            ErrMsg = CStr(e.Exception.HResult) & "-" & e.Exception.Message
+
+            log.Error(Set_ErrMSG(999, ErrMsg))
+            MsgBox(MSG_COM902 & vbCr & e.Exception.HResult & vbCr & e.Exception.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+        Finally
+            'アプリケーションを終了する
+            Application.Exit()
         End Try
 
     End Sub
