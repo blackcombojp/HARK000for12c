@@ -283,7 +283,49 @@ Partial Public Class HARK301S3DS
     Partial Public Class ds一覧DataTable
         Inherits Global.System.Data.TypedTableBase(Of ds一覧Row)
         
-        Private columnDataColumn1 As Global.System.Data.DataColumn
+        Private column連携キー As Global.System.Data.DataColumn
+        
+        Private column発注書番号 As Global.System.Data.DataColumn
+        
+        Private columnピッキング番号 As Global.System.Data.DataColumn
+        
+        Private column需要先コード As Global.System.Data.DataColumn
+        
+        Private column需要先名 As Global.System.Data.DataColumn
+        
+        Private column需要先部署コード As Global.System.Data.DataColumn
+        
+        Private column部署名 As Global.System.Data.DataColumn
+        
+        Private column商品コード As Global.System.Data.DataColumn
+        
+        Private columnメーカ名 As Global.System.Data.DataColumn
+        
+        Private columnメーカ品番 As Global.System.Data.DataColumn
+        
+        Private column商品名 As Global.System.Data.DataColumn
+        
+        Private column規格 As Global.System.Data.DataColumn
+        
+        Private column受注数量 As Global.System.Data.DataColumn
+        
+        Private columnロット番号 As Global.System.Data.DataColumn
+        
+        Private column有効期限 As Global.System.Data.DataColumn
+        
+        Private columnピッキング数量 As Global.System.Data.DataColumn
+        
+        Private column長期貸出番号 As Global.System.Data.DataColumn
+        
+        Private column伝票番号 As Global.System.Data.DataColumn
+        
+        Private column伝票行番号 As Global.System.Data.DataColumn
+        
+        Private columnエラー情報 As Global.System.Data.DataColumn
+        
+        Private columnＩＤ As Global.System.Data.DataColumn
+        
+        Private column出荷日時 As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -322,9 +364,177 @@ Partial Public Class HARK301S3DS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property DataColumn1Column() As Global.System.Data.DataColumn
+        Public ReadOnly Property 連携キーColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDataColumn1
+                Return Me.column連携キー
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 発注書番号Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column発注書番号
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ピッキング番号Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnピッキング番号
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 需要先コードColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column需要先コード
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 需要先名Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column需要先名
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 需要先部署コードColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column需要先部署コード
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 部署名Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column部署名
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 商品コードColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column商品コード
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property メーカ名Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnメーカ名
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property メーカ品番Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnメーカ品番
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 商品名Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column商品名
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 規格Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column規格
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 受注数量Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column受注数量
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ロット番号Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnロット番号
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 有効期限Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column有効期限
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ピッキング数量Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnピッキング数量
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 長期貸出番号Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column長期貸出番号
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 伝票番号Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column伝票番号
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 伝票行番号Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column伝票行番号
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property エラー情報Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnエラー情報
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ＩＤColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnＩＤ
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 出荷日時Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.column出荷日時
             End Get
         End Property
         
@@ -365,9 +575,31 @@ Partial Public Class HARK301S3DS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function Addds一覧Row(ByVal DataColumn1 As String) As ds一覧Row
+        Public Overloads Function Addds一覧Row( _
+                    ByVal 連携キー As String,  _
+                    ByVal 発注書番号 As Long,  _
+                    ByVal ピッキング番号 As Long,  _
+                    ByVal 需要先コード As Long,  _
+                    ByVal 需要先名 As String,  _
+                    ByVal 需要先部署コード As Long,  _
+                    ByVal 部署名 As String,  _
+                    ByVal 商品コード As String,  _
+                    ByVal メーカ名 As String,  _
+                    ByVal メーカ品番 As String,  _
+                    ByVal 商品名 As String,  _
+                    ByVal 規格 As String,  _
+                    ByVal 受注数量 As Integer,  _
+                    ByVal ロット番号 As String,  _
+                    ByVal 有効期限 As String,  _
+                    ByVal ピッキング数量 As Integer,  _
+                    ByVal 長期貸出番号 As String,  _
+                    ByVal 伝票番号 As Long,  _
+                    ByVal 伝票行番号 As Integer,  _
+                    ByVal エラー情報 As String,  _
+                    ByVal ＩＤ As Long,  _
+                    ByVal 出荷日時 As String) As ds一覧Row
             Dim rowds一覧Row As ds一覧Row = CType(Me.NewRow,ds一覧Row)
-            Dim columnValuesArray() As Object = New Object() {DataColumn1}
+            Dim columnValuesArray() As Object = New Object() {連携キー, 発注書番号, ピッキング番号, 需要先コード, 需要先名, 需要先部署コード, 部署名, 商品コード, メーカ名, メーカ品番, 商品名, 規格, 受注数量, ロット番号, 有効期限, ピッキング数量, 長期貸出番号, 伝票番号, 伝票行番号, エラー情報, ＩＤ, 出荷日時}
             rowds一覧Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowds一覧Row)
             Return rowds一覧Row
@@ -390,14 +622,90 @@ Partial Public Class HARK301S3DS
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnDataColumn1 = MyBase.Columns("DataColumn1")
+            Me.column連携キー = MyBase.Columns("連携キー")
+            Me.column発注書番号 = MyBase.Columns("発注書番号")
+            Me.columnピッキング番号 = MyBase.Columns("ピッキング番号")
+            Me.column需要先コード = MyBase.Columns("需要先コード")
+            Me.column需要先名 = MyBase.Columns("需要先名")
+            Me.column需要先部署コード = MyBase.Columns("需要先部署コード")
+            Me.column部署名 = MyBase.Columns("部署名")
+            Me.column商品コード = MyBase.Columns("商品コード")
+            Me.columnメーカ名 = MyBase.Columns("メーカ名")
+            Me.columnメーカ品番 = MyBase.Columns("メーカ品番")
+            Me.column商品名 = MyBase.Columns("商品名")
+            Me.column規格 = MyBase.Columns("規格")
+            Me.column受注数量 = MyBase.Columns("受注数量")
+            Me.columnロット番号 = MyBase.Columns("ロット番号")
+            Me.column有効期限 = MyBase.Columns("有効期限")
+            Me.columnピッキング数量 = MyBase.Columns("ピッキング数量")
+            Me.column長期貸出番号 = MyBase.Columns("長期貸出番号")
+            Me.column伝票番号 = MyBase.Columns("伝票番号")
+            Me.column伝票行番号 = MyBase.Columns("伝票行番号")
+            Me.columnエラー情報 = MyBase.Columns("エラー情報")
+            Me.columnＩＤ = MyBase.Columns("ＩＤ")
+            Me.column出荷日時 = MyBase.Columns("出荷日時")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnDataColumn1 = New Global.System.Data.DataColumn("DataColumn1", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDataColumn1)
+            Me.column連携キー = New Global.System.Data.DataColumn("連携キー", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column連携キー)
+            Me.column発注書番号 = New Global.System.Data.DataColumn("発注書番号", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column発注書番号)
+            Me.columnピッキング番号 = New Global.System.Data.DataColumn("ピッキング番号", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnピッキング番号)
+            Me.column需要先コード = New Global.System.Data.DataColumn("需要先コード", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column需要先コード)
+            Me.column需要先名 = New Global.System.Data.DataColumn("需要先名", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column需要先名)
+            Me.column需要先部署コード = New Global.System.Data.DataColumn("需要先部署コード", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column需要先部署コード)
+            Me.column部署名 = New Global.System.Data.DataColumn("部署名", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column部署名)
+            Me.column商品コード = New Global.System.Data.DataColumn("商品コード", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column商品コード)
+            Me.columnメーカ名 = New Global.System.Data.DataColumn("メーカ名", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnメーカ名)
+            Me.columnメーカ品番 = New Global.System.Data.DataColumn("メーカ品番", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnメーカ品番)
+            Me.column商品名 = New Global.System.Data.DataColumn("商品名", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column商品名)
+            Me.column規格 = New Global.System.Data.DataColumn("規格", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column規格)
+            Me.column受注数量 = New Global.System.Data.DataColumn("受注数量", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column受注数量)
+            Me.columnロット番号 = New Global.System.Data.DataColumn("ロット番号", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnロット番号)
+            Me.column有効期限 = New Global.System.Data.DataColumn("有効期限", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column有効期限)
+            Me.columnピッキング数量 = New Global.System.Data.DataColumn("ピッキング数量", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnピッキング数量)
+            Me.column長期貸出番号 = New Global.System.Data.DataColumn("長期貸出番号", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column長期貸出番号)
+            Me.column伝票番号 = New Global.System.Data.DataColumn("伝票番号", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column伝票番号)
+            Me.column伝票行番号 = New Global.System.Data.DataColumn("伝票行番号", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column伝票行番号)
+            Me.columnエラー情報 = New Global.System.Data.DataColumn("エラー情報", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnエラー情報)
+            Me.columnＩＤ = New Global.System.Data.DataColumn("ＩＤ", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnＩＤ)
+            Me.column出荷日時 = New Global.System.Data.DataColumn("出荷日時", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column出荷日時)
+            Me.column連携キー.MaxLength = 39
+            Me.column需要先名.MaxLength = 60
+            Me.column部署名.MaxLength = 60
+            Me.column商品コード.MaxLength = 60
+            Me.columnメーカ名.MaxLength = 60
+            Me.columnメーカ品番.MaxLength = 60
+            Me.column商品名.MaxLength = 60
+            Me.column規格.MaxLength = 60
+            Me.columnロット番号.MaxLength = 20
+            Me.column有効期限.MaxLength = 20
+            Me.column長期貸出番号.MaxLength = 20
+            Me.columnエラー情報.MaxLength = 4000
+            Me.column出荷日時.MaxLength = 30
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -544,29 +852,596 @@ Partial Public Class HARK301S3DS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property DataColumn1() As String
+        Public Property 連携キー() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableds一覧.DataColumn1Column),String)
+                    Return CType(Me(Me.tableds一覧.連携キーColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 'DataColumn1' の値は DBNull です。", e)
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '連携キー' の値は DBNull です。", e)
                 End Try
             End Get
             Set
-                Me(Me.tableds一覧.DataColumn1Column) = value
+                Me(Me.tableds一覧.連携キーColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsDataColumn1Null() As Boolean
-            Return Me.IsNull(Me.tableds一覧.DataColumn1Column)
+        Public Property 発注書番号() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.発注書番号Column),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '発注書番号' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.発注書番号Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ピッキング番号() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.ピッキング番号Column),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 'ピッキング番号' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.ピッキング番号Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 需要先コード() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.需要先コードColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '需要先コード' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.需要先コードColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 需要先名() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.需要先名Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '需要先名' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.需要先名Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 需要先部署コード() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.需要先部署コードColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '需要先部署コード' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.需要先部署コードColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 部署名() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.部署名Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '部署名' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.部署名Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 商品コード() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.商品コードColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '商品コード' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.商品コードColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property メーカ名() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.メーカ名Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 'メーカ名' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.メーカ名Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property メーカ品番() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.メーカ品番Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 'メーカ品番' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.メーカ品番Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 商品名() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.商品名Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '商品名' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.商品名Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 規格() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.規格Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '規格' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.規格Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 受注数量() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.受注数量Column),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '受注数量' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.受注数量Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ロット番号() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.ロット番号Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 'ロット番号' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.ロット番号Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 有効期限() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.有効期限Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '有効期限' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.有効期限Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ピッキング数量() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.ピッキング数量Column),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 'ピッキング数量' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.ピッキング数量Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 長期貸出番号() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.長期貸出番号Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '長期貸出番号' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.長期貸出番号Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 伝票番号() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.伝票番号Column),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '伝票番号' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.伝票番号Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 伝票行番号() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.伝票行番号Column),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '伝票行番号' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.伝票行番号Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property エラー情報() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.エラー情報Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 'エラー情報' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.エラー情報Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ＩＤ() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.ＩＤColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 'ＩＤ' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.ＩＤColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 出荷日時() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.出荷日時Column),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '出荷日時' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.出荷日時Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is連携キーNull() As Boolean
+            Return Me.IsNull(Me.tableds一覧.連携キーColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetDataColumn1Null()
-            Me(Me.tableds一覧.DataColumn1Column) = Global.System.Convert.DBNull
+        Public Sub Set連携キーNull()
+            Me(Me.tableds一覧.連携キーColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is発注書番号Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.発注書番号Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set発注書番号Null()
+            Me(Me.tableds一覧.発注書番号Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isピッキング番号Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.ピッキング番号Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setピッキング番号Null()
+            Me(Me.tableds一覧.ピッキング番号Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is需要先コードNull() As Boolean
+            Return Me.IsNull(Me.tableds一覧.需要先コードColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set需要先コードNull()
+            Me(Me.tableds一覧.需要先コードColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is需要先名Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.需要先名Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set需要先名Null()
+            Me(Me.tableds一覧.需要先名Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is需要先部署コードNull() As Boolean
+            Return Me.IsNull(Me.tableds一覧.需要先部署コードColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set需要先部署コードNull()
+            Me(Me.tableds一覧.需要先部署コードColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is部署名Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.部署名Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set部署名Null()
+            Me(Me.tableds一覧.部署名Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is商品コードNull() As Boolean
+            Return Me.IsNull(Me.tableds一覧.商品コードColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set商品コードNull()
+            Me(Me.tableds一覧.商品コードColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isメーカ名Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.メーカ名Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setメーカ名Null()
+            Me(Me.tableds一覧.メーカ名Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isメーカ品番Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.メーカ品番Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setメーカ品番Null()
+            Me(Me.tableds一覧.メーカ品番Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is商品名Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.商品名Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set商品名Null()
+            Me(Me.tableds一覧.商品名Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is規格Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.規格Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set規格Null()
+            Me(Me.tableds一覧.規格Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is受注数量Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.受注数量Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set受注数量Null()
+            Me(Me.tableds一覧.受注数量Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isロット番号Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.ロット番号Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setロット番号Null()
+            Me(Me.tableds一覧.ロット番号Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is有効期限Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.有効期限Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set有効期限Null()
+            Me(Me.tableds一覧.有効期限Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isピッキング数量Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.ピッキング数量Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setピッキング数量Null()
+            Me(Me.tableds一覧.ピッキング数量Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is長期貸出番号Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.長期貸出番号Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set長期貸出番号Null()
+            Me(Me.tableds一覧.長期貸出番号Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is伝票番号Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.伝票番号Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set伝票番号Null()
+            Me(Me.tableds一覧.伝票番号Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is伝票行番号Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.伝票行番号Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set伝票行番号Null()
+            Me(Me.tableds一覧.伝票行番号Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isエラー情報Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.エラー情報Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setエラー情報Null()
+            Me(Me.tableds一覧.エラー情報Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsＩＤNull() As Boolean
+            Return Me.IsNull(Me.tableds一覧.ＩＤColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetＩＤNull()
+            Me(Me.tableds一覧.ＩＤColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is出荷日時Null() As Boolean
+            Return Me.IsNull(Me.tableds一覧.出荷日時Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set出荷日時Null()
+            Me(Me.tableds一覧.出荷日時Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     

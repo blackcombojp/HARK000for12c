@@ -516,7 +516,6 @@ Partial Class HARK001
         Me.btn出荷02.Text = "KMC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "出荷連携"
         Me.btn出荷02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
         Me.btn出荷02.UseVisualStyleBackColor = False
-        Me.btn出荷02.Visible = False
         '
         'btn出荷01
         '
@@ -844,8 +843,8 @@ Partial Class HARK001
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 768)
-        Me.Controls.Add(Me.pnl売上)
         Me.Controls.Add(Me.pnl出荷)
+        Me.Controls.Add(Me.pnl売上)
         Me.Controls.Add(Me.pnl請求)
         Me.Controls.Add(Me.pnl受注)
         Me.Controls.Add(Me.pnl管理)

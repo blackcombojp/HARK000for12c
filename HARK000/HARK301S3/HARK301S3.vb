@@ -60,7 +60,7 @@ Public Class HARK301S3
     Private Sub Fm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
         Try
-            txt長期貸出番号.Focus()
+            txt連携キー.Focus()
 
         Catch ex As Exception
 
@@ -83,7 +83,6 @@ Public Class HARK301S3
 
             'メモリ開放
             GC.Collect()
-            OraTrnRollBack()
 
         Catch ex As Exception
 
@@ -107,7 +106,6 @@ Public Class HARK301S3
 
             'メモリ開放
             GC.Collect()
-            OraTrnRollBack()
 
         Catch ex As Exception
 
@@ -158,32 +156,10 @@ Public Class HARK301S3
 
         Try
 
-            txt長期貸出番号.Text = ""
-            txt長期貸出番号.Enabled = True
+            txt連携キー.Text = ""
+            txt連携キー.Enabled = True
 
-            Initialize明細()
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　明細コンポーネント初期化
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　なし
-    ' *　戻値　　　　　　：　なし
-    ' *-----------------------------------------------------------------------------/
-    Private Sub Initialize明細()
-
-        Try
-
-
-
+            HARK301S3DS.ds一覧.Clear()
 
         Catch ex As Exception
 
@@ -263,52 +239,9 @@ Public Class HARK301S3
 
             Select Case Tag
 
-                Case "ID1"  '長期貸出番号
+                Case "ID1"  '連携キー
 
                     If e.Shift = True Then
-
-                        Select Case e.KeyCode
-
-                            'Tabキーが押されてもフォーカスが移動しないようにする
-                            Case Keys.Tab
-                                e.IsInputKey = True
-
-                        End Select
-
-                    End If
-
-            End Select
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　テキストボックスキー押下処理
-    ' *
-    ' *　注意、制限事項　：　タブ移動させたくないコントロールのみにハンドリングすること
-    ' *　引数１　　　　　：　sender・・オブジェクト識別クラス
-    ' *　引数２　　　　　：　e・・イベントデータクラス
-    ' *　戻値　　　　　　：　なし
-    ' *
-    ' *-----------------------------------------------------------------------------/
-    Private Sub Txt_PreviewKeyDown2(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
-
-        Dim Tag As String
-
-        Try
-
-            Tag = CStr(CType(sender, GrapeCity.Win.Editors.GcDate).Tag)
-
-            Select Case Tag
-
-                Case "ID1"  '抹消日
-
-                    If e.Shift = False Then
 
                         Select Case e.KeyCode
 
@@ -348,7 +281,7 @@ Public Class HARK301S3
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt長期貸出番号.Focus()
+            txt連携キー.Focus()
             Exit Sub
 
         End If
@@ -372,7 +305,7 @@ Public Class HARK301S3
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt長期貸出番号.Focus()
+            txt連携キー.Focus()
             Exit Sub
 
         End If
@@ -425,8 +358,7 @@ Public Class HARK301S3
                     If gintRtn = vbYes Then
 
                         Initialize()
-                        OraTrnRollBack()
-                        txt長期貸出番号.Focus()
+                        txt連携キー.Focus()
 
                     End If
 
@@ -445,22 +377,19 @@ Public Class HARK301S3
                     If gintRtn = vbNo Then
 
                         Initialize()
-                        OraTrnRollBack()
-                        txt長期貸出番号.Focus()
+                        txt連携キー.Focus()
                         Exit Sub
 
                     End If
 
-                    'gintRtn = DLTP0301_PROC0015(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, CLng(txt長期貸出番号.Text.Trim), txtDate.Text.Trim, gintSQLCODE, gstrSQLERRM)
-
-                    'If gintRtn = 0 Then
-                    '    MsgBox(MSG_301032, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                    'Else
-                    '    MsgBox(MSG_301033 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                    'End If
+                    If DLTP0301_PROC0024(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt連携キー.Text.Trim, gintSQLCODE, gstrSQLERRM) = True Then
+                        MsgBox(MSG_301046, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    Else
+                        MsgBox(MSG_301047 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    End If
 
                     Initialize()
-                    txt長期貸出番号.Focus()
+                    txt連携キー.Focus()
                     Exit Sub
 
                 Case "ID6" 'なし
@@ -495,32 +424,18 @@ Public Class HARK301S3
 
             実行前チェック処理 = False
 
-            '長期貸出番号
-            If IsNull(txt長期貸出番号.Text.Trim) = True Then
-                MsgBox(MSG_301027, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt長期貸出番号.Focus()
+            '連携キー
+            If IsNull(txt連携キー.Text.Trim) = True Then
+                MsgBox(MSG_301044, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt連携キー.Focus()
                 Exit Function
             End If
 
-            'If IsNull(txt長期貸出番号.Text.Trim) = False And IsNull(lbl消費日.Text.Trim) = False Then
-            '    MsgBox(MSG_301029, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '    txt長期貸出番号.Focus()
-            '    Exit Function
-            'End If
-
-            ''抹消日チェック
-            'If IsNull(txtDate.Text.Trim) = True Then
-            '    MsgBox(MSG_301028, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '    txtDate.Focus()
-            '    Exit Function
-            'End If
-
-            'If Chk_Date(txtDate.Text.Trim, 1) = False Then
-            '    txtDate.Text = ""
-            '    MsgBox(MSG_301012, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
-            '    txtDate.Focus()
-            '    Exit Function
-            'End If
+            If gcmr一覧.RowCount < 1 Then
+                MsgBox(MSG_301045, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt連携キー.Focus()
+                Exit Function
+            End If
 
             実行前チェック処理 = True
 
@@ -543,14 +458,40 @@ Public Class HARK301S3
     ' *-----------------------------------------------------------------------------/
     Private Function データ表示処理() As Boolean
 
+        Dim intRowCnt As Integer
+
         Try
 
             データ表示処理 = False
 
-            Initialize明細()
+            HARK301S3DS.ds一覧.Clear()
 
+            For intRowCnt = 0 To gintResultCnt - 1
 
+                HARK301S3DS.ds一覧.Addds一覧Row(Results(intRowCnt).strBuff(0),
+                                                CLng(Results(intRowCnt).strBuff(1)),
+                                                CLng(Results(intRowCnt).strBuff(2)),
+                                                CLng(Results(intRowCnt).strBuff(3)),
+                                                Results(intRowCnt).strBuff(4),
+                                                CLng(Results(intRowCnt).strBuff(5)),
+                                                Results(intRowCnt).strBuff(6),
+                                                Results(intRowCnt).strBuff(7),
+                                                Results(intRowCnt).strBuff(8),
+                                                Results(intRowCnt).strBuff(9),
+                                                Results(intRowCnt).strBuff(10),
+                                                Results(intRowCnt).strBuff(11),
+                                                CInt(Results(intRowCnt).strBuff(12)),
+                                                Results(intRowCnt).strBuff(13),
+                                                Results(intRowCnt).strBuff(14),
+                                                CInt(Results(intRowCnt).strBuff(15)),
+                                                Results(intRowCnt).strBuff(16),
+                                                CLng(Results(intRowCnt).strBuff(17)),
+                                                CInt(Results(intRowCnt).strBuff(18)),
+                                                Results(intRowCnt).strBuff(19),
+                                                CLng(Results(intRowCnt).strBuff(20)),
+                                                Results(intRowCnt).strBuff(21))
 
+            Next
 
             データ表示処理 = True
 
@@ -581,44 +522,39 @@ Public Class HARK301S3
 
             Select Case Tag
 
-                Case "ID1" '長期貸出番号
+                Case "ID1" '連携キー
 
-                    If IsNull(txt長期貸出番号.Text.Trim) = False Then
+                    If IsNull(txt連携キー.Text.Trim) = False Then
 
-                        If txt長期貸出番号.Text.Trim.Length <> 13 Then
-                            MsgBox(MSG_301030, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        If txt連携キー.Text.Trim.Length <> 39 Then
+                            MsgBox(MSG_301043, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                             Initialize()
-                            txt長期貸出番号.Focus()
+                            txt連携キー.Focus()
                             Exit Sub
                         End If
 
-                        gintRtn = DLTP0301_PROC0014(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, CLng(txt長期貸出番号.Text.Trim), gintSQLCODE, gstrSQLERRM)
+                        gintRtn = DLTP0301_PROC0023(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt連携キー.Text.Trim, gintSQLCODE, gstrSQLERRM)
 
                         Select Case gintRtn
                             Case 0
                                 gblRtn = データ表示処理()
-                                txt長期貸出番号.Enabled = False
-                            Case 2
-                                MsgBox(MSG_301031, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt連携キー.Enabled = False
+                            Case 7, 8
+                                MsgBox(gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
-                                txt長期貸出番号.Focus()
-                                Exit Sub
-                            Case -54
-                                MsgBox(MSG_301034, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                                Initialize()
-                                txt長期貸出番号.Focus()
+                                txt連携キー.Focus()
                                 Exit Sub
                             Case Else
                                 MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
-                                txt長期貸出番号.Focus()
+                                txt連携キー.Focus()
                                 Exit Sub
 
                         End Select
 
                     Else
                         Initialize()
-                        'txt長期貸出番号.Focus()
+                        txt連携キー.Focus()
                     End If
 
             End Select

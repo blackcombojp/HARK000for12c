@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Feed>
   <Tasks>
-    <FileUpdateTask hotswap="false" localPath="HARK000.exe" updateTo="https://webapp.iti-oliver.jp/hass/HARK000.exe">
+    <FileUpdateTask hotswap="false" localPath="HARK000.exe" updateTo="https://delta2.iticloud.net/delta/HARK000/v12/HARK000.exe">
       <Conditions>
-        <FileVersionCondition what="below" version="0.0.4.1" />
+        <FileVersionCondition what="below" version="0.0.4.5" />
       </Conditions>
     </FileUpdateTask>
   </Tasks>

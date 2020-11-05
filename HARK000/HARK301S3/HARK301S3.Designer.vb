@@ -37,10 +37,8 @@ Partial Class HARK301S3
         Me.Menu_ErrorLog = New System.Windows.Forms.ToolStripMenuItem()
         Me.BT_ID4 = New GrapeCity.Win.Buttons.GcSplitButton()
         Me.pnl明細 = New System.Windows.Forms.Panel()
-        Me.gcmr一覧 = New GrapeCity.Win.MultiRow.GcMultiRow()
         Me.BS一覧 = New System.Windows.Forms.BindingSource(Me.components)
         Me.HARK301S3DS = New HARK000.HARK301S3DS()
-        Me.HarK301S3Template1 = New HARK000.HARK301S3Template()
         Me.SttBar_3 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBar_2 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBarPnl_Err = New System.Windows.Forms.StatusBarPanel()
@@ -55,18 +53,20 @@ Partial Class HARK301S3
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.ExcelCreator = New AdvanceSoftware.ExcelCreator.Creator(Me.components)
         Me.pnl検索 = New System.Windows.Forms.Panel()
-        Me.lbl長期貸出番号 = New System.Windows.Forms.Label()
-        Me.txt長期貸出番号 = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl連携キー = New System.Windows.Forms.Label()
+        Me.txt連携キー = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.gcmr一覧 = New GrapeCity.Win.MultiRow.GcMultiRow()
+        Me.HarK301S3Template1 = New HARK000.HARK301S3Template()
         Me.CntMenuStrip.SuspendLayout()
         Me.pnl明細.SuspendLayout()
-        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HARK301S3DS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl検索.SuspendLayout()
-        CType(Me.txt長期貸出番号, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt連携キー, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu_Log
@@ -111,33 +111,6 @@ Partial Class HARK301S3
         Me.pnl明細.Name = "pnl明細"
         Me.pnl明細.Size = New System.Drawing.Size(985, 334)
         Me.pnl明細.TabIndex = 185
-        '
-        'gcmr一覧
-        '
-        Me.gcmr一覧.AllowClipboard = False
-        Me.gcmr一覧.AllowUserToAddRows = False
-        Me.gcmr一覧.AllowUserToAutoFitColumns = False
-        Me.gcmr一覧.AllowUserToDeleteRows = False
-        Me.gcmr一覧.AllowUserToResize = False
-        Me.gcmr一覧.AllowUserToTouchResize = False
-        Me.gcmr一覧.AllowUserToTouchZoom = False
-        Me.gcmr一覧.AllowUserToZoom = False
-        CellStyle1.BackColor = System.Drawing.Color.LightCyan
-        CellStyle1.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
-        Me.gcmr一覧.AlternatingRowsDefaultCellStyle = CellStyle1
-        Me.gcmr一覧.ClipboardCopyMode = GrapeCity.Win.MultiRow.ClipboardCopyMode.Disable
-        Me.gcmr一覧.CurrentCellBorderLine = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.None, System.Drawing.Color.Black)
-        Me.gcmr一覧.DataSource = Me.BS一覧
-        Me.gcmr一覧.Location = New System.Drawing.Point(17, 16)
-        Me.gcmr一覧.MultiSelect = False
-        Me.gcmr一覧.Name = "gcmr一覧"
-        Me.gcmr一覧.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.gcmr一覧.Size = New System.Drawing.Size(940, 296)
-        Me.gcmr一覧.SplitMode = GrapeCity.Win.MultiRow.SplitMode.None
-        Me.gcmr一覧.TabIndex = 0
-        Me.gcmr一覧.TabStop = False
-        Me.gcmr一覧.Template = Me.HarK301S3Template1
-        Me.gcmr一覧.Text = "gcmr一覧"
         '
         'BS一覧
         '
@@ -282,35 +255,61 @@ Partial Class HARK301S3
         '
         Me.pnl検索.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl検索.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl検索.Controls.Add(Me.lbl長期貸出番号)
-        Me.pnl検索.Controls.Add(Me.txt長期貸出番号)
+        Me.pnl検索.Controls.Add(Me.lbl連携キー)
+        Me.pnl検索.Controls.Add(Me.txt連携キー)
         Me.pnl検索.Location = New System.Drawing.Point(25, 44)
         Me.pnl検索.Name = "pnl検索"
         Me.pnl検索.Size = New System.Drawing.Size(985, 46)
         Me.pnl検索.TabIndex = 184
         '
-        'lbl長期貸出番号
+        'lbl連携キー
         '
-        Me.lbl長期貸出番号.AutoSize = True
-        Me.lbl長期貸出番号.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl長期貸出番号.Location = New System.Drawing.Point(7, 12)
-        Me.lbl長期貸出番号.Name = "lbl長期貸出番号"
-        Me.lbl長期貸出番号.Size = New System.Drawing.Size(113, 20)
-        Me.lbl長期貸出番号.TabIndex = 167
-        Me.lbl長期貸出番号.Text = "【長期貸出番号】"
-        Me.lbl長期貸出番号.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lbl連携キー.AutoSize = True
+        Me.lbl連携キー.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl連携キー.Location = New System.Drawing.Point(7, 12)
+        Me.lbl連携キー.Name = "lbl連携キー"
+        Me.lbl連携キー.Size = New System.Drawing.Size(87, 20)
+        Me.lbl連携キー.TabIndex = 167
+        Me.lbl連携キー.Text = "【連携キー】"
+        Me.lbl連携キー.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'txt長期貸出番号
+        'txt連携キー
         '
-        Me.txt長期貸出番号.ContentAlignment = System.Drawing.ContentAlignment.MiddleRight
-        Me.txt長期貸出番号.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt長期貸出番号.Format = "9"
-        Me.txt長期貸出番号.Location = New System.Drawing.Point(130, 10)
-        Me.txt長期貸出番号.MaxLength = 13
-        Me.txt長期貸出番号.Name = "txt長期貸出番号"
-        Me.txt長期貸出番号.Size = New System.Drawing.Size(269, 24)
-        Me.txt長期貸出番号.TabIndex = 11
-        Me.txt長期貸出番号.Tag = "ID1"
+        Me.txt連携キー.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txt連携キー.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt連携キー.Format = "A9"
+        Me.txt連携キー.Location = New System.Drawing.Point(96, 10)
+        Me.txt連携キー.MaxLength = 39
+        Me.txt連携キー.Name = "txt連携キー"
+        Me.txt連携キー.Size = New System.Drawing.Size(347, 24)
+        Me.txt連携キー.TabIndex = 11
+        Me.txt連携キー.Tag = "ID1"
+        '
+        'gcmr一覧
+        '
+        Me.gcmr一覧.AllowClipboard = False
+        Me.gcmr一覧.AllowUserToAddRows = False
+        Me.gcmr一覧.AllowUserToAutoFitColumns = False
+        Me.gcmr一覧.AllowUserToDeleteRows = False
+        Me.gcmr一覧.AllowUserToResize = False
+        Me.gcmr一覧.AllowUserToTouchResize = False
+        Me.gcmr一覧.AllowUserToTouchZoom = False
+        Me.gcmr一覧.AllowUserToZoom = False
+        CellStyle1.BackColor = System.Drawing.Color.LightCyan
+        CellStyle1.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        Me.gcmr一覧.AlternatingRowsDefaultCellStyle = CellStyle1
+        Me.gcmr一覧.ClipboardCopyMode = GrapeCity.Win.MultiRow.ClipboardCopyMode.Disable
+        Me.gcmr一覧.CurrentCellBorderLine = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.None, System.Drawing.Color.Black)
+        Me.gcmr一覧.DataSource = Me.BS一覧
+        Me.gcmr一覧.Location = New System.Drawing.Point(17, 16)
+        Me.gcmr一覧.MultiSelect = False
+        Me.gcmr一覧.Name = "gcmr一覧"
+        Me.gcmr一覧.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.gcmr一覧.Size = New System.Drawing.Size(940, 296)
+        Me.gcmr一覧.SplitMode = GrapeCity.Win.MultiRow.SplitMode.None
+        Me.gcmr一覧.TabIndex = 0
+        Me.gcmr一覧.Template = Me.HarK301S3Template1
+        Me.gcmr一覧.Text = "gcmr一覧"
         '
         'HARK301S3
         '
@@ -340,7 +339,6 @@ Partial Class HARK301S3
         Me.Text = "FMTITLE"
         Me.CntMenuStrip.ResumeLayout(False)
         Me.pnl明細.ResumeLayout(False)
-        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HARK301S3DS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -348,7 +346,8 @@ Partial Class HARK301S3
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl検索.ResumeLayout(False)
         Me.pnl検索.PerformLayout()
-        CType(Me.txt長期貸出番号, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt連携キー, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -371,8 +370,12 @@ Partial Class HARK301S3
     Private WithEvents BT_ID5 As Button
     Private WithEvents ExcelCreator As AdvanceSoftware.ExcelCreator.Creator
     Private WithEvents pnl検索 As Panel
-    Private WithEvents lbl長期貸出番号 As Label
-    Private WithEvents txt長期貸出番号 As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents lbl連携キー As Label
+    Private WithEvents txt連携キー As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents BS一覧 As BindingSource
+    Private WithEvents HARK301S3DS As HARK301S3DS
+    Private WithEvents HarK301S3Template1 As HARK301S3Template
+    Private WithEvents gcmr一覧 As GrapeCity.Win.MultiRow.GcMultiRow
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -380,11 +383,6 @@ Partial Class HARK301S3
     Private xxxintSubProgram_ID As Integer
     Private xxxintSPDSystemCode As Integer
     Private xxxstrForTitle As String
-    Private xxxint事業所コード As Integer
-    Private xxxstr担当者名 As String
-    Private xxxlng需要先コード As Long
-    'Private xxxintCnt(3) As Integer
-    'Private xxxintNo As Integer
 
 
     Public Sub New(ByVal PerFormTitle As String, ByVal PerProgramID As String, ByVal PreSubProgramID As Integer, ByVal PreSPDSystemCode As Integer)
@@ -402,14 +400,13 @@ Partial Class HARK301S3
         xxxintSPDSystemCode = PreSPDSystemCode
 
         'PreviewKeyDownイベントハンドラの追加
-        AddHandler txt長期貸出番号.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
+        AddHandler txt連携キー.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
 
         'KeyDownイベントハンドラの追加
-        AddHandler txt長期貸出番号.KeyDown, AddressOf Txt_KeyDown
-        'AddHandler txtDate.KeyDown, AddressOf Txt_KeyDown
+        AddHandler txt連携キー.KeyDown, AddressOf Txt_KeyDown
 
         'Validatedイベントハンドラの追加
-        AddHandler txt長期貸出番号.Validated, AddressOf Txt_Validated
+        AddHandler txt連携キー.Validated, AddressOf Txt_Validated
 
         'Clickイベントハンドラの追加
         AddHandler BT_ID1.Click, AddressOf Bt_ID_Click
@@ -422,8 +419,5 @@ Partial Class HARK301S3
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
-    Private WithEvents BS一覧 As BindingSource
-    Private WithEvents HARK301S3DS As HARK301S3DS
-    Friend WithEvents HarK301S3Template1 As HARK301S3Template
-    Private WithEvents gcmr一覧 As GrapeCity.Win.MultiRow.GcMultiRow
+
 End Class

@@ -113,6 +113,11 @@ Module HARK_Define
     Public Const MSG_301040 As String = "受注形態【不明】で確定はできません"
     Public Const MSG_301041 As String = "更新は正常終了しました"
     Public Const MSG_301042 As String = "更新は異常終了しました"
+    Public Const MSG_301043 As String = "連携キーの指定が不正です"
+    Public Const MSG_301044 As String = "連携キーを指定してください"
+    Public Const MSG_301045 As String = "分納データを検索してください"
+    Public Const MSG_301046 As String = "完了処理は正常終了しました"
+    Public Const MSG_301047 As String = "完了処理は異常終了しました"
 
     Public Const MSG_304001 As String = "売掛先を指定してください"
     Public Const MSG_304002 As String = "対象開始日を指定してください"

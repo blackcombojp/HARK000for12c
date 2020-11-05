@@ -28,6 +28,9 @@ Public Class HARK_Sub
         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException)
         AddHandler AppDomain.CurrentDomain.UnhandledException, AddressOf CurrentDomain_UnhandledException
 
+        'TLS1.2のみ許可(Webアクセス)
+        Net.ServicePointManager.SecurityProtocol = Net.SecurityProtocolType.Tls12
+
         Dim hasHandle As Boolean = False
         Dim intCnt As Integer = 0
 
