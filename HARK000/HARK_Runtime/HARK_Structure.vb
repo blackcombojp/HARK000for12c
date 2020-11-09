@@ -40,7 +40,7 @@ Module HARK_Structure
         End Function
 
         Public Sub New(ByVal Name As String, ByVal CD As Integer)
-            strñºèÃ = NvlString(Name, CStr(IIf(CD = 0, "", CStr(CD))))
+            strñºèÃ = Name
             intÉRÅ[Éh = CD
         End Sub
 

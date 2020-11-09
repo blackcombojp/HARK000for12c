@@ -12,6 +12,7 @@ Imports HARK000.HARK_DBCommon
 Imports HARK000.HARK_Sub
 Imports HARK000.HARK_Common
 Imports NAppUpdate.Framework
+
 Public Class HARK001
 
     ''' <summary>
@@ -427,7 +428,7 @@ Public Class HARK001
 
         Try
 
-            Process.Start("https://webapp.iti-oliver.jp/hass/manual/index.html")
+            Process.Start(My.Settings.ManualUrl)
 
         Catch ex As Exception
 

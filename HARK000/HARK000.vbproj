@@ -286,6 +286,12 @@
     <Compile Include="HARK501\HARK501.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HARK502\HARK502.Designer.vb">
+      <DependentUpon>HARK502.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK502\HARK502.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HARK503\HARK503.designer.vb">
       <DependentUpon>HARK503.vb</DependentUpon>
     </Compile>
@@ -400,6 +406,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HARK501\HARK501.resx">
       <DependentUpon>HARK501.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK502\HARK502.resx">
+      <DependentUpon>HARK502.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HARK503\HARK503.resx">
       <DependentUpon>HARK503.vb</DependentUpon>

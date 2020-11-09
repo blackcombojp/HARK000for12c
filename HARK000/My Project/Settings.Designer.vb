@@ -128,7 +128,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("640381")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
         Public Property 入力担当コード() As Long
             Get
                 Return CType(Me("入力担当コード"),Long)
@@ -140,13 +140,25 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("403")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
         Public Property 事業所コード() As Integer
             Get
                 Return CType(Me("事業所コード"),Integer)
             End Get
             Set
                 Me("事業所コード") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://webapp.iti-oliver.jp/hass/manual/index.html")>  _
+        Public Property ManualUrl() As String
+            Get
+                Return CType(Me("ManualUrl"),String)
+            End Get
+            Set
+                Me("ManualUrl") = value
             End Set
         End Property
     End Class
