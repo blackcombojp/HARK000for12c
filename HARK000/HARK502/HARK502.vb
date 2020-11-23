@@ -205,7 +205,6 @@ Public Class HARK502
             cmb事業所.Items.Add(New 事業所一覧("", 0))
 
 
-
             '項目一覧取得
             If DLTP0901_PROC0005(xxxstrProgram_ID, "医薬区分", gintSQLCODE, gstrSQLERRM) = False Then
 
@@ -317,22 +316,22 @@ Public Class HARK502
 
             Select Case int区分
 
-                Case 1 '得商/需商全件を対象とする
+                Case 1, 3 'ファイル出力
 
-                    txt対象開始月.Text = ""
-                    txt対象開始月.Enabled = False
+                    txtデータ出力先.Enabled = True
+                    btnフォルダ参照.Enabled = True
 
-                Case 2 '更新日付が下記以降の得商/需商を対象とする
+                Case 2, 4 '印刷
 
-                    txt対象開始月.Text = ""
-                    txt対象開始月.Enabled = True
+                    txtデータ出力先.Enabled = False
+                    btnフォルダ参照.Enabled = False
 
                 Case Else
 
-                    cmb医薬品区分.SelectedIndex = gintPHsmos医療機関Cnt
+                    cmb医薬品区分.SelectedIndex = gint項目辞書Cnt
                     cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
-                    txt対象開始月.Text = ""
-                    txt対象開始月.Enabled = True
+                    txtデータ出力先.Enabled = True
+                    btnフォルダ参照.Enabled = True
 
             End Select
 
@@ -414,21 +413,7 @@ Public Class HARK502
 
             Select Case Tag
 
-                'Case "ID1"  '取込ファイル
-
-                '    If e.Shift = True Then
-
-                '        Select Case e.KeyCode
-
-                '            'Tabキーが押されてもフォーカスが移動しないようにする
-                '            Case Keys.Tab
-                '                e.IsInputKey = True
-
-                '        End Select
-
-                '    End If
-
-                Case "ID2"  'データ出力先
+                Case "ID1"  'データ出力先
 
                     If e.Shift = False Then
 
@@ -481,7 +466,7 @@ Public Class HARK502
 
                     End Select
 
-                Case "ID2"  '医療機関
+                Case "ID2"  '医薬品区分
 
                     If e.Shift = True Then
 
@@ -546,14 +531,11 @@ Public Class HARK502
                         End If
                     End If
 
+                Case "ID2" '医薬品区分
 
-
-
-                Case "ID2" '医療機関
-
-                    'With DirectCast(cmb医薬品区分.SelectedItem, PHsmos医療機関一覧)
-                    '    xxxstr医療機関コード = .str医療機関コード
-                    'End With
+                    With DirectCast(cmb医薬品区分.SelectedItem, 項目辞書一覧)
+                        xxxint医薬品区分 = .intコード
+                    End With
 
                 Case "ID3" 'サブプログラム
 
@@ -775,8 +757,10 @@ Public Class HARK502
 
                     If gintRtn = vbYes Then
 
-                        cmb医薬品区分.SelectedIndex = gintPHsmos医療機関Cnt
+                        cmb医薬品区分.SelectedIndex = gint項目辞書Cnt
                         cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                        txt対象開始月.Text = ""
+                        txt対象終了月.Text = ""
                         Initialize条件(0)
                         lb_Msg.Items.Clear()
                         cmb医薬品区分.Focus()
@@ -791,14 +775,23 @@ Public Class HARK502
 
                 Case "ID5" '実行
 
+                    '★★
+                    '開発中
+                    If xxxintSubProgram_ID = 2 Or xxxintSubProgram_ID = 4 Then
+                        MsgBox(MSG_COM906, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Sub
+                    End If
+
                     If 実行前チェック処理() = False Then Exit Sub
 
                     gintRtn = MsgBox(MSG_101105, CType(MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title)
 
                     If gintRtn = vbNo Then
 
-                        cmb医薬品区分.SelectedIndex = gintPHsmos医療機関Cnt
+                        cmb医薬品区分.SelectedIndex = gint項目辞書Cnt
                         cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                        txt対象開始月.Text = ""
+                        txt対象終了月.Text = ""
                         Initialize条件(0)
                         cmb医薬品区分.Focus()
 
@@ -817,29 +810,109 @@ Public Class HARK502
 
                     m_lording.Start()
 
+                    Select Case xxxintSubProgram_ID
+                        Case 1, 2
+                            xxxint処理対象区分 = 1
+                        Case 3, 4
+                            xxxint処理対象区分 = 2
+                    End Select
+
                     Set_ListItem(0, "")
+                    Set_ListItem(1, "【" & cmb医薬品区分.Text & "】")
+                    Set_ListItem(1, cmbサブプログラム.Text)
                     Set_ListItem(1, MSG_301017)
 
-                    gblRtn = データ検索処理()
+                    'データ作成
+                    gintRtn = DLTP0502_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, 0, xxxint医薬品区分, txt対象開始月.Text.Trim, txt対象終了月.Text.Trim, xxxint処理対象区分, xxxintNo, xxxintCnt, gintSQLCODE, gstrSQLERRM)
 
                     Select Case gintRtn
 
-                        Case 0 '正常終了
+                        Case 8
 
-                            Exit Select
+                            Set_ListItem(1, MSG_201009 & "《" & xxxintNo & "》")
+                            Set_ListItem(1, MSG_101111 & "【" & xxxintCnt & "】")
+                            Set_ListItem(1, MSG_201006)
+                            Set_ListItem(2, "")
 
-                        Case 9 'エラー
+                            GoTo EndExecute
 
+
+                        Case 9
+
+                            Set_ListItem(1, MSG_201009 & "《" & xxxintNo & "》")
+                            Set_ListItem(1, MSG_101111 & "【" & xxxintCnt & "】")
                             Set_ListItem(1, MSG_COM899 & gintSQLCODE)
                             Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-                            Set_ListItem(1, MSG_301019)
+                            Set_ListItem(1, MSG_201003)
                             Set_ListItem(1, MSG_COM901)
                             Set_ListItem(2, "")
 
+                            GoTo EndExecute
+
+
                     End Select
 
-                    cmb医薬品区分.SelectedIndex = gintPHsmos医療機関Cnt
+                    Set_ListItem(1, MSG_201009 & "《" & xxxintNo & "》")
+                    Set_ListItem(1, MSG_101111 & "【" & xxxintCnt & "】")
+
+                    'データ検索
+                    gintRtn = DLTP0502_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, 0, xxxintNo, gintSQLCODE, gstrSQLERRM)
+
+                    Select Case gintRtn
+
+                        Case 2
+
+                            Set_ListItem(1, MSG_304005)
+                            Set_ListItem(1, MSG_201003)
+                            Set_ListItem(1, MSG_COM901)
+                            Set_ListItem(2, "")
+
+                            GoTo EndExecute
+
+                        Case 9
+
+                            Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                            Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                            Set_ListItem(1, MSG_201003)
+                            Set_ListItem(1, MSG_COM901)
+                            Set_ListItem(2, "")
+
+                            GoTo EndExecute
+
+                    End Select
+
+                    Select Case xxxintSubProgram_ID
+
+                        Case 1, 3
+                            If データ出力処理() = True Then
+                                Set_ListItem(1, MSG_301018)
+                                Set_ListItem(2, "")
+                            Else
+                                Set_ListItem(1, MSG_301019)
+                                Set_ListItem(1, MSG_COM901)
+                                Set_ListItem(2, "")
+                            End If
+
+                        Case 2, 4
+                            'If Output_RawData() = True Then
+                            '    Set_ListItem(1, MSG_301018)
+                            '    Set_ListItem(2, "")
+                            'Else
+                            '    Set_ListItem(1, MSG_301019)
+                            '    Set_ListItem(1, MSG_COM901)
+                            '    Set_ListItem(2, "")
+                            'End If
+
+                    End Select
+
+EndExecute:
+                    'セッション情報削除
+                    gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "医薬品入出庫履歴", xxxint処理対象区分)
+
+                    cmb医薬品区分.SelectedIndex = gint項目辞書Cnt
                     cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                    txt対象開始月.Text = ""
+                    txt対象終了月.Text = ""
                     Initialize条件(0)
                     cmb医薬品区分.Focus()
 
@@ -917,9 +990,9 @@ Public Class HARK502
                 SttBar_2.Text = gstr担当者名
             End If
 
-            'PHsmos医療機関チェック
+            '医薬品区分チェック
             If IsNull(cmb医薬品区分.Text.Trim) = True Then
-                MsgBox(MSG_505001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(MSG_502001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                 cmb医薬品区分.Focus()
                 Exit Function
             End If
@@ -931,33 +1004,34 @@ Public Class HARK502
                 Exit Function
             End If
 
-            Select Case xxxintSubProgram_ID
+            '対象開始月
+            If IsNull(txt対象開始月.Text.Trim) = True Then
+                MsgBox(MSG_502002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt対象開始月.Focus()
+                Exit Function
+            End If
 
-                Case 1 '得商/需商全件を対象とする
+            If Chk_Date(txt対象開始月.Text.Trim, 2) = False Then
+                txt対象開始月.Text = ""
+                MsgBox(MSG_502003, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
+                txt対象開始月.Focus()
+                Exit Function
+            End If
 
-                    Exit Select
+            '対象終了月
+            If IsNull(txt対象終了月.Text.Trim) = True Then
+                MsgBox(MSG_502004, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt対象終了月.Focus()
+                Exit Function
+            End If
 
-                Case 2 '更新日付が下記以降の得商/需商を対象とする
+            If Chk_Date(txt対象終了月.Text.Trim, 2) = False Then
+                txt対象終了月.Text = ""
+                MsgBox(MSG_502005, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
+                txt対象終了月.Focus()
+                Exit Function
+            End If
 
-                    '対象日チェック
-                    If IsNull(txt対象開始月.Text.Trim) = True Then
-                        MsgBox(MSG_301011, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt対象開始月.Focus()
-                        Exit Function
-                    End If
-
-                    If Chk_Date(txt対象開始月.Text.Trim, 1) = False Then
-                        txt対象開始月.Text = ""
-                        MsgBox(MSG_301012, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
-                        txt対象開始月.Focus()
-                        Exit Function
-                    End If
-
-                Case Else
-
-                    Exit Function
-
-            End Select
 
             'データ出力先チェック
             If IsNull(txtデータ出力先.Text.Trim) = True Then
@@ -985,7 +1059,6 @@ Public Class HARK502
         End Try
 
     End Function
-
     '/*-----------------------------------------------------------------------------
     ' *　モジュール機能　：  データ出力処理
     ' *
@@ -1010,15 +1083,15 @@ Public Class HARK502
 
             データ出力処理 = False
 
-            FileName = Set_FilePath(txtデータ出力先.Text, "PHsmos採用商品情報_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-            strSheetName = "PHsmos採用商品情報"
+            FileName = Set_FilePath(txtデータ出力先.Text, "医薬品入出庫履歴_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+            strSheetName = "医薬品入出庫履歴"
 
             '出力ヘッダ取得
-            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 0, 1, 99, "出力ヘッダ")
+            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 0, 3, 99, "出力ヘッダ")
             strHeaderText = gstrDLTP0997S_FUNC005
 
             '項目数取得
-            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 0, 1, 99, "項目数")
+            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 0, 3, 99, "項目数")
             ColMax = gintDLTP0997S_FUNC004
 
             RowMax = gintResultCnt
@@ -1064,87 +1137,6 @@ Public Class HARK502
             End With
 
             データ出力処理 = True
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　データ検索処理
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　なし
-    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
-    ' *-----------------------------------------------------------------------------/
-    Private Function データ検索処理() As Boolean
-
-        Try
-
-            データ検索処理 = False
-
-
-            Select Case xxxintSubProgram_ID
-
-                'Case 1 '得商/需商全件を対象とする
-                '    gintRtn = DLTP0505_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxstr医療機関コード, vbNullString, gintSQLCODE, gstrSQLERRM)
-
-                'Case 2 '更新日付が下記以降の得商/需商を対象とする
-                '    gintRtn = DLTP0505_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxstr医療機関コード, txt対象開始月.Text.Trim, gintSQLCODE, gstrSQLERRM)
-
-                'Case Else
-                '    Set_ListItem(1, MSG_301019)
-                '    Set_ListItem(2, "")
-                '    Exit Function
-
-            End Select
-
-            Select Case gintRtn
-
-                Case 0 '正常終了
-
-                    gblRtn = データ出力処理()
-
-                    If gblRtn = True Then
-
-                        Set_ListItem(1, MSG_301020 & "【" & gintResultCnt & "】")
-                        Set_ListItem(1, MSG_301018)
-                        Set_ListItem(2, "")
-
-
-                    Else
-
-                        Set_ListItem(1, MSG_301019)
-                        Set_ListItem(1, MSG_COM901)
-                        Set_ListItem(2, "")
-                        Exit Function
-
-
-                    End If
-
-                Case 2 '対象件数0件
-
-                    Set_ListItem(1, MSG_301005)
-                    Set_ListItem(2, "")
-                    Exit Function
-
-
-                Case 9 'エラー
-
-                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
-                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-                    Set_ListItem(1, MSG_301019)
-                    Set_ListItem(1, MSG_COM901)
-                    Set_ListItem(2, "")
-                    Exit Function
-
-
-            End Select
-
-            データ検索処理 = True
 
         Catch ex As Exception
 

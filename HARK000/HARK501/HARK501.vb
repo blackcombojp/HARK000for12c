@@ -1170,7 +1170,7 @@ EndExecute:
     ' *-----------------------------------------------------------------------------/
     Private Function Read_ExcelData(ByVal strExcelFilePath As String) As Boolean
 
-        Dim inputStream As FileStream
+        Dim inputStream As FileStream = Nothing
         Dim lWBook As IWorkbook
         Dim lSheet As ISheet
         Dim lRow As IRow
@@ -1281,14 +1281,39 @@ EndExecute:
 
             lWBook.Close()
 
-            inputStream = Nothing
+            ' inputStream = Nothing
 
             Read_ExcelData = True
+
+        Catch ex As FileNotFoundException
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM016, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As IOException
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM015, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As UnauthorizedAccessException
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM018, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
 
         Catch ex As Exception
 
             log.Error(Set_ErrMSG(Err.Number, ex.ToString))
             Throw
+
+        Finally
+
+            If inputStream IsNot Nothing Then
+                inputStream.Close()
+                inputStream.Dispose()
+            End If
 
         End Try
 

@@ -30,12 +30,12 @@ Partial Class HARK502
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DateYearField2 As GrapeCity.Win.Editors.Fields.DateYearField = New GrapeCity.Win.Editors.Fields.DateYearField()
-        Dim DateLiteralField2 As GrapeCity.Win.Editors.Fields.DateLiteralField = New GrapeCity.Win.Editors.Fields.DateLiteralField()
-        Dim DateMonthField2 As GrapeCity.Win.Editors.Fields.DateMonthField = New GrapeCity.Win.Editors.Fields.DateMonthField()
         Dim DateYearField1 As GrapeCity.Win.Editors.Fields.DateYearField = New GrapeCity.Win.Editors.Fields.DateYearField()
         Dim DateLiteralField1 As GrapeCity.Win.Editors.Fields.DateLiteralField = New GrapeCity.Win.Editors.Fields.DateLiteralField()
         Dim DateMonthField1 As GrapeCity.Win.Editors.Fields.DateMonthField = New GrapeCity.Win.Editors.Fields.DateMonthField()
+        Dim DateYearField2 As GrapeCity.Win.Editors.Fields.DateYearField = New GrapeCity.Win.Editors.Fields.DateYearField()
+        Dim DateLiteralField2 As GrapeCity.Win.Editors.Fields.DateLiteralField = New GrapeCity.Win.Editors.Fields.DateLiteralField()
+        Dim DateMonthField2 As GrapeCity.Win.Editors.Fields.DateMonthField = New GrapeCity.Win.Editors.Fields.DateMonthField()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK502))
         Me.cmb事業所 = New System.Windows.Forms.ComboBox()
         Me.Menu_Log = New System.Windows.Forms.ToolStripMenuItem()
@@ -47,6 +47,9 @@ Partial Class HARK502
         Me.txtデータ出力先 = New GrapeCity.Win.Editors.GcTextBox(Me.components)
         Me.lblエラーデータ出力先 = New System.Windows.Forms.Label()
         Me.pnl操作 = New System.Windows.Forms.Panel()
+        Me.lbl許可期間２ = New System.Windows.Forms.Label()
+        Me.txt対象終了月 = New GrapeCity.Win.Editors.GcDate(Me.components)
+        Me.DropDownButton2 = New GrapeCity.Win.Editors.DropDownButton()
         Me.cmb医薬品区分 = New System.Windows.Forms.ComboBox()
         Me.lbl医薬品区分 = New System.Windows.Forms.Label()
         Me.txt対象開始月 = New GrapeCity.Win.Editors.GcDate(Me.components)
@@ -70,19 +73,16 @@ Partial Class HARK502
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.ExcelCreator = New AdvanceSoftware.ExcelCreator.Creator(Me.components)
-        Me.txt対象終了月 = New GrapeCity.Win.Editors.GcDate(Me.components)
-        Me.DropDownButton2 = New GrapeCity.Win.Editors.DropDownButton()
-        Me.lbl許可期間２ = New System.Windows.Forms.Label()
         Me.CntMenuStrip.SuspendLayout()
         CType(Me.lb_Msg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtデータ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl操作.SuspendLayout()
+        CType(Me.txt対象終了月, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt対象開始月, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt入力担当コード, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt対象終了月, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cmb事業所
@@ -148,7 +148,7 @@ Partial Class HARK502
         Me.btnフォルダ参照.Location = New System.Drawing.Point(402, 207)
         Me.btnフォルダ参照.Name = "btnフォルダ参照"
         Me.btnフォルダ参照.Size = New System.Drawing.Size(60, 23)
-        Me.btnフォルダ参照.TabIndex = 15
+        Me.btnフォルダ参照.TabIndex = 16
         Me.btnフォルダ参照.TabStop = False
         Me.btnフォルダ参照.Tag = "ID1"
         Me.btnフォルダ参照.Text = "参照"
@@ -160,8 +160,8 @@ Partial Class HARK502
         Me.txtデータ出力先.Location = New System.Drawing.Point(12, 207)
         Me.txtデータ出力先.Name = "txtデータ出力先"
         Me.txtデータ出力先.Size = New System.Drawing.Size(382, 24)
-        Me.txtデータ出力先.TabIndex = 14
-        Me.txtデータ出力先.Tag = "ID2"
+        Me.txtデータ出力先.TabIndex = 15
+        Me.txtデータ出力先.Tag = "ID1"
         '
         'lblエラーデータ出力先
         '
@@ -193,6 +193,39 @@ Partial Class HARK502
         Me.pnl操作.Name = "pnl操作"
         Me.pnl操作.Size = New System.Drawing.Size(475, 614)
         Me.pnl操作.TabIndex = 183
+        '
+        'lbl許可期間２
+        '
+        Me.lbl許可期間２.AutoSize = True
+        Me.lbl許可期間２.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl許可期間２.Location = New System.Drawing.Point(139, 154)
+        Me.lbl許可期間２.Name = "lbl許可期間２"
+        Me.lbl許可期間２.Size = New System.Drawing.Size(22, 20)
+        Me.lbl許可期間２.TabIndex = 187
+        Me.lbl許可期間２.Text = "～"
+        Me.lbl許可期間２.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txt対象終了月
+        '
+        Me.txt対象終了月.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
+        DateLiteralField1.Text = "/"
+        Me.txt対象終了月.Fields.AddRange(New GrapeCity.Win.Editors.Fields.DateField() {DateYearField1, DateLiteralField1, DateMonthField1})
+        Me.txt対象終了月.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt対象終了月.ImeMode = System.Windows.Forms.ImeMode.Off
+        Me.txt対象終了月.Location = New System.Drawing.Point(167, 151)
+        Me.txt対象終了月.MaxDate = New Date(2999, 12, 31, 23, 59, 59, 0)
+        Me.txt対象終了月.MaxValue = New Date(2999, 12, 31, 23, 59, 59, 0)
+        Me.txt対象終了月.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
+        Me.txt対象終了月.MinValue = New Date(2000, 1, 1, 0, 0, 0, 0)
+        Me.txt対象終了月.Name = "txt対象終了月"
+        Me.txt対象終了月.SideButtons.AddRange(New GrapeCity.Win.Editors.SideButtonBase() {Me.DropDownButton2})
+        Me.txt対象終了月.Size = New System.Drawing.Size(118, 26)
+        Me.txt対象終了月.TabIndex = 14
+        Me.txt対象終了月.Value = Nothing
+        '
+        'DropDownButton2
+        '
+        Me.DropDownButton2.Name = "DropDownButton2"
         '
         'cmb医薬品区分
         '
@@ -437,39 +470,6 @@ Partial Class HARK502
         Me.ExcelCreator.ExcelFileType = AdvanceSoftware.ExcelCreator.ExcelFileType.xlsx
         Me.ExcelCreator.TemporaryPath = ""
         '
-        'txt対象終了月
-        '
-        Me.txt対象終了月.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        DateLiteralField1.Text = "/"
-        Me.txt対象終了月.Fields.AddRange(New GrapeCity.Win.Editors.Fields.DateField() {DateYearField1, DateLiteralField1, DateMonthField1})
-        Me.txt対象終了月.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt対象終了月.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txt対象終了月.Location = New System.Drawing.Point(167, 151)
-        Me.txt対象終了月.MaxDate = New Date(2999, 12, 31, 23, 59, 59, 0)
-        Me.txt対象終了月.MaxValue = New Date(2999, 12, 31, 23, 59, 59, 0)
-        Me.txt対象終了月.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.txt対象終了月.MinValue = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.txt対象終了月.Name = "txt対象終了月"
-        Me.txt対象終了月.SideButtons.AddRange(New GrapeCity.Win.Editors.SideButtonBase() {Me.DropDownButton2})
-        Me.txt対象終了月.Size = New System.Drawing.Size(118, 26)
-        Me.txt対象終了月.TabIndex = 172
-        Me.txt対象終了月.Value = Nothing
-        '
-        'DropDownButton2
-        '
-        Me.DropDownButton2.Name = "DropDownButton2"
-        '
-        'lbl許可期間２
-        '
-        Me.lbl許可期間２.AutoSize = True
-        Me.lbl許可期間２.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl許可期間２.Location = New System.Drawing.Point(139, 154)
-        Me.lbl許可期間２.Name = "lbl許可期間２"
-        Me.lbl許可期間２.Size = New System.Drawing.Size(22, 20)
-        Me.lbl許可期間２.TabIndex = 187
-        Me.lbl許可期間２.Text = "～"
-        Me.lbl許可期間２.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'HARK502
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -503,12 +503,12 @@ Partial Class HARK502
         CType(Me.txtデータ出力先, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl操作.ResumeLayout(False)
         Me.pnl操作.PerformLayout()
+        CType(Me.txt対象終了月, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt対象開始月, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt入力担当コード, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt対象終了月, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -547,6 +547,9 @@ Partial Class HARK502
     Private WithEvents lbl対象月 As Label
     Private WithEvents cmb医薬品区分 As ComboBox
     Private WithEvents lbl医薬品区分 As Label
+    Private WithEvents txt対象終了月 As GrapeCity.Win.Editors.GcDate
+    Private WithEvents DropDownButton2 As GrapeCity.Win.Editors.DropDownButton
+    Private WithEvents lbl許可期間２ As Label
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -557,8 +560,9 @@ Partial Class HARK502
     Private xxxint事業所コード As Integer
     Private xxxstr担当者名 As String
     Private xxxint医薬品区分 As Integer
-    'Private xxxintCnt(3) As Integer
-    'Private xxxintNo As Integer
+    Private xxxintCnt As Integer
+    Private xxxintNo As Integer
+    Private xxxint処理対象区分 As Integer
 
 
     Public Sub New(ByVal PerForm As Form, ByVal PerFormTitle As String, ByVal PerProgramID As String)
@@ -583,6 +587,7 @@ Partial Class HARK502
         'KeyDownイベントハンドラの追加
         AddHandler cmbサブプログラム.KeyDown, AddressOf Txt_KeyDown
         AddHandler txt対象開始月.KeyDown, AddressOf Txt_KeyDown
+        AddHandler txt対象終了月.KeyDown, AddressOf Txt_KeyDown
         AddHandler cmb医薬品区分.KeyDown, AddressOf Txt_KeyDown
 
         'SelectedValueChangedイベントハンドラの追加
@@ -602,8 +607,6 @@ Partial Class HARK502
 
     End Sub
 
-    Private WithEvents txt対象終了月 As GrapeCity.Win.Editors.GcDate
-    Private WithEvents DropDownButton2 As GrapeCity.Win.Editors.DropDownButton
-    Private WithEvents lbl許可期間２ As Label
+
 
 End Class

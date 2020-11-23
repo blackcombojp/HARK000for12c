@@ -459,6 +459,7 @@ Partial Class HARK101
     Private WithEvents Bt_Close As Button
     Private WithEvents BT_ID5 As Button
     Private WithEvents ExcelCreator As AdvanceSoftware.ExcelCreator.Creator
+    Private WithEvents lbl備考 As Label
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -508,5 +509,5 @@ Partial Class HARK101
 
     End Sub
 
-    Private WithEvents lbl備考 As Label
+
 End Class
