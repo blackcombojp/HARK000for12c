@@ -31,6 +31,6 @@ Imports System.Runtime.InteropServices
 ' 既定値にすることができます:
 ' <Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("0.0.4.5")>
-<Assembly: AssemblyFileVersion("0.0.4.5")>
+<Assembly: AssemblyVersion("0.0.5.0")>
+<Assembly: AssemblyFileVersion("0.0.5.0")>
 <Assembly: log4net.Config.XmlConfigurator(ConfigFile:="log4net.config", Watch:=True)>

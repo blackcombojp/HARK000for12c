@@ -12,7 +12,7 @@
   <xs:element name="HARK301S3DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="HARK301S3DS" msprop:Generator_UserDSName="HARK301S3DS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ds一覧" msprop:Generator_TableClassName="ds一覧DataTable" msprop:Generator_TableVarName="tableds一覧" msprop:Generator_RowChangedName="ds一覧RowChanged" msprop:Generator_TablePropName="ds一覧" msprop:Generator_RowDeletingName="ds一覧RowDeleting" msprop:Generator_RowChangingName="ds一覧RowChanging" msprop:Generator_RowEvHandlerName="ds一覧RowChangeEventHandler" msprop:Generator_RowDeletedName="ds一覧RowDeleted" msprop:Generator_RowClassName="ds一覧Row" msprop:Generator_UserTableName="ds一覧" msprop:Generator_RowEvArgName="ds一覧RowChangeEvent">
+        <xs:element name="ds一覧" msprop:Generator_TableClassName="ds一覧DataTable" msprop:Generator_TableVarName="tableds一覧" msprop:Generator_TablePropName="ds一覧" msprop:Generator_RowDeletingName="ds一覧RowDeleting" msprop:Generator_RowChangingName="ds一覧RowChanging" msprop:Generator_RowEvHandlerName="ds一覧RowChangeEventHandler" msprop:Generator_RowDeletedName="ds一覧RowDeleted" msprop:Generator_UserTableName="ds一覧" msprop:Generator_RowChangedName="ds一覧RowChanged" msprop:Generator_RowEvArgName="ds一覧RowChangeEvent" msprop:Generator_RowClassName="ds一覧Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="連携キー" msprop:Generator_ColumnVarNameInTable="column連携キー" msprop:Generator_ColumnPropNameInRow="連携キー" msprop:Generator_ColumnPropNameInTable="連携キーColumn" msprop:Generator_UserColumnName="連携キー" minOccurs="0">
@@ -107,7 +107,6 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="_xFF29__xFF24_" msprop:Generator_ColumnVarNameInTable="columnＩＤ" msprop:Generator_ColumnPropNameInRow="ＩＤ" msprop:Generator_ColumnPropNameInTable="ＩＤColumn" msprop:Generator_UserColumnName="ＩＤ" type="xs:long" minOccurs="0" />
               <xs:element name="出荷日時" msprop:Generator_ColumnVarNameInTable="column出荷日時" msprop:Generator_ColumnPropNameInRow="出荷日時" msprop:Generator_ColumnPropNameInTable="出荷日時Column" msprop:Generator_UserColumnName="出荷日時" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">

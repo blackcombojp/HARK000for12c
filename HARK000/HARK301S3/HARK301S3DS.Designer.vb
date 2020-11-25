@@ -323,8 +323,6 @@ Partial Public Class HARK301S3DS
         
         Private columnエラー情報 As Global.System.Data.DataColumn
         
-        Private columnＩＤ As Global.System.Data.DataColumn
-        
         Private column出荷日時 As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -524,14 +522,6 @@ Partial Public Class HARK301S3DS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property ＩＤColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnＩＤ
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property 出荷日時Column() As Global.System.Data.DataColumn
             Get
                 Return Me.column出荷日時
@@ -596,10 +586,9 @@ Partial Public Class HARK301S3DS
                     ByVal 伝票番号 As Long,  _
                     ByVal 伝票行番号 As Integer,  _
                     ByVal エラー情報 As String,  _
-                    ByVal ＩＤ As Long,  _
                     ByVal 出荷日時 As String) As ds一覧Row
             Dim rowds一覧Row As ds一覧Row = CType(Me.NewRow,ds一覧Row)
-            Dim columnValuesArray() As Object = New Object() {連携キー, 発注書番号, ピッキング番号, 需要先コード, 需要先名, 需要先部署コード, 部署名, 商品コード, メーカ名, メーカ品番, 商品名, 規格, 受注数量, ロット番号, 有効期限, ピッキング数量, 長期貸出番号, 伝票番号, 伝票行番号, エラー情報, ＩＤ, 出荷日時}
+            Dim columnValuesArray() As Object = New Object() {連携キー, 発注書番号, ピッキング番号, 需要先コード, 需要先名, 需要先部署コード, 部署名, 商品コード, メーカ名, メーカ品番, 商品名, 規格, 受注数量, ロット番号, 有効期限, ピッキング数量, 長期貸出番号, 伝票番号, 伝票行番号, エラー情報, 出荷日時}
             rowds一覧Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowds一覧Row)
             Return rowds一覧Row
@@ -642,7 +631,6 @@ Partial Public Class HARK301S3DS
             Me.column伝票番号 = MyBase.Columns("伝票番号")
             Me.column伝票行番号 = MyBase.Columns("伝票行番号")
             Me.columnエラー情報 = MyBase.Columns("エラー情報")
-            Me.columnＩＤ = MyBase.Columns("ＩＤ")
             Me.column出荷日時 = MyBase.Columns("出荷日時")
         End Sub
         
@@ -689,8 +677,6 @@ Partial Public Class HARK301S3DS
             MyBase.Columns.Add(Me.column伝票行番号)
             Me.columnエラー情報 = New Global.System.Data.DataColumn("エラー情報", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnエラー情報)
-            Me.columnＩＤ = New Global.System.Data.DataColumn("ＩＤ", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnＩＤ)
             Me.column出荷日時 = New Global.System.Data.DataColumn("出荷日時", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.column出荷日時)
             Me.column連携キー.MaxLength = 39
@@ -1152,21 +1138,6 @@ Partial Public Class HARK301S3DS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property ＩＤ() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableds一覧.ＩＤColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 'ＩＤ' の値は DBNull です。", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableds一覧.ＩＤColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property 出荷日時() As String
             Get
                 Try 
@@ -1418,18 +1389,6 @@ Partial Public Class HARK301S3DS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub Setエラー情報Null()
             Me(Me.tableds一覧.エラー情報Column) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsＩＤNull() As Boolean
-            Return Me.IsNull(Me.tableds一覧.ＩＤColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetＩＤNull()
-            Me(Me.tableds一覧.ＩＤColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

@@ -488,8 +488,8 @@ Public Class HARK301S3
                                                 CLng(Results(intRowCnt).strBuff(17)),
                                                 CInt(Results(intRowCnt).strBuff(18)),
                                                 Results(intRowCnt).strBuff(19),
-                                                CLng(Results(intRowCnt).strBuff(20)),
-                                                Results(intRowCnt).strBuff(21))
+                                                Results(intRowCnt).strBuff(20))
+
 
             Next
 
