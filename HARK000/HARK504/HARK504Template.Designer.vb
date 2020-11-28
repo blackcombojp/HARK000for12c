@@ -100,7 +100,7 @@ Partial Class HARK504Template
         Me.Row.Cells.Add(Me.txt明細取引停止)
         Me.Row.Cells.Add(Me.txt画像)
         Me.Row.Height = 42
-        Me.Row.Width = 948
+        Me.Row.Width = 933
         '
         'HeaderSection
         '
@@ -115,7 +115,7 @@ Partial Class HARK504Template
         Me.HeaderSection.Cells.Add(Me.chc明細取引停止)
         Me.HeaderSection.Height = 42
         Me.HeaderSection.Name = "HeaderSection"
-        Me.HeaderSection.Width = 948
+        Me.HeaderSection.Width = 933
         '
         'chc明細事業所
         '
@@ -243,7 +243,7 @@ Partial Class HARK504Template
         Me.chc明細画像.Name = "chc明細画像"
         Me.chc明細画像.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc明細画像.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
-        Me.chc明細画像.Size = New System.Drawing.Size(86, 42)
+        Me.chc明細画像.Size = New System.Drawing.Size(71, 42)
         CellStyle18.BackColor = System.Drawing.SystemColors.Control
         Border18.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
         CellStyle18.Border = Border18
@@ -257,7 +257,7 @@ Partial Class HARK504Template
         '
         'chc明細削除区分
         '
-        Me.chc明細削除区分.Location = New System.Drawing.Point(895, 0)
+        Me.chc明細削除区分.Location = New System.Drawing.Point(880, 0)
         Me.chc明細削除区分.Name = "chc明細削除区分"
         Me.chc明細削除区分.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc明細削除区分.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
@@ -419,14 +419,14 @@ Partial Class HARK504Template
         '
         Me.bt明細画像.Location = New System.Drawing.Point(809, 0)
         Me.bt明細画像.Name = "bt明細画像"
-        Me.bt明細画像.Size = New System.Drawing.Size(86, 42)
+        Me.bt明細画像.Size = New System.Drawing.Size(71, 42)
         Me.bt明細画像.TabIndex = 8
         '
         'chk明細削除区分
         '
         Me.chk明細削除区分.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.chk明細削除区分.DataField = "削除区分"
-        Me.chk明細削除区分.Location = New System.Drawing.Point(895, 0)
+        Me.chk明細削除区分.Location = New System.Drawing.Point(880, 0)
         Me.chk明細削除区分.Name = "chk明細削除区分"
         Me.chk明細削除区分.Size = New System.Drawing.Size(53, 42)
         Me.chk明細削除区分.TabIndex = 9
@@ -480,7 +480,7 @@ Partial Class HARK504Template
         '
         Me.ColumnHeaders.AddRange(New GrapeCity.Win.MultiRow.ColumnHeaderSection() {Me.HeaderSection})
         Me.Height = 84
-        Me.Width = 948
+        Me.Width = 933
 
     End Sub
     Private WithEvents HeaderSection As GrapeCity.Win.MultiRow.ColumnHeaderSection

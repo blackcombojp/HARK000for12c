@@ -56,38 +56,38 @@ Partial Class HARK301S3Template
         Dim Border37 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle38 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border38 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle12 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border12 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle1 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border1 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle2 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border2 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle3 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border3 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle4 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border4 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle5 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border5 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle6 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border6 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle7 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border7 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle8 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border8 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle9 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border9 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle10 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border10 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle11 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border11 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle12 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border12 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle10 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border10 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle15 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border15 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle3 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border3 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle16 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border16 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle5 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border5 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle4 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border4 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle9 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border9 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle6 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border6 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle8 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border8 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle13 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border13 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle14 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border14 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle15 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border15 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
-        Dim CellStyle16 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border16 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle17 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border17 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle18 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
@@ -138,7 +138,6 @@ Partial Class HARK301S3Template
         '
         'Row
         '
-
         Me.Row.Cells.Add(Me.txt需要先コード)
         Me.Row.Cells.Add(Me.txt需要先名)
         Me.Row.Cells.Add(Me.txt部署コード)
@@ -160,7 +159,7 @@ Partial Class HARK301S3Template
         Me.Row.Cells.Add(Me.txt売上行番号)
         Me.Row.Cells.Add(Me.txtエラー情報)
         Me.Row.Height = 63
-        Me.Row.Width = 918
+        Me.Row.Width = 897
         '
         'HeaderSection
         '
@@ -184,7 +183,7 @@ Partial Class HARK301S3Template
         Me.HeaderSection.Cells.Add(Me.chcエラー情報)
         Me.HeaderSection.Height = 63
         Me.HeaderSection.Name = "HeaderSection"
-        Me.HeaderSection.Width = 918
+        Me.HeaderSection.Width = 897
         '
         'chc需要先
         '
@@ -212,7 +211,7 @@ Partial Class HARK301S3Template
         Me.chc部署.Name = "chc部署"
         Me.chc部署.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc部署.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
-        Me.chc部署.Size = New System.Drawing.Size(211, 21)
+        Me.chc部署.Size = New System.Drawing.Size(185, 21)
         Me.chc部署.SortCellName = "txt部署コード"
         Me.chc部署.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic
         CellStyle22.BackColor = System.Drawing.SystemColors.Control
@@ -268,7 +267,7 @@ Partial Class HARK301S3Template
         '
         'chc受注数量
         '
-        Me.chc受注数量.Location = New System.Drawing.Point(464, 0)
+        Me.chc受注数量.Location = New System.Drawing.Point(438, 0)
         Me.chc受注数量.Name = "chc受注数量"
         Me.chc受注数量.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc受注数量.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
@@ -312,7 +311,7 @@ Partial Class HARK301S3Template
         Me.chc規格.Name = "chc規格"
         Me.chc規格.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc規格.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
-        Me.chc規格.Size = New System.Drawing.Size(232, 21)
+        Me.chc規格.Size = New System.Drawing.Size(211, 21)
         Me.chc規格.SortCellName = "txt規格"
         Me.chc規格.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic
         CellStyle27.BackColor = System.Drawing.SystemColors.Control
@@ -328,7 +327,7 @@ Partial Class HARK301S3Template
         '
         'chcピッキング数量
         '
-        Me.chcピッキング数量.Location = New System.Drawing.Point(518, 0)
+        Me.chcピッキング数量.Location = New System.Drawing.Point(492, 0)
         Me.chcピッキング数量.Name = "chcピッキング数量"
         Me.chcピッキング数量.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chcピッキング数量.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
@@ -348,7 +347,7 @@ Partial Class HARK301S3Template
         '
         'chc発注書番号
         '
-        Me.chc発注書番号.Location = New System.Drawing.Point(572, 0)
+        Me.chc発注書番号.Location = New System.Drawing.Point(546, 0)
         Me.chc発注書番号.Name = "chc発注書番号"
         Me.chc発注書番号.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc発注書番号.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
@@ -368,7 +367,7 @@ Partial Class HARK301S3Template
         '
         'chcピッキング番号
         '
-        Me.chcピッキング番号.Location = New System.Drawing.Point(672, 0)
+        Me.chcピッキング番号.Location = New System.Drawing.Point(646, 0)
         Me.chcピッキング番号.Name = "chcピッキング番号"
         Me.chcピッキング番号.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chcピッキング番号.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
@@ -388,11 +387,11 @@ Partial Class HARK301S3Template
         '
         'chc出荷日時
         '
-        Me.chc出荷日時.Location = New System.Drawing.Point(772, 0)
+        Me.chc出荷日時.Location = New System.Drawing.Point(746, 0)
         Me.chc出荷日時.Name = "chc出荷日時"
         Me.chc出荷日時.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc出荷日時.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
-        Me.chc出荷日時.Size = New System.Drawing.Size(146, 21)
+        Me.chc出荷日時.Size = New System.Drawing.Size(151, 21)
         Me.chc出荷日時.SortCellName = "txt出荷日時"
         Me.chc出荷日時.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic
         CellStyle31.BackColor = System.Drawing.SystemColors.Control
@@ -532,7 +531,7 @@ Partial Class HARK301S3Template
         Me.chcエラー情報.Name = "chcエラー情報"
         Me.chcエラー情報.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chcエラー情報.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
-        Me.chcエラー情報.Size = New System.Drawing.Size(405, 21)
+        Me.chcエラー情報.Size = New System.Drawing.Size(384, 21)
         Me.chcエラー情報.SortCellName = "txtエラー情報"
         Me.chcエラー情報.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic
         CellStyle38.BackColor = System.Drawing.SystemColors.Control
@@ -554,11 +553,11 @@ Partial Class HARK301S3Template
         Me.txtメーカ品番.Name = "txtメーカ品番"
         Me.txtメーカ品番.ReadOnly = True
         Me.txtメーカ品番.Size = New System.Drawing.Size(204, 21)
-        Border1.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle1.Border = Border1
-        CellStyle1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle1.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.txtメーカ品番.Style = CellStyle1
+        Border12.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle12.Border = Border12
+        CellStyle12.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle12.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.txtメーカ品番.Style = CellStyle12
         Me.txtメーカ品番.TabIndex = 12
         '
         'txt需要先コード
@@ -569,11 +568,11 @@ Partial Class HARK301S3Template
         Me.txt需要先コード.Name = "txt需要先コード"
         Me.txt需要先コード.ReadOnly = True
         Me.txt需要先コード.Size = New System.Drawing.Size(92, 21)
-        Border2.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle2.Border = Border2
-        CellStyle2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle2.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
-        Me.txt需要先コード.Style = CellStyle2
+        Border1.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle1.Border = Border1
+        CellStyle1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle1.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
+        Me.txt需要先コード.Style = CellStyle1
         Me.txt需要先コード.TabIndex = 1
         '
         'txt需要先名
@@ -584,26 +583,26 @@ Partial Class HARK301S3Template
         Me.txt需要先名.Name = "txt需要先名"
         Me.txt需要先名.ReadOnly = True
         Me.txt需要先名.Size = New System.Drawing.Size(161, 21)
-        Border3.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle3.Border = Border3
-        CellStyle3.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle3.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.txt需要先名.Style = CellStyle3
+        Border2.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle2.Border = Border2
+        CellStyle2.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle2.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.txt需要先名.Style = CellStyle2
         Me.txt需要先名.TabIndex = 2
         '
         'txt発注書番号
         '
         Me.txt発注書番号.DataField = "発注書番号"
         Me.txt発注書番号.Ellipsis = GrapeCity.Win.MultiRow.MultiRowEllipsisMode.EllipsisEnd
-        Me.txt発注書番号.Location = New System.Drawing.Point(572, 0)
+        Me.txt発注書番号.Location = New System.Drawing.Point(546, 0)
         Me.txt発注書番号.Name = "txt発注書番号"
         Me.txt発注書番号.ReadOnly = True
         Me.txt発注書番号.Size = New System.Drawing.Size(100, 21)
-        Border4.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle4.Border = Border4
-        CellStyle4.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
-        Me.txt発注書番号.Style = CellStyle4
+        Border7.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle7.Border = Border7
+        CellStyle7.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
+        Me.txt発注書番号.Style = CellStyle7
         Me.txt発注書番号.TabIndex = 7
         '
         'txtメーカ名
@@ -614,11 +613,11 @@ Partial Class HARK301S3Template
         Me.txtメーカ名.Name = "txtメーカ名"
         Me.txtメーカ名.ReadOnly = True
         Me.txtメーカ名.Size = New System.Drawing.Size(149, 21)
-        Border5.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle5.Border = Border5
-        CellStyle5.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.txtメーカ名.Style = CellStyle5
+        Border11.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle11.Border = Border11
+        CellStyle11.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle11.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.txtメーカ名.Style = CellStyle11
         Me.txtメーカ名.TabIndex = 11
         '
         'txt商品コード
@@ -629,11 +628,11 @@ Partial Class HARK301S3Template
         Me.txt商品コード.Name = "txt商品コード"
         Me.txt商品コード.ReadOnly = True
         Me.txt商品コード.Size = New System.Drawing.Size(85, 21)
-        Border6.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle6.Border = Border6
-        CellStyle6.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle6.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.txt商品コード.Style = CellStyle6
+        Border10.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle10.Border = Border10
+        CellStyle10.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle10.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.txt商品コード.Style = CellStyle10
         Me.txt商品コード.TabIndex = 10
         '
         'txtロット
@@ -644,11 +643,11 @@ Partial Class HARK301S3Template
         Me.txtロット.Name = "txtロット"
         Me.txtロット.ReadOnly = True
         Me.txtロット.Size = New System.Drawing.Size(132, 21)
-        Border7.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle7.Border = Border7
-        CellStyle7.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle7.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.txtロット.Style = CellStyle7
+        Border15.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle15.Border = Border15
+        CellStyle15.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.txtロット.Style = CellStyle15
         Me.txtロット.TabIndex = 15
         '
         'txt部署コード
@@ -658,11 +657,11 @@ Partial Class HARK301S3Template
         Me.txt部署コード.Location = New System.Drawing.Point(253, 0)
         Me.txt部署コード.Name = "txt部署コード"
         Me.txt部署コード.Size = New System.Drawing.Size(54, 21)
-        Border8.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle8.Border = Border8
-        CellStyle8.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle8.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
-        Me.txt部署コード.Style = CellStyle8
+        Border3.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle3.Border = Border3
+        CellStyle3.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle3.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
+        Me.txt部署コード.Style = CellStyle3
         Me.txt部署コード.TabIndex = 3
         '
         'txt有効期限
@@ -673,25 +672,25 @@ Partial Class HARK301S3Template
         Me.txt有効期限.Name = "txt有効期限"
         Me.txt有効期限.ReadOnly = True
         Me.txt有効期限.Size = New System.Drawing.Size(95, 21)
-        Border9.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle9.Border = Border9
-        CellStyle9.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter
-        Me.txt有効期限.Style = CellStyle9
+        Border16.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle16.Border = Border16
+        CellStyle16.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter
+        Me.txt有効期限.Style = CellStyle16
         Me.txt有効期限.TabIndex = 16
         '
         'txt受注数量
         '
         Me.txt受注数量.DataField = "受注数量"
         Me.txt受注数量.Ellipsis = GrapeCity.Win.MultiRow.MultiRowEllipsisMode.EllipsisEnd
-        Me.txt受注数量.Location = New System.Drawing.Point(464, 0)
+        Me.txt受注数量.Location = New System.Drawing.Point(438, 0)
         Me.txt受注数量.Name = "txt受注数量"
         Me.txt受注数量.Size = New System.Drawing.Size(54, 21)
-        Border10.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle10.Border = Border10
-        CellStyle10.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle10.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
-        Me.txt受注数量.Style = CellStyle10
+        Border5.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle5.Border = Border5
+        CellStyle5.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
+        Me.txt受注数量.Style = CellStyle5
         Me.txt受注数量.TabIndex = 5
         '
         'txt部署名
@@ -701,56 +700,56 @@ Partial Class HARK301S3Template
         Me.txt部署名.Location = New System.Drawing.Point(307, 0)
         Me.txt部署名.Name = "txt部署名"
         Me.txt部署名.ReadOnly = True
-        Me.txt部署名.Size = New System.Drawing.Size(157, 21)
-        Border11.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle11.Border = Border11
-        CellStyle11.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle11.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.txt部署名.Style = CellStyle11
+        Me.txt部署名.Size = New System.Drawing.Size(131, 21)
+        Border4.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle4.Border = Border4
+        CellStyle4.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.txt部署名.Style = CellStyle4
         Me.txt部署名.TabIndex = 4
         '
         'txt出荷日時
         '
         Me.txt出荷日時.DataField = "出荷日時"
         Me.txt出荷日時.Ellipsis = GrapeCity.Win.MultiRow.MultiRowEllipsisMode.EllipsisEnd
-        Me.txt出荷日時.Location = New System.Drawing.Point(772, 0)
+        Me.txt出荷日時.Location = New System.Drawing.Point(746, 0)
         Me.txt出荷日時.Name = "txt出荷日時"
         Me.txt出荷日時.ReadOnly = True
-        Me.txt出荷日時.Size = New System.Drawing.Size(146, 21)
-        Border12.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle12.Border = Border12
-        CellStyle12.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle12.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter
-        Me.txt出荷日時.Style = CellStyle12
+        Me.txt出荷日時.Size = New System.Drawing.Size(151, 21)
+        Border9.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle9.Border = Border9
+        CellStyle9.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle9.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleCenter
+        Me.txt出荷日時.Style = CellStyle9
         Me.txt出荷日時.TabIndex = 9
         '
         'txtピッキング数量
         '
         Me.txtピッキング数量.DataField = "ピッキング数量"
         Me.txtピッキング数量.Ellipsis = GrapeCity.Win.MultiRow.MultiRowEllipsisMode.EllipsisEnd
-        Me.txtピッキング数量.Location = New System.Drawing.Point(518, 0)
+        Me.txtピッキング数量.Location = New System.Drawing.Point(492, 0)
         Me.txtピッキング数量.Name = "txtピッキング数量"
         Me.txtピッキング数量.Size = New System.Drawing.Size(54, 21)
-        Border13.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle13.Border = Border13
-        CellStyle13.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle13.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
-        Me.txtピッキング数量.Style = CellStyle13
+        Border6.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle6.Border = Border6
+        CellStyle6.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle6.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
+        Me.txtピッキング数量.Style = CellStyle6
         Me.txtピッキング数量.TabIndex = 6
         '
         'txtピッキング番号
         '
         Me.txtピッキング番号.DataField = "ピッキング番号"
         Me.txtピッキング番号.Ellipsis = GrapeCity.Win.MultiRow.MultiRowEllipsisMode.EllipsisEnd
-        Me.txtピッキング番号.Location = New System.Drawing.Point(672, 0)
+        Me.txtピッキング番号.Location = New System.Drawing.Point(646, 0)
         Me.txtピッキング番号.Name = "txtピッキング番号"
         Me.txtピッキング番号.ReadOnly = True
         Me.txtピッキング番号.Size = New System.Drawing.Size(100, 21)
-        Border14.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle14.Border = Border14
-        CellStyle14.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
-        Me.txtピッキング番号.Style = CellStyle14
+        Border8.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle8.Border = Border8
+        CellStyle8.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle8.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
+        Me.txtピッキング番号.Style = CellStyle8
         Me.txtピッキング番号.TabIndex = 8
         '
         'txt商品名
@@ -761,11 +760,11 @@ Partial Class HARK301S3Template
         Me.txt商品名.Name = "txt商品名"
         Me.txt商品名.ReadOnly = True
         Me.txt商品名.Size = New System.Drawing.Size(248, 21)
-        Border15.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle15.Border = Border15
-        CellStyle15.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle15.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.txt商品名.Style = CellStyle15
+        Border13.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle13.Border = Border13
+        CellStyle13.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle13.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.txt商品名.Style = CellStyle13
         Me.txt商品名.TabIndex = 13
         '
         'txt規格
@@ -775,12 +774,12 @@ Partial Class HARK301S3Template
         Me.txt規格.Location = New System.Drawing.Point(686, 21)
         Me.txt規格.Name = "txt規格"
         Me.txt規格.ReadOnly = True
-        Me.txt規格.Size = New System.Drawing.Size(232, 21)
-        Border16.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle16.Border = Border16
-        CellStyle16.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle16.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.txt規格.Style = CellStyle16
+        Me.txt規格.Size = New System.Drawing.Size(211, 21)
+        Border14.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle14.Border = Border14
+        CellStyle14.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle14.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.txt規格.Style = CellStyle14
         Me.txt規格.TabIndex = 14
         '
         'txt長期貸出番号
@@ -834,7 +833,7 @@ Partial Class HARK301S3Template
         Me.txtエラー情報.Location = New System.Drawing.Point(513, 42)
         Me.txtエラー情報.Name = "txtエラー情報"
         Me.txtエラー情報.ReadOnly = True
-        Me.txtエラー情報.Size = New System.Drawing.Size(405, 21)
+        Me.txtエラー情報.Size = New System.Drawing.Size(384, 21)
         Border20.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
         CellStyle20.Border = Border20
         CellStyle20.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -846,7 +845,7 @@ Partial Class HARK301S3Template
         '
         Me.ColumnHeaders.AddRange(New GrapeCity.Win.MultiRow.ColumnHeaderSection() {Me.HeaderSection})
         Me.Height = 126
-        Me.Width = 918
+        Me.Width = 897
 
     End Sub
     Private WithEvents HeaderSection As GrapeCity.Win.MultiRow.ColumnHeaderSection

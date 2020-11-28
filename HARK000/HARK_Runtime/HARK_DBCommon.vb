@@ -8781,6 +8781,141 @@ Public Class HARK_DBCommon
 
     End Function
     ''' <summary>
+    ''' 入出庫情報作成
+    ''' </summary>
+    ''' <param name="PI_strProgram_ID">プログラム_ID</param>
+    ''' <param name="PI_intSPDSystemcode">SPDシステムコード</param>
+    ''' <param name="PI_intSubProgram_ID">サブプログラム_ID</param>
+    ''' <param name="PI_lng医薬区分">医薬区分</param>
+    ''' <param name="PI_txt対象開始日">対象開始日</param>
+    ''' <param name="PI_txt対象終了日">対象終了日</param>
+    ''' <param name="PO_intNo">取込番号（戻値）</param>
+    ''' <param name="PO_intCnt">対象件数（戻値）</param>
+    ''' <param name="PO_intSQLCODE">Oracleエラーコード（戻値）</param>
+    ''' <param name="PO_strSQLERRM">Oracleエラーメッセージ（戻値）</param>
+    ''' <returns>0 -- 正常取得 9 -- エラー</returns>
+    Public Shared Function DLTP0502_PROC0002(ByVal PI_strProgram_ID As String,
+                                            ByVal PI_intSPDSystemcode As Integer,
+                                            ByVal PI_intSubProgram_ID As Integer,
+                                            ByVal PI_lng医薬区分 As Integer,
+                                            ByVal PI_txt対象開始日 As String,
+                                            ByVal PI_txt対象終了日 As String,
+                                            ByVal PI_int処理対象区分 As Integer,
+                                            ByRef PO_intNo As Integer,
+                                            ByRef PO_intCnt As Integer,
+                                            ByRef PO_intSQLCODE As Integer,
+                                            ByRef PO_strSQLERRM As String) As Integer
+
+        Dim strPROC As String
+        Dim PI_01 As OracleParameter
+        Dim PI_02 As OracleParameter
+        Dim PI_03 As OracleParameter
+        Dim PI_04 As OracleParameter
+        Dim PI_05 As OracleParameter
+        Dim PI_06 As OracleParameter
+        Dim PI_07 As OracleParameter
+        Dim PO_01 As OracleParameter
+        Dim PO_02 As OracleParameter
+        Dim PO_03 As OracleParameter
+        Dim PO_04 As OracleParameter
+
+        Try
+
+            DLTP0502_PROC0002 = 9
+
+            'プログラム_ID取得
+            gintRtn = DLTP0997S_FUNC005(PI_strProgram_ID, PI_intSPDSystemcode, 0, 2, 1, "処理関数")
+            strPROC = gstrDLTP0997S_FUNC005
+
+            'ストアドプロシージャ設定
+            Oracmd = Oracomm.CreateCommand()
+            Oracmd.CommandText = strPROC
+            Oracmd.CommandType = CommandType.StoredProcedure
+
+            OraTran = Oracomm.BeginTransaction
+
+            'インプットパラメータ設定
+            PI_01 = Oracmd.Parameters.Add("PI_01", OracleDbType.Int32, ParameterDirection.Input)
+            PI_02 = Oracmd.Parameters.Add("PI_02", OracleDbType.Int32, ParameterDirection.Input)
+            PI_03 = Oracmd.Parameters.Add("PI_03", OracleDbType.Int32, ParameterDirection.Input)
+            PI_04 = Oracmd.Parameters.Add("PI_04", OracleDbType.Varchar2, 20, DBNull.Value, ParameterDirection.Input)
+            PI_05 = Oracmd.Parameters.Add("PI_05", OracleDbType.Varchar2, 20, DBNull.Value, ParameterDirection.Input)
+            PI_06 = Oracmd.Parameters.Add("PI_06", OracleDbType.Int32, ParameterDirection.Input)
+            PI_07 = Oracmd.Parameters.Add("PI_07", OracleDbType.Int32, ParameterDirection.Input)
+
+
+            'Outputパラメータ設定
+            PO_01 = Oracmd.Parameters.Add("PO_01", OracleDbType.Int32, ParameterDirection.Output)
+            PO_02 = Oracmd.Parameters.Add("PO_02", OracleDbType.Int32, ParameterDirection.Output)
+            PO_03 = Oracmd.Parameters.Add("PO_03", OracleDbType.Int32, ParameterDirection.Output)
+            PO_04 = Oracmd.Parameters.Add("PO_04", OracleDbType.Varchar2, 1024, DBNull.Value, ParameterDirection.Output)
+
+            'インプット値設定
+            PI_01.Value = My.Settings.事業所コード
+            PI_02.Value = PI_intSPDSystemcode
+            PI_03.Value = PI_intSubProgram_ID
+            PI_04.Value = PI_txt対象開始日.Trim & "/01"
+            PI_05.Value = PI_txt対象終了日.Trim & "/01"
+            PI_06.Value = PI_lng医薬区分
+            PI_07.Value = PI_int処理対象区分
+
+            'ストアドプロシージャCall
+            Oracmd.ExecuteNonQuery()
+
+            PO_intNo = CType(PO_01.Value.ToString, Integer)
+            PO_intCnt = CType(PO_02.Value.ToString, Integer)
+            PO_intSQLCODE = CType(PO_03.Value.ToString, Integer)
+            PO_strSQLERRM = PO_04.Value.ToString
+
+            'リターンコードでの処理振り分け
+            If PO_intSQLCODE = 0 Then
+
+                OraTran.Commit()
+
+                If PO_intCnt = 0 Then
+                    DLTP0502_PROC0002 = 8
+                Else
+                    DLTP0502_PROC0002 = 0
+                End If
+
+                Exit Function
+
+            End If
+
+            log.Error(Set_ErrMSG(PO_intSQLCODE, PO_strSQLERRM))
+
+            OraTran.Rollback()
+
+        Catch Oraex As OracleException
+
+            If Not IsNothing(OraTran) Then
+                OraTran.Rollback()
+            End If
+
+            log.Error(Set_ErrMSG(Oraex.Number, Oraex.ToString))
+            Throw
+
+        Catch ex As Exception
+
+            If Not IsNothing(OraTran) Then
+                OraTran.Rollback()
+            End If
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        Finally
+
+            If Not IsNothing(OraTran) Then
+                OraTran.Dispose()
+            End If
+
+            Oracmd.Dispose()
+
+        End Try
+
+    End Function
+    ''' <summary>
     ''' 入出庫情報情報データ検索
     ''' </summary>
     ''' <param name="PI_strProgram_ID">プログラム_ID</param>

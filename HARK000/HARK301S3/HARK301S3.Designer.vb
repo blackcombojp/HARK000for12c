@@ -37,8 +37,10 @@ Partial Class HARK301S3
         Me.Menu_ErrorLog = New System.Windows.Forms.ToolStripMenuItem()
         Me.BT_ID4 = New GrapeCity.Win.Buttons.GcSplitButton()
         Me.pnl明細 = New System.Windows.Forms.Panel()
+        Me.gcmr一覧 = New GrapeCity.Win.MultiRow.GcMultiRow()
         Me.BS一覧 = New System.Windows.Forms.BindingSource(Me.components)
         Me.HARK301S3DS = New HARK000.HARK301S3DS()
+        Me.HarK301S3Template1 = New HARK000.HARK301S3Template()
         Me.SttBar_3 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBar_2 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBarPnl_Err = New System.Windows.Forms.StatusBarPanel()
@@ -55,10 +57,9 @@ Partial Class HARK301S3
         Me.pnl検索 = New System.Windows.Forms.Panel()
         Me.lbl連携キー = New System.Windows.Forms.Label()
         Me.txt連携キー = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.gcmr一覧 = New GrapeCity.Win.MultiRow.GcMultiRow()
-        Me.HarK301S3Template1 = New HARK000.HARK301S3Template()
         Me.CntMenuStrip.SuspendLayout()
         Me.pnl明細.SuspendLayout()
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HARK301S3DS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +67,6 @@ Partial Class HARK301S3
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl検索.SuspendLayout()
         CType(Me.txt連携キー, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu_Log
@@ -109,8 +109,34 @@ Partial Class HARK301S3
         Me.pnl明細.Controls.Add(Me.gcmr一覧)
         Me.pnl明細.Location = New System.Drawing.Point(25, 96)
         Me.pnl明細.Name = "pnl明細"
-        Me.pnl明細.Size = New System.Drawing.Size(985, 334)
+        Me.pnl明細.Size = New System.Drawing.Size(955, 334)
         Me.pnl明細.TabIndex = 185
+        '
+        'gcmr一覧
+        '
+        Me.gcmr一覧.AllowClipboard = False
+        Me.gcmr一覧.AllowUserToAddRows = False
+        Me.gcmr一覧.AllowUserToAutoFitColumns = False
+        Me.gcmr一覧.AllowUserToDeleteRows = False
+        Me.gcmr一覧.AllowUserToResize = False
+        Me.gcmr一覧.AllowUserToTouchResize = False
+        Me.gcmr一覧.AllowUserToTouchZoom = False
+        Me.gcmr一覧.AllowUserToZoom = False
+        CellStyle1.BackColor = System.Drawing.Color.LightCyan
+        CellStyle1.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        Me.gcmr一覧.AlternatingRowsDefaultCellStyle = CellStyle1
+        Me.gcmr一覧.ClipboardCopyMode = GrapeCity.Win.MultiRow.ClipboardCopyMode.Disable
+        Me.gcmr一覧.CurrentCellBorderLine = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.None, System.Drawing.Color.Black)
+        Me.gcmr一覧.DataSource = Me.BS一覧
+        Me.gcmr一覧.Location = New System.Drawing.Point(17, 16)
+        Me.gcmr一覧.MultiSelect = False
+        Me.gcmr一覧.Name = "gcmr一覧"
+        Me.gcmr一覧.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.gcmr一覧.Size = New System.Drawing.Size(918, 296)
+        Me.gcmr一覧.SplitMode = GrapeCity.Win.MultiRow.SplitMode.None
+        Me.gcmr一覧.TabIndex = 0
+        Me.gcmr一覧.Template = Me.HarK301S3Template1
+        Me.gcmr一覧.Text = "gcmr一覧"
         '
         'BS一覧
         '
@@ -146,7 +172,7 @@ Partial Class HARK301S3
         Me.SttBar.Name = "SttBar"
         Me.SttBar.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.SttBarPnl_Err, Me.SttBar_2, Me.SttBar_3})
         Me.SttBar.ShowPanels = True
-        Me.SttBar.Size = New System.Drawing.Size(1022, 24)
+        Me.SttBar.Size = New System.Drawing.Size(1004, 24)
         Me.SttBar.TabIndex = 170
         '
         'BT_ID7
@@ -226,7 +252,7 @@ Partial Class HARK301S3
         Me.Bt_Close.BackColor = System.Drawing.SystemColors.Control
         Me.Bt_Close.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Bt_Close.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Bt_Close.Location = New System.Drawing.Point(937, 0)
+        Me.Bt_Close.Location = New System.Drawing.Point(919, 0)
         Me.Bt_Close.Name = "Bt_Close"
         Me.Bt_Close.Size = New System.Drawing.Size(85, 24)
         Me.Bt_Close.TabIndex = 130
@@ -259,7 +285,7 @@ Partial Class HARK301S3
         Me.pnl検索.Controls.Add(Me.txt連携キー)
         Me.pnl検索.Location = New System.Drawing.Point(25, 44)
         Me.pnl検索.Name = "pnl検索"
-        Me.pnl検索.Size = New System.Drawing.Size(985, 46)
+        Me.pnl検索.Size = New System.Drawing.Size(955, 46)
         Me.pnl検索.TabIndex = 184
         '
         'lbl連携キー
@@ -285,37 +311,11 @@ Partial Class HARK301S3
         Me.txt連携キー.TabIndex = 11
         Me.txt連携キー.Tag = "ID1"
         '
-        'gcmr一覧
-        '
-        Me.gcmr一覧.AllowClipboard = False
-        Me.gcmr一覧.AllowUserToAddRows = False
-        Me.gcmr一覧.AllowUserToAutoFitColumns = False
-        Me.gcmr一覧.AllowUserToDeleteRows = False
-        Me.gcmr一覧.AllowUserToResize = False
-        Me.gcmr一覧.AllowUserToTouchResize = False
-        Me.gcmr一覧.AllowUserToTouchZoom = False
-        Me.gcmr一覧.AllowUserToZoom = False
-        CellStyle1.BackColor = System.Drawing.Color.LightCyan
-        CellStyle1.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
-        Me.gcmr一覧.AlternatingRowsDefaultCellStyle = CellStyle1
-        Me.gcmr一覧.ClipboardCopyMode = GrapeCity.Win.MultiRow.ClipboardCopyMode.Disable
-        Me.gcmr一覧.CurrentCellBorderLine = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.None, System.Drawing.Color.Black)
-        Me.gcmr一覧.DataSource = Me.BS一覧
-        Me.gcmr一覧.Location = New System.Drawing.Point(17, 16)
-        Me.gcmr一覧.MultiSelect = False
-        Me.gcmr一覧.Name = "gcmr一覧"
-        Me.gcmr一覧.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.gcmr一覧.Size = New System.Drawing.Size(940, 296)
-        Me.gcmr一覧.SplitMode = GrapeCity.Win.MultiRow.SplitMode.None
-        Me.gcmr一覧.TabIndex = 0
-        Me.gcmr一覧.Template = Me.HarK301S3Template1
-        Me.gcmr一覧.Text = "gcmr一覧"
-        '
         'HARK301S3
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(230, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1022, 457)
+        Me.ClientSize = New System.Drawing.Size(1004, 457)
         Me.Controls.Add(Me.pnl検索)
         Me.Controls.Add(Me.BT_ID4)
         Me.Controls.Add(Me.pnl明細)
@@ -339,6 +339,7 @@ Partial Class HARK301S3
         Me.Text = "FMTITLE"
         Me.CntMenuStrip.ResumeLayout(False)
         Me.pnl明細.ResumeLayout(False)
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HARK301S3DS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -347,7 +348,6 @@ Partial Class HARK301S3
         Me.pnl検索.ResumeLayout(False)
         Me.pnl検索.PerformLayout()
         CType(Me.txt連携キー, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

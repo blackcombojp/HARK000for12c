@@ -133,7 +133,7 @@ Partial Class HARK301S2
         Me.pnl明細.Controls.Add(Me.lbl明細１)
         Me.pnl明細.Location = New System.Drawing.Point(25, 96)
         Me.pnl明細.Name = "pnl明細"
-        Me.pnl明細.Size = New System.Drawing.Size(985, 334)
+        Me.pnl明細.Size = New System.Drawing.Size(955, 334)
         Me.pnl明細.TabIndex = 185
         '
         'cmb出荷連携
@@ -344,7 +344,7 @@ Partial Class HARK301S2
         Me.SttBar.Name = "SttBar"
         Me.SttBar.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.SttBarPnl_Err, Me.SttBar_2, Me.SttBar_3})
         Me.SttBar.ShowPanels = True
-        Me.SttBar.Size = New System.Drawing.Size(1022, 24)
+        Me.SttBar.Size = New System.Drawing.Size(1004, 24)
         Me.SttBar.TabIndex = 170
         '
         'BT_ID7
@@ -424,7 +424,7 @@ Partial Class HARK301S2
         Me.Bt_Close.BackColor = System.Drawing.SystemColors.Control
         Me.Bt_Close.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Bt_Close.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Bt_Close.Location = New System.Drawing.Point(937, 0)
+        Me.Bt_Close.Location = New System.Drawing.Point(919, 0)
         Me.Bt_Close.Name = "Bt_Close"
         Me.Bt_Close.Size = New System.Drawing.Size(85, 24)
         Me.Bt_Close.TabIndex = 130
@@ -457,7 +457,7 @@ Partial Class HARK301S2
         Me.pnl検索.Controls.Add(Me.txt商品コード)
         Me.pnl検索.Location = New System.Drawing.Point(25, 44)
         Me.pnl検索.Name = "pnl検索"
-        Me.pnl検索.Size = New System.Drawing.Size(985, 46)
+        Me.pnl検索.Size = New System.Drawing.Size(955, 46)
         Me.pnl検索.TabIndex = 184
         '
         'lbl商品コード
@@ -487,7 +487,7 @@ Partial Class HARK301S2
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(230, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1022, 457)
+        Me.ClientSize = New System.Drawing.Size(1004, 457)
         Me.Controls.Add(Me.pnl検索)
         Me.Controls.Add(Me.BT_ID4)
         Me.Controls.Add(Me.pnl明細)

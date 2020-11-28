@@ -44,6 +44,9 @@ Partial Class HARK201
         Me.lbl連携データ出力先 = New System.Windows.Forms.Label()
         Me.lbl分納データ出力先 = New System.Windows.Forms.Label()
         Me.pnl操作 = New System.Windows.Forms.Panel()
+        Me.btnフォルダ参照4 = New GrapeCity.Win.Buttons.GcButton()
+        Me.txt有効期限切迫データ出力先 = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl有効期限切迫データ出力先 = New System.Windows.Forms.Label()
         Me.cmbサブプログラム = New System.Windows.Forms.ComboBox()
         Me.cmb需要先 = New System.Windows.Forms.ComboBox()
         Me.lbl需要先 = New System.Windows.Forms.Label()
@@ -67,20 +70,17 @@ Partial Class HARK201
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.ExcelCreator = New AdvanceSoftware.ExcelCreator.Creator(Me.components)
-        Me.btnフォルダ参照4 = New GrapeCity.Win.Buttons.GcButton()
-        Me.txt有効期限切迫データ出力先 = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.lbl有効期限切迫データ出力先 = New System.Windows.Forms.Label()
         Me.CntMenuStrip.SuspendLayout()
         CType(Me.lb_Msg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt連携データ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt分納データ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl操作.SuspendLayout()
+        CType(Me.txt有効期限切迫データ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt未検品データ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt入力担当コード, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt有効期限切迫データ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cmb事業所
@@ -229,6 +229,38 @@ Partial Class HARK201
         Me.pnl操作.Size = New System.Drawing.Size(475, 614)
         Me.pnl操作.TabIndex = 183
         '
+        'btnフォルダ参照4
+        '
+        Me.btnフォルダ参照4.BackColor = System.Drawing.SystemColors.Control
+        Me.btnフォルダ参照4.Location = New System.Drawing.Point(403, 320)
+        Me.btnフォルダ参照4.Name = "btnフォルダ参照4"
+        Me.btnフォルダ参照4.Size = New System.Drawing.Size(60, 23)
+        Me.btnフォルダ参照4.TabIndex = 173
+        Me.btnフォルダ参照4.TabStop = False
+        Me.btnフォルダ参照4.Tag = "ID4"
+        Me.btnフォルダ参照4.Text = "参照"
+        Me.btnフォルダ参照4.UseVisualStyleBackColor = False
+        '
+        'txt有効期限切迫データ出力先
+        '
+        Me.txt有効期限切迫データ出力先.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt有効期限切迫データ出力先.Location = New System.Drawing.Point(12, 319)
+        Me.txt有効期限切迫データ出力先.Name = "txt有効期限切迫データ出力先"
+        Me.txt有効期限切迫データ出力先.Size = New System.Drawing.Size(382, 24)
+        Me.txt有効期限切迫データ出力先.TabIndex = 172
+        Me.txt有効期限切迫データ出力先.Tag = "ID4"
+        '
+        'lbl有効期限切迫データ出力先
+        '
+        Me.lbl有効期限切迫データ出力先.AutoSize = True
+        Me.lbl有効期限切迫データ出力先.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl有効期限切迫データ出力先.Location = New System.Drawing.Point(12, 296)
+        Me.lbl有効期限切迫データ出力先.Name = "lbl有効期限切迫データ出力先"
+        Me.lbl有効期限切迫データ出力先.Size = New System.Drawing.Size(191, 20)
+        Me.lbl有効期限切迫データ出力先.TabIndex = 174
+        Me.lbl有効期限切迫データ出力先.Text = "【有効期限切迫データ出力先】"
+        Me.lbl有効期限切迫データ出力先.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'cmbサブプログラム
         '
         Me.cmbサブプログラム.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -363,11 +395,11 @@ Partial Class HARK201
         '
         'SttBar
         '
-        Me.SttBar.Location = New System.Drawing.Point(0, 713)
+        Me.SttBar.Location = New System.Drawing.Point(0, 701)
         Me.SttBar.Name = "SttBar"
         Me.SttBar.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.SttBarPnl_Err, Me.SttBar_2, Me.SttBar_3})
         Me.SttBar.ShowPanels = True
-        Me.SttBar.Size = New System.Drawing.Size(1022, 24)
+        Me.SttBar.Size = New System.Drawing.Size(1004, 24)
         Me.SttBar.TabIndex = 170
         '
         'BT_ID7
@@ -446,7 +478,7 @@ Partial Class HARK201
         '
         Me.Bt_Close.BackColor = System.Drawing.SystemColors.Control
         Me.Bt_Close.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Bt_Close.Location = New System.Drawing.Point(937, 0)
+        Me.Bt_Close.Location = New System.Drawing.Point(919, 0)
         Me.Bt_Close.Name = "Bt_Close"
         Me.Bt_Close.Size = New System.Drawing.Size(85, 24)
         Me.Bt_Close.TabIndex = 130
@@ -471,43 +503,11 @@ Partial Class HARK201
         Me.ExcelCreator.ExcelFileType = AdvanceSoftware.ExcelCreator.ExcelFileType.xlsx
         Me.ExcelCreator.TemporaryPath = ""
         '
-        'btnフォルダ参照4
-        '
-        Me.btnフォルダ参照4.BackColor = System.Drawing.SystemColors.Control
-        Me.btnフォルダ参照4.Location = New System.Drawing.Point(403, 320)
-        Me.btnフォルダ参照4.Name = "btnフォルダ参照4"
-        Me.btnフォルダ参照4.Size = New System.Drawing.Size(60, 23)
-        Me.btnフォルダ参照4.TabIndex = 173
-        Me.btnフォルダ参照4.TabStop = False
-        Me.btnフォルダ参照4.Tag = "ID4"
-        Me.btnフォルダ参照4.Text = "参照"
-        Me.btnフォルダ参照4.UseVisualStyleBackColor = False
-        '
-        'txt有効期限切迫データ出力先
-        '
-        Me.txt有効期限切迫データ出力先.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt有効期限切迫データ出力先.Location = New System.Drawing.Point(12, 319)
-        Me.txt有効期限切迫データ出力先.Name = "txt有効期限切迫データ出力先"
-        Me.txt有効期限切迫データ出力先.Size = New System.Drawing.Size(382, 24)
-        Me.txt有効期限切迫データ出力先.TabIndex = 172
-        Me.txt有効期限切迫データ出力先.Tag = "ID4"
-        '
-        'lbl有効期限切迫データ出力先
-        '
-        Me.lbl有効期限切迫データ出力先.AutoSize = True
-        Me.lbl有効期限切迫データ出力先.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl有効期限切迫データ出力先.Location = New System.Drawing.Point(12, 296)
-        Me.lbl有効期限切迫データ出力先.Name = "lbl有効期限切迫データ出力先"
-        Me.lbl有効期限切迫データ出力先.Size = New System.Drawing.Size(191, 20)
-        Me.lbl有効期限切迫データ出力先.TabIndex = 174
-        Me.lbl有効期限切迫データ出力先.Text = "【有効期限切迫データ出力先】"
-        Me.lbl有効期限切迫データ出力先.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'HARK201
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1022, 737)
+        Me.ClientSize = New System.Drawing.Size(1004, 725)
         Me.Controls.Add(Me.cmb事業所)
         Me.Controls.Add(Me.BT_ID4)
         Me.Controls.Add(Me.lb_Msg)
@@ -537,12 +537,12 @@ Partial Class HARK201
         CType(Me.txt分納データ出力先, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl操作.ResumeLayout(False)
         Me.pnl操作.PerformLayout()
+        CType(Me.txt有効期限切迫データ出力先, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt未検品データ出力先, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt入力担当コード, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt有効期限切迫データ出力先, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

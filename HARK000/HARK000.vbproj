@@ -388,6 +388,11 @@
     <Compile Include="HARK502\HARK502.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HARK502\HARK502DS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HARK502DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="HARK502\HARK502Reports.Designer.vb">
       <DependentUpon>HARK502Reports.vb</DependentUpon>
     </Compile>
@@ -427,6 +432,12 @@
       <DependentUpon>HARK990.vb</DependentUpon>
     </Compile>
     <Compile Include="HARK990\HARK990.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK991\HARK991.Designer.vb">
+      <DependentUpon>HARK991.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK991\HARK991.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HARK_Runtime\HARK_Common.vb" />
@@ -530,6 +541,9 @@
     <EmbeddedResource Include="HARK990\HARK990.resx">
       <DependentUpon>HARK990.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HARK991\HARK991.resx">
+      <DependentUpon>HARK991.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
@@ -571,6 +585,17 @@
     </None>
     <None Include="HARK303\HARK303DS.xss">
       <DependentUpon>HARK303DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK502\HARK502DS.xsc">
+      <DependentUpon>HARK502DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK502\HARK502DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HARK502DS.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="HARK502\HARK502DS.xss">
+      <DependentUpon>HARK502DS.xsd</DependentUpon>
     </None>
     <None Include="HARK504\HARK504DS.xsc">
       <DependentUpon>HARK504DS.xsd</DependentUpon>

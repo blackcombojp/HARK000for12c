@@ -14,6 +14,7 @@ Imports HARK000.HARK_Sub
 Imports AdvanceSoftware.ExcelCreator
 Imports System.ComponentModel
 Imports System.Threading
+Imports GrapeCity.ActiveReports
 
 
 Public Class HARK502
@@ -775,12 +776,12 @@ Public Class HARK502
 
                 Case "ID5" '実行
 
-                    '★★
-                    '開発中
-                    If xxxintSubProgram_ID = 2 Or xxxintSubProgram_ID = 4 Then
-                        MsgBox(MSG_COM906, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        Exit Sub
-                    End If
+                    ''★★
+                    ''開発中
+                    'If xxxintSubProgram_ID = 2 Or xxxintSubProgram_ID = 4 Then
+                    '    MsgBox(MSG_COM906, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    '    Exit Sub
+                    'End If
 
                     If 実行前チェック処理() = False Then Exit Sub
 
@@ -822,8 +823,14 @@ Public Class HARK502
                     Set_ListItem(1, cmbサブプログラム.Text)
                     Set_ListItem(1, MSG_301017)
 
-                    'データ作成
-                    gintRtn = DLTP0502_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, 0, xxxint医薬品区分, txt対象開始月.Text.Trim, txt対象終了月.Text.Trim, xxxint処理対象区分, xxxintNo, xxxintCnt, gintSQLCODE, gstrSQLERRM)
+                    Select Case xxxintSubProgram_ID
+                        Case 1, 3
+                            'データ作成
+                            gintRtn = DLTP0502_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, 0, xxxint医薬品区分, txt対象開始月.Text.Trim, txt対象終了月.Text.Trim, xxxint処理対象区分, xxxintNo, xxxintCnt, gintSQLCODE, gstrSQLERRM)
+                        Case 2, 4
+                            'データ作成
+                            gintRtn = DLTP0502_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, 0, xxxint医薬品区分, txt対象開始月.Text.Trim, txt対象終了月.Text.Trim, xxxint処理対象区分, xxxintNo, xxxintCnt, gintSQLCODE, gstrSQLERRM)
+                    End Select
 
                     Select Case gintRtn
 
@@ -894,14 +901,45 @@ Public Class HARK502
                             End If
 
                         Case 2, 4
-                            'If Output_RawData() = True Then
-                            '    Set_ListItem(1, MSG_301018)
-                            '    Set_ListItem(2, "")
-                            'Else
-                            '    Set_ListItem(1, MSG_301019)
-                            '    Set_ListItem(1, MSG_COM901)
-                            '    Set_ListItem(2, "")
-                            'End If
+
+                            Try
+                                gblRtn = 印刷用データ作成処理()
+
+                                '印刷
+                                If Viewer Is Nothing Then Viewer = New HARK991()
+                                If Reports Is Nothing Then Reports = New HARK502Reports()
+
+                                Reports.DataSource = HARK502DS.ds一覧
+
+                                'ActiveReports実行
+                                Reports.Run()
+                                Viewer.ViewerCtl.LoadDocument(Reports)
+
+                                Set_ListItem(1, MSG_502007)
+                                Set_ListItem(2, "")
+
+                                '処理中画面廃棄
+                                If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
+                                    m_lording.Abort()
+                                    m_lording = Nothing
+                                End If
+
+                                Viewer.ShowDialog()
+
+                            Catch ex As Exception
+
+                                log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+
+                                Set_ListItem(1, MSG_502006)
+                                Set_ListItem(1, MSG_COM901)
+                                Set_ListItem(2, "")
+
+                            Finally
+
+                                If Not Reports Is Nothing Then Reports.Dispose()
+                                If Not Viewer Is Nothing Then Viewer.Dispose()
+
+                            End Try
 
                     End Select
 
@@ -1146,5 +1184,64 @@ EndExecute:
         End Try
 
     End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　印刷用データ作成処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　引数２　　　　　：　なし
+    ' *　戻値　　　　　　：　True・・正常、False・・異常
+    ' *-----------------------------------------------------------------------------/
+    Private Function 印刷用データ作成処理() As Boolean
 
+        Dim intRowCnt As Integer
+
+        Try
+
+            印刷用データ作成処理 = False
+
+            HARK502DS.ds一覧.Clear()
+
+            For intRowCnt = 0 To gintResultCnt - 1
+
+                HARK502DS.ds一覧.Addds一覧Row(CInt(Results(intRowCnt).strBuff(0)),
+                                              Results(intRowCnt).strBuff(1),
+                                              Results(intRowCnt).strBuff(2),
+                                              Results(intRowCnt).strBuff(3),
+                                              CLng(Results(intRowCnt).strBuff(4)),
+                                              Results(intRowCnt).strBuff(5),
+                                              Results(intRowCnt).strBuff(6),
+                                              Results(intRowCnt).strBuff(7),
+                                              Results(intRowCnt).strBuff(8),
+                                              Results(intRowCnt).strBuff(9),
+                                              CDbl(Results(intRowCnt).strBuff(10)),
+                                              Results(intRowCnt).strBuff(11),
+                                              Results(intRowCnt).strBuff(12),
+                                              CLng(Results(intRowCnt).strBuff(13)),
+                                              CInt(Results(intRowCnt).strBuff(14)),
+                                              CLng(Results(intRowCnt).strBuff(15)),
+                                              Results(intRowCnt).strBuff(16),
+                                              CDbl(Results(intRowCnt).strBuff(17)),
+                                              CDbl(Results(intRowCnt).strBuff(18)),
+                                              CDbl(Results(intRowCnt).strBuff(19)),
+                                              Results(intRowCnt).strBuff(20),
+                                              CDbl(Results(intRowCnt).strBuff(21)),
+                                              Results(intRowCnt).strBuff(22),
+                                              Results(intRowCnt).strBuff(23),
+                                              Results(intRowCnt).strBuff(24))
+
+            Next
+
+            印刷用データ作成処理 = True
+
+            Exit Function
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
 End Class

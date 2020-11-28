@@ -336,11 +336,11 @@ Partial Class HARK401
         '
         'SttBar
         '
-        Me.SttBar.Location = New System.Drawing.Point(0, 713)
+        Me.SttBar.Location = New System.Drawing.Point(0, 701)
         Me.SttBar.Name = "SttBar"
         Me.SttBar.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.SttBarPnl_Err, Me.SttBar_2, Me.SttBar_3})
         Me.SttBar.ShowPanels = True
-        Me.SttBar.Size = New System.Drawing.Size(1022, 24)
+        Me.SttBar.Size = New System.Drawing.Size(1004, 24)
         Me.SttBar.TabIndex = 170
         '
         'BT_ID7
@@ -419,7 +419,7 @@ Partial Class HARK401
         '
         Me.Bt_Close.BackColor = System.Drawing.SystemColors.Control
         Me.Bt_Close.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Bt_Close.Location = New System.Drawing.Point(937, 0)
+        Me.Bt_Close.Location = New System.Drawing.Point(919, 0)
         Me.Bt_Close.Name = "Bt_Close"
         Me.Bt_Close.Size = New System.Drawing.Size(85, 24)
         Me.Bt_Close.TabIndex = 130
@@ -448,7 +448,7 @@ Partial Class HARK401
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1022, 737)
+        Me.ClientSize = New System.Drawing.Size(1004, 725)
         Me.Controls.Add(Me.cmb事業所)
         Me.Controls.Add(Me.BT_ID4)
         Me.Controls.Add(Me.lb_Msg)

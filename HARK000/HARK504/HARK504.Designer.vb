@@ -164,7 +164,7 @@ Partial Class HARK504
         Me.pnl検索.Controls.Add(Me.btn検索)
         Me.pnl検索.Location = New System.Drawing.Point(25, 60)
         Me.pnl検索.Name = "pnl検索"
-        Me.pnl検索.Size = New System.Drawing.Size(970, 132)
+        Me.pnl検索.Size = New System.Drawing.Size(955, 132)
         Me.pnl検索.TabIndex = 100
         '
         'cmb検索条件１
@@ -431,11 +431,11 @@ Partial Class HARK504
         '
         'SttBar
         '
-        Me.SttBar.Location = New System.Drawing.Point(0, 713)
+        Me.SttBar.Location = New System.Drawing.Point(0, 701)
         Me.SttBar.Name = "SttBar"
         Me.SttBar.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.SttBarPnl_Err, Me.SttBar_2, Me.SttBar_3})
         Me.SttBar.ShowPanels = True
-        Me.SttBar.Size = New System.Drawing.Size(1022, 24)
+        Me.SttBar.Size = New System.Drawing.Size(1004, 24)
         Me.SttBar.TabIndex = 170
         '
         'BT_ID7
@@ -514,7 +514,7 @@ Partial Class HARK504
         '
         Me.Bt_Close.BackColor = System.Drawing.SystemColors.Control
         Me.Bt_Close.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Bt_Close.Location = New System.Drawing.Point(937, 0)
+        Me.Bt_Close.Location = New System.Drawing.Point(919, 0)
         Me.Bt_Close.Name = "Bt_Close"
         Me.Bt_Close.Size = New System.Drawing.Size(85, 24)
         Me.Bt_Close.TabIndex = 130
@@ -704,7 +704,7 @@ Partial Class HARK504
         ShortcutKeyManager1.RowModeList.Add(New GrapeCity.Win.MultiRow.ShortcutKey(CType(GrapeCity.Win.MultiRow.EditingActions.ShowDropDown, GrapeCity.Win.MultiRow.Action), System.Windows.Forms.Keys.F4))
         ShortcutKeyManager1.RowModeList.Add(New GrapeCity.Win.MultiRow.ShortcutKey(CType(GrapeCity.Win.MultiRow.EditingActions.ShowDropDown, GrapeCity.Win.MultiRow.Action), CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.Down), System.Windows.Forms.Keys)))
         Me.gcmr一覧.ShortcutKeyManager = ShortcutKeyManager1
-        Me.gcmr一覧.Size = New System.Drawing.Size(970, 468)
+        Me.gcmr一覧.Size = New System.Drawing.Size(955, 468)
         Me.gcmr一覧.SplitMode = GrapeCity.Win.MultiRow.SplitMode.None
         Me.gcmr一覧.TabIndex = 301
         Me.gcmr一覧.TabStop = False
@@ -715,7 +715,7 @@ Partial Class HARK504
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(230, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1022, 737)
+        Me.ClientSize = New System.Drawing.Size(1004, 725)
         Me.Controls.Add(Me.gcmr一覧)
         Me.Controls.Add(Me.cmb事業所)
         Me.Controls.Add(Me.BT_ID4)

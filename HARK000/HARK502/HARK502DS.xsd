@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HARK502DS" targetNamespace="http://tempuri.org/HARK502DS.xsd" xmlns:mstns="http://tempuri.org/HARK502DS.xsd" xmlns="http://tempuri.org/HARK502DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HARK502DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="HARK502DS" msprop:Generator_UserDSName="HARK502DS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ds一覧" msprop:Generator_TableClassName="ds一覧DataTable" msprop:Generator_TableVarName="tableds一覧" msprop:Generator_TablePropName="ds一覧" msprop:Generator_RowDeletingName="ds一覧RowDeleting" msprop:Generator_RowChangingName="ds一覧RowChanging" msprop:Generator_RowEvHandlerName="ds一覧RowChangeEventHandler" msprop:Generator_RowDeletedName="ds一覧RowDeleted" msprop:Generator_UserTableName="ds一覧" msprop:Generator_RowChangedName="ds一覧RowChanged" msprop:Generator_RowEvArgName="ds一覧RowChangeEvent" msprop:Generator_RowClassName="ds一覧Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="事業所コード" msprop:Generator_ColumnVarNameInTable="column事業所コード" msprop:Generator_ColumnPropNameInRow="事業所コード" msprop:Generator_ColumnPropNameInTable="事業所コードColumn" msprop:Generator_UserColumnName="事業所コード" type="xs:int" minOccurs="0" />
+              <xs:element name="事業所名" msprop:Generator_ColumnVarNameInTable="column事業所名" msprop:Generator_ColumnPropNameInRow="事業所名" msprop:Generator_ColumnPropNameInTable="事業所名Column" msprop:Generator_UserColumnName="事業所名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="倉庫名" msprop:Generator_ColumnVarNameInTable="column倉庫名" msprop:Generator_ColumnPropNameInRow="倉庫名" msprop:Generator_ColumnPropNameInTable="倉庫名Column" msprop:Generator_UserColumnName="倉庫名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="商品コード" msprop:Generator_ColumnVarNameInTable="column商品コード" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_UserColumnName="商品コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="メーカコード" msprop:Generator_ColumnVarNameInTable="columnメーカコード" msprop:Generator_ColumnPropNameInRow="メーカコード" msprop:Generator_ColumnPropNameInTable="メーカコードColumn" msprop:Generator_UserColumnName="メーカコード" type="xs:long" minOccurs="0" />
+              <xs:element name="メーカ名" msprop:Generator_ColumnVarNameInTable="columnメーカ名" msprop:Generator_ColumnPropNameInRow="メーカ名" msprop:Generator_ColumnPropNameInTable="メーカ名Column" msprop:Generator_UserColumnName="メーカ名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="メーカ品番" msprop:Generator_ColumnVarNameInTable="columnメーカ品番" msprop:Generator_ColumnPropNameInRow="メーカ品番" msprop:Generator_ColumnPropNameInTable="メーカ品番Column" msprop:Generator_UserColumnName="メーカ品番" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="商品名" msprop:Generator_ColumnVarNameInTable="column商品名" msprop:Generator_ColumnPropNameInRow="商品名" msprop:Generator_ColumnPropNameInTable="商品名Column" msprop:Generator_UserColumnName="商品名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="規格" msprop:Generator_ColumnVarNameInTable="column規格" msprop:Generator_ColumnPropNameInRow="規格" msprop:Generator_ColumnPropNameInTable="規格Column" msprop:Generator_UserColumnName="規格" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="入出庫区分" msprop:Generator_ColumnVarNameInTable="column入出庫区分" msprop:Generator_ColumnPropNameInRow="入出庫区分" msprop:Generator_ColumnPropNameInTable="入出庫区分Column" msprop:Generator_UserColumnName="入出庫区分" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="前月末数量" msprop:Generator_ColumnVarNameInTable="column前月末数量" msprop:Generator_ColumnPropNameInRow="前月末数量" msprop:Generator_ColumnPropNameInTable="前月末数量Column" msprop:Generator_UserColumnName="前月末数量" type="xs:double" minOccurs="0" />
+              <xs:element name="単位名" msprop:Generator_ColumnVarNameInTable="column単位名" msprop:Generator_ColumnPropNameInRow="単位名" msprop:Generator_ColumnPropNameInTable="単位名Column" msprop:Generator_UserColumnName="単位名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="入出庫日付" msprop:Generator_ColumnVarNameInTable="column入出庫日付" msprop:Generator_ColumnPropNameInRow="入出庫日付" msprop:Generator_ColumnPropNameInTable="入出庫日付Column" msprop:Generator_UserColumnName="入出庫日付" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="入出庫番号" msprop:Generator_ColumnVarNameInTable="column入出庫番号" msprop:Generator_ColumnPropNameInRow="入出庫番号" msprop:Generator_ColumnPropNameInTable="入出庫番号Column" msprop:Generator_UserColumnName="入出庫番号" type="xs:long" minOccurs="0" />
+              <xs:element name="入出庫行番号" msprop:Generator_ColumnVarNameInTable="column入出庫行番号" msprop:Generator_ColumnPropNameInRow="入出庫行番号" msprop:Generator_ColumnPropNameInTable="入出庫行番号Column" msprop:Generator_UserColumnName="入出庫行番号" type="xs:int" minOccurs="0" />
+              <xs:element name="取引先コード" msprop:Generator_ColumnVarNameInTable="column取引先コード" msprop:Generator_ColumnPropNameInRow="取引先コード" msprop:Generator_ColumnPropNameInTable="取引先コードColumn" msprop:Generator_UserColumnName="取引先コード" type="xs:long" minOccurs="0" />
+              <xs:element name="取引先名" msprop:Generator_ColumnVarNameInTable="column取引先名" msprop:Generator_ColumnPropNameInRow="取引先名" msprop:Generator_ColumnPropNameInTable="取引先名Column" msprop:Generator_UserColumnName="取引先名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="入庫数量" msprop:Generator_ColumnVarNameInTable="column入庫数量" msprop:Generator_ColumnPropNameInRow="入庫数量" msprop:Generator_ColumnPropNameInTable="入庫数量Column" msprop:Generator_UserColumnName="入庫数量" type="xs:double" minOccurs="0" />
+              <xs:element name="出庫数量" msprop:Generator_ColumnVarNameInTable="column出庫数量" msprop:Generator_ColumnPropNameInRow="出庫数量" msprop:Generator_ColumnPropNameInTable="出庫数量Column" msprop:Generator_UserColumnName="出庫数量" type="xs:double" minOccurs="0" />
+              <xs:element name="残在庫数量" msprop:Generator_ColumnVarNameInTable="column残在庫数量" msprop:Generator_ColumnPropNameInRow="残在庫数量" msprop:Generator_ColumnPropNameInTable="残在庫数量Column" msprop:Generator_UserColumnName="残在庫数量" type="xs:double" minOccurs="0" />
+              <xs:element name="在庫単位名" msprop:Generator_ColumnVarNameInTable="column在庫単位名" msprop:Generator_ColumnPropNameInRow="在庫単位名" msprop:Generator_ColumnPropNameInTable="在庫単位名Column" msprop:Generator_UserColumnName="在庫単位名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="詳細入出庫数量" msprop:Generator_ColumnVarNameInTable="column詳細入出庫数量" msprop:Generator_ColumnPropNameInRow="詳細入出庫数量" msprop:Generator_ColumnPropNameInTable="詳細入出庫数量Column" msprop:Generator_UserColumnName="詳細入出庫数量" type="xs:double" minOccurs="0" />
+              <xs:element name="詳細単位名" msprop:Generator_ColumnVarNameInTable="column詳細単位名" msprop:Generator_ColumnPropNameInRow="詳細単位名" msprop:Generator_ColumnPropNameInTable="詳細単位名Column" msprop:Generator_UserColumnName="詳細単位名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ロット" msprop:Generator_ColumnVarNameInTable="columnロット" msprop:Generator_ColumnPropNameInRow="ロット" msprop:Generator_ColumnPropNameInTable="ロットColumn" msprop:Generator_UserColumnName="ロット" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="有効期限" msprop:Generator_ColumnVarNameInTable="column有効期限" msprop:Generator_ColumnPropNameInRow="有効期限" msprop:Generator_ColumnPropNameInTable="有効期限Column" msprop:Generator_UserColumnName="有効期限" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

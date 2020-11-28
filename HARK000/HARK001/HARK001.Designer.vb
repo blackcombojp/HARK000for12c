@@ -34,48 +34,10 @@ Partial Class HARK001
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK001))
         Me.pnlSide = New System.Windows.Forms.Panel()
         Me.lblタイトル = New GrapeCity.Win.Buttons.GcLabel()
-        Me.pnlOnSideBtn = New System.Windows.Forms.Panel()
-        Me.pnlTop = New System.Windows.Forms.Panel()
-        Me.lblマシン名 = New GrapeCity.Win.Buttons.GcLabel()
-        Me.lblバージョン = New GrapeCity.Win.Buttons.GcLabel()
-        Me.lbl事業所 = New GrapeCity.Win.Buttons.GcLabel()
-        Me.pnl受注 = New System.Windows.Forms.Panel()
-        Me.pnl受注02 = New System.Windows.Forms.Panel()
-        Me.pnl受注03 = New System.Windows.Forms.Panel()
-        Me.pnl受注04 = New System.Windows.Forms.Panel()
-        Me.pnl出荷 = New System.Windows.Forms.Panel()
-        Me.pnl請求 = New System.Windows.Forms.Panel()
-        Me.pnl管理 = New System.Windows.Forms.Panel()
-        Me.pnlお知らせ = New System.Windows.Forms.Panel()
-        Me.lblマニュアル = New System.Windows.Forms.LinkLabel()
-        Me.txtお知らせ = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.lblDebug = New GrapeCity.Win.Buttons.GcLabel()
-        Me.wbrお知らせ = New System.Windows.Forms.WebBrowser()
-        Me.lblお知らせ = New GrapeCity.Win.Buttons.GcLabel()
-        Me.pnl売上 = New System.Windows.Forms.Panel()
-        Me.btn管理02 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn管理01 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn管理03 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn管理04 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn管理05 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn出荷01 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn出荷02 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn売上04 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn売上01 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn売上02 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn売上03 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn請求03 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn請求01 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn請求02 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn受注01 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn受注02 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn受注03 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn受注04 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn受注05 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn受注06 = New GrapeCity.Win.Buttons.GcButton()
         Me.pic最大化 = New System.Windows.Forms.PictureBox()
         Me.pic最小化 = New System.Windows.Forms.PictureBox()
         Me.pic終了 = New System.Windows.Forms.PictureBox()
+        Me.pnlOnSideBtn = New System.Windows.Forms.Panel()
         Me.btnSide01 = New GrapeCity.Win.Buttons.GcButton()
         Me.btnSide02 = New GrapeCity.Win.Buttons.GcButton()
         Me.btnSide03 = New GrapeCity.Win.Buttons.GcButton()
@@ -83,7 +45,48 @@ Partial Class HARK001
         Me.btnSide05 = New GrapeCity.Win.Buttons.GcButton()
         Me.btnSide99 = New GrapeCity.Win.Buttons.GcButton()
         Me.Btn終了 = New GrapeCity.Win.Buttons.GcButton()
+        Me.pnlTop = New System.Windows.Forms.Panel()
+        Me.lblマシン名 = New GrapeCity.Win.Buttons.GcLabel()
+        Me.lblバージョン = New GrapeCity.Win.Buttons.GcLabel()
+        Me.lbl事業所 = New GrapeCity.Win.Buttons.GcLabel()
+        Me.pnl受注 = New System.Windows.Forms.Panel()
+        Me.btn受注01 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn受注02 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn受注03 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn受注04 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn受注05 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn受注06 = New GrapeCity.Win.Buttons.GcButton()
+        Me.pnl受注02 = New System.Windows.Forms.Panel()
+        Me.pnl受注03 = New System.Windows.Forms.Panel()
+        Me.pnl受注04 = New System.Windows.Forms.Panel()
+        Me.pnl出荷 = New System.Windows.Forms.Panel()
+        Me.btn出荷01 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn出荷02 = New GrapeCity.Win.Buttons.GcButton()
+        Me.pnl請求 = New System.Windows.Forms.Panel()
+        Me.btn請求03 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn請求01 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn請求02 = New GrapeCity.Win.Buttons.GcButton()
+        Me.pnl管理 = New System.Windows.Forms.Panel()
+        Me.btn管理02 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn管理01 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn管理03 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn管理04 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn管理05 = New GrapeCity.Win.Buttons.GcButton()
+        Me.pnlお知らせ = New System.Windows.Forms.Panel()
+        Me.lblマニュアル = New System.Windows.Forms.LinkLabel()
+        Me.txtお知らせ = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lblDebug = New GrapeCity.Win.Buttons.GcLabel()
+        Me.wbrお知らせ = New System.Windows.Forms.WebBrowser()
+        Me.lblお知らせ = New GrapeCity.Win.Buttons.GcLabel()
+        Me.pnl売上 = New System.Windows.Forms.Panel()
+        Me.btn売上04 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn売上01 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn売上02 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn売上03 = New GrapeCity.Win.Buttons.GcButton()
         Me.pnlSide.SuspendLayout()
+        CType(Me.pic最大化, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic最小化, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.pic終了, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTop.SuspendLayout()
         Me.pnl受注.SuspendLayout()
         Me.pnl出荷.SuspendLayout()
@@ -92,9 +95,6 @@ Partial Class HARK001
         Me.pnlお知らせ.SuspendLayout()
         CType(Me.txtお知らせ, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl売上.SuspendLayout()
-        CType(Me.pic最大化, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pic最小化, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.pic終了, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlSide
@@ -131,577 +131,6 @@ Partial Class HARK001
         Me.lblタイトル.TextHAlign = GrapeCity.Win.Common.TextHAlign.Center
         Me.lblタイトル.WrapMode = GrapeCity.Win.Common.TextWrapMode.CrLfWrap
         '
-        'pnlOnSideBtn
-        '
-        Me.pnlOnSideBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.pnlOnSideBtn.Location = New System.Drawing.Point(0, 157)
-        Me.pnlOnSideBtn.Name = "pnlOnSideBtn"
-        Me.pnlOnSideBtn.Size = New System.Drawing.Size(10, 60)
-        Me.pnlOnSideBtn.TabIndex = 2
-        '
-        'pnlTop
-        '
-        Me.pnlTop.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.pnlTop.Controls.Add(Me.lblマシン名)
-        Me.pnlTop.Controls.Add(Me.lblバージョン)
-        Me.pnlTop.Controls.Add(Me.lbl事業所)
-        Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.pnlTop.Location = New System.Drawing.Point(200, 0)
-        Me.pnlTop.Name = "pnlTop"
-        Me.pnlTop.Size = New System.Drawing.Size(824, 40)
-        Me.pnlTop.TabIndex = 1
-        '
-        'lblマシン名
-        '
-        Me.lblマシン名.Font = New System.Drawing.Font("メイリオ", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblマシン名.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.lblマシン名.Location = New System.Drawing.Point(692, 21)
-        Me.lblマシン名.Name = "lblマシン名"
-        Me.lblマシン名.Size = New System.Drawing.Size(111, 18)
-        Me.lblマシン名.TabIndex = 18
-        Me.lblマシン名.Text = "lblマシン名"
-        Me.lblマシン名.TextEffect = GrapeCity.Win.Common.TextEffect.Inset
-        Me.lblマシン名.TextHAlign = GrapeCity.Win.Common.TextHAlign.Center
-        Me.lblマシン名.TextVAlign = GrapeCity.Win.Common.TextVAlign.Middle
-        '
-        'lblバージョン
-        '
-        Me.lblバージョン.Font = New System.Drawing.Font("メイリオ", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblバージョン.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.lblバージョン.Location = New System.Drawing.Point(692, 3)
-        Me.lblバージョン.Name = "lblバージョン"
-        Me.lblバージョン.Size = New System.Drawing.Size(111, 18)
-        Me.lblバージョン.TabIndex = 17
-        Me.lblバージョン.Text = "lblバージョン"
-        Me.lblバージョン.TextEffect = GrapeCity.Win.Common.TextEffect.Inset
-        Me.lblバージョン.TextHAlign = GrapeCity.Win.Common.TextHAlign.Center
-        Me.lblバージョン.TextVAlign = GrapeCity.Win.Common.TextVAlign.Middle
-        '
-        'lbl事業所
-        '
-        Me.lbl事業所.AutoSize = True
-        Me.lbl事業所.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl事業所.ForeColor = System.Drawing.Color.Blue
-        Me.lbl事業所.Location = New System.Drawing.Point(22, 2)
-        Me.lbl事業所.Name = "lbl事業所"
-        Me.lbl事業所.Size = New System.Drawing.Size(74, 37)
-        Me.lbl事業所.TabIndex = 16
-        Me.lbl事業所.Text = "事業所"
-        Me.lbl事業所.TextVAlign = GrapeCity.Win.Common.TextVAlign.Middle
-        '
-        'pnl受注
-        '
-        Me.pnl受注.Controls.Add(Me.btn受注01)
-        Me.pnl受注.Controls.Add(Me.btn受注02)
-        Me.pnl受注.Controls.Add(Me.btn受注03)
-        Me.pnl受注.Controls.Add(Me.btn受注04)
-        Me.pnl受注.Controls.Add(Me.btn受注05)
-        Me.pnl受注.Controls.Add(Me.btn受注06)
-        Me.pnl受注.Controls.Add(Me.pnl受注02)
-        Me.pnl受注.Controls.Add(Me.pnl受注03)
-        Me.pnl受注.Controls.Add(Me.pnl受注04)
-        Me.pnl受注.Location = New System.Drawing.Point(200, 40)
-        Me.pnl受注.Name = "pnl受注"
-        Me.pnl受注.Size = New System.Drawing.Size(824, 728)
-        Me.pnl受注.TabIndex = 2
-        Me.pnl受注.Tag = "0"
-        '
-        'pnl受注02
-        '
-        Me.pnl受注02.Location = New System.Drawing.Point(420, 210)
-        Me.pnl受注02.Name = "pnl受注02"
-        Me.pnl受注02.Size = New System.Drawing.Size(150, 150)
-        Me.pnl受注02.TabIndex = 3
-        '
-        'pnl受注03
-        '
-        Me.pnl受注03.Location = New System.Drawing.Point(40, 390)
-        Me.pnl受注03.Name = "pnl受注03"
-        Me.pnl受注03.Size = New System.Drawing.Size(150, 150)
-        Me.pnl受注03.TabIndex = 4
-        '
-        'pnl受注04
-        '
-        Me.pnl受注04.Location = New System.Drawing.Point(40, 570)
-        Me.pnl受注04.Name = "pnl受注04"
-        Me.pnl受注04.Size = New System.Drawing.Size(150, 150)
-        Me.pnl受注04.TabIndex = 5
-        '
-        'pnl出荷
-        '
-        Me.pnl出荷.Controls.Add(Me.btn出荷01)
-        Me.pnl出荷.Controls.Add(Me.btn出荷02)
-        Me.pnl出荷.Location = New System.Drawing.Point(200, 40)
-        Me.pnl出荷.Name = "pnl出荷"
-        Me.pnl出荷.Size = New System.Drawing.Size(824, 728)
-        Me.pnl出荷.TabIndex = 3
-        Me.pnl出荷.Tag = "1"
-        '
-        'pnl請求
-        '
-        Me.pnl請求.Controls.Add(Me.btn請求03)
-        Me.pnl請求.Controls.Add(Me.btn請求01)
-        Me.pnl請求.Controls.Add(Me.btn請求02)
-        Me.pnl請求.Location = New System.Drawing.Point(200, 40)
-        Me.pnl請求.Name = "pnl請求"
-        Me.pnl請求.Size = New System.Drawing.Size(824, 728)
-        Me.pnl請求.TabIndex = 4
-        Me.pnl請求.Tag = "3"
-        '
-        'pnl管理
-        '
-        Me.pnl管理.Controls.Add(Me.btn管理02)
-        Me.pnl管理.Controls.Add(Me.btn管理01)
-        Me.pnl管理.Controls.Add(Me.btn管理03)
-        Me.pnl管理.Controls.Add(Me.btn管理04)
-        Me.pnl管理.Controls.Add(Me.btn管理05)
-        Me.pnl管理.Location = New System.Drawing.Point(200, 40)
-        Me.pnl管理.Name = "pnl管理"
-        Me.pnl管理.Size = New System.Drawing.Size(824, 728)
-        Me.pnl管理.TabIndex = 5
-        Me.pnl管理.Tag = "4"
-        '
-        'pnlお知らせ
-        '
-        Me.pnlお知らせ.Controls.Add(Me.lblマニュアル)
-        Me.pnlお知らせ.Controls.Add(Me.txtお知らせ)
-        Me.pnlお知らせ.Controls.Add(Me.lblDebug)
-        Me.pnlお知らせ.Controls.Add(Me.wbrお知らせ)
-        Me.pnlお知らせ.Controls.Add(Me.lblお知らせ)
-        Me.pnlお知らせ.Cursor = System.Windows.Forms.Cursors.Default
-        Me.pnlお知らせ.Location = New System.Drawing.Point(200, 40)
-        Me.pnlお知らせ.Name = "pnlお知らせ"
-        Me.pnlお知らせ.Size = New System.Drawing.Size(824, 728)
-        Me.pnlお知らせ.TabIndex = 6
-        Me.pnlお知らせ.Tag = "5"
-        '
-        'lblマニュアル
-        '
-        Me.lblマニュアル.AutoSize = True
-        Me.lblマニュアル.Font = New System.Drawing.Font("メイリオ", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblマニュアル.Location = New System.Drawing.Point(22, 676)
-        Me.lblマニュアル.Name = "lblマニュアル"
-        Me.lblマニュアル.Size = New System.Drawing.Size(183, 28)
-        Me.lblマニュアル.TabIndex = 17
-        Me.lblマニュアル.TabStop = True
-        Me.lblマニュアル.Text = "マニュアルはこちら"
-        '
-        'txtお知らせ
-        '
-        Me.txtお知らせ.FlatStyle = GrapeCity.Win.Editors.FlatStyleEx.Popup
-        Me.txtお知らせ.Font = New System.Drawing.Font("メイリオ", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtお知らせ.Location = New System.Drawing.Point(22, 512)
-        Me.txtお知らせ.Multiline = True
-        Me.txtお知らせ.Name = "txtお知らせ"
-        Me.txtお知らせ.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtお知らせ.Size = New System.Drawing.Size(777, 143)
-        Me.txtお知らせ.TabIndex = 16
-        '
-        'lblDebug
-        '
-        Me.lblDebug.Font = New System.Drawing.Font("メイリオ", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblDebug.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.lblDebug.Location = New System.Drawing.Point(514, 661)
-        Me.lblDebug.Name = "lblDebug"
-        Me.lblDebug.Size = New System.Drawing.Size(287, 50)
-        Me.lblDebug.TabIndex = 15
-        Me.lblDebug.Text = "Delta2"
-        Me.lblDebug.TextHAlign = GrapeCity.Win.Common.TextHAlign.Right
-        '
-        'wbrお知らせ
-        '
-        Me.wbrお知らせ.Location = New System.Drawing.Point(22, 65)
-        Me.wbrお知らせ.MinimumSize = New System.Drawing.Size(20, 20)
-        Me.wbrお知らせ.Name = "wbrお知らせ"
-        Me.wbrお知らせ.Size = New System.Drawing.Size(777, 427)
-        Me.wbrお知らせ.TabIndex = 14
-        Me.wbrお知らせ.Url = New System.Uri("", System.UriKind.Relative)
-        Me.wbrお知らせ.WebBrowserShortcutsEnabled = False
-        '
-        'lblお知らせ
-        '
-        Me.lblお知らせ.AutoSize = True
-        Me.lblお知らせ.Font = New System.Drawing.Font("メイリオ", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblお知らせ.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.lblお知らせ.Location = New System.Drawing.Point(13, 12)
-        Me.lblお知らせ.Name = "lblお知らせ"
-        Me.lblお知らせ.Size = New System.Drawing.Size(132, 50)
-        Me.lblお知らせ.TabIndex = 13
-        Me.lblお知らせ.Text = "お知らせ"
-        '
-        'pnl売上
-        '
-        Me.pnl売上.Controls.Add(Me.btn売上04)
-        Me.pnl売上.Controls.Add(Me.btn売上01)
-        Me.pnl売上.Controls.Add(Me.btn売上02)
-        Me.pnl売上.Controls.Add(Me.btn売上03)
-        Me.pnl売上.Location = New System.Drawing.Point(200, 40)
-        Me.pnl売上.Name = "pnl売上"
-        Me.pnl売上.Size = New System.Drawing.Size(824, 728)
-        Me.pnl売上.TabIndex = 7
-        Me.pnl売上.Tag = "2"
-        '
-        'btn管理02
-        '
-        Me.btn管理02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn管理02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn管理02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn管理02.FlatAppearance.BorderSize = 0
-        Me.btn管理02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn管理02.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn管理02.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn管理02.Location = New System.Drawing.Point(230, 30)
-        Me.btn管理02.Name = "btn管理02"
-        Me.btn管理02.Size = New System.Drawing.Size(150, 150)
-        Me.btn管理02.TabIndex = 12
-        Me.btn管理02.Tag = "HARKP502"
-        Me.btn管理02.Text = "医薬品" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "入出庫履歴"
-        Me.btn管理02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn管理02.UseVisualStyleBackColor = False
-        '
-        'btn管理01
-        '
-        Me.btn管理01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn管理01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn管理01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn管理01.FlatAppearance.BorderSize = 0
-        Me.btn管理01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn管理01.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn管理01.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn管理01.Location = New System.Drawing.Point(40, 30)
-        Me.btn管理01.Name = "btn管理01"
-        Me.btn管理01.Size = New System.Drawing.Size(150, 150)
-        Me.btn管理01.TabIndex = 7
-        Me.btn管理01.Tag = "HARKP501"
-        Me.btn管理01.Text = "天神会SPD" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "商品マスタ" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "一括更新"
-        Me.btn管理01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn管理01.UseVisualStyleBackColor = False
-        '
-        'btn管理03
-        '
-        Me.btn管理03.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn管理03.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn管理03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn管理03.FlatAppearance.BorderSize = 0
-        Me.btn管理03.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn管理03.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn管理03.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn管理03.Location = New System.Drawing.Point(420, 30)
-        Me.btn管理03.Name = "btn管理03"
-        Me.btn管理03.Size = New System.Drawing.Size(150, 150)
-        Me.btn管理03.TabIndex = 9
-        Me.btn管理03.Tag = "HARKP503"
-        Me.btn管理03.Text = "得意先別" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "販売許可証" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "登録"
-        Me.btn管理03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn管理03.UseVisualStyleBackColor = False
-        '
-        'btn管理04
-        '
-        Me.btn管理04.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn管理04.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn管理04.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn管理04.FlatAppearance.BorderSize = 0
-        Me.btn管理04.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn管理04.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn管理04.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn管理04.Location = New System.Drawing.Point(610, 30)
-        Me.btn管理04.Name = "btn管理04"
-        Me.btn管理04.Size = New System.Drawing.Size(150, 150)
-        Me.btn管理04.TabIndex = 10
-        Me.btn管理04.Tag = "HARKP504"
-        Me.btn管理04.Text = "得意先別" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "販売許可証" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "メンテナンス"
-        Me.btn管理04.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn管理04.UseVisualStyleBackColor = False
-        '
-        'btn管理05
-        '
-        Me.btn管理05.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn管理05.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn管理05.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn管理05.FlatAppearance.BorderSize = 0
-        Me.btn管理05.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn管理05.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn管理05.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn管理05.Location = New System.Drawing.Point(40, 210)
-        Me.btn管理05.Name = "btn管理05"
-        Me.btn管理05.Size = New System.Drawing.Size(150, 150)
-        Me.btn管理05.TabIndex = 11
-        Me.btn管理05.Tag = "HARKP505"
-        Me.btn管理05.Text = "PHsmos" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "採用商品情報出力"
-        Me.btn管理05.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn管理05.UseVisualStyleBackColor = False
-        '
-        'btn出荷01
-        '
-        Me.btn出荷01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn出荷01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn出荷01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn出荷01.FlatAppearance.BorderSize = 0
-        Me.btn出荷01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn出荷01.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn出荷01.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn出荷01.Location = New System.Drawing.Point(40, 30)
-        Me.btn出荷01.Name = "btn出荷01"
-        Me.btn出荷01.Size = New System.Drawing.Size(150, 150)
-        Me.btn出荷01.TabIndex = 7
-        Me.btn出荷01.Tag = "HARKP201"
-        Me.btn出荷01.Text = "天神会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SPD出荷"
-        Me.btn出荷01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn出荷01.UseVisualStyleBackColor = False
-        '
-        'btn出荷02
-        '
-        Me.btn出荷02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn出荷02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn出荷02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn出荷02.FlatAppearance.BorderSize = 0
-        Me.btn出荷02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn出荷02.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn出荷02.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn出荷02.Location = New System.Drawing.Point(230, 30)
-        Me.btn出荷02.Name = "btn出荷02"
-        Me.btn出荷02.Size = New System.Drawing.Size(150, 150)
-        Me.btn出荷02.TabIndex = 8
-        Me.btn出荷02.Tag = "HARKP202"
-        Me.btn出荷02.Text = "KMC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "出荷連携"
-        Me.btn出荷02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn出荷02.UseVisualStyleBackColor = False
-        '
-        'btn売上04
-        '
-        Me.btn売上04.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn売上04.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn売上04.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn売上04.FlatAppearance.BorderSize = 0
-        Me.btn売上04.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn売上04.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn売上04.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn売上04.Location = New System.Drawing.Point(610, 30)
-        Me.btn売上04.Name = "btn売上04"
-        Me.btn売上04.Size = New System.Drawing.Size(150, 150)
-        Me.btn売上04.TabIndex = 10
-        Me.btn売上04.Tag = "HARKP304"
-        Me.btn売上04.Text = "徳洲会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "納品情報伝送"
-        Me.btn売上04.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn売上04.UseVisualStyleBackColor = False
-        '
-        'btn売上01
-        '
-        Me.btn売上01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn売上01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn売上01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn売上01.FlatAppearance.BorderSize = 0
-        Me.btn売上01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn売上01.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn売上01.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn売上01.Location = New System.Drawing.Point(40, 30)
-        Me.btn売上01.Name = "btn売上01"
-        Me.btn売上01.Size = New System.Drawing.Size(150, 150)
-        Me.btn売上01.TabIndex = 7
-        Me.btn売上01.Tag = "HARKP301"
-        Me.btn売上01.Text = "天神会SPD日次処理"
-        Me.btn売上01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn売上01.UseVisualStyleBackColor = False
-        '
-        'btn売上02
-        '
-        Me.btn売上02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn売上02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn売上02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn売上02.FlatAppearance.BorderSize = 0
-        Me.btn売上02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn売上02.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn売上02.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn売上02.Location = New System.Drawing.Point(230, 30)
-        Me.btn売上02.Name = "btn売上02"
-        Me.btn売上02.Size = New System.Drawing.Size(150, 150)
-        Me.btn売上02.TabIndex = 8
-        Me.btn売上02.Tag = "HARKP302"
-        Me.btn売上02.Text = "福医協" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "実績送信"
-        Me.btn売上02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn売上02.UseVisualStyleBackColor = False
-        '
-        'btn売上03
-        '
-        Me.btn売上03.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn売上03.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn売上03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn売上03.FlatAppearance.BorderSize = 0
-        Me.btn売上03.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn売上03.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn売上03.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn売上03.Location = New System.Drawing.Point(420, 30)
-        Me.btn売上03.Name = "btn売上03"
-        Me.btn売上03.Size = New System.Drawing.Size(150, 150)
-        Me.btn売上03.TabIndex = 9
-        Me.btn売上03.Tag = "HARKP303"
-        Me.btn売上03.Text = "MD-TraC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "売上連携"
-        Me.btn売上03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn売上03.UseVisualStyleBackColor = False
-        Me.btn売上03.Visible = False
-        '
-        'btn請求03
-        '
-        Me.btn請求03.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn請求03.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn請求03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn請求03.FlatAppearance.BorderSize = 0
-        Me.btn請求03.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn請求03.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn請求03.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn請求03.Location = New System.Drawing.Point(420, 30)
-        Me.btn請求03.Name = "btn請求03"
-        Me.btn請求03.Size = New System.Drawing.Size(150, 150)
-        Me.btn請求03.TabIndex = 9
-        Me.btn請求03.Tag = "HARKP403"
-        Me.btn請求03.Text = "徳洲会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "請求情報伝送"
-        Me.btn請求03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn請求03.UseVisualStyleBackColor = False
-        '
-        'btn請求01
-        '
-        Me.btn請求01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn請求01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn請求01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn請求01.FlatAppearance.BorderSize = 0
-        Me.btn請求01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn請求01.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn請求01.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn請求01.Location = New System.Drawing.Point(40, 30)
-        Me.btn請求01.Name = "btn請求01"
-        Me.btn請求01.Size = New System.Drawing.Size(150, 150)
-        Me.btn請求01.TabIndex = 7
-        Me.btn請求01.Tag = "HARKP401"
-        Me.btn請求01.Text = "天神会SPD請求確認"
-        Me.btn請求01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn請求01.UseVisualStyleBackColor = False
-        '
-        'btn請求02
-        '
-        Me.btn請求02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn請求02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn請求02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn請求02.FlatAppearance.BorderSize = 0
-        Me.btn請求02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn請求02.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn請求02.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn請求02.Location = New System.Drawing.Point(230, 30)
-        Me.btn請求02.Name = "btn請求02"
-        Me.btn請求02.Size = New System.Drawing.Size(150, 150)
-        Me.btn請求02.TabIndex = 8
-        Me.btn請求02.Tag = "HARKP402"
-        Me.btn請求02.Text = "Medi-TOM3" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "請求確認"
-        Me.btn請求02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn請求02.UseVisualStyleBackColor = False
-        '
-        'btn受注01
-        '
-        Me.btn受注01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn受注01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn受注01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn受注01.FlatAppearance.BorderSize = 0
-        Me.btn受注01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn受注01.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn受注01.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn受注01.Location = New System.Drawing.Point(40, 30)
-        Me.btn受注01.Name = "btn受注01"
-        Me.btn受注01.Size = New System.Drawing.Size(150, 150)
-        Me.btn受注01.TabIndex = 7
-        Me.btn受注01.Tag = "HARKP101"
-        Me.btn受注01.Text = "天神会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SPD受注"
-        Me.btn受注01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn受注01.UseVisualStyleBackColor = False
-        '
-        'btn受注02
-        '
-        Me.btn受注02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn受注02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn受注02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn受注02.FlatAppearance.BorderSize = 0
-        Me.btn受注02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn受注02.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn受注02.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn受注02.Location = New System.Drawing.Point(230, 30)
-        Me.btn受注02.Name = "btn受注02"
-        Me.btn受注02.Size = New System.Drawing.Size(150, 150)
-        Me.btn受注02.TabIndex = 8
-        Me.btn受注02.Tag = "HARKP102"
-        Me.btn受注02.Text = "KMC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "EDI受注"
-        Me.btn受注02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn受注02.UseVisualStyleBackColor = False
-        '
-        'btn受注03
-        '
-        Me.btn受注03.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn受注03.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn受注03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn受注03.FlatAppearance.BorderSize = 0
-        Me.btn受注03.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn受注03.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn受注03.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn受注03.Location = New System.Drawing.Point(420, 30)
-        Me.btn受注03.Name = "btn受注03"
-        Me.btn受注03.Size = New System.Drawing.Size(150, 150)
-        Me.btn受注03.TabIndex = 9
-        Me.btn受注03.Tag = "HARKP103"
-        Me.btn受注03.Text = "福医協" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "EDI受注"
-        Me.btn受注03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn受注03.UseVisualStyleBackColor = False
-        '
-        'btn受注04
-        '
-        Me.btn受注04.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn受注04.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn受注04.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn受注04.FlatAppearance.BorderSize = 0
-        Me.btn受注04.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn受注04.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn受注04.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn受注04.Location = New System.Drawing.Point(610, 30)
-        Me.btn受注04.Name = "btn受注04"
-        Me.btn受注04.Size = New System.Drawing.Size(150, 150)
-        Me.btn受注04.TabIndex = 10
-        Me.btn受注04.Tag = "HARKP104"
-        Me.btn受注04.Text = "Rツール" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "受注連携"
-        Me.btn受注04.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn受注04.UseVisualStyleBackColor = False
-        '
-        'btn受注05
-        '
-        Me.btn受注05.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn受注05.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn受注05.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn受注05.FlatAppearance.BorderSize = 0
-        Me.btn受注05.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn受注05.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn受注05.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn受注05.Location = New System.Drawing.Point(40, 210)
-        Me.btn受注05.Name = "btn受注05"
-        Me.btn受注05.Size = New System.Drawing.Size(150, 150)
-        Me.btn受注05.TabIndex = 11
-        Me.btn受注05.Tag = "HARKP105"
-        Me.btn受注05.Text = "PHsmos" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "受注連携"
-        Me.btn受注05.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn受注05.UseVisualStyleBackColor = False
-        '
-        'btn受注06
-        '
-        Me.btn受注06.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn受注06.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn受注06.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn受注06.FlatAppearance.BorderSize = 0
-        Me.btn受注06.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn受注06.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn受注06.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn受注06.Location = New System.Drawing.Point(230, 210)
-        Me.btn受注06.Name = "btn受注06"
-        Me.btn受注06.Size = New System.Drawing.Size(150, 150)
-        Me.btn受注06.TabIndex = 12
-        Me.btn受注06.Tag = "HARKP106"
-        Me.btn受注06.Text = "徳洲会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "受注連携"
-        Me.btn受注06.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn受注06.UseVisualStyleBackColor = False
-        '
         'pic最大化
         '
         Me.pic最大化.BackgroundImage = Global.HARK000.My.Resources.Resources.maximize
@@ -731,6 +160,14 @@ Partial Class HARK001
         Me.pic終了.Size = New System.Drawing.Size(21, 21)
         Me.pic終了.TabIndex = 9
         Me.pic終了.TabStop = False
+        '
+        'pnlOnSideBtn
+        '
+        Me.pnlOnSideBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.pnlOnSideBtn.Location = New System.Drawing.Point(0, 157)
+        Me.pnlOnSideBtn.Name = "pnlOnSideBtn"
+        Me.pnlOnSideBtn.Size = New System.Drawing.Size(10, 60)
+        Me.pnlOnSideBtn.TabIndex = 2
         '
         'btnSide01
         '
@@ -857,14 +294,576 @@ Partial Class HARK001
         Me.Btn終了.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.Btn終了.UseVisualStyleBackColor = False
         '
+        'pnlTop
+        '
+        Me.pnlTop.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.pnlTop.Controls.Add(Me.lblマシン名)
+        Me.pnlTop.Controls.Add(Me.lblバージョン)
+        Me.pnlTop.Controls.Add(Me.lbl事業所)
+        Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.pnlTop.Location = New System.Drawing.Point(200, 0)
+        Me.pnlTop.Name = "pnlTop"
+        Me.pnlTop.Size = New System.Drawing.Size(824, 40)
+        Me.pnlTop.TabIndex = 1
+        '
+        'lblマシン名
+        '
+        Me.lblマシン名.Font = New System.Drawing.Font("メイリオ", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblマシン名.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.lblマシン名.Location = New System.Drawing.Point(692, 21)
+        Me.lblマシン名.Name = "lblマシン名"
+        Me.lblマシン名.Size = New System.Drawing.Size(111, 18)
+        Me.lblマシン名.TabIndex = 18
+        Me.lblマシン名.Text = "lblマシン名"
+        Me.lblマシン名.TextEffect = GrapeCity.Win.Common.TextEffect.Inset
+        Me.lblマシン名.TextHAlign = GrapeCity.Win.Common.TextHAlign.Center
+        Me.lblマシン名.TextVAlign = GrapeCity.Win.Common.TextVAlign.Middle
+        '
+        'lblバージョン
+        '
+        Me.lblバージョン.Font = New System.Drawing.Font("メイリオ", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblバージョン.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.lblバージョン.Location = New System.Drawing.Point(692, 3)
+        Me.lblバージョン.Name = "lblバージョン"
+        Me.lblバージョン.Size = New System.Drawing.Size(111, 18)
+        Me.lblバージョン.TabIndex = 17
+        Me.lblバージョン.Text = "lblバージョン"
+        Me.lblバージョン.TextEffect = GrapeCity.Win.Common.TextEffect.Inset
+        Me.lblバージョン.TextHAlign = GrapeCity.Win.Common.TextHAlign.Center
+        Me.lblバージョン.TextVAlign = GrapeCity.Win.Common.TextVAlign.Middle
+        '
+        'lbl事業所
+        '
+        Me.lbl事業所.AutoSize = True
+        Me.lbl事業所.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl事業所.ForeColor = System.Drawing.Color.Blue
+        Me.lbl事業所.Location = New System.Drawing.Point(22, 2)
+        Me.lbl事業所.Name = "lbl事業所"
+        Me.lbl事業所.Size = New System.Drawing.Size(74, 37)
+        Me.lbl事業所.TabIndex = 16
+        Me.lbl事業所.Text = "事業所"
+        Me.lbl事業所.TextVAlign = GrapeCity.Win.Common.TextVAlign.Middle
+        '
+        'pnl受注
+        '
+        Me.pnl受注.Controls.Add(Me.btn受注01)
+        Me.pnl受注.Controls.Add(Me.btn受注02)
+        Me.pnl受注.Controls.Add(Me.btn受注03)
+        Me.pnl受注.Controls.Add(Me.btn受注04)
+        Me.pnl受注.Controls.Add(Me.btn受注05)
+        Me.pnl受注.Controls.Add(Me.btn受注06)
+        Me.pnl受注.Controls.Add(Me.pnl受注02)
+        Me.pnl受注.Controls.Add(Me.pnl受注03)
+        Me.pnl受注.Controls.Add(Me.pnl受注04)
+        Me.pnl受注.Location = New System.Drawing.Point(200, 40)
+        Me.pnl受注.Name = "pnl受注"
+        Me.pnl受注.Size = New System.Drawing.Size(824, 728)
+        Me.pnl受注.TabIndex = 2
+        Me.pnl受注.Tag = "0"
+        '
+        'btn受注01
+        '
+        Me.btn受注01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn受注01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn受注01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn受注01.FlatAppearance.BorderSize = 0
+        Me.btn受注01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn受注01.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn受注01.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn受注01.Location = New System.Drawing.Point(40, 30)
+        Me.btn受注01.Name = "btn受注01"
+        Me.btn受注01.Size = New System.Drawing.Size(150, 150)
+        Me.btn受注01.TabIndex = 7
+        Me.btn受注01.Tag = "HARKP101"
+        Me.btn受注01.Text = "天神会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SPD受注"
+        Me.btn受注01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn受注01.UseVisualStyleBackColor = False
+        '
+        'btn受注02
+        '
+        Me.btn受注02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn受注02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn受注02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn受注02.FlatAppearance.BorderSize = 0
+        Me.btn受注02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn受注02.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn受注02.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn受注02.Location = New System.Drawing.Point(230, 30)
+        Me.btn受注02.Name = "btn受注02"
+        Me.btn受注02.Size = New System.Drawing.Size(150, 150)
+        Me.btn受注02.TabIndex = 8
+        Me.btn受注02.Tag = "HARKP102"
+        Me.btn受注02.Text = "KMC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "EDI受注"
+        Me.btn受注02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn受注02.UseVisualStyleBackColor = False
+        '
+        'btn受注03
+        '
+        Me.btn受注03.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn受注03.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn受注03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn受注03.FlatAppearance.BorderSize = 0
+        Me.btn受注03.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn受注03.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn受注03.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn受注03.Location = New System.Drawing.Point(420, 30)
+        Me.btn受注03.Name = "btn受注03"
+        Me.btn受注03.Size = New System.Drawing.Size(150, 150)
+        Me.btn受注03.TabIndex = 9
+        Me.btn受注03.Tag = "HARKP103"
+        Me.btn受注03.Text = "福医協" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "EDI受注"
+        Me.btn受注03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn受注03.UseVisualStyleBackColor = False
+        '
+        'btn受注04
+        '
+        Me.btn受注04.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn受注04.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn受注04.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn受注04.FlatAppearance.BorderSize = 0
+        Me.btn受注04.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn受注04.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn受注04.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn受注04.Location = New System.Drawing.Point(610, 30)
+        Me.btn受注04.Name = "btn受注04"
+        Me.btn受注04.Size = New System.Drawing.Size(150, 150)
+        Me.btn受注04.TabIndex = 10
+        Me.btn受注04.Tag = "HARKP104"
+        Me.btn受注04.Text = "Rツール" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "受注連携"
+        Me.btn受注04.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn受注04.UseVisualStyleBackColor = False
+        '
+        'btn受注05
+        '
+        Me.btn受注05.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn受注05.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn受注05.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn受注05.FlatAppearance.BorderSize = 0
+        Me.btn受注05.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn受注05.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn受注05.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn受注05.Location = New System.Drawing.Point(40, 210)
+        Me.btn受注05.Name = "btn受注05"
+        Me.btn受注05.Size = New System.Drawing.Size(150, 150)
+        Me.btn受注05.TabIndex = 11
+        Me.btn受注05.Tag = "HARKP105"
+        Me.btn受注05.Text = "PHsmos" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "受注連携"
+        Me.btn受注05.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn受注05.UseVisualStyleBackColor = False
+        '
+        'btn受注06
+        '
+        Me.btn受注06.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn受注06.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn受注06.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn受注06.FlatAppearance.BorderSize = 0
+        Me.btn受注06.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn受注06.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn受注06.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn受注06.Location = New System.Drawing.Point(230, 210)
+        Me.btn受注06.Name = "btn受注06"
+        Me.btn受注06.Size = New System.Drawing.Size(150, 150)
+        Me.btn受注06.TabIndex = 12
+        Me.btn受注06.Tag = "HARKP106"
+        Me.btn受注06.Text = "徳洲会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "受注連携"
+        Me.btn受注06.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn受注06.UseVisualStyleBackColor = False
+        '
+        'pnl受注02
+        '
+        Me.pnl受注02.Location = New System.Drawing.Point(420, 210)
+        Me.pnl受注02.Name = "pnl受注02"
+        Me.pnl受注02.Size = New System.Drawing.Size(150, 150)
+        Me.pnl受注02.TabIndex = 3
+        '
+        'pnl受注03
+        '
+        Me.pnl受注03.Location = New System.Drawing.Point(40, 390)
+        Me.pnl受注03.Name = "pnl受注03"
+        Me.pnl受注03.Size = New System.Drawing.Size(150, 150)
+        Me.pnl受注03.TabIndex = 4
+        '
+        'pnl受注04
+        '
+        Me.pnl受注04.Location = New System.Drawing.Point(40, 570)
+        Me.pnl受注04.Name = "pnl受注04"
+        Me.pnl受注04.Size = New System.Drawing.Size(150, 150)
+        Me.pnl受注04.TabIndex = 5
+        '
+        'pnl出荷
+        '
+        Me.pnl出荷.Controls.Add(Me.btn出荷01)
+        Me.pnl出荷.Controls.Add(Me.btn出荷02)
+        Me.pnl出荷.Location = New System.Drawing.Point(200, 40)
+        Me.pnl出荷.Name = "pnl出荷"
+        Me.pnl出荷.Size = New System.Drawing.Size(824, 728)
+        Me.pnl出荷.TabIndex = 3
+        Me.pnl出荷.Tag = "1"
+        '
+        'btn出荷01
+        '
+        Me.btn出荷01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn出荷01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn出荷01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn出荷01.FlatAppearance.BorderSize = 0
+        Me.btn出荷01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn出荷01.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn出荷01.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn出荷01.Location = New System.Drawing.Point(40, 30)
+        Me.btn出荷01.Name = "btn出荷01"
+        Me.btn出荷01.Size = New System.Drawing.Size(150, 150)
+        Me.btn出荷01.TabIndex = 7
+        Me.btn出荷01.Tag = "HARKP201"
+        Me.btn出荷01.Text = "天神会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "SPD出荷"
+        Me.btn出荷01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn出荷01.UseVisualStyleBackColor = False
+        '
+        'btn出荷02
+        '
+        Me.btn出荷02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn出荷02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn出荷02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn出荷02.FlatAppearance.BorderSize = 0
+        Me.btn出荷02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn出荷02.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn出荷02.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn出荷02.Location = New System.Drawing.Point(230, 30)
+        Me.btn出荷02.Name = "btn出荷02"
+        Me.btn出荷02.Size = New System.Drawing.Size(150, 150)
+        Me.btn出荷02.TabIndex = 8
+        Me.btn出荷02.Tag = "HARKP202"
+        Me.btn出荷02.Text = "KMC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "出荷連携"
+        Me.btn出荷02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn出荷02.UseVisualStyleBackColor = False
+        '
+        'pnl請求
+        '
+        Me.pnl請求.Controls.Add(Me.btn請求03)
+        Me.pnl請求.Controls.Add(Me.btn請求01)
+        Me.pnl請求.Controls.Add(Me.btn請求02)
+        Me.pnl請求.Location = New System.Drawing.Point(200, 40)
+        Me.pnl請求.Name = "pnl請求"
+        Me.pnl請求.Size = New System.Drawing.Size(824, 728)
+        Me.pnl請求.TabIndex = 4
+        Me.pnl請求.Tag = "3"
+        '
+        'btn請求03
+        '
+        Me.btn請求03.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn請求03.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn請求03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn請求03.FlatAppearance.BorderSize = 0
+        Me.btn請求03.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn請求03.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn請求03.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn請求03.Location = New System.Drawing.Point(420, 30)
+        Me.btn請求03.Name = "btn請求03"
+        Me.btn請求03.Size = New System.Drawing.Size(150, 150)
+        Me.btn請求03.TabIndex = 9
+        Me.btn請求03.Tag = "HARKP403"
+        Me.btn請求03.Text = "徳洲会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "請求情報伝送"
+        Me.btn請求03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn請求03.UseVisualStyleBackColor = False
+        '
+        'btn請求01
+        '
+        Me.btn請求01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn請求01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn請求01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn請求01.FlatAppearance.BorderSize = 0
+        Me.btn請求01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn請求01.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn請求01.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn請求01.Location = New System.Drawing.Point(40, 30)
+        Me.btn請求01.Name = "btn請求01"
+        Me.btn請求01.Size = New System.Drawing.Size(150, 150)
+        Me.btn請求01.TabIndex = 7
+        Me.btn請求01.Tag = "HARKP401"
+        Me.btn請求01.Text = "天神会SPD請求確認"
+        Me.btn請求01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn請求01.UseVisualStyleBackColor = False
+        '
+        'btn請求02
+        '
+        Me.btn請求02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn請求02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn請求02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn請求02.FlatAppearance.BorderSize = 0
+        Me.btn請求02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn請求02.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn請求02.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn請求02.Location = New System.Drawing.Point(230, 30)
+        Me.btn請求02.Name = "btn請求02"
+        Me.btn請求02.Size = New System.Drawing.Size(150, 150)
+        Me.btn請求02.TabIndex = 8
+        Me.btn請求02.Tag = "HARKP402"
+        Me.btn請求02.Text = "Medi-TOM3" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "請求確認"
+        Me.btn請求02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn請求02.UseVisualStyleBackColor = False
+        '
+        'pnl管理
+        '
+        Me.pnl管理.Controls.Add(Me.btn管理02)
+        Me.pnl管理.Controls.Add(Me.btn管理01)
+        Me.pnl管理.Controls.Add(Me.btn管理03)
+        Me.pnl管理.Controls.Add(Me.btn管理04)
+        Me.pnl管理.Controls.Add(Me.btn管理05)
+        Me.pnl管理.Location = New System.Drawing.Point(200, 40)
+        Me.pnl管理.Name = "pnl管理"
+        Me.pnl管理.Size = New System.Drawing.Size(824, 728)
+        Me.pnl管理.TabIndex = 5
+        Me.pnl管理.Tag = "4"
+        '
+        'btn管理02
+        '
+        Me.btn管理02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn管理02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn管理02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn管理02.FlatAppearance.BorderSize = 0
+        Me.btn管理02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn管理02.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn管理02.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn管理02.Location = New System.Drawing.Point(230, 30)
+        Me.btn管理02.Name = "btn管理02"
+        Me.btn管理02.Size = New System.Drawing.Size(150, 150)
+        Me.btn管理02.TabIndex = 12
+        Me.btn管理02.Tag = "HARKP502"
+        Me.btn管理02.Text = "医薬品" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "入出庫履歴"
+        Me.btn管理02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn管理02.UseVisualStyleBackColor = False
+        '
+        'btn管理01
+        '
+        Me.btn管理01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn管理01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn管理01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn管理01.FlatAppearance.BorderSize = 0
+        Me.btn管理01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn管理01.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn管理01.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn管理01.Location = New System.Drawing.Point(40, 30)
+        Me.btn管理01.Name = "btn管理01"
+        Me.btn管理01.Size = New System.Drawing.Size(150, 150)
+        Me.btn管理01.TabIndex = 7
+        Me.btn管理01.Tag = "HARKP501"
+        Me.btn管理01.Text = "天神会SPD" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "商品マスタ" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "一括更新"
+        Me.btn管理01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn管理01.UseVisualStyleBackColor = False
+        '
+        'btn管理03
+        '
+        Me.btn管理03.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn管理03.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn管理03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn管理03.FlatAppearance.BorderSize = 0
+        Me.btn管理03.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn管理03.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn管理03.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn管理03.Location = New System.Drawing.Point(420, 30)
+        Me.btn管理03.Name = "btn管理03"
+        Me.btn管理03.Size = New System.Drawing.Size(150, 150)
+        Me.btn管理03.TabIndex = 9
+        Me.btn管理03.Tag = "HARKP503"
+        Me.btn管理03.Text = "得意先別" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "販売許可証" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "登録"
+        Me.btn管理03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn管理03.UseVisualStyleBackColor = False
+        '
+        'btn管理04
+        '
+        Me.btn管理04.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn管理04.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn管理04.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn管理04.FlatAppearance.BorderSize = 0
+        Me.btn管理04.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn管理04.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn管理04.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn管理04.Location = New System.Drawing.Point(610, 30)
+        Me.btn管理04.Name = "btn管理04"
+        Me.btn管理04.Size = New System.Drawing.Size(150, 150)
+        Me.btn管理04.TabIndex = 10
+        Me.btn管理04.Tag = "HARKP504"
+        Me.btn管理04.Text = "得意先別" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "販売許可証" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "メンテナンス"
+        Me.btn管理04.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn管理04.UseVisualStyleBackColor = False
+        '
+        'btn管理05
+        '
+        Me.btn管理05.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn管理05.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn管理05.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn管理05.FlatAppearance.BorderSize = 0
+        Me.btn管理05.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn管理05.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn管理05.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn管理05.Location = New System.Drawing.Point(40, 210)
+        Me.btn管理05.Name = "btn管理05"
+        Me.btn管理05.Size = New System.Drawing.Size(150, 150)
+        Me.btn管理05.TabIndex = 11
+        Me.btn管理05.Tag = "HARKP505"
+        Me.btn管理05.Text = "PHsmos" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "採用商品情報出力"
+        Me.btn管理05.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn管理05.UseVisualStyleBackColor = False
+        '
+        'pnlお知らせ
+        '
+        Me.pnlお知らせ.Controls.Add(Me.lblマニュアル)
+        Me.pnlお知らせ.Controls.Add(Me.txtお知らせ)
+        Me.pnlお知らせ.Controls.Add(Me.lblDebug)
+        Me.pnlお知らせ.Controls.Add(Me.wbrお知らせ)
+        Me.pnlお知らせ.Controls.Add(Me.lblお知らせ)
+        Me.pnlお知らせ.Cursor = System.Windows.Forms.Cursors.Default
+        Me.pnlお知らせ.Location = New System.Drawing.Point(200, 40)
+        Me.pnlお知らせ.Name = "pnlお知らせ"
+        Me.pnlお知らせ.Size = New System.Drawing.Size(824, 728)
+        Me.pnlお知らせ.TabIndex = 6
+        Me.pnlお知らせ.Tag = "5"
+        '
+        'lblマニュアル
+        '
+        Me.lblマニュアル.AutoSize = True
+        Me.lblマニュアル.Font = New System.Drawing.Font("メイリオ", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblマニュアル.Location = New System.Drawing.Point(22, 676)
+        Me.lblマニュアル.Name = "lblマニュアル"
+        Me.lblマニュアル.Size = New System.Drawing.Size(183, 28)
+        Me.lblマニュアル.TabIndex = 17
+        Me.lblマニュアル.TabStop = True
+        Me.lblマニュアル.Text = "マニュアルはこちら"
+        '
+        'txtお知らせ
+        '
+        Me.txtお知らせ.FlatStyle = GrapeCity.Win.Editors.FlatStyleEx.Popup
+        Me.txtお知らせ.Font = New System.Drawing.Font("メイリオ", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtお知らせ.Location = New System.Drawing.Point(22, 512)
+        Me.txtお知らせ.Multiline = True
+        Me.txtお知らせ.Name = "txtお知らせ"
+        Me.txtお知らせ.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtお知らせ.Size = New System.Drawing.Size(777, 143)
+        Me.txtお知らせ.TabIndex = 16
+        '
+        'lblDebug
+        '
+        Me.lblDebug.Font = New System.Drawing.Font("メイリオ", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblDebug.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.lblDebug.Location = New System.Drawing.Point(514, 661)
+        Me.lblDebug.Name = "lblDebug"
+        Me.lblDebug.Size = New System.Drawing.Size(287, 50)
+        Me.lblDebug.TabIndex = 15
+        Me.lblDebug.Text = "Delta2"
+        Me.lblDebug.TextHAlign = GrapeCity.Win.Common.TextHAlign.Right
+        '
+        'wbrお知らせ
+        '
+        Me.wbrお知らせ.Location = New System.Drawing.Point(22, 65)
+        Me.wbrお知らせ.MinimumSize = New System.Drawing.Size(20, 20)
+        Me.wbrお知らせ.Name = "wbrお知らせ"
+        Me.wbrお知らせ.Size = New System.Drawing.Size(777, 427)
+        Me.wbrお知らせ.TabIndex = 14
+        Me.wbrお知らせ.Url = New System.Uri("", System.UriKind.Relative)
+        Me.wbrお知らせ.WebBrowserShortcutsEnabled = False
+        '
+        'lblお知らせ
+        '
+        Me.lblお知らせ.AutoSize = True
+        Me.lblお知らせ.Font = New System.Drawing.Font("メイリオ", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblお知らせ.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.lblお知らせ.Location = New System.Drawing.Point(13, 12)
+        Me.lblお知らせ.Name = "lblお知らせ"
+        Me.lblお知らせ.Size = New System.Drawing.Size(132, 50)
+        Me.lblお知らせ.TabIndex = 13
+        Me.lblお知らせ.Text = "お知らせ"
+        '
+        'pnl売上
+        '
+        Me.pnl売上.Controls.Add(Me.btn売上04)
+        Me.pnl売上.Controls.Add(Me.btn売上01)
+        Me.pnl売上.Controls.Add(Me.btn売上02)
+        Me.pnl売上.Controls.Add(Me.btn売上03)
+        Me.pnl売上.Location = New System.Drawing.Point(200, 40)
+        Me.pnl売上.Name = "pnl売上"
+        Me.pnl売上.Size = New System.Drawing.Size(824, 728)
+        Me.pnl売上.TabIndex = 7
+        Me.pnl売上.Tag = "2"
+        '
+        'btn売上04
+        '
+        Me.btn売上04.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn売上04.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn売上04.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn売上04.FlatAppearance.BorderSize = 0
+        Me.btn売上04.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn売上04.Font = New System.Drawing.Font("メイリオ", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn売上04.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn売上04.Location = New System.Drawing.Point(610, 30)
+        Me.btn売上04.Name = "btn売上04"
+        Me.btn売上04.Size = New System.Drawing.Size(150, 150)
+        Me.btn売上04.TabIndex = 10
+        Me.btn売上04.Tag = "HARKP304"
+        Me.btn売上04.Text = "徳洲会" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "納品情報伝送"
+        Me.btn売上04.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn売上04.UseVisualStyleBackColor = False
+        '
+        'btn売上01
+        '
+        Me.btn売上01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn売上01.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn売上01.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn売上01.FlatAppearance.BorderSize = 0
+        Me.btn売上01.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn売上01.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn売上01.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn売上01.Location = New System.Drawing.Point(40, 30)
+        Me.btn売上01.Name = "btn売上01"
+        Me.btn売上01.Size = New System.Drawing.Size(150, 150)
+        Me.btn売上01.TabIndex = 7
+        Me.btn売上01.Tag = "HARKP301"
+        Me.btn売上01.Text = "天神会SPD日次処理"
+        Me.btn売上01.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn売上01.UseVisualStyleBackColor = False
+        '
+        'btn売上02
+        '
+        Me.btn売上02.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn売上02.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn売上02.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn売上02.FlatAppearance.BorderSize = 0
+        Me.btn売上02.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn売上02.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn売上02.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn売上02.Location = New System.Drawing.Point(230, 30)
+        Me.btn売上02.Name = "btn売上02"
+        Me.btn売上02.Size = New System.Drawing.Size(150, 150)
+        Me.btn売上02.TabIndex = 8
+        Me.btn売上02.Tag = "HARKP302"
+        Me.btn売上02.Text = "福医協" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "実績送信"
+        Me.btn売上02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn売上02.UseVisualStyleBackColor = False
+        '
+        'btn売上03
+        '
+        Me.btn売上03.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn売上03.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn売上03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn売上03.FlatAppearance.BorderSize = 0
+        Me.btn売上03.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn売上03.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn売上03.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn売上03.Location = New System.Drawing.Point(420, 30)
+        Me.btn売上03.Name = "btn売上03"
+        Me.btn売上03.Size = New System.Drawing.Size(150, 150)
+        Me.btn売上03.TabIndex = 9
+        Me.btn売上03.Tag = "HARKP303"
+        Me.btn売上03.Text = "MD-TraC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "売上連携"
+        Me.btn売上03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn売上03.UseVisualStyleBackColor = False
+        '
         'HARK001
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 768)
-        Me.Controls.Add(Me.pnl管理)
         Me.Controls.Add(Me.pnl売上)
+        Me.Controls.Add(Me.pnl管理)
         Me.Controls.Add(Me.pnl出荷)
         Me.Controls.Add(Me.pnl請求)
         Me.Controls.Add(Me.pnl受注)
@@ -880,6 +879,9 @@ Partial Class HARK001
         Me.Text = "HARK001"
         Me.pnlSide.ResumeLayout(False)
         Me.pnlSide.PerformLayout()
+        CType(Me.pic最大化, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic最小化, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.pic終了, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlTop.ResumeLayout(False)
         Me.pnlTop.PerformLayout()
         Me.pnl受注.ResumeLayout(False)
@@ -890,9 +892,6 @@ Partial Class HARK001
         Me.pnlお知らせ.PerformLayout()
         CType(Me.txtお知らせ, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl売上.ResumeLayout(False)
-        CType(Me.pic最大化, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pic最小化, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.pic終了, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

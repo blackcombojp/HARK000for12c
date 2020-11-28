@@ -56,9 +56,9 @@ Partial Class HARK303
         Me.ExcelCreator = New AdvanceSoftware.ExcelCreator.Creator(Me.components)
         Me.BS一覧 = New System.Windows.Forms.BindingSource(Me.components)
         Me.HARK303DS = New HARK000.HARK303DS()
+        Me.lb_Msg = New GrapeCity.Win.Editors.GcListBox()
         Me.gcmr一覧 = New GrapeCity.Win.MultiRow.GcMultiRow()
         Me.HARK303Template1 = New HARK000.HARK303Template()
-        Me.lb_Msg = New GrapeCity.Win.Editors.GcListBox()
         Me.CntMenuStrip.SuspendLayout()
         CType(Me.txt入力担当コード, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,8 +66,8 @@ Partial Class HARK303
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.HARK303DS, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lb_Msg, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cmb事業所
@@ -173,11 +173,11 @@ Partial Class HARK303
         '
         'SttBar
         '
-        Me.SttBar.Location = New System.Drawing.Point(0, 713)
+        Me.SttBar.Location = New System.Drawing.Point(0, 701)
         Me.SttBar.Name = "SttBar"
         Me.SttBar.Panels.AddRange(New System.Windows.Forms.StatusBarPanel() {Me.SttBarPnl_Err, Me.SttBar_2, Me.SttBar_3})
         Me.SttBar.ShowPanels = True
-        Me.SttBar.Size = New System.Drawing.Size(1022, 24)
+        Me.SttBar.Size = New System.Drawing.Size(1004, 24)
         Me.SttBar.TabIndex = 170
         '
         'BT_ID7
@@ -256,7 +256,7 @@ Partial Class HARK303
         '
         Me.Bt_Close.BackColor = System.Drawing.SystemColors.Control
         Me.Bt_Close.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Bt_Close.Location = New System.Drawing.Point(937, 0)
+        Me.Bt_Close.Location = New System.Drawing.Point(919, 0)
         Me.Bt_Close.Name = "Bt_Close"
         Me.Bt_Close.Size = New System.Drawing.Size(85, 24)
         Me.Bt_Close.TabIndex = 130
@@ -291,6 +291,18 @@ Partial Class HARK303
         '
         Me.HARK303DS.DataSetName = "HARK303DS"
         Me.HARK303DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'lb_Msg
+        '
+        Me.lb_Msg.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lb_Msg.ListHeaderPane.AutoHeight = False
+        Me.lb_Msg.ListHeaderPane.Visible = False
+        Me.lb_Msg.Location = New System.Drawing.Point(25, 538)
+        Me.lb_Msg.Name = "lb_Msg"
+        Me.lb_Msg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.lb_Msg.Size = New System.Drawing.Size(955, 169)
+        Me.lb_Msg.TabIndex = 302
+        Me.lb_Msg.TabStop = False
         '
         'gcmr一覧
         '
@@ -446,30 +458,18 @@ Partial Class HARK303
         ShortcutKeyManager1.RowModeList.Add(New GrapeCity.Win.MultiRow.ShortcutKey(CType(GrapeCity.Win.MultiRow.EditingActions.ShowDropDown, GrapeCity.Win.MultiRow.Action), System.Windows.Forms.Keys.F4))
         ShortcutKeyManager1.RowModeList.Add(New GrapeCity.Win.MultiRow.ShortcutKey(CType(GrapeCity.Win.MultiRow.EditingActions.ShowDropDown, GrapeCity.Win.MultiRow.Action), CType((System.Windows.Forms.Keys.Alt Or System.Windows.Forms.Keys.Down), System.Windows.Forms.Keys)))
         Me.gcmr一覧.ShortcutKeyManager = ShortcutKeyManager1
-        Me.gcmr一覧.Size = New System.Drawing.Size(970, 469)
+        Me.gcmr一覧.Size = New System.Drawing.Size(955, 469)
         Me.gcmr一覧.SplitMode = GrapeCity.Win.MultiRow.SplitMode.None
         Me.gcmr一覧.TabIndex = 301
         Me.gcmr一覧.TabStop = False
         Me.gcmr一覧.Template = Me.HARK303Template1
         Me.gcmr一覧.Text = "GcMultiRow1"
         '
-        'lb_Msg
-        '
-        Me.lb_Msg.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lb_Msg.ListHeaderPane.AutoHeight = False
-        Me.lb_Msg.ListHeaderPane.Visible = False
-        Me.lb_Msg.Location = New System.Drawing.Point(25, 538)
-        Me.lb_Msg.Name = "lb_Msg"
-        Me.lb_Msg.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.lb_Msg.Size = New System.Drawing.Size(970, 169)
-        Me.lb_Msg.TabIndex = 302
-        Me.lb_Msg.TabStop = False
-        '
         'HARK303
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(230, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1022, 737)
+        Me.ClientSize = New System.Drawing.Size(1004, 725)
         Me.Controls.Add(Me.lb_Msg)
         Me.Controls.Add(Me.gcmr一覧)
         Me.Controls.Add(Me.cmb事業所)
@@ -500,8 +500,8 @@ Partial Class HARK303
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.HARK303DS, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lb_Msg, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
