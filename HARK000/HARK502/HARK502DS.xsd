@@ -130,6 +130,8 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="入出庫情報_ID" msprop:Generator_ColumnVarNameInTable="column入出庫情報_ID" msprop:Generator_ColumnPropNameInRow="入出庫情報_ID" msprop:Generator_ColumnPropNameInTable="入出庫情報_IDColumn" msprop:Generator_UserColumnName="入出庫情報_ID" type="xs:long" minOccurs="0" />
+              <xs:element name="倉庫コード" msprop:Generator_ColumnVarNameInTable="column倉庫コード" msprop:Generator_ColumnPropNameInRow="倉庫コード" msprop:Generator_ColumnPropNameInTable="倉庫コードColumn" msprop:Generator_UserColumnName="倉庫コード" type="xs:long" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

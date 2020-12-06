@@ -150,7 +150,7 @@ Partial Class HARK303Template
         Me.Row.Cells.Add(Me.txt明細状態)
         Me.Row.Cells.Add(Me.txt明細販売許可証管理情報_ID)
         Me.Row.Height = 84
-        Me.Row.Width = 933
+        Me.Row.Width = 934
         '
         'HeaderSection
         '
@@ -173,7 +173,7 @@ Partial Class HARK303Template
         Me.HeaderSection.Cells.Add(Me.chc明細品番)
         Me.HeaderSection.Height = 82
         Me.HeaderSection.Name = "HeaderSection"
-        Me.HeaderSection.Width = 933
+        Me.HeaderSection.Width = 934
         '
         'chc明細行
         '
@@ -315,7 +315,7 @@ Partial Class HARK303Template
         Me.chc明細消費区分.Name = "chc明細消費区分"
         Me.chc明細消費区分.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc明細消費区分.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
-        Me.chc明細消費区分.Size = New System.Drawing.Size(38, 42)
+        Me.chc明細消費区分.Size = New System.Drawing.Size(39, 42)
         CellStyle25.BackColor = System.Drawing.SystemColors.Control
         Border25.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
         CellStyle25.Border = Border25
@@ -333,7 +333,7 @@ Partial Class HARK303Template
         Me.chc明細メッセージ.Name = "chc明細メッセージ"
         Me.chc明細メッセージ.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc明細メッセージ.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
-        Me.chc明細メッセージ.Size = New System.Drawing.Size(889, 19)
+        Me.chc明細メッセージ.Size = New System.Drawing.Size(890, 19)
         Me.chc明細メッセージ.SortCellName = "txt明細メッセージ"
         Me.chc明細メッセージ.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic
         CellStyle26.BackColor = System.Drawing.SystemColors.Control
@@ -625,7 +625,7 @@ Partial Class HARK303Template
         Me.chk明細消費区分.DataField = "削除区分"
         Me.chk明細消費区分.Location = New System.Drawing.Point(895, 0)
         Me.chk明細消費区分.Name = "chk明細消費区分"
-        Me.chk明細消費区分.Size = New System.Drawing.Size(38, 42)
+        Me.chk明細消費区分.Size = New System.Drawing.Size(39, 42)
         Me.chk明細消費区分.TabIndex = 18
         '
         'txt明細販売許可証管理情報_ID
@@ -650,7 +650,7 @@ Partial Class HARK303Template
         Me.txt明細メッセージ.Ellipsis = GrapeCity.Win.MultiRow.MultiRowEllipsisMode.EllipsisEnd
         Me.txt明細メッセージ.Location = New System.Drawing.Point(44, 63)
         Me.txt明細メッセージ.Name = "txt明細メッセージ"
-        Me.txt明細メッセージ.Size = New System.Drawing.Size(889, 21)
+        Me.txt明細メッセージ.Size = New System.Drawing.Size(890, 21)
         Border14.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
         CellStyle14.Border = Border14
         CellStyle14.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -779,7 +779,7 @@ Partial Class HARK303Template
         '
         Me.ColumnHeaders.AddRange(New GrapeCity.Win.MultiRow.ColumnHeaderSection() {Me.HeaderSection})
         Me.Height = 166
-        Me.Width = 933
+        Me.Width = 934
 
     End Sub
     Private WithEvents HeaderSection As GrapeCity.Win.MultiRow.ColumnHeaderSection

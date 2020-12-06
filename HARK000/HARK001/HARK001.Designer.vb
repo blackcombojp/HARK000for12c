@@ -855,6 +855,7 @@ Partial Class HARK001
         Me.btn売上03.Text = "MD-TraC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "売上連携"
         Me.btn売上03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
         Me.btn売上03.UseVisualStyleBackColor = False
+        Me.btn売上03.Visible = False
         '
         'HARK001
         '

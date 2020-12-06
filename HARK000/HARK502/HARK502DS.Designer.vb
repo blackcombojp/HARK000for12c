@@ -333,6 +333,10 @@ Partial Public Class HARK502DS
         
         Private column有効期限 As Global.System.Data.DataColumn
         
+        Private column入出庫情報_ID As Global.System.Data.DataColumn
+        
+        Private column倉庫コード As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -569,6 +573,22 @@ Partial Public Class HARK502DS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 入出庫情報_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column入出庫情報_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property 倉庫コードColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column倉庫コード
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -630,9 +650,11 @@ Partial Public Class HARK502DS
                     ByVal 詳細入出庫数量 As Double,  _
                     ByVal 詳細単位名 As String,  _
                     ByVal ロット As String,  _
-                    ByVal 有効期限 As String) As ds一覧Row
+                    ByVal 有効期限 As String,  _
+                    ByVal 入出庫情報_ID As Long,  _
+                    ByVal 倉庫コード As Long) As ds一覧Row
             Dim rowds一覧Row As ds一覧Row = CType(Me.NewRow,ds一覧Row)
-            Dim columnValuesArray() As Object = New Object() {事業所コード, 事業所名, 倉庫名, 商品コード, メーカコード, メーカ名, メーカ品番, 商品名, 規格, 入出庫区分, 前月末数量, 単位名, 入出庫日付, 入出庫番号, 入出庫行番号, 取引先コード, 取引先名, 入庫数量, 出庫数量, 残在庫数量, 在庫単位名, 詳細入出庫数量, 詳細単位名, ロット, 有効期限}
+            Dim columnValuesArray() As Object = New Object() {事業所コード, 事業所名, 倉庫名, 商品コード, メーカコード, メーカ名, メーカ品番, 商品名, 規格, 入出庫区分, 前月末数量, 単位名, 入出庫日付, 入出庫番号, 入出庫行番号, 取引先コード, 取引先名, 入庫数量, 出庫数量, 残在庫数量, 在庫単位名, 詳細入出庫数量, 詳細単位名, ロット, 有効期限, 入出庫情報_ID, 倉庫コード}
             rowds一覧Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowds一覧Row)
             Return rowds一覧Row
@@ -680,6 +702,8 @@ Partial Public Class HARK502DS
             Me.column詳細単位名 = MyBase.Columns("詳細単位名")
             Me.columnロット = MyBase.Columns("ロット")
             Me.column有効期限 = MyBase.Columns("有効期限")
+            Me.column入出庫情報_ID = MyBase.Columns("入出庫情報_ID")
+            Me.column倉庫コード = MyBase.Columns("倉庫コード")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -735,6 +759,10 @@ Partial Public Class HARK502DS
             MyBase.Columns.Add(Me.columnロット)
             Me.column有効期限 = New Global.System.Data.DataColumn("有効期限", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.column有効期限)
+            Me.column入出庫情報_ID = New Global.System.Data.DataColumn("入出庫情報_ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column入出庫情報_ID)
+            Me.column倉庫コード = New Global.System.Data.DataColumn("倉庫コード", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column倉庫コード)
             Me.column事業所名.MaxLength = 60
             Me.column倉庫名.MaxLength = 60
             Me.column商品コード.MaxLength = 60
@@ -1271,6 +1299,36 @@ Partial Public Class HARK502DS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 入出庫情報_ID() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.入出庫情報_IDColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '入出庫情報_ID' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.入出庫情報_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property 倉庫コード() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableds一覧.倉庫コードColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("テーブル 'ds一覧' にある列 '倉庫コード' の値は DBNull です。", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableds一覧.倉庫コードColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function Is事業所コードNull() As Boolean
             Return Me.IsNull(Me.tableds一覧.事業所コードColumn)
         End Function
@@ -1567,6 +1625,30 @@ Partial Public Class HARK502DS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub Set有効期限Null()
             Me(Me.tableds一覧.有効期限Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is入出庫情報_IDNull() As Boolean
+            Return Me.IsNull(Me.tableds一覧.入出庫情報_IDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set入出庫情報_IDNull()
+            Me(Me.tableds一覧.入出庫情報_IDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Is倉庫コードNull() As Boolean
+            Return Me.IsNull(Me.tableds一覧.倉庫コードColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Set倉庫コードNull()
+            Me(Me.tableds一覧.倉庫コードColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     

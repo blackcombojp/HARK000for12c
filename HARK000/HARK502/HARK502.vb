@@ -862,8 +862,14 @@ Public Class HARK502
                     Set_ListItem(1, MSG_201009 & "《" & xxxintNo & "》")
                     Set_ListItem(1, MSG_101111 & "【" & xxxintCnt & "】")
 
-                    'データ検索
-                    gintRtn = DLTP0502_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, 0, xxxintNo, gintSQLCODE, gstrSQLERRM)
+                    Select Case xxxintSubProgram_ID
+                        Case 1, 3
+                            'データ検索
+                            gintRtn = DLTP0502_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, 0, xxxintNo, gintSQLCODE, gstrSQLERRM)
+                        Case 2, 4
+                            ''データ検索
+                            gintRtn = DLTP0502_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, 0, xxxintNo, gintSQLCODE, gstrSQLERRM)
+                    End Select
 
                     Select Case gintRtn
 
@@ -936,8 +942,8 @@ Public Class HARK502
 
                             Finally
 
-                                If Not Reports Is Nothing Then Reports.Dispose()
-                                If Not Viewer Is Nothing Then Viewer.Dispose()
+                                If Not Reports Is Nothing Then Reports = Nothing
+                                If Not Viewer Is Nothing Then Viewer = Nothing
 
                             End Try
 
@@ -1228,7 +1234,9 @@ EndExecute:
                                               CDbl(Results(intRowCnt).strBuff(21)),
                                               Results(intRowCnt).strBuff(22),
                                               Results(intRowCnt).strBuff(23),
-                                              Results(intRowCnt).strBuff(24))
+                                              Results(intRowCnt).strBuff(24),
+                                              CLng(Results(intRowCnt).strBuff(25)),
+                                              CLng(Results(intRowCnt).strBuff(26)))
 
             Next
 

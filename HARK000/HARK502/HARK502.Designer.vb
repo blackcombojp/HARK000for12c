@@ -581,6 +581,8 @@ Partial Class HARK502
     Private xxxint処理対象区分 As Integer
     Private Viewer As HARK991 = Nothing
     Private Reports As HARK502Reports = Nothing
+    Private WithEvents BS一覧 As BindingSource
+    Private WithEvents HARK502DS As HARK502DS
 
 
     Public Sub New(ByVal PerForm As Form, ByVal PerFormTitle As String, ByVal PerProgramID As String)
@@ -625,7 +627,6 @@ Partial Class HARK502
 
     End Sub
 
-    Private WithEvents BS一覧 As BindingSource
-    Private WithEvents HARK502DS As HARK502DS
+
 
 End Class
