@@ -776,13 +776,6 @@ Public Class HARK502
 
                 Case "ID5" '実行
 
-                    ''★★
-                    ''開発中
-                    'If xxxintSubProgram_ID = 2 Or xxxintSubProgram_ID = 4 Then
-                    '    MsgBox(MSG_COM906, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                    '    Exit Sub
-                    'End If
-
                     If 実行前チェック処理() = False Then Exit Sub
 
                     gintRtn = MsgBox(MSG_101105, CType(MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title)
@@ -917,6 +910,9 @@ Public Class HARK502
 
                                 Reports.DataSource = HARK502DS.ds一覧
 
+                                Reports.str帳票名 = "【医薬品入出庫履歴】"
+                                Reports.str出力条件 = cmb医薬品区分.Text & "  " & txt対象開始月.Text & " ～ " & txt対象終了月.Text
+
                                 'ActiveReports実行
                                 Reports.Run()
                                 Viewer.ViewerCtl.LoadDocument(Reports)
@@ -942,6 +938,8 @@ Public Class HARK502
 
                             Finally
 
+                                'Reports.Document.Dispose()
+                                'Reports.Dispose()
                                 If Not Reports Is Nothing Then Reports = Nothing
                                 If Not Viewer Is Nothing Then Viewer = Nothing
 

@@ -393,6 +393,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HARK502DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="HARK502\HARK502DS.vb">
+      <DependentUpon>HARK502DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="HARK502\HARK502Reports.Designer.vb">
       <DependentUpon>HARK502Reports.vb</DependentUpon>
     </Compile>
