@@ -13,7 +13,6 @@ Imports HARK000.HARK_Common
 Imports HARK000.HARK_Sub
 Imports AdvanceSoftware.ExcelCreator
 Imports System.ComponentModel
-Imports System.Threading
 Imports GrapeCity.ActiveReports
 
 
@@ -737,7 +736,7 @@ Public Class HARK502
 
         Dim Tag As String
         Dim strSendFile As String = Nothing
-        Dim m_lording As Thread = Nothing
+        'Dim m_lording As Thread = Nothing
 
         Try
             'Oracle接続状態確認
@@ -797,12 +796,12 @@ Public Class HARK502
 
                     lb_Msg.Items.Add("")
 
-                    '処理中画面
-                    m_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
-                        .IsBackground = True
-                    }
+                    ''処理中画面
+                    'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
+                    '    .IsBackground = True
+                    '}
 
-                    m_lording.Start()
+                    'm_lording.Start()
 
                     Select Case xxxintSubProgram_ID
                         Case 1, 2
@@ -920,11 +919,11 @@ Public Class HARK502
                                 Set_ListItem(1, MSG_502007)
                                 Set_ListItem(2, "")
 
-                                '処理中画面廃棄
-                                If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
-                                    m_lording.Abort()
-                                    m_lording = Nothing
-                                End If
+                                ''処理中画面廃棄
+                                'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
+                                '    m_lording.Abort()
+                                '    m_lording = Nothing
+                                'End If
 
                                 Viewer.ShowDialog()
 
@@ -973,11 +972,11 @@ EndExecute:
 
         Finally
 
-            '処理中画面廃棄
-            If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
-                m_lording.Abort()
-                m_lording = Nothing
-            End If
+            ''処理中画面廃棄
+            'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
+            '    m_lording.Abort()
+            '    m_lording = Nothing
+            'End If
 
             'メモリ開放
             GC.Collect()

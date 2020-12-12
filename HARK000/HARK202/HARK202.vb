@@ -14,7 +14,6 @@ Imports HARK000.HARK_Sub
 Imports AdvanceSoftware.ExcelCreator
 Imports System.ComponentModel
 Imports System.IO
-Imports System.Threading
 
 
 Public Class HARK202
@@ -547,9 +546,9 @@ Public Class HARK202
     Private Sub Bt_ID_Click(ByVal sender As Object, ByVal e As EventArgs)
 
         Dim Tag As String
-        '   Dim i As Integer
+        'Dim i As Integer
         Dim strSendFile As String = Nothing
-        Dim m_lording As Thread = Nothing
+        'Dim m_lording As Thread = Nothing
 
         Try
             'Oracle接続状態確認
@@ -602,12 +601,12 @@ Public Class HARK202
 
                     Cursor = Cursors.WaitCursor
 
-                    '処理中画面
-                    m_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
-                        .IsBackground = True
-                    }
+                    ''処理中画面
+                    'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
+                    '    .IsBackground = True
+                    '}
 
-                    m_lording.Start()
+                    'm_lording.Start()
 
 
 
@@ -624,11 +623,11 @@ Public Class HARK202
 
         Finally
 
-            '処理中画面廃棄
-            If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
-                m_lording.Abort()
-                m_lording = Nothing
-            End If
+            ''処理中画面廃棄
+            'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
+            '    m_lording.Abort()
+            '    m_lording = Nothing
+            'End If
 
             'メモリ開放
             GC.Collect()

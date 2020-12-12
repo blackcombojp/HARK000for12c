@@ -22,11 +22,11 @@ Public Class HARK_Sub
     ''' </summary>
     Public Shared Sub Main()
 
-        'ThreadExceptionイベントハンドラを追加
-        AddHandler Application.ThreadException, AddressOf Application_ThreadException
-        'ThreadExceptionが発生しないようにする
-        Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException)
-        AddHandler AppDomain.CurrentDomain.UnhandledException, AddressOf CurrentDomain_UnhandledException
+        ''ThreadExceptionイベントハンドラを追加
+        'AddHandler Application.ThreadException, AddressOf Application_ThreadException
+        ''ThreadExceptionが発生しないようにする
+        'Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException)
+        'AddHandler AppDomain.CurrentDomain.UnhandledException, AddressOf CurrentDomain_UnhandledException
 
         'TLS1.2のみ許可(Webアクセス)
         Net.ServicePointManager.SecurityProtocol = Net.SecurityProtocolType.Tls12

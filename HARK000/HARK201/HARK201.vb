@@ -14,7 +14,6 @@ Imports HARK000.HARK_Sub
 Imports AdvanceSoftware.ExcelCreator
 Imports System.ComponentModel
 Imports System.IO
-Imports System.Threading
 Imports NPOI.OpenXmlFormats.Spreadsheet
 
 Public Class HARK201
@@ -731,7 +730,7 @@ Public Class HARK201
     Private Sub Bt_ID_Click(ByVal sender As Object, ByVal e As EventArgs)
 
         Dim Tag As String
-        Dim m_lording As Thread = Nothing
+        'Dim m_lording As Thread = Nothing
         Dim strSendFile As String = Nothing
 
         Try
@@ -787,12 +786,12 @@ Public Class HARK201
 
                     lb_Msg.Items.Add("")
 
-                    '処理中画面
-                    m_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
-                        .IsBackground = True
-                    }
+                    ''処理中画面
+                    'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
+                    '    .IsBackground = True
+                    '}
 
-                    m_lording.Start()
+                    'm_lording.Start()
 
                     Select Case xxxintSubProgram_ID
 
@@ -945,11 +944,11 @@ EndExecute:
 
         Finally
 
-            '処理中画面廃棄
-            If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
-                m_lording.Abort()
-                m_lording = Nothing
-            End If
+            ''処理中画面廃棄
+            'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
+            '    m_lording.Abort()
+            '    m_lording = Nothing
+            'End If
 
             'メモリ開放
             GC.Collect()

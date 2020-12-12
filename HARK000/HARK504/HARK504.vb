@@ -14,7 +14,6 @@ Imports HARK000.HARK_Sub
 Imports AdvanceSoftware.ExcelCreator
 Imports System.ComponentModel
 Imports GrapeCity.Win.MultiRow
-Imports System.Threading
 
 
 Public Class HARK504
@@ -727,7 +726,7 @@ Public Class HARK504
 
         Dim Tag As String
         Dim strSendFile As String = Nothing
-        Dim m_lording As Thread = Nothing
+        'Dim m_lording As Thread = Nothing
 
         Try
             'Oracle接続状態確認
@@ -819,14 +818,20 @@ Public Class HARK504
 
                     Cursor = Cursors.WaitCursor
 
-                    '処理中画面
-                    m_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
-                        .IsBackground = True
-                    }
+                    ''処理中画面
+                    'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
+                    '    .IsBackground = True
+                    '}
 
-                    m_lording.Start()
+                    'm_lording.Start()
 
                     gintRtn = DLTP0504_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintResultCnt, xxxlngResults, gintSQLCODE, gstrSQLERRM)
+
+                    ''処理中画面廃棄
+                    'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
+                    '    m_lording.Abort()
+                    '    m_lording = Nothing
+                    'End If
 
                     If gintRtn = 0 Then
                         MsgBox(MSG_504010, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
@@ -856,11 +861,11 @@ Public Class HARK504
 
         Finally
 
-            '処理中画面廃棄
-            If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
-                m_lording.Abort()
-                m_lording = Nothing
-            End If
+            ''処理中画面廃棄
+            'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
+            '    m_lording.Abort()
+            '    m_lording = Nothing
+            'End If
 
             'メモリ開放
             GC.Collect()
@@ -1061,7 +1066,7 @@ Public Class HARK504
 
         Dim Tag As String
         Dim lng検索得意先コード As Long
-        Dim m_lording As Thread = Nothing
+        'Dim m_lording As Thread = Nothing
 
         Try
 
@@ -1085,12 +1090,12 @@ Public Class HARK504
 
                         Cursor = Cursors.WaitCursor
 
-                        '処理中画面
-                        m_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
-                            .IsBackground = True
-                        }
+                        ''処理中画面
+                        'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
+                        '    .IsBackground = True
+                        '}
 
-                        m_lording.Start()
+                        'm_lording.Start()
 
                         gintRtn = DLTP0504_PROC0001(xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード, lng検索得意先コード, xxxstr業種コード(0), xxxint許可証区分(0), gintSQLCODE, gstrSQLERRM)
 
@@ -1119,12 +1124,12 @@ Public Class HARK504
 
                         Cursor = Cursors.WaitCursor
 
-                        '処理中画面
-                        m_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
-                            .IsBackground = True
-                        }
+                        ''処理中画面
+                        'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
+                        '    .IsBackground = True
+                        '}
 
-                        m_lording.Start()
+                        'm_lording.Start()
 
                         gintRtn = DLTP0504_PROC0002(xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード, xxxstr業種コード(1), xxxint許可証区分(1), xxxint条件, txt検索Date.Text.Trim, gintSQLCODE, gstrSQLERRM)
 
@@ -1149,7 +1154,6 @@ Public Class HARK504
 
                         End Select
 
-
                     End If
 
                     Set_Enabled検索条件(False)
@@ -1165,11 +1169,11 @@ Public Class HARK504
 
         Finally
 
-            '処理中画面廃棄
-            If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
-                m_lording.Abort()
-                m_lording = Nothing
-            End If
+            ''処理中画面廃棄
+            'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
+            '    m_lording.Abort()
+            '    m_lording = Nothing
+            'End If
 
             'メモリ開放
             GC.Collect()

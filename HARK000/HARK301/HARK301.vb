@@ -14,7 +14,6 @@ Imports HARK000.HARK_Sub
 Imports AdvanceSoftware.ExcelCreator
 Imports System.ComponentModel
 Imports System.IO
-Imports System.Threading
 
 
 Public Class HARK301
@@ -910,7 +909,7 @@ Public Class HARK301
 
         Dim Tag As String
         Dim strSendFile As String = Nothing
-        Dim m_lording As Thread = Nothing
+        'Dim m_lording As Thread = Nothing
 
         Try
             'Oracle接続状態確認
@@ -964,12 +963,12 @@ Public Class HARK301
 
                     lb_Msg.Items.Add("")
 
-                    '処理中画面
-                    m_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
-                        .IsBackground = True
-                    }
+                    ''処理中画面
+                    'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
+                    '    .IsBackground = True
+                    '}
 
-                    m_lording.Start()
+                    'm_lording.Start()
 
                     Select Case xxxintSubProgram_ID
 
@@ -1058,11 +1057,11 @@ EndExecute:
 
         Finally
 
-            '処理中画面廃棄
-            If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
-                m_lording.Abort()
-                m_lording = Nothing
-            End If
+            ''処理中画面廃棄
+            'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
+            '    m_lording.Abort()
+            '    m_lording = Nothing
+            'End If
 
             'メモリ開放
             GC.Collect()
