@@ -153,6 +153,7 @@ Module HARK_Define
     Public Const MSG_502005 As String = "検索終了月の書式が間違っています"
     Public Const MSG_502006 As String = "データ印刷は異常終了しました"
     Public Const MSG_502007 As String = "データ印刷は正常終了しました"
+    Public Const MSG_502008 As String = "対象外は選択できません"
 
     Public Const MSG_503001 As String = "許可証区分を選択してください"
     Public Const MSG_503002 As String = "許可証番号を入力してください"

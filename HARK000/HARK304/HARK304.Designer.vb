@@ -77,6 +77,7 @@ Partial Class HARK304
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.ExcelCreator = New AdvanceSoftware.ExcelCreator.Creator(Me.components)
+        Me.lbl備考 = New System.Windows.Forms.Label()
         Me.CntMenuStrip.SuspendLayout()
         CType(Me.lb_Msg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtデータ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,6 +183,7 @@ Partial Class HARK304
         '
         Me.pnl操作.BackColor = System.Drawing.Color.FromArgb(CType(CType(211, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.pnl操作.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnl操作.Controls.Add(Me.lbl備考)
         Me.pnl操作.Controls.Add(Me.lbl許可期間２)
         Me.pnl操作.Controls.Add(Me.txt売上終了日)
         Me.pnl操作.Controls.Add(Me.txt売上開始日)
@@ -478,6 +480,18 @@ Partial Class HARK304
         Me.ExcelCreator.ExcelFileType = AdvanceSoftware.ExcelCreator.ExcelFileType.xlsx
         Me.ExcelCreator.TemporaryPath = ""
         '
+        'lbl備考
+        '
+        Me.lbl備考.AutoSize = True
+        Me.lbl備考.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl備考.ForeColor = System.Drawing.Color.Red
+        Me.lbl備考.Location = New System.Drawing.Point(34, 261)
+        Me.lbl備考.Name = "lbl備考"
+        Me.lbl備考.Size = New System.Drawing.Size(52, 20)
+        Me.lbl備考.TabIndex = 191
+        Me.lbl備考.Text = "lbl備考"
+        Me.lbl備考.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'HARK304
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -617,6 +631,7 @@ Partial Class HARK304
 
     End Sub
 
+    Private WithEvents lbl備考 As Label
 
 
 End Class

@@ -27,6 +27,8 @@ Public Class HARK403
     ' *-----------------------------------------------------------------------------/
     Private Sub Fm_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+        Dim str備考 As String
+
         Try
             Cursor = Cursors.WaitCursor
 
@@ -42,6 +44,12 @@ Public Class HARK403
                 MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                 txtデータ出力先.Text = Get_DesktopPath()
             End If
+
+            '備考取得
+            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 0, 0, 1, "備考")
+            str備考 = gstrDLTP0997S_FUNC005
+
+            If str備考 <> "null" Then lbl備考.Text = str備考 Else lbl備考.Visible = False
 
             'コンボに値設定
             Set_CmbValue()

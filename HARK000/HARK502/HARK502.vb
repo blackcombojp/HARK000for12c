@@ -537,6 +537,12 @@ Public Class HARK502
                         xxxint医薬品区分 = .intコード
                     End With
 
+                    If xxxint医薬品区分 = 0 Then
+                        MsgBox(MSG_502008, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        Initialize条件(0)
+                        Exit Sub
+                    End If
+
                 Case "ID3" 'サブプログラム
 
                     With DirectCast(cmbサブプログラム.SelectedItem, サブプログラム一覧)
@@ -757,8 +763,6 @@ Public Class HARK502
 
                     If gintRtn = vbYes Then
 
-                        cmb医薬品区分.SelectedIndex = gint項目辞書Cnt
-                        cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
                         txt対象開始月.Text = ""
                         txt対象終了月.Text = ""
                         Initialize条件(0)
@@ -781,8 +785,6 @@ Public Class HARK502
 
                     If gintRtn = vbNo Then
 
-                        cmb医薬品区分.SelectedIndex = gint項目辞書Cnt
-                        cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
                         txt対象開始月.Text = ""
                         txt対象終了月.Text = ""
                         Initialize条件(0)
@@ -950,8 +952,6 @@ EndExecute:
                     'セッション情報削除
                     gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "医薬品入出庫履歴", xxxint処理対象区分)
 
-                    cmb医薬品区分.SelectedIndex = gint項目辞書Cnt
-                    cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
                     txt対象開始月.Text = ""
                     txt対象終了月.Text = ""
                     Initialize条件(0)

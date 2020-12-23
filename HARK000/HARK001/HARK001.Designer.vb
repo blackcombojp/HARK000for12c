@@ -863,11 +863,11 @@ Partial Class HARK001
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 768)
+        Me.Controls.Add(Me.pnl受注)
         Me.Controls.Add(Me.pnl売上)
         Me.Controls.Add(Me.pnl管理)
         Me.Controls.Add(Me.pnl出荷)
         Me.Controls.Add(Me.pnl請求)
-        Me.Controls.Add(Me.pnl受注)
         Me.Controls.Add(Me.pnlお知らせ)
         Me.Controls.Add(Me.pnlTop)
         Me.Controls.Add(Me.pnlSide)
