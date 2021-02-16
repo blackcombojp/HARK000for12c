@@ -348,7 +348,7 @@ Public Class HARK001
 
             'Oracle接続状態確認
             If (OraConnectState(gintRtn, gintSQLCODE, gstrSQLERRM)) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -362,7 +362,7 @@ Public Class HARK001
 
             'SPDシステムコード取得
             If DLTP0000_PROC0002(CStr(xxxExeBtn.Tag), gintSQLCODE, gstrSQLERRM) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM014 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM014 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -394,7 +394,7 @@ Public Class HARK001
             Dim oType As Type = Reflection.[Assembly].LoadFrom("HARK000.exe").GetType(FormID)
 
             If oType Is Nothing Then
-                MsgBox(MSG_COM906, MsgBoxStyle.Exclamation Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+                MsgBox(MSG_COM906, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
                 Exit Sub
             End If
 

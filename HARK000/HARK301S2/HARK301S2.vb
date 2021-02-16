@@ -86,6 +86,7 @@ Public Class HARK301S2
 
             'メモリ開放
             GC.Collect()
+            Me.Close()
 
         Catch ex As Exception
 
@@ -165,7 +166,7 @@ Public Class HARK301S2
             '項目一覧取得
             If DLTP0901_PROC0005(xxxstrProgram_ID, "受注形態区分", gintSQLCODE, gstrSQLERRM) = False Then
 
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
                 Exit Sub
 
@@ -529,7 +530,7 @@ Public Class HARK301S2
         Try
             'Oracle接続状態確認
             If (OraConnectState(gintRtn, gintSQLCODE, gstrSQLERRM)) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -571,11 +572,14 @@ Public Class HARK301S2
 
                     gintRtn = DLTP0301_PROC0022(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt商品コード.Text.Trim, txt院内コード.Text.Trim, xxxint受注形態, xxxint出荷連携, gintSQLCODE, gstrSQLERRM)
 
-                    If gintRtn = 0 Then
-                        MsgBox(MSG_301041, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                    Else
-                        MsgBox(MSG_301042 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                    End If
+                    Select Case gintRtn
+                        Case 0
+                            MsgBox(MSG_301041, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        Case -54
+                            MsgBox(MSG_301051, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Case Else
+                            MsgBox(MSG_301042 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                    End Select
 
                     Initialize()
                     txt商品コード.Focus()
@@ -721,12 +725,12 @@ Public Class HARK301S2
                                 txt商品コード.Focus()
                                 Exit Sub
                             Case 8
-                                MsgBox(MSG_301037 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                MsgBox(MSG_301037 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
                                 txt商品コード.Focus()
                                 Exit Sub
                             Case Else
-                                MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
                                 txt商品コード.Focus()
                                 Exit Sub

@@ -83,6 +83,7 @@ Public Class HARK301S3
 
             'メモリ開放
             GC.Collect()
+            Me.Close()
 
         Catch ex As Exception
 
@@ -341,7 +342,7 @@ Public Class HARK301S3
         Try
             'Oracle接続状態確認
             If (OraConnectState(gintRtn, gintSQLCODE, gstrSQLERRM)) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -385,7 +386,7 @@ Public Class HARK301S3
                     If DLTP0301_PROC0024(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt連携キー.Text.Trim, gintSQLCODE, gstrSQLERRM) = True Then
                         MsgBox(MSG_301046, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                     Else
-                        MsgBox(MSG_301047 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        MsgBox(MSG_301047 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                     End If
 
                     Initialize()
@@ -540,12 +541,12 @@ Public Class HARK301S3
                                 gblRtn = データ表示処理()
                                 txt連携キー.Enabled = False
                             Case 7, 8
-                                MsgBox(gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
                                 txt連携キー.Focus()
                                 Exit Sub
                             Case Else
-                                MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
                                 txt連携キー.Focus()
                                 Exit Sub

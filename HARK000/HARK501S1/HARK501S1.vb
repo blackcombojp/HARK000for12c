@@ -13,7 +13,7 @@ Imports HARK000.HARK_Common
 Imports HARK000.HARK_Sub
 Imports System.ComponentModel
 
-Public Class HARK301S1
+Public Class HARK501S1
     '/*-----------------------------------------------------------------------------
     ' *　モジュール機能　：　フォーム読み込み処理
     ' *
@@ -33,6 +33,9 @@ Public Class HARK301S1
             '各種情報表示
             SttBar_2.Text = gstr担当者名
             SttBar_3.Text = "Ver : " & Application.ProductVersion
+
+            'コンボに値設定
+            Set_CmbValue()
 
             '初期化
             Initialize()
@@ -60,7 +63,7 @@ Public Class HARK301S1
     Private Sub Fm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
         Try
-            txt長期貸出番号.Focus()
+            txt部署コード.Focus()
 
         Catch ex As Exception
 
@@ -83,7 +86,7 @@ Public Class HARK301S1
 
             'メモリ開放
             GC.Collect()
-            OraTrnRollBack()
+
             Me.Close()
 
         Catch ex As Exception
@@ -108,7 +111,6 @@ Public Class HARK301S1
 
             'メモリ開放
             GC.Collect()
-            OraTrnRollBack()
 
         Catch ex As Exception
 
@@ -149,6 +151,81 @@ Public Class HARK301S1
 
     End Sub
     '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　コンボボックスに値をセット
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　なし
+    ' *
+    ' *-----------------------------------------------------------------------------/
+    Private Sub Set_CmbValue()
+
+        Dim i As Integer
+
+        Try
+
+            '施設一覧取得
+            If DLTP0501_PROC0101(xxxstrProgram_ID, xxxintSPDSystemCode, xxxintSubProgram_ID, xxxstr病院コード, gintSQLCODE, gstrSQLERRM) = False Then
+
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                Exit Sub
+
+            End If
+
+            '施設一覧
+            For i = 0 To gin施設Cnt - 1
+
+                cmb施設.Items.Add(New 施設一覧(施設Array(i).str施設名, 施設Array(i).str施設コード))
+
+            Next
+
+            '空白行追加
+            cmb施設.Items.Add(New 施設一覧("", ""))
+
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Sub
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　コンボボックス選択時処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　sender -- オブジェクト識別クラス
+    ' *　引数２　　　　　：　e      -- イベントデータクラス
+    ' *　戻値　　　　　　：　なし
+    ' *-----------------------------------------------------------------------------/
+    Private Sub Cmb_SelectedValueChanged(sender As Object, e As EventArgs)
+
+        Dim Tag As String
+
+        Try
+
+            Tag = CStr(CType(sender, ComboBox).Tag)
+
+            Select Case Tag
+
+                Case "ID1" '施設コンボボックス
+
+                    With DirectCast(cmb施設.SelectedItem, 施設一覧)
+                        xxxstr施設コード = .str施設コード
+                    End With
+
+            End Select
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+
+        End Try
+
+    End Sub
+    '/*-----------------------------------------------------------------------------
     ' *　モジュール機能　：　各種コンポーネント初期化
     ' *
     ' *　注意、制限事項　：　なし
@@ -159,11 +236,11 @@ Public Class HARK301S1
 
         Try
 
-            txt長期貸出番号.Text = ""
-            txt長期貸出番号.Enabled = True
-            txtDate.Text = ""
+            txt部署コード.Text = ""
+            txt部署コード.Enabled = True
 
-            Initialize明細()
+            RB_更新.Checked = True
+            GB_更新.Enabled = True
 
         Catch ex As Exception
 
@@ -171,6 +248,46 @@ Public Class HARK301S1
             Throw
 
         End Try
+
+    End Sub
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　ラジオボタン押下処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　引数２　　　　　：　なし
+    ' *　戻値　　　　　　：　True・・正常、False・・異常
+    ' *-----------------------------------------------------------------------------/
+    Private Sub Rb_CheckedChanged(sender As Object, e As EventArgs)
+
+        Try
+
+            If RB_更新.Checked = True Then
+
+                txt部署コード.Text = ""
+                txt部署コード.Enabled = True
+                Initialize明細()
+                txt明細部署コード.Enabled = False
+                txt部署コード.Focus()
+
+            Else
+
+                txt部署コード.Text = ""
+                txt部署コード.Enabled = False
+                Initialize明細()
+                lblID.Text = "0"
+                txt明細部署コード.Enabled = True
+                cmb施設.Focus()
+
+            End If
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+
+        End Try
+
 
     End Sub
     '/*-----------------------------------------------------------------------------
@@ -184,23 +301,10 @@ Public Class HARK301S1
 
         Try
 
-            lbl需要先.Text = ""
-            lbl部署.Text = ""
-            lbl出荷日.Text = ""
-            lbl受注形態.Text = ""
-            lbl出荷数量.Text = ""
-            lbl単位.Text = ""
-            lbl商品コード.Text = ""
-            lblメーカ品番.Text = ""
-            lblメーカ.Text = ""
-            lbl商品名.Text = ""
-            lbl規格.Text = ""
-            lblロット.Text = ""
-            lblシリアル.Text = ""
-            lbl有効期限.Text = ""
-            lbl消費需要先.Text = ""
-            lbl消費部署.Text = ""
-            lbl消費日.Text = ""
+            txt明細部署コード.Text = ""
+            txt明細部署名.Text = ""
+            cmb施設.SelectedIndex = gin施設Cnt
+            lblID.Text = ""
 
         Catch ex As Exception
 
@@ -280,13 +384,27 @@ Public Class HARK301S1
 
             Select Case Tag
 
-                Case "ID1"  '長期貸出番号
+                Case "ID1"  '部署コード
 
                     If e.Shift = True Then
 
                         Select Case e.KeyCode
 
                             'Tabキーが押されてもフォーカスが移動しないようにする
+                            Case Keys.Tab
+                                e.IsInputKey = True
+
+                        End Select
+
+                    End If
+
+                Case "ID3"  '明細部署名
+
+                    If e.Shift = False Then
+
+                        Select Case e.KeyCode
+
+                                'Tabキーが押されてもフォーカスが移動しないようにする
                             Case Keys.Tab
                                 e.IsInputKey = True
 
@@ -305,7 +423,7 @@ Public Class HARK301S1
 
     End Sub
     '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　テキストボックスキー押下処理
+    ' *　モジュール機能　：　コンボボックスキー押下処理
     ' *
     ' *　注意、制限事項　：　タブ移動させたくないコントロールのみにハンドリングすること
     ' *　引数１　　　　　：　sender・・オブジェクト識別クラス
@@ -313,23 +431,23 @@ Public Class HARK301S1
     ' *　戻値　　　　　　：　なし
     ' *
     ' *-----------------------------------------------------------------------------/
-    Private Sub Txt_PreviewKeyDown2(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
+    Private Sub Cmb_PreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
 
         Dim Tag As String
 
         Try
 
-            Tag = CStr(CType(sender, GrapeCity.Win.Editors.GcDate).Tag)
+            Tag = CStr(CType(sender, ComboBox).Tag)
 
             Select Case Tag
 
-                Case "ID1"  '抹消日
+                Case "ID1"  '施設
 
-                    If e.Shift = False Then
+                    If e.Shift = True And txt部署コード.Enabled = False Then
 
                         Select Case e.KeyCode
 
-                            'Tabキーが押されてもフォーカスが移動しないようにする
+                                'Tabキーが押されてもフォーカスが移動しないようにする
                             Case Keys.Tab
                                 e.IsInputKey = True
 
@@ -365,7 +483,7 @@ Public Class HARK301S1
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt長期貸出番号.Focus()
+            txt部署コード.Focus()
             Exit Sub
 
         End If
@@ -389,7 +507,7 @@ Public Class HARK301S1
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt長期貸出番号.Focus()
+            txt部署コード.Focus()
             Exit Sub
 
         End If
@@ -441,9 +559,9 @@ Public Class HARK301S1
 
                     If gintRtn = vbYes Then
 
+                        RB_新規.Checked = True
                         Initialize()
-                        OraTrnRollBack()
-                        txt長期貸出番号.Focus()
+                        txt部署コード.Focus()
 
                     End If
 
@@ -461,23 +579,26 @@ Public Class HARK301S1
 
                     If gintRtn = vbNo Then
 
-                        Initialize()
-                        OraTrnRollBack()
-                        txt長期貸出番号.Focus()
+                        txt明細部署名.Focus()
                         Exit Sub
 
                     End If
 
-                    gintRtn = DLTP0301_PROC0015(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, CLng(txt長期貸出番号.Text.Trim), txtDate.Text.Trim, gintSQLCODE, gstrSQLERRM)
+                    gintRtn = DLTP0501_PROC0002(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, xxxstr病院コード, CInt(lblID.Text.Trim), xxxstr施設コード, txt明細部署コード.Text.Trim, txt明細部署名.Text.Trim, gintSQLCODE, gstrSQLERRM)
 
-                    If gintRtn = 0 Then
-                        MsgBox(MSG_301032, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                    Else
-                        MsgBox(MSG_301033 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                    End If
+                    Select Case gintRtn
+                        Case 0
+                            MsgBox(MSG_501011, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        Case -54
+                            MsgBox(MSG_501014, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Case Else
+                            MsgBox(MSG_501012 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                    End Select
 
+                    RB_新規.Checked = True
                     Initialize()
-                    txt長期貸出番号.Focus()
+                    txt部署コード.Focus()
+
                     Exit Sub
 
                 Case "ID6" 'なし
@@ -512,31 +633,69 @@ Public Class HARK301S1
 
             実行前チェック処理 = False
 
-            '長期貸出番号
-            If IsNull(txt長期貸出番号.Text.Trim) = True Then
-                MsgBox(MSG_301027, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt長期貸出番号.Focus()
-                Exit Function
-            End If
+            If RB_更新.Checked = True Then
 
-            If IsNull(txt長期貸出番号.Text.Trim) = False And IsNull(lbl消費日.Text.Trim) = False Then
-                MsgBox(MSG_301029, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt長期貸出番号.Focus()
-                Exit Function
-            End If
+                '部署コード
+                If IsNull(txt部署コード.Text.Trim) = True Then
+                    MsgBox(MSG_501007, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    txt部署コード.Focus()
+                    Exit Function
+                End If
 
-            '抹消日チェック
-            If IsNull(txtDate.Text.Trim) = True Then
-                MsgBox(MSG_301028, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txtDate.Focus()
-                Exit Function
-            End If
+                '施設
+                If IsNull(cmb施設.Text.Trim) = True Then
+                    MsgBox(MSG_501009, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    cmb施設.Focus()
+                    Exit Function
+                End If
 
-            If Chk_Date(txtDate.Text.Trim, 1) = False Then
-                txtDate.Text = ""
-                MsgBox(MSG_301012, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
-                txtDate.Focus()
-                Exit Function
+                '部署名
+                If IsNull(txt明細部署名.Text.Trim) = True Then
+                    MsgBox(MSG_501008, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    txt明細部署名.Focus()
+                    Exit Function
+                End If
+
+            Else
+
+                '施設
+                If IsNull(cmb施設.Text.Trim) = True Then
+                    MsgBox(MSG_501009, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    cmb施設.Focus()
+                    Exit Function
+                End If
+
+                '明細部署コード
+                If IsNull(txt明細部署コード.Text.Trim) = True Then
+                    MsgBox(MSG_501010, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    txt明細部署コード.Focus()
+                    Exit Function
+                End If
+
+                '部署名
+                If IsNull(txt明細部署名.Text.Trim) = True Then
+                    MsgBox(MSG_501008, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    txt明細部署名.Focus()
+                    Exit Function
+                End If
+
+                gintRtn = DLTP0501_PROC0102(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, xxxstr病院コード, txt明細部署コード.Text.Trim, gintSQLCODE, gstrSQLERRM)
+
+                Select Case gintRtn
+                    Case 0
+                        MsgBox(MSG_501013, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        Initialize()
+                        txt部署コード.Focus()
+                        Exit Function
+                    Case 8
+                        Exit Select
+                    Case Else
+                        MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Initialize()
+                        txt部署コード.Focus()
+                        Exit Function
+                End Select
+
             End If
 
             実行前チェック処理 = True
@@ -566,26 +725,12 @@ Public Class HARK301S1
 
             Initialize明細()
 
-            lbl需要先.Text = gudt長期貸出番号情報.str需要先名
-            lbl部署.Text = gudt長期貸出番号情報.str需要先部署名
-            lbl出荷日.Text = gudt長期貸出番号情報.str出荷日
-            lbl受注形態.Text = gudt長期貸出番号情報.str受注形態
-            lbl出荷数量.Text = CStr(gudt長期貸出番号情報.lng出荷数量)
-            lbl単位.Text = gudt長期貸出番号情報.str出荷単位名
-            lbl商品コード.Text = gudt長期貸出番号情報.str商品コード
-            lblメーカ品番.Text = gudt長期貸出番号情報.strメーカ品番
-            lblメーカ.Text = gudt長期貸出番号情報.strメーカ名
-            lbl商品名.Text = gudt長期貸出番号情報.str商品名
-            lbl規格.Text = gudt長期貸出番号情報.str規格
-            lblロット.Text = gudt長期貸出番号情報.strロット
-            lblシリアル.Text = gudt長期貸出番号情報.strシリアル
-            lbl有効期限.Text = gudt長期貸出番号情報.str有効期限
-            lbl消費需要先.Text = gudt長期貸出番号情報.str消費需要先名
-            lbl消費部署.Text = gudt長期貸出番号情報.str消費需要先部署名
-            lbl消費日.Text = gudt長期貸出番号情報.str消費日
-            If gudt長期貸出番号情報.str返却日 <> "" Then
-                txtDate.Text = gudt長期貸出番号情報.str返却日
-            End If
+            xxxstr施設コード = Results(0).strBuff(1)
+            cmb施設.Text = Results(0).strBuff(2)
+            txt明細部署コード.Text = Results(0).strBuff(3)
+            txt明細部署名.Text = Results(0).strBuff(4)
+            lblID.Text = Results(0).strBuff(0)
+
 
             データ表示処理 = True
 
@@ -616,44 +761,41 @@ Public Class HARK301S1
 
             Select Case Tag
 
-                Case "ID1" '長期貸出番号
+                Case "ID1" '部署コード
 
-                    If IsNull(txt長期貸出番号.Text.Trim) = False Then
+                    If IsNull(txt部署コード.Text.Trim) = False Then
 
-                        If txt長期貸出番号.Text.Trim.Length <> 13 Then
-                            MsgBox(MSG_301030, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        If txt部署コード.Text.Trim.Length > 10 Then
+                            MsgBox(MSG_501005, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                             Initialize()
-                            txt長期貸出番号.Focus()
+                            txt部署コード.Focus()
                             Exit Sub
                         End If
 
-                        gintRtn = DLTP0301_PROC0014(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, CLng(txt長期貸出番号.Text.Trim), gintSQLCODE, gstrSQLERRM)
+                        gintRtn = DLTP0501_PROC0102(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, xxxstr病院コード, txt部署コード.Text.Trim, gintSQLCODE, gstrSQLERRM)
 
                         Select Case gintRtn
                             Case 0
                                 gblRtn = データ表示処理()
-                                txt長期貸出番号.Enabled = False
-                            Case 2
-                                MsgBox(MSG_301031, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt部署コード.Enabled = False
+                                txt明細部署名.Focus()
+                            Case 8
+                                MsgBox(MSG_501006, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
-                                txt長期貸出番号.Focus()
-                                Exit Sub
-                            Case -54
-                                MsgBox(MSG_301034, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                                Initialize()
-                                txt長期貸出番号.Focus()
+                                txt部署コード.Focus()
                                 Exit Sub
                             Case Else
                                 MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
-                                txt長期貸出番号.Focus()
+                                txt部署コード.Focus()
                                 Exit Sub
 
                         End Select
 
                     Else
-                        Initialize()
-                        'txt長期貸出番号.Focus()
+
+                        txt部署コード.Focus()
+
                     End If
 
             End Select

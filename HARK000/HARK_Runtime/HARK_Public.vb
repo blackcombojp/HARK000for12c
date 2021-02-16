@@ -54,6 +54,7 @@ Module HARK_Public
     Public gint事業所Cnt As Integer             '取得需要先数
     Public gintサブプログラムCnt As Integer     '取得サブプログラム数
     Public gintPHsmos医療機関Cnt As Integer     '取得PHsmos医療機関数
+    Public gin施設Cnt As Integer                '取得天神会SPD施設数
     Public gintErrorExportDataCnt As Integer    'エラーデータ出力件数
     Public gintErrorSendDataCnt As Integer      'エラーデータ送信件数
     Public gintExcelDataCnt As Integer          '読込EXCELデータ件数

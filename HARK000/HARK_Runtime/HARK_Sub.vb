@@ -68,7 +68,7 @@ Public Class HARK_Sub
             End Try
 
             If hasHandle = False Then
-                log.Error(Set_ErrMSG(0, MSG_COM005))
+                log.Warn(Set_ErrMSG(0, MSG_COM005))
                 MsgBox(MSG_COM005, MsgBoxStyle.Exclamation Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
                 Return
             End If
@@ -85,8 +85,7 @@ Public Class HARK_Sub
                 gstr部門名 = "システム管理"
             Else
                 If DLTP0900_PROC0002("Sub_Main", gintSQLCODE, gstrSQLERRM) = False Then
-                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                    log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                     Throw New Exception
                 End If
             End If
@@ -96,30 +95,26 @@ Public Class HARK_Sub
                 gstr担当者名 = "システム管理"
             Else
                 If DLTP0900_PROC0001("Sub_Main", My.Settings.入力担当コード, vbNullString, gintSQLCODE, gstrSQLERRM) = False Then
-                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                    log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                     Throw New Exception
                 End If
             End If
 
             '事業所一覧取得
             If DLTP0901_PROC0001("Sub_Main", gintSQLCODE, gstrSQLERRM) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Throw New Exception
             End If
 
             '掲示版一覧取得
             If DLTP0000_PROC0011("Sub_Main", gintSQLCODE, gstrSQLERRM) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Throw New Exception
             End If
 
             'ログイン情報更新
             If DLTP0000_PROC0006(gintSQLCODE, gstrSQLERRM) = False Then
-                MsgBox(MSG_COM910 & vbCr & MSG_COM901 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                MsgBox(MSG_COM910 & vbCr & MSG_COM901 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Throw New Exception
             End If
 

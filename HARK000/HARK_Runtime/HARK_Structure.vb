@@ -171,6 +171,24 @@ Module HARK_Structure
     End Structure
 
 
+    '“V_‰ïSPD{İˆê——
+    Public Structure {İˆê——
+
+        Public str{İƒR[ƒh As String    '{İƒR[ƒh
+        Public str{İ–¼ As String        '{İ–¼
+
+        Public Overrides Function ToString() As String
+            Return str{İ–¼
+        End Function
+
+        Public Sub New(ByVal Name As String, ByVal CD As String)
+            str{İ–¼ = NvlString(Name, CStr(IIf(CD = "", "", CD)))
+            str{İƒR[ƒh = CD
+        End Sub
+
+    End Structure
+
+
     'ˆ—’[––î•ñ
     Public Structure Struc_ˆ—’[––î•ñ
         Dim stro—Íæ‚P As String
@@ -256,6 +274,7 @@ Module HARK_Structure
     Public –‹ÆŠArray() As –‹ÆŠˆê——
     Public Œf¦”ÂArray() As Œf¦”Âˆê——
     Public PHsmosˆã—Ã‹@ŠÖArray() As PHsmosˆã—Ã‹@ŠÖˆê——
+    Public {İArray() As {İˆê——
     Public –¼Ì«‘Array() As –¼Ì«‘ˆê——
     Public €–Ú«‘Array() As €–Ú«‘ˆê——
 

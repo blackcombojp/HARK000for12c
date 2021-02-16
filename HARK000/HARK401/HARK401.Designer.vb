@@ -535,6 +535,9 @@ Partial Class HARK401
     Private xxxstr出力ファイル(5) As String
     Private xxxstr出力シート名(5) As String
     Private xxxstr出力種別(5) As String
+    Private xxxstr値引用出力ファイル(2) As String
+    Private xxxstr値引用出力シート名(5) As String
+    Private xxxstr病院コード As String
 
     Public Sub New(ByVal PerForm As Form, ByVal PerFormTitle As String, ByVal PerProgramID As String)
 
@@ -548,6 +551,7 @@ Partial Class HARK401
         xxxmForm = PerForm
         xxxstrForTitle = PerFormTitle
         xxxstrProgram_ID = PerProgramID
+        xxxstr病院コード = "T01"
 
         'PreviewKeyDownイベントハンドラの追加
         AddHandler txt取込ファイル.PreviewKeyDown, AddressOf txt_PreviewKeyDown

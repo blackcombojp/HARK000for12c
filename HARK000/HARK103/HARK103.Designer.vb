@@ -6,7 +6,7 @@
 ' *-----------------------------------------------------------------------------/
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class HARK501
+Partial Class HARK103
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
@@ -30,12 +30,7 @@ Partial Class HARK501
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DateYearField1 As GrapeCity.Win.Editors.Fields.DateYearField = New GrapeCity.Win.Editors.Fields.DateYearField()
-        Dim DateLiteralField1 As GrapeCity.Win.Editors.Fields.DateLiteralField = New GrapeCity.Win.Editors.Fields.DateLiteralField()
-        Dim DateMonthField1 As GrapeCity.Win.Editors.Fields.DateMonthField = New GrapeCity.Win.Editors.Fields.DateMonthField()
-        Dim DateLiteralField2 As GrapeCity.Win.Editors.Fields.DateLiteralField = New GrapeCity.Win.Editors.Fields.DateLiteralField()
-        Dim DateDayField1 As GrapeCity.Win.Editors.Fields.DateDayField = New GrapeCity.Win.Editors.Fields.DateDayField()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK501))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK103))
         Me.cmb事業所 = New System.Windows.Forms.ComboBox()
         Me.Menu_Log = New System.Windows.Forms.ToolStripMenuItem()
         Me.CntMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -43,15 +38,12 @@ Partial Class HARK501
         Me.BT_ID4 = New GrapeCity.Win.Buttons.GcSplitButton()
         Me.lb_Msg = New GrapeCity.Win.Editors.GcListBox()
         Me.btnフォルダ参照 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btnファイル参照１ = New GrapeCity.Win.Buttons.GcButton()
-        Me.txt取込ファイル１ = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.txtデータ出力先 = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.lbl取込ファイル１ = New System.Windows.Forms.Label()
+        Me.btnファイル参照 = New GrapeCity.Win.Buttons.GcButton()
+        Me.txt取込ファイル = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.txtエラー出力先 = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl取込ファイル = New System.Windows.Forms.Label()
         Me.lblエラーデータ出力先 = New System.Windows.Forms.Label()
         Me.pnl操作 = New System.Windows.Forms.Panel()
-        Me.btnファイル参照２ = New GrapeCity.Win.Buttons.GcButton()
-        Me.txt取込ファイル２ = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.lbl取込ファイル２ = New System.Windows.Forms.Label()
         Me.cmbサブプログラム = New System.Windows.Forms.ComboBox()
         Me.lblサブプログラム = New System.Windows.Forms.Label()
         Me.txt入力担当コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
@@ -70,20 +62,15 @@ Partial Class HARK501
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.ExcelCreator = New AdvanceSoftware.ExcelCreator.Creator(Me.components)
-        Me.txtDate = New GrapeCity.Win.Editors.GcDate(Me.components)
-        Me.DropDownButton1 = New GrapeCity.Win.Editors.DropDownButton()
-        Me.lbl対象日 = New System.Windows.Forms.Label()
         Me.CntMenuStrip.SuspendLayout()
         CType(Me.lb_Msg, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt取込ファイル１, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtデータ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt取込ファイル, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtエラー出力先, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl操作.SuspendLayout()
-        CType(Me.txt取込ファイル２, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt入力担当コード, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtDate, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cmb事業所
@@ -146,120 +133,83 @@ Partial Class HARK501
         'btnフォルダ参照
         '
         Me.btnフォルダ参照.BackColor = System.Drawing.SystemColors.Control
-        Me.btnフォルダ参照.Location = New System.Drawing.Point(402, 263)
+        Me.btnフォルダ参照.Location = New System.Drawing.Point(402, 151)
         Me.btnフォルダ参照.Name = "btnフォルダ参照"
         Me.btnフォルダ参照.Size = New System.Drawing.Size(60, 23)
-        Me.btnフォルダ参照.TabIndex = 20
+        Me.btnフォルダ参照.TabIndex = 15
         Me.btnフォルダ参照.TabStop = False
-        Me.btnフォルダ参照.Tag = "ID3"
+        Me.btnフォルダ参照.Tag = "ID1"
         Me.btnフォルダ参照.Text = "参照"
         Me.btnフォルダ参照.UseVisualStyleBackColor = False
         '
-        'btnファイル参照１
+        'btnファイル参照
         '
-        Me.btnファイル参照１.BackColor = System.Drawing.SystemColors.Control
-        Me.btnファイル参照１.Location = New System.Drawing.Point(403, 95)
-        Me.btnファイル参照１.Name = "btnファイル参照１"
-        Me.btnファイル参照１.Size = New System.Drawing.Size(60, 23)
-        Me.btnファイル参照１.TabIndex = 15
-        Me.btnファイル参照１.TabStop = False
-        Me.btnファイル参照１.Tag = "ID1"
-        Me.btnファイル参照１.Text = "参照"
-        Me.btnファイル参照１.UseVisualStyleBackColor = False
+        Me.btnファイル参照.BackColor = System.Drawing.SystemColors.Control
+        Me.btnファイル参照.Location = New System.Drawing.Point(403, 95)
+        Me.btnファイル参照.Name = "btnファイル参照"
+        Me.btnファイル参照.Size = New System.Drawing.Size(60, 23)
+        Me.btnファイル参照.TabIndex = 13
+        Me.btnファイル参照.TabStop = False
+        Me.btnファイル参照.Tag = "ID1"
+        Me.btnファイル参照.Text = "参照"
+        Me.btnファイル参照.UseVisualStyleBackColor = False
         '
-        'txt取込ファイル１
+        'txt取込ファイル
         '
-        Me.txt取込ファイル１.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt取込ファイル１.Location = New System.Drawing.Point(12, 95)
-        Me.txt取込ファイル１.Name = "txt取込ファイル１"
-        Me.txt取込ファイル１.Size = New System.Drawing.Size(382, 24)
-        Me.txt取込ファイル１.TabIndex = 14
-        Me.txt取込ファイル１.Tag = "ID1"
+        Me.txt取込ファイル.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt取込ファイル.Location = New System.Drawing.Point(12, 95)
+        Me.txt取込ファイル.Name = "txt取込ファイル"
+        Me.txt取込ファイル.Size = New System.Drawing.Size(382, 24)
+        Me.txt取込ファイル.TabIndex = 12
+        Me.txt取込ファイル.Tag = "ID1"
         '
-        'txtデータ出力先
+        'txtエラー出力先
         '
-        Me.txtデータ出力先.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtデータ出力先.Location = New System.Drawing.Point(12, 263)
-        Me.txtデータ出力先.Name = "txtデータ出力先"
-        Me.txtデータ出力先.Size = New System.Drawing.Size(382, 24)
-        Me.txtデータ出力先.TabIndex = 19
-        Me.txtデータ出力先.Tag = "ID3"
+        Me.txtエラー出力先.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txtエラー出力先.Location = New System.Drawing.Point(12, 151)
+        Me.txtエラー出力先.Name = "txtエラー出力先"
+        Me.txtエラー出力先.Size = New System.Drawing.Size(382, 24)
+        Me.txtエラー出力先.TabIndex = 14
+        Me.txtエラー出力先.Tag = "ID2"
         '
-        'lbl取込ファイル１
+        'lbl取込ファイル
         '
-        Me.lbl取込ファイル１.AutoSize = True
-        Me.lbl取込ファイル１.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl取込ファイル１.Location = New System.Drawing.Point(12, 72)
-        Me.lbl取込ファイル１.Name = "lbl取込ファイル１"
-        Me.lbl取込ファイル１.Size = New System.Drawing.Size(126, 20)
-        Me.lbl取込ファイル１.TabIndex = 166
-        Me.lbl取込ファイル１.Text = "【取込ファイル１】"
-        Me.lbl取込ファイル１.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lbl取込ファイル.AutoSize = True
+        Me.lbl取込ファイル.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl取込ファイル.Location = New System.Drawing.Point(12, 72)
+        Me.lbl取込ファイル.Name = "lbl取込ファイル"
+        Me.lbl取込ファイル.Size = New System.Drawing.Size(113, 20)
+        Me.lbl取込ファイル.TabIndex = 166
+        Me.lbl取込ファイル.Text = "【取込ファイル】"
+        Me.lbl取込ファイル.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lblエラーデータ出力先
         '
         Me.lblエラーデータ出力先.AutoSize = True
         Me.lblエラーデータ出力先.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblエラーデータ出力先.Location = New System.Drawing.Point(12, 240)
+        Me.lblエラーデータ出力先.Location = New System.Drawing.Point(12, 128)
         Me.lblエラーデータ出力先.Name = "lblエラーデータ出力先"
-        Me.lblエラーデータ出力先.Size = New System.Drawing.Size(113, 20)
+        Me.lblエラーデータ出力先.Size = New System.Drawing.Size(152, 20)
         Me.lblエラーデータ出力先.TabIndex = 165
-        Me.lblエラーデータ出力先.Text = "【データ出力先】"
+        Me.lblエラーデータ出力先.Text = "【エラーデータ出力先】"
         Me.lblエラーデータ出力先.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'pnl操作
         '
         Me.pnl操作.BackColor = System.Drawing.Color.FromArgb(CType(CType(211, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.pnl操作.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl操作.Controls.Add(Me.txtDate)
-        Me.pnl操作.Controls.Add(Me.lbl対象日)
-        Me.pnl操作.Controls.Add(Me.btnファイル参照２)
-        Me.pnl操作.Controls.Add(Me.txt取込ファイル２)
-        Me.pnl操作.Controls.Add(Me.lbl取込ファイル２)
         Me.pnl操作.Controls.Add(Me.cmbサブプログラム)
         Me.pnl操作.Controls.Add(Me.lblサブプログラム)
         Me.pnl操作.Controls.Add(Me.btnフォルダ参照)
-        Me.pnl操作.Controls.Add(Me.btnファイル参照１)
-        Me.pnl操作.Controls.Add(Me.txt取込ファイル１)
-        Me.pnl操作.Controls.Add(Me.txtデータ出力先)
-        Me.pnl操作.Controls.Add(Me.lbl取込ファイル１)
+        Me.pnl操作.Controls.Add(Me.btnファイル参照)
+        Me.pnl操作.Controls.Add(Me.txt取込ファイル)
+        Me.pnl操作.Controls.Add(Me.txtエラー出力先)
+        Me.pnl操作.Controls.Add(Me.lbl取込ファイル)
         Me.pnl操作.Controls.Add(Me.lblエラーデータ出力先)
         Me.pnl操作.Location = New System.Drawing.Point(25, 60)
         Me.pnl操作.Name = "pnl操作"
         Me.pnl操作.Size = New System.Drawing.Size(475, 614)
-        Me.pnl操作.TabIndex = 0
-        '
-        'btnファイル参照２
-        '
-        Me.btnファイル参照２.BackColor = System.Drawing.SystemColors.Control
-        Me.btnファイル参照２.Location = New System.Drawing.Point(402, 151)
-        Me.btnファイル参照２.Name = "btnファイル参照２"
-        Me.btnファイル参照２.Size = New System.Drawing.Size(60, 23)
-        Me.btnファイル参照２.TabIndex = 17
-        Me.btnファイル参照２.TabStop = False
-        Me.btnファイル参照２.Tag = "ID2"
-        Me.btnファイル参照２.Text = "参照"
-        Me.btnファイル参照２.UseVisualStyleBackColor = False
-        '
-        'txt取込ファイル２
-        '
-        Me.txt取込ファイル２.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt取込ファイル２.Location = New System.Drawing.Point(12, 151)
-        Me.txt取込ファイル２.Name = "txt取込ファイル２"
-        Me.txt取込ファイル２.Size = New System.Drawing.Size(382, 24)
-        Me.txt取込ファイル２.TabIndex = 16
-        Me.txt取込ファイル２.Tag = "ID2"
-        '
-        'lbl取込ファイル２
-        '
-        Me.lbl取込ファイル２.AutoSize = True
-        Me.lbl取込ファイル２.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl取込ファイル２.Location = New System.Drawing.Point(12, 128)
-        Me.lbl取込ファイル２.Name = "lbl取込ファイル２"
-        Me.lbl取込ファイル２.Size = New System.Drawing.Size(126, 20)
-        Me.lbl取込ファイル２.TabIndex = 168
-        Me.lbl取込ファイル２.Text = "【取込ファイル２】"
-        Me.lbl取込ファイル２.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.pnl操作.TabIndex = 183
         '
         'cmbサブプログラム
         '
@@ -363,13 +313,13 @@ Partial Class HARK501
         'BT_ID8
         '
         Me.BT_ID8.BackColor = System.Drawing.SystemColors.Control
-        Me.BT_ID8.Enabled = False
         Me.BT_ID8.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.BT_ID8.Location = New System.Drawing.Point(615, 0)
         Me.BT_ID8.Name = "BT_ID8"
         Me.BT_ID8.Size = New System.Drawing.Size(85, 24)
         Me.BT_ID8.TabIndex = 138
         Me.BT_ID8.Tag = "ID8"
+        Me.BT_ID8.Text = "エラー(&F8)"
         Me.BT_ID8.UseVisualStyleBackColor = False
         '
         'BT_ID3
@@ -449,41 +399,7 @@ Partial Class HARK501
         Me.ExcelCreator.ExcelFileType = AdvanceSoftware.ExcelCreator.ExcelFileType.xlsx
         Me.ExcelCreator.TemporaryPath = ""
         '
-        'txtDate
-        '
-        Me.txtDate.ContentAlignment = System.Drawing.ContentAlignment.MiddleCenter
-        DateLiteralField1.Text = "/"
-        DateLiteralField2.Text = "/"
-        Me.txtDate.Fields.AddRange(New GrapeCity.Win.Editors.Fields.DateField() {DateYearField1, DateLiteralField1, DateMonthField1, DateLiteralField2, DateDayField1})
-        Me.txtDate.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtDate.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.txtDate.Location = New System.Drawing.Point(12, 207)
-        Me.txtDate.MaxDate = New Date(2999, 12, 31, 23, 59, 59, 0)
-        Me.txtDate.MaxValue = New Date(2999, 12, 31, 23, 59, 59, 0)
-        Me.txtDate.MinDate = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.txtDate.MinValue = New Date(2000, 1, 1, 0, 0, 0, 0)
-        Me.txtDate.Name = "txtDate"
-        Me.txtDate.SideButtons.AddRange(New GrapeCity.Win.Editors.SideButtonBase() {Me.DropDownButton1})
-        Me.txtDate.Size = New System.Drawing.Size(118, 26)
-        Me.txtDate.TabIndex = 18
-        Me.txtDate.Value = Nothing
-        '
-        'DropDownButton1
-        '
-        Me.DropDownButton1.Name = "DropDownButton1"
-        '
-        'lbl対象日
-        '
-        Me.lbl対象日.AutoSize = True
-        Me.lbl対象日.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl対象日.Location = New System.Drawing.Point(12, 184)
-        Me.lbl対象日.Name = "lbl対象日"
-        Me.lbl対象日.Size = New System.Drawing.Size(74, 20)
-        Me.lbl対象日.TabIndex = 171
-        Me.lbl対象日.Text = "【対象日】"
-        Me.lbl対象日.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'HARK501
+        'HARK103
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(255, Byte), Integer))
@@ -508,21 +424,19 @@ Partial Class HARK501
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximizeBox = False
-        Me.Name = "HARK501"
+        Me.Name = "HARK103"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FMTITLE"
         Me.CntMenuStrip.ResumeLayout(False)
         CType(Me.lb_Msg, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt取込ファイル１, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtデータ出力先, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt取込ファイル, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtエラー出力先, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl操作.ResumeLayout(False)
         Me.pnl操作.PerformLayout()
-        CType(Me.txt取込ファイル２, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt入力担当コード, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtDate, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -535,10 +449,10 @@ Partial Class HARK501
     Private WithEvents BT_ID4 As GrapeCity.Win.Buttons.GcSplitButton
     Private WithEvents lb_Msg As GrapeCity.Win.Editors.GcListBox
     Private WithEvents btnフォルダ参照 As GrapeCity.Win.Buttons.GcButton
-    Private WithEvents btnファイル参照１ As GrapeCity.Win.Buttons.GcButton
-    Private WithEvents txt取込ファイル１ As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents txtデータ出力先 As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents lbl取込ファイル１ As Label
+    Private WithEvents btnファイル参照 As GrapeCity.Win.Buttons.GcButton
+    Private WithEvents txt取込ファイル As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents txtエラー出力先 As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents lbl取込ファイル As Label
     Private WithEvents lblエラーデータ出力先 As Label
     Private WithEvents pnl操作 As Panel
     Private WithEvents txt入力担当コード As GrapeCity.Win.Editors.GcTextBox
@@ -559,12 +473,6 @@ Partial Class HARK501
     Private WithEvents cmbサブプログラム As ComboBox
     Private WithEvents lblサブプログラム As Label
     Private WithEvents ExcelCreator As AdvanceSoftware.ExcelCreator.Creator
-    Private WithEvents btnファイル参照２ As GrapeCity.Win.Buttons.GcButton
-    Private WithEvents txt取込ファイル２ As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents lbl取込ファイル２ As Label
-    Private WithEvents txtDate As GrapeCity.Win.Editors.GcDate
-    Private WithEvents DropDownButton1 As GrapeCity.Win.Editors.DropDownButton
-    Private WithEvents lbl対象日 As Label
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -574,7 +482,10 @@ Partial Class HARK501
     Private xxxstrForTitle As String
     Private xxxint事業所コード As Integer
     Private xxxstr担当者名 As String
+    Private xxxstr得意先情報 As String
     Private xxxintCnt(3) As Integer
+    Private xxxintNo As Integer
+
 
     Public Sub New(ByVal PerForm As Form, ByVal PerFormTitle As String, ByVal PerProgramID As String)
 
@@ -590,16 +501,15 @@ Partial Class HARK501
         xxxstrProgram_ID = PerProgramID
 
         'PreviewKeyDownイベントハンドラの追加
-        AddHandler txt取込ファイル１.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
-        AddHandler txtデータ出力先.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
+        AddHandler txt取込ファイル.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
+        AddHandler txtエラー出力先.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
 
         'PreviewKeyDownイベントハンドラの追加
         AddHandler cmbサブプログラム.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
 
+
         'KeyDownイベントハンドラの追加
-        AddHandler txt取込ファイル１.KeyDown, AddressOf Txt_KeyDown
-        AddHandler txt取込ファイル２.KeyDown, AddressOf Txt_KeyDown
-        AddHandler txtDate.KeyDown, AddressOf Txt_KeyDown
+        AddHandler txt取込ファイル.KeyDown, AddressOf Txt_KeyDown
         AddHandler cmbサブプログラム.KeyDown, AddressOf Txt_KeyDown
 
         'SelectedValueChangedイベントハンドラの追加
@@ -617,8 +527,4 @@ Partial Class HARK501
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
-
-
-
-
 End Class

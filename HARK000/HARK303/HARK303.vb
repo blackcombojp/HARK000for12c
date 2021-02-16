@@ -38,7 +38,7 @@ Public Class HARK303
             SttBar_3.Text = "Ver : " & Application.ProductVersion
 
             If DLTP0000_PROC0005(xxxstrProgram_ID, gintSQLCODE, gstrSQLERRM) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 'txt検索院内コード.Focus()
             End If
 
@@ -637,7 +637,7 @@ Public Class HARK303
                     'If IsNull(txt検索商品コード.Text.Trim) = False Then
 
                     '    If DLTP0901_PROC0003(xxxstrProgram_ID, DUMMY_LNGCODE, My.Settings.事業所コード, txt検索商品コード.Text.Trim, gintSQLCODE, gstrSQLERRM) = False Then
-                    '        MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    '        MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                     '        lbl検索メーカ名.Text = ""
                     '        lbl検索メーカ品番.Text = ""
                     '        lbl検索商品名.Text = ""
@@ -653,7 +653,7 @@ Public Class HARK303
 
                     '        End With
                     '        If gintSQLCODE = 8 Then
-                    '            MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    '            MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                     '            txt検索商品コード.Focus()
                     '        End If
                     '    End If
@@ -693,7 +693,7 @@ Public Class HARK303
         Try
             'Oracle接続状態確認
             If (OraConnectState(gintRtn, gintSQLCODE, gstrSQLERRM)) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -815,7 +815,7 @@ EndExecute:
                 If gintSQLCODE = 1 Then
                     MsgBox(MSG_COM009, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                 Else
-                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                     log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
                 End If
                 txt入力担当コード.Text = ""

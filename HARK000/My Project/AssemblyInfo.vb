@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("アイティーアイ株式会社")>
 <Assembly: AssemblyProduct("SPDツール for Aptage.MD2")>
-<Assembly: AssemblyCopyright("2019-2020 ITI Corporation")>
+<Assembly: AssemblyCopyright("2019-2021 ITI Corporation")>
 <Assembly: AssemblyTrademark("ITI Corporation")>
 
 <Assembly: ComVisible(False)>

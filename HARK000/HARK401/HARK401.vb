@@ -38,7 +38,7 @@ Public Class HARK401
             SttBar_3.Text = "Ver : " & Application.ProductVersion
 
             If DLTP0000_PROC0005(xxxstrProgram_ID, gintSQLCODE, gstrSQLERRM) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 txtデータ出力先.Text = Get_DesktopPath()
             End If
 
@@ -206,7 +206,7 @@ Public Class HARK401
             'サブプログラム一覧取得
             If DLTP0901_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, gintSQLCODE, gstrSQLERRM) = False Then
 
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
                 Exit Sub
 
@@ -297,6 +297,10 @@ Public Class HARK401
                     lbl取込ファイル.Text = "【WEB在庫移動ログ】"
 
                 Case 2 '請求情報チェック処理(請求明細)
+
+                    lbl取込ファイル.Text = "【請求明細】"
+
+                Case 3 '値引作成処理(請求明細)
 
                     lbl取込ファイル.Text = "【請求明細】"
 
@@ -514,7 +518,7 @@ Public Class HARK401
 
                     If My.Settings.事業所コード <> 0 Then
                         If DLTP0000_PROC0005(xxxstrProgram_ID, gintSQLCODE, gstrSQLERRM) = False Then
-                            MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                            MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                             txtデータ出力先.Text = Get_DesktopPath()
                         Else
                             txtデータ出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
@@ -767,7 +771,7 @@ Public Class HARK401
         Try
             'Oracle接続状態確認
             If (OraConnectState(gintRtn, gintSQLCODE, gstrSQLERRM)) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -834,6 +838,10 @@ Public Class HARK401
                             'テキスト取込
                             gintRtn = DLTP0401_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, 0, txtDate.Text.Trim, "請求明細", xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
 
+                        Case 3 '値引作成処理(請求明細)
+                            'テキスト取込
+                            gintRtn = DLTP0401_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxstr病院コード, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+
                     End Select
 
                     Select Case gintRtn
@@ -884,64 +892,113 @@ Public Class HARK401
 
                     End Select
 
-                    Set_ListItem(0, "")
-                    Set_ListItem(1, MSG_401001)
+                    Select Case xxxintSubProgram_ID
 
-                    If 出力ファイル名作成() = False Then
+                        Case 1, 2 '請求情報チェック処理
 
-                        Set_ListItem(1, MSG_COM898)
-                        Set_ListItem(1, MSG_401005)
-                        Set_ListItem(2, "")
+                            Set_ListItem(0, "")
+                            Set_ListItem(1, MSG_401001)
 
-                        GoTo EndExecute
+                            If 出力ファイル名作成() = False Then
 
-                    End If
+                                Set_ListItem(1, MSG_COM898)
+                                Set_ListItem(1, MSG_401005)
+                                Set_ListItem(2, "")
 
-                    For ii = 24 To 28
+                                GoTo EndExecute
 
-                        Set_ListItem(1, xxxstr出力種別(ii - 24) & MSG_401002)
+                            End If
 
-                        'チェック結果データ検索
-                        gintRtn = DLTP0401_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, 0, ii, gintSQLCODE, gstrSQLERRM)
+                            For ii = 24 To 28
 
-                        Select Case gintRtn
+                                Set_ListItem(1, xxxstr出力種別(ii - 24) & MSG_401002)
 
-                            Case 0 '正常終了
+                                'チェック結果データ検索
+                                gintRtn = DLTP0401_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, 0, ii, gintSQLCODE, gstrSQLERRM)
 
-                                gblRtn = データ出力処理EX(xxxstr出力ファイル(ii - 24), ii, xxxstr出力シート名(ii - 24))
+                                Select Case gintRtn
 
-                                If gblRtn = True Then
+                                    Case 0 '正常終了
 
-                                    Set_ListItem(1, MSG_301020 & "【" & gintResultCnt & "】")
-                                    Set_ListItem(1, MSG_401004)
+                                        gblRtn = データ出力処理EX(xxxstr出力ファイル(ii - 24), ii, xxxstr出力シート名(ii - 24))
 
+                                        If gblRtn = True Then
 
-                                Else
-
-                                    Set_ListItem(1, MSG_401003)
-
-
-                                End If
-
-                            Case 2 '対象件数0件
-
-                                Set_ListItem(1, MSG_301005)
+                                            Set_ListItem(1, MSG_301020 & "【" & gintResultCnt & "】")
+                                            Set_ListItem(1, MSG_401004)
 
 
-                            Case 9 'エラー
+                                        Else
 
-                                Set_ListItem(1, MSG_COM899 & gintSQLCODE)
-                                Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-                                Set_ListItem(1, MSG_401003)
+                                            Set_ListItem(1, MSG_401003)
+
+
+                                        End If
+
+                                    Case 2 '対象件数0件
+
+                                        Set_ListItem(1, MSG_301005)
+
+
+                                    Case 9 'エラー
+
+                                        Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                                        Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                                        Set_ListItem(1, MSG_401003)
+                                        Set_ListItem(1, MSG_COM901)
+
+
+                                End Select
+
+                            Next
+
+                            Set_ListItem(1, MSG_401006)
+                            Set_ListItem(2, "")
+
+                        Case 3 '値引作成処理
+
+                            Set_ListItem(0, "")
+                            Set_ListItem(1, MSG_401012)
+                            Set_ListItem(1, MSG_401007)
+
+                            If 値引用出力ファイル名作成() = False Then
+
+                                Set_ListItem(1, MSG_COM898)
+                                Set_ListItem(1, MSG_401008)
+                                Set_ListItem(2, "")
+
+                                GoTo EndExecute
+
+                            End If
+
+                            If 値引金額確認表作成処理() = False Then
+
+                                Set_ListItem(1, MSG_401010)
                                 Set_ListItem(1, MSG_COM901)
+                                Set_ListItem(2, "")
 
+                                GoTo EndExecute
 
-                        End Select
+                            End If
 
-                    Next
+                            Set_ListItem(1, MSG_401011)
+                            Set_ListItem(1, MSG_401013)
 
-                    Set_ListItem(1, MSG_401006)
-                    Set_ListItem(2, "")
+                            If 値引金額一覧作成処理() = False Then
+
+                                Set_ListItem(1, MSG_401014)
+                                Set_ListItem(1, MSG_COM901)
+                                Set_ListItem(2, "")
+
+                                GoTo EndExecute
+
+                            End If
+
+                            Set_ListItem(1, MSG_401015)
+                            Set_ListItem(1, MSG_401009)
+                            Set_ListItem(2, "")
+
+                    End Select
 
 EndExecute:
                     cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
@@ -1013,7 +1070,7 @@ EndExecute:
                 If gintSQLCODE = 1 Then
                     MsgBox(MSG_COM009, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                 Else
-                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                     log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
                 End If
                 txt入力担当コード.Text = ""
@@ -1078,7 +1135,7 @@ EndExecute:
                     End If
 
 
-                Case 2 '請求情報チェック処理(請求明細)
+                Case 2, 3 '請求情報チェック処理(請求明細)/値引金額作成処理(請求明細)
 
                     If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP4012ImpFileName) Then
                         MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
@@ -1248,7 +1305,8 @@ EndExecute:
         Dim ColMax As Integer
         Dim RowCnt As Integer
         Dim RowMax As Integer
-        Dim strHeaderText As String
+        Dim strHeaderText As String = Nothing
+        Dim strSheetName As String = Nothing
         Dim stArrayData As String()
         Dim i As Integer
 
@@ -1257,13 +1315,33 @@ EndExecute:
 
             エラーデータ出力処理 = False
 
-            '出力ヘッダ取得
-            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 1, 3, 99, "出力ヘッダ")
-            strHeaderText = gstrDLTP0997S_FUNC005
+            Select Case xxxintSubProgram_ID
 
-            '項目数取得
-            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 1, 3, 99, "項目数")
-            ColMax = gintDLTP0997S_FUNC004
+                Case 1, 2 '請求情報チェック処理
+
+                    '出力ヘッダ取得
+                    gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 1, 3, 99, "出力ヘッダ")
+                    strHeaderText = gstrDLTP0997S_FUNC005
+
+                    '項目数取得
+                    gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 1, 3, 99, "項目数")
+                    ColMax = gintDLTP0997S_FUNC004
+
+                    strSheetName = "請求チェック処理-取込情報エラー"
+
+                Case 3 '値引作成処理
+
+                    '出力ヘッダ取得
+                    gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "出力ヘッダ")
+                    strHeaderText = gstrDLTP0997S_FUNC005
+
+                    '項目数取得
+                    gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "項目数")
+                    ColMax = gintDLTP0997S_FUNC004
+
+                    strSheetName = "値引作成処理-取込情報エラー"
+
+            End Select
 
             RowMax = gintResultCnt
 
@@ -1281,7 +1359,7 @@ EndExecute:
 
                 .DefaultFontName = "メイリオ"                                                   'デフォルトフォント
                 .DefaultFontPoint = 10                                                          'デフォルトフォントポイント
-                .SheetName = "請求チェック処理-取込情報エラー"                                  'シート名
+                .SheetName = strSheetName                                                       'シート名
                 .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.White                       '文字列色＝白
                 .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold                       '文字列修飾＝太字
                 .Pos(0, 0, ColMax - 1, 0).Attr.BackColor = Color.FromArgb(91, 155, 213)         '背景色＝青
@@ -1687,21 +1765,34 @@ EndExecute:
     ' *-----------------------------------------------------------------------------/
     Private Function エラーデータ検索処理() As Boolean
 
-        Dim strファイル名 As String
+        Dim strファイル名 As String = Nothing
         Dim dtNow As DateTime = Now
 
         Try
 
             エラーデータ検索処理 = False
 
-            'エラーデータ検索
-            gintRtn = DLTP0401_PROC0021(xxxstrProgram_ID, gintSPDシステムコード, 0, gintSQLCODE, gstrSQLERRM)
+            Select Case xxxintSubProgram_ID
+
+                Case 1, 2　'請求情報チェック処理
+
+                    'エラーデータ検索
+                    gintRtn = DLTP0401_PROC0021(xxxstrProgram_ID, gintSPDシステムコード, 0, gintSQLCODE, gstrSQLERRM)
+
+                    strファイル名 = Set_FilePath(txtデータ出力先.Text, "請求チェック処理-取込情報エラー_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+
+                Case 3 '値引作成処理
+
+                    'エラーデータ検索
+                    gintRtn = DLTP0401_PROC0031(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
+
+                    strファイル名 = Set_FilePath(txtデータ出力先.Text, "値引作成処理-取込情報エラー_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+
+            End Select
 
             Select Case gintRtn
 
                 Case 0 '正常終了
-
-                    strファイル名 = Set_FilePath(txtデータ出力先.Text, "請求チェック処理-取込情報エラー_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
 
                     If Chk_FileExists(strファイル名) = True Then
 
@@ -1739,7 +1830,10 @@ EndExecute:
 
                         Set_ListItem(1, MSG_301020 & "【" & gintResultCnt & "】")
                         Set_ListItem(1, MSG_101116)
-                        Set_ListItem(1, MSG_COM901)
+                        '★★暫定対応
+                        If xxxintSubProgram_ID = 1 Or xxxintSubProgram_ID = 2 Then '請求情報チェック処理
+                            Set_ListItem(1, MSG_COM901)
+                        End If
                         Set_ListItem(2, "")
 
 
@@ -1819,6 +1913,548 @@ EndExecute:
             Next
 
             出力ファイル名作成 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　値引用出力ファイル名作成
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　True・・正常、False・・異常
+    ' *-----------------------------------------------------------------------------/
+    Private Function 値引用出力ファイル名作成() As Boolean
+
+        Dim str個別名 As String
+        Dim ii As Integer
+        Dim dtNow As DateTime = Now
+
+        Try
+
+            値引用出力ファイル名作成 = False
+
+            '値引値引金額確認表
+            xxxstr値引用出力ファイル(0) = Set_FilePath(txtデータ出力先.Text, Mid(txtDate.Text.Replace("/", ""), 1, 6) & "_値引金額確認表_" & dtNow.ToString("yyyyMMdd") & ".xlsx")
+
+            If Chk_FileExists(xxxstr値引用出力ファイル(0)) = True Then
+                If Delete_File(xxxstr値引用出力ファイル(0)) <> 0 Then Exit Function
+            End If
+
+            '値引金額一覧
+            xxxstr値引用出力ファイル(1) = Set_FilePath(txtデータ出力先.Text, Mid(txtDate.Text.Replace("/", ""), 1, 6) & "_値引金額一覧_" & dtNow.ToString("yyyyMMdd") & ".xlsx")
+
+            If Chk_FileExists(xxxstr値引用出力ファイル(1)) = True Then
+                If Delete_File(xxxstr値引用出力ファイル(1)) <> 0 Then Exit Function
+            End If
+
+            For ii = 21 To 25
+
+                '出力ヘッダ取得
+                gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, ii, 99, "個別名")
+                str個別名 = gstrDLTP0997S_FUNC005
+                xxxstr値引用出力シート名(ii - 21) = str個別名
+
+            Next
+
+            値引用出力ファイル名作成 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　値引金額確認表作成処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function 値引金額確認表作成処理() As Boolean
+
+        '  Dim ColCnt As Integer
+        Dim ColMax As Integer
+        Dim RowCnt As Integer
+        Dim RowMax As Integer
+        Dim strHeaderText As String
+        Dim stArrayData As String()
+        Dim i As Integer
+
+        Try
+
+            値引金額確認表作成処理 = False
+
+            With ExcelCreator
+
+                .ExcelFileType = ExcelFileType.xlsx
+
+                'EXCEL作成
+                .CreateBook(xxxstr値引用出力ファイル(0), 3, xlsxVersion.ver2013)
+
+
+                ''01【除外商品対応前】
+                '出力ヘッダ取得
+                strHeaderText = ""
+                i = 0
+                gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 3, 21, 99, "出力ヘッダ")
+                strHeaderText = gstrDLTP0997S_FUNC005
+
+                '項目数取得
+                gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 3, 21, 99, "項目数")
+                ColMax = gintDLTP0997S_FUNC004
+
+                '出力ヘッダを分割
+                stArrayData = strHeaderText.Split(","c)
+
+                'チェック結果データ検索
+                gintRtn = DLTP0401_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 21, gintSQLCODE, gstrSQLERRM)
+
+                Select Case gintRtn
+                    Case 0
+                        Exit Select
+                    Case 2
+                        MsgBox(MSG_301005, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                    Case 9
+                        MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                End Select
+
+                RowMax = gintResultCnt
+
+                .SheetNo = 0
+                .DefaultFontName = "メイリオ"                                                          'デフォルトフォント
+                .DefaultFontPoint = 9                                                                  'デフォルトフォントポイント
+                .SheetName = xxxstr値引用出力シート名(0)                                               'シート名
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.White                              '文字列色＝白
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold                              '文字列修飾＝太字
+                .Pos(0, 0, ColMax - 1, 0).Attr.BackColor = Color.FromArgb(91, 155, 213)                '背景色＝青
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.VerticalAlignment = VerticalAlignment.Center       'テキスト縦位置=中心
+                .Pos(11, 1, 11, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right           'テキスト横位置=右(単価)
+                .Pos(12, 1, 12, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right           'テキスト横位置=右(数量)
+                .Pos(13, 1, 13, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right           'テキスト横位置=右(金額)
+                .Pos(14, 1, 14, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right           'テキスト横位置=右(消費税)
+                .Pos(11, 1, 11, RowMax).Attr.Format = "#,##0.00_ "                                     '数値表示(小数点以下2位表示)
+                .Pos(13, 1, 14, RowMax + 1).Attr.Format = "#,##0_ "                                    '数値表示
+
+                'ヘッダ項目出力
+                For Each stData As String In stArrayData
+                    .Pos(i, 0).Str = stData
+                    .Pos(i, 0).Attr.HorizontalAlignment = HorizontalAlignment.Center
+                    i += 1
+                Next stData
+
+                '明細行出力
+                For RowCnt = 0 To RowMax - 1
+
+                    .Pos(0, RowCnt + 1).Str = Results(RowCnt).strBuff(0)
+                    .Pos(1, RowCnt + 1).Str = Results(RowCnt).strBuff(1)
+                    .Pos(2, RowCnt + 1).Str = Results(RowCnt).strBuff(2)
+                    .Pos(3, RowCnt + 1).Str = Results(RowCnt).strBuff(3)
+                    .Pos(4, RowCnt + 1).Str = Results(RowCnt).strBuff(4)
+                    .Pos(5, RowCnt + 1).Str = Results(RowCnt).strBuff(5)
+                    .Pos(6, RowCnt + 1).Str = Results(RowCnt).strBuff(6)
+                    .Pos(7, RowCnt + 1).Str = Results(RowCnt).strBuff(7)
+                    .Pos(8, RowCnt + 1).Str = Results(RowCnt).strBuff(8)
+                    .Pos(9, RowCnt + 1).Str = Results(RowCnt).strBuff(9)
+                    .Pos(10, RowCnt + 1).Str = Results(RowCnt).strBuff(10)
+                    .Pos(11, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(11))
+                    .Pos(12, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(12))
+                    .Pos(13, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(13))
+                    .Pos(14, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(14))
+                    .Pos(15, RowCnt + 1).Str = Results(RowCnt).strBuff(15)
+                    .Pos(16, RowCnt + 1).Str = Results(RowCnt).strBuff(16)
+                    .Pos(17, RowCnt + 1).Str = Results(RowCnt).strBuff(17)
+                    .Pos(18, RowCnt + 1).Str = Results(RowCnt).strBuff(18)
+                    .Pos(19, RowCnt + 1).Str = Results(RowCnt).strBuff(19)
+                    .Pos(20, RowCnt + 1).Str = Results(RowCnt).strBuff(20)
+                    .Pos(21, RowCnt + 1).Str = Results(RowCnt).strBuff(21)
+
+                Next
+
+                '最終行に合計追加
+                .Pos(13, RowMax + 1).Func("=SUM(N2:N" & RowMax + 1 & ")", Nothing)
+                .Pos(14, RowMax + 1).Func("=SUM(O2:O" & RowMax + 1 & ")", Nothing)
+
+
+                ''02【除外商品対応後】
+                '出力ヘッダ取得
+                strHeaderText = ""
+                i = 0
+                gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 3, 22, 99, "出力ヘッダ")
+                strHeaderText = gstrDLTP0997S_FUNC005
+
+                '項目数取得
+                gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 3, 22, 99, "項目数")
+                ColMax = gintDLTP0997S_FUNC004
+
+                '出力ヘッダを分割
+                stArrayData = strHeaderText.Split(","c)
+
+                'チェック結果データ検索
+                gintRtn = DLTP0401_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 22, gintSQLCODE, gstrSQLERRM)
+
+                Select Case gintRtn
+                    Case 0
+                        Exit Select
+                    Case 2
+                        MsgBox(MSG_301005, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                    Case 9
+                        MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                End Select
+
+                RowMax = gintResultCnt
+
+                .SheetNo = 1
+                .DefaultFontName = "メイリオ"                                                          'デフォルトフォント
+                .DefaultFontPoint = 9                                                                  'デフォルトフォントポイント
+                .SheetName = xxxstr値引用出力シート名(1)                                               'シート名
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.White                              '文字列色＝白
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold                              '文字列修飾＝太字
+                .Pos(0, 0, ColMax - 1, 0).Attr.BackColor = Color.FromArgb(91, 155, 213)                '背景色＝青
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.VerticalAlignment = VerticalAlignment.Center       'テキスト縦位置=中心
+                .Pos(11, 1, 11, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right           'テキスト横位置=右(単価)
+                .Pos(12, 1, 12, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right           'テキスト横位置=右(数量)
+                .Pos(13, 1, 13, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right           'テキスト横位置=右(金額)
+                .Pos(14, 1, 14, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right           'テキスト横位置=右(消費税)
+                .Pos(11, 1, 11, RowMax).Attr.Format = "#,##0.00_ "                                     '数値表示(小数点以下2位表示)
+                .Pos(13, 1, 14, RowMax + 1).Attr.Format = "#,##0_ "                                    '数値表示
+
+                'ヘッダ項目出力
+                For Each stData As String In stArrayData
+                    .Pos(i, 0).Str = stData
+                    .Pos(i, 0).Attr.HorizontalAlignment = HorizontalAlignment.Center
+                    i += 1
+                Next stData
+
+                '明細行出力
+                For RowCnt = 0 To RowMax - 1
+
+                    .Pos(0, RowCnt + 1).Str = Results(RowCnt).strBuff(0)
+                    .Pos(1, RowCnt + 1).Str = Results(RowCnt).strBuff(1)
+                    .Pos(2, RowCnt + 1).Str = Results(RowCnt).strBuff(2)
+                    .Pos(3, RowCnt + 1).Str = Results(RowCnt).strBuff(3)
+                    .Pos(4, RowCnt + 1).Str = Results(RowCnt).strBuff(4)
+                    .Pos(5, RowCnt + 1).Str = Results(RowCnt).strBuff(5)
+                    .Pos(6, RowCnt + 1).Str = Results(RowCnt).strBuff(6)
+                    .Pos(7, RowCnt + 1).Str = Results(RowCnt).strBuff(7)
+                    .Pos(8, RowCnt + 1).Str = Results(RowCnt).strBuff(8)
+                    .Pos(9, RowCnt + 1).Str = Results(RowCnt).strBuff(9)
+                    .Pos(10, RowCnt + 1).Str = Results(RowCnt).strBuff(10)
+                    .Pos(11, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(11))
+                    .Pos(12, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(12))
+                    .Pos(13, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(13))
+                    .Pos(14, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(14))
+                    .Pos(15, RowCnt + 1).Str = Results(RowCnt).strBuff(15)
+                    .Pos(16, RowCnt + 1).Str = Results(RowCnt).strBuff(16)
+                    .Pos(17, RowCnt + 1).Str = Results(RowCnt).strBuff(17)
+                    .Pos(18, RowCnt + 1).Str = Results(RowCnt).strBuff(18)
+                    .Pos(19, RowCnt + 1).Str = Results(RowCnt).strBuff(19)
+                    .Pos(20, RowCnt + 1).Str = Results(RowCnt).strBuff(20)
+                    .Pos(21, RowCnt + 1).Str = Results(RowCnt).strBuff(21)
+
+                Next
+
+                '最終行に合計追加
+                .Pos(13, RowMax + 1).Func("=SUM(N2:N" & RowMax + 1 & ")", Nothing)
+                .Pos(14, RowMax + 1).Func("=SUM(O2:O" & RowMax + 1 & ")", Nothing)
+
+
+                ''03【集計】
+                '出力ヘッダ取得
+                strHeaderText = ""
+                i = 0
+                gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 3, 23, 99, "出力ヘッダ")
+                strHeaderText = gstrDLTP0997S_FUNC005
+
+                '項目数取得
+                gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 3, 23, 99, "項目数")
+                ColMax = gintDLTP0997S_FUNC004
+
+                '出力ヘッダを分割
+                stArrayData = strHeaderText.Split(","c)
+
+                'チェック結果データ検索
+                gintRtn = DLTP0401_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 23, gintSQLCODE, gstrSQLERRM)
+
+                Select Case gintRtn
+                    Case 0
+                        Exit Select
+                    Case 2
+                        MsgBox(MSG_301005, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                    Case 9
+                        MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                End Select
+
+                RowMax = gintResultCnt
+
+                .SheetNo = 2
+                .DefaultFontName = "メイリオ"                                                          'デフォルトフォント
+                .DefaultFontPoint = 9                                                                  'デフォルトフォントポイント
+                .SheetName = xxxstr値引用出力シート名(2)                                               'シート名
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.White                              '文字列色＝白
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold                              '文字列修飾＝太字
+                .Pos(0, 0, ColMax - 1, 0).Attr.BackColor = Color.FromArgb(91, 155, 213)                '背景色＝青
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.VerticalAlignment = VerticalAlignment.Center       'テキスト縦位置=中心
+                .Pos(3, 1, 3, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right             'テキスト横位置=右(金額)
+                .Pos(4, 1, 4, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right             'テキスト横位置=右(値引金額)
+                .Pos(3, 1, 4, RowMax + 1).Attr.Format = "#,##0_ "                                      '数値表示
+
+                'ヘッダ項目出力
+                For Each stData As String In stArrayData
+                    .Pos(i, 0).Str = stData
+                    .Pos(i, 0).Attr.HorizontalAlignment = HorizontalAlignment.Center
+                    i += 1
+                Next stData
+
+                '明細行出力
+                For RowCnt = 0 To RowMax - 1
+
+                    .Pos(0, RowCnt + 1).Str = Results(RowCnt).strBuff(0)
+                    .Pos(1, RowCnt + 1).Str = Results(RowCnt).strBuff(1)
+                    .Pos(2, RowCnt + 1).Str = Results(RowCnt).strBuff(2)
+                    .Pos(3, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(3))
+                    .Pos(4, RowCnt + 1).Long = CInt(Results(RowCnt).strBuff(4))
+
+                Next
+
+                '最終行に合計追加
+                .Pos(3, RowMax + 1).Func("=SUM(D2:D" & RowMax + 1 & ")", Nothing)
+                .Pos(4, RowMax + 1).Func("=D" & RowMax + 2 & "*0.04", Nothing)
+
+                .CloseBook(True)
+
+            End With
+
+            値引金額確認表作成処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　値引金額一覧作成処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function 値引金額一覧作成処理() As Boolean
+
+        'Dim ColCnt As Integer
+        Dim ColMax As Integer
+        Dim RowCnt As Integer
+        Dim RowMax As Integer
+        Dim strHeaderText As String
+        Dim str本文(3) As String
+        Dim stArrayData As String()
+        Dim i As Integer
+
+        Try
+
+            値引金額一覧作成処理 = False
+
+            str本文(0) = Mid(txtDate.Text.Replace("/", ""), 1, 4) & "年" & Mid(txtDate.Text.Replace("/", ""), 5, 2) & "月度値引金額"
+            str本文(1) = "消費税額"
+            str本文(2) = "施設別予算区分別値引金額"
+
+            With ExcelCreator
+
+                .ExcelFileType = ExcelFileType.xlsx
+
+                'EXCEL作成
+                .CreateBook(xxxstr値引用出力ファイル(1), 2, xlsxVersion.ver2013)
+
+                ''値引詳細（提出用）
+
+                ''共通
+                .SheetNo = 0
+                .DefaultFontName = "メイリオ"                                                          'デフォルトフォント
+                .DefaultFontPoint = 9                                                                  'デフォルトフォントポイント
+                .SheetName = xxxstr値引用出力シート名(3)                                               'シート名
+
+                ''データ取得
+                '出力ヘッダ取得
+                strHeaderText = ""
+                i = 0
+                gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 3, 24, 99, "出力ヘッダ")
+                strHeaderText = gstrDLTP0997S_FUNC005
+
+                '項目数取得
+                gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 3, 24, 99, "項目数")
+                ColMax = gintDLTP0997S_FUNC004
+
+                '出力ヘッダを分割
+                stArrayData = strHeaderText.Split(","c)
+
+                'チェック結果データ検索
+                gintRtn = DLTP0401_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 24, gintSQLCODE, gstrSQLERRM)
+
+                Select Case gintRtn
+                    Case 0
+                        Exit Select
+                    Case 2
+                        MsgBox(MSG_301005, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                    Case 9
+                        MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                End Select
+
+                RowMax = gintResultCnt
+
+                ''ヘッダ部
+                .Pos(0, 0, 1, 1).Attr.FontPoint = 11                                    '文字サイズ
+                .Pos(0, 0, 1, 1).Attr.FontStyle = FontStyle.Bold                        '文字列修飾＝太字
+                .Pos(0, 0, 4, 3).Attr.VerticalAlignment = VerticalAlignment.Center      'テキスト縦位置=中心
+                .Pos(0, 0, 1, 1).Attr.HorizontalAlignment = HorizontalAlignment.Right   'テキスト横位置=右
+                .Pos(1, 0, 1, 1).Attr.Format = """\""#,##0;""\""-#,##0"                 '金額表示
+
+                .Pos(0, 0).Str = str本文(0)
+                .Pos(0, 1).Str = str本文(1)
+                .Pos(0, 3).Str = str本文(2)
+                .Pos(1, 0).Func("=E" & RowMax + 6, Nothing)
+                .Pos(1, 1).Func("=ROUNDDOWN(B1*0.1,0)", Nothing)
+
+                ''明細部
+                .Pos(0, 4, ColMax - 1, 4).Attr.FontColor2 = xlColor.White                              '文字列色＝白
+                .Pos(0, 4, ColMax - 1, 4).Attr.FontStyle = FontStyle.Bold                              '文字列修飾＝太字
+                .Pos(0, 4, ColMax - 1, 4).Attr.BackColor = Color.FromArgb(91, 155, 213)                '背景色＝青
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.VerticalAlignment = VerticalAlignment.Center   'テキスト縦位置=中心
+                .Pos(3, 5, 3, RowMax + 4).Attr.HorizontalAlignment = HorizontalAlignment.Right         'テキスト横位置=右(金額)
+                .Pos(4, 5, 4, RowMax + 4).Attr.HorizontalAlignment = HorizontalAlignment.Right         'テキスト横位置=右(値引額)
+                .Pos(3, 5, 4, RowMax + 5).Attr.Format = "#,##0_ "                                      '数値表示
+
+                'ヘッダ項目出力
+                For Each stData As String In stArrayData
+                    .Pos(i, 4).Str = stData
+                    .Pos(i, 4).Attr.HorizontalAlignment = HorizontalAlignment.Center
+                    i += 1
+                Next stData
+
+                '明細行出力
+                For RowCnt = 0 To RowMax - 1
+
+                    .Pos(0, RowCnt + 5).Str = Results(RowCnt).strBuff(0)
+                    .Pos(1, RowCnt + 5).Str = Results(RowCnt).strBuff(1)
+                    .Pos(2, RowCnt + 5).Str = Results(RowCnt).strBuff(2)
+                    .Pos(3, RowCnt + 5).Long = CInt(Results(RowCnt).strBuff(3))
+                    .Pos(4, RowCnt + 5).Long = CInt(Results(RowCnt).strBuff(4))
+
+                Next
+
+                '最終行に合計追加
+                .Pos(3, RowMax + 5).Func("=SUM(D6:D" & RowMax + 5 & ")", Nothing)
+                .Pos(4, RowMax + 5).Func("=D" & RowMax + 6 & "*0.04", Nothing)
+
+
+                ''値引詳細（原さん用）
+
+                ''共通
+                .SheetNo = 1
+                .DefaultFontName = "メイリオ"                                                          'デフォルトフォント
+                .DefaultFontPoint = 9                                                                  'デフォルトフォントポイント
+                .SheetName = xxxstr値引用出力シート名(4)                                               'シート名
+
+                ''データ取得
+                '出力ヘッダ取得
+                strHeaderText = ""
+                i = 0
+                gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 3, 25, 99, "出力ヘッダ")
+                strHeaderText = gstrDLTP0997S_FUNC005
+
+                '項目数取得
+                gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 3, 25, 99, "項目数")
+                ColMax = gintDLTP0997S_FUNC004
+
+                '出力ヘッダを分割
+                stArrayData = strHeaderText.Split(","c)
+
+                'チェック結果データ検索
+                gintRtn = DLTP0401_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 25, gintSQLCODE, gstrSQLERRM)
+
+                Select Case gintRtn
+                    Case 0
+                        Exit Select
+                    Case 2
+                        MsgBox(MSG_301005, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                    Case 9
+                        MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                End Select
+
+                RowMax = gintResultCnt
+
+                ''ヘッダ部
+                .Pos(0, 0, 1, 1).Attr.FontPoint = 11                                    '文字サイズ
+                .Pos(0, 0, 1, 1).Attr.FontStyle = FontStyle.Bold                        '文字列修飾＝太字
+                .Pos(0, 0, 4, 3).Attr.VerticalAlignment = VerticalAlignment.Center      'テキスト縦位置=中心
+                .Pos(0, 0, 1, 1).Attr.HorizontalAlignment = HorizontalAlignment.Right   'テキスト横位置=右
+                .Pos(1, 0, 1, 1).Attr.Format = """\""#,##0;""\""-#,##0"                 '金額表示
+
+                .Pos(0, 0).Str = str本文(0)
+                .Pos(0, 1).Str = str本文(1)
+                .Pos(0, 3).Str = str本文(2)
+                .Pos(1, 0).Func("=E" & RowMax + 6, Nothing)
+                .Pos(1, 1).Func("=ROUNDDOWN(B1*0.1,0)", Nothing)
+
+                ''明細部
+                .Pos(0, 4, ColMax - 1, 4).Attr.FontColor2 = xlColor.White                              '文字列色＝白
+                .Pos(0, 4, ColMax - 1, 4).Attr.FontStyle = FontStyle.Bold                              '文字列修飾＝太字
+                .Pos(0, 4, ColMax - 1, 4).Attr.BackColor = Color.FromArgb(91, 155, 213)                '背景色＝青
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.VerticalAlignment = VerticalAlignment.Center   'テキスト縦位置=中心
+                .Pos(3, 5, 3, RowMax + 4).Attr.HorizontalAlignment = HorizontalAlignment.Right         'テキスト横位置=右(金額)
+                .Pos(4, 5, 4, RowMax + 4).Attr.HorizontalAlignment = HorizontalAlignment.Right         'テキスト横位置=右(値引額)
+                .Pos(5, 5, 5, RowMax + 4).Attr.HorizontalAlignment = HorizontalAlignment.Right         'テキスト横位置=右(消費税)
+                .Pos(3, 5, 5, RowMax + 5).Attr.Format = "#,##0_ "                                      '数値表示
+
+                'ヘッダ項目出力
+                For Each stData As String In stArrayData
+                    .Pos(i, 4).Str = stData
+                    .Pos(i, 4).Attr.HorizontalAlignment = HorizontalAlignment.Center
+                    i += 1
+                Next stData
+
+                '明細行出力
+                For RowCnt = 0 To RowMax - 1
+
+                    .Pos(0, RowCnt + 5).Str = Results(RowCnt).strBuff(0)
+                    .Pos(1, RowCnt + 5).Str = Results(RowCnt).strBuff(1)
+                    .Pos(2, RowCnt + 5).Str = Results(RowCnt).strBuff(2)
+                    .Pos(3, RowCnt + 5).Long = CInt(Results(RowCnt).strBuff(3))
+                    .Pos(4, RowCnt + 5).Long = CInt(Results(RowCnt).strBuff(4))
+                    .Pos(5, RowCnt + 5).Long = CInt(Results(RowCnt).strBuff(5))
+
+                Next
+
+                '最終行に合計追加
+                .Pos(3, RowMax + 5).Func("=SUM(D6:D" & RowMax + 5 & ")", Nothing)
+                .Pos(4, RowMax + 5).Func("=D" & RowMax + 6 & "*0.04", Nothing)
+                .Pos(5, RowMax + 5).Func("=E" & RowMax + 6 & "*0.1", Nothing)
+
+                .CloseBook(True)
+
+            End With
+
+            値引金額一覧作成処理 = True
 
         Catch ex As Exception
 

@@ -40,7 +40,7 @@ Public Class HARK501
             SttBar_3.Text = "Ver : " & Application.ProductVersion
 
             If DLTP0000_PROC0005(xxxstrProgram_ID, gintSQLCODE, gstrSQLERRM) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 txtデータ出力先.Text = Get_DesktopPath()
             End If
 
@@ -208,8 +208,7 @@ Public Class HARK501
             'サブプログラム一覧取得
             If DLTP0901_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, gintSQLCODE, gstrSQLERRM) = False Then
 
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Exit Sub
 
             End If
@@ -269,7 +268,7 @@ Public Class HARK501
 
             cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
 
-            txt取込ファイル.Text = ""
+            txt取込ファイル１.Text = ""
             txtデータ出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
 
         Catch ex As Exception
@@ -295,20 +294,47 @@ Public Class HARK501
 
                 Case 1 'SPD採用情報マスタ更新処理
 
-                    lbl取込ファイル.Text = "【採用商品リストファイル】"
-                    txt取込ファイル.Text = ""
-                    txt取込ファイル.Enabled = True
-                    btnファイル参照.Enabled = True
+                    lbl取込ファイル１.Text = "【採用商品リストファイル】"
+                    txt取込ファイル１.Text = ""
+                    txt取込ファイル１.Enabled = True
+                    btnファイル参照１.Enabled = True
+                    lbl取込ファイル２.Text = "【取込ファイル２】"
+                    txt取込ファイル２.Text = ""
+                    txt取込ファイル２.Enabled = False
+                    btnファイル参照２.Enabled = False
+                    txtDate.Text = ""
+                    txtDate.Enabled = False
                     txtデータ出力先.Enabled = True
                     btnフォルダ参照.Enabled = True
 
 
+                Case 3 'SPD採用商品マスタ一括更新処理
+
+                    lbl取込ファイル１.Text = "【採用商品マスタ業者名付】"
+                    txt取込ファイル１.Text = ""
+                    txt取込ファイル１.Enabled = True
+                    btnファイル参照１.Enabled = True
+                    lbl取込ファイル２.Text = "【採用商品リスト】"
+                    txt取込ファイル２.Text = ""
+                    txt取込ファイル２.Enabled = True
+                    btnファイル参照２.Enabled = True
+                    txtDate.Text = ""
+                    txtDate.Enabled = True
+                    txtデータ出力先.Enabled = True
+                    btnフォルダ参照.Enabled = True
+
                 Case Else
 
-                    lbl取込ファイル.Text = "【取込ファイル】"
-                    txt取込ファイル.Text = ""
-                    txt取込ファイル.Enabled = True
-                    btnファイル参照.Enabled = True
+                    lbl取込ファイル１.Text = "【取込ファイル１】"
+                    txt取込ファイル１.Text = ""
+                    txt取込ファイル１.Enabled = True
+                    btnファイル参照１.Enabled = True
+                    lbl取込ファイル２.Text = "【取込ファイル２】"
+                    txt取込ファイル２.Text = ""
+                    txt取込ファイル２.Enabled = True
+                    btnファイル参照２.Enabled = True
+                    txtDate.Text = ""
+                    txtDate.Enabled = True
                     txtデータ出力先.Enabled = True
                     btnフォルダ参照.Enabled = True
 
@@ -406,7 +432,7 @@ Public Class HARK501
 
                 '    End If
 
-                Case "ID2"  'データ出力先
+                Case "ID3"  'データ出力先
 
                     If e.Shift = False Then
 
@@ -494,6 +520,7 @@ Public Class HARK501
     Private Sub Cmb_SelectedValueChanged(sender As Object, e As EventArgs)
 
         Dim Tag As String
+        Dim SubForm As Form
 
         Try
 
@@ -516,7 +543,7 @@ Public Class HARK501
 
                     If My.Settings.事業所コード <> 0 Then
                         If DLTP0000_PROC0005(xxxstrProgram_ID, gintSQLCODE, gstrSQLERRM) = False Then
-                            MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                            MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                             txtデータ出力先.Text = Get_DesktopPath()
                         Else
                             txtデータ出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
@@ -530,6 +557,42 @@ Public Class HARK501
                     End With
 
                     Initialize条件(xxxintSubProgram_ID)
+
+                    Select Case xxxintSubProgram_ID
+
+                        Case 2 'SPD部署マスタメンテナンス
+
+                            If フォームヘッダチェック処理() = False Then
+                                cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                                Exit Sub
+                            End If
+
+                            SubForm = New HARK501S1(cmbサブプログラム.Text, xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
+
+                            SubForm.ShowDialog(Me)
+                            SubForm.Dispose()
+
+                            cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                            lb_Msg.Items.Clear()
+                            cmbサブプログラム.Focus()
+
+                        Case 4 'SPD採用商品マスタメンテナンス
+
+                            If フォームヘッダチェック処理() = False Then
+                                cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                                Exit Sub
+                            End If
+
+                            SubForm = New HARK501S2(cmbサブプログラム.Text, xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
+
+                            SubForm.ShowDialog(Me)
+                            SubForm.Dispose()
+
+                            cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                            lb_Msg.Items.Clear()
+                            cmbサブプログラム.Focus()
+
+                    End Select
 
             End Select
 
@@ -559,7 +622,7 @@ Public Class HARK501
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt取込ファイル.Focus()
+            txt取込ファイル１.Focus()
             Exit Sub
 
         End If
@@ -583,7 +646,7 @@ Public Class HARK501
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt取込ファイル.Focus()
+            txt取込ファイル１.Focus()
             Exit Sub
 
         End If
@@ -597,18 +660,23 @@ Public Class HARK501
     ' *　引数２　　　　　：　e      -- イベントデータクラス
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub Btnファイル参照_Click(sender As Object, e As EventArgs) Handles btnファイル参照.Click
+    Private Sub Btnファイル参照_Click(sender As Object, e As EventArgs) Handles btnファイル参照１.Click, btnファイル参照２.Click
 
         Dim OFDlg As New OpenFileDialog
         Dim strFilter As String = Nothing
+        Dim Tag As String
 
         Try
+
+            Tag = CStr(CType(sender, GrapeCity.Win.Buttons.GcButton).Tag)
 
             Select Case xxxintSubProgram_ID
 
                 Case 1 'SPD採用情報マスタ更新処理
                     strFilter = "xlsx Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
 
+                Case 3 'SPD採用商品マスタ一括更新処理
+                    strFilter = "csv Files (*.csv)|*.csv|All Files (*.*)|*.*"
                 Case Else
                     Exit Sub
 
@@ -619,17 +687,37 @@ Public Class HARK501
             OFDlg.FilterIndex = 1
             OFDlg.RestoreDirectory = True
 
-            If OFDlg.ShowDialog() = DialogResult.OK Then
+            Select Case Tag
 
-                txt取込ファイル.Text = OFDlg.FileName
-                txtデータ出力先.Focus()
+                Case "ID1" '取込ファイル１
 
-            Else
+                    If OFDlg.ShowDialog() = DialogResult.OK Then
 
-                txt取込ファイル.Text = ""
-                txt取込ファイル.Focus()
+                        txt取込ファイル１.Text = OFDlg.FileName
+                        txt取込ファイル２.Focus()
 
-            End If
+                    Else
+
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
+
+                    End If
+
+                Case "ID2" '取込ファイル２
+
+                    If OFDlg.ShowDialog() = DialogResult.OK Then
+
+                        txt取込ファイル２.Text = OFDlg.FileName
+                        txtデータ出力先.Focus()
+
+                    Else
+
+                        txt取込ファイル２.Text = ""
+                        txt取込ファイル２.Focus()
+
+                    End If
+
+            End Select
 
         Catch ex As Exception
 
@@ -658,7 +746,7 @@ Public Class HARK501
 
             Select Case Tag
 
-                Case "ID1" 'データ出力先
+                Case "ID3" 'データ出力先
 
                     If FDDlg.ShowDialog() = DialogResult.OK Then
 
@@ -777,7 +865,7 @@ Public Class HARK501
         Try
             'Oracle接続状態確認
             If (OraConnectState(gintRtn, gintSQLCODE, gstrSQLERRM)) = False Then
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM004 & vbCr & MSG_COM903, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Exit Sub
             End If
 
@@ -837,7 +925,7 @@ Public Class HARK501
 
                         Case 1 'SPD採用情報マスタ更新処理
 
-                            If Read_ExcelData(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
+                            If Read_ExcelData(txt取込ファイル１.Text.Trim) = False Then GoTo EndExecute
 
                             'テキスト取込
                             gintRtn = DLTP0501_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
@@ -855,7 +943,7 @@ Public Class HARK501
 
                                 Case 9 'エラー
 
-                                    取込エラーファイル複製処理()
+                                    取込エラーファイル複製処理(1)
 
                                     Set_ListItem(1, MSG_COM899 & gintSQLCODE)
                                     Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
@@ -863,8 +951,89 @@ Public Class HARK501
                                     Set_ListItem(1, MSG_COM901)
                                     Set_ListItem(2, "")
 
+                            End Select
+
+                        Case 3 'SPD採用商品マスタ一括更新処理
+
+                            '採用商品マスタ業者名付
+                            If 値引用マスタデータ取込処理(1, txt取込ファイル１.Text.Trim, True) = False Then GoTo EndExecute
+
+                            'テキスト取込
+                            gintRtn = DLTP0501_PROC0003(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 1, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+
+                            Select Case gintRtn
+
+                                Case 0 '正常終了
+
+                                    Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
+                                    Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
+                                    Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
+                                    Set_ListItem(1, MSG_501003)
+                                    Set_ListItem(2, "")
+
+
+                                Case 9 'エラー
+
+                                    取込エラーファイル複製処理(1)
+
+                                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                                    Set_ListItem(1, MSG_501004)
+                                    Set_ListItem(1, MSG_COM901)
+                                    Set_ListItem(2, "")
+
+                                    GoTo EndExecute
 
                             End Select
+
+                            If xxxintCnt(2) > 0 Then
+                                gblRtn = データ検索処理(1, 0)
+                                GoTo EndExecute
+                            End If
+
+                            '採用商品リスト
+                            If 値引用マスタデータ取込処理(2, txt取込ファイル２.Text.Trim, True) = False Then GoTo EndExecute
+
+                            'テキスト取込
+                            gintRtn = DLTP0501_PROC0003(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+
+
+                            Select Case gintRtn
+
+                                Case 0 '正常終了
+
+                                    Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
+                                    Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
+                                    Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
+                                    Set_ListItem(1, MSG_501003)
+                                    Set_ListItem(2, "")
+
+
+                                Case 9 'エラー
+
+                                    取込エラーファイル複製処理(1)
+
+                                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                                    Set_ListItem(1, MSG_501004)
+                                    Set_ListItem(1, MSG_COM901)
+                                    Set_ListItem(2, "")
+
+                                    GoTo EndExecute
+
+                            End Select
+
+                            If xxxintCnt(2) > 0 Then
+                                gblRtn = データ検索処理(1, 1)
+                                GoTo EndExecute
+                            End If
+
+                            '結果出力
+                            'マルコ
+                            If データ検索処理(2, 1) = False Then GoTo EndExecute
+
+                            'マルビシ
+                            If データ検索処理(2, 2) = False Then GoTo EndExecute
 
                         Case Else
 
@@ -942,8 +1111,7 @@ EndExecute:
                 If gintSQLCODE = 1 Then
                     MsgBox(MSG_COM009, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                 Else
-                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                    log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 End If
                 txt入力担当コード.Text = ""
                 txt入力担当コード.Focus()
@@ -964,55 +1132,130 @@ EndExecute:
                 Case 1 'SPD採用情報マスタ更新処理
 
                     '取込ファイルチェック
-                    If IsNull(txt取込ファイル.Text.Trim) = True Then
+                    If IsNull(txt取込ファイル１.Text.Trim) = True Then
                         MsgBox(MSG_501001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Focus()
+                        txt取込ファイル１.Focus()
                         Exit Function
                     End If
 
-                    If Chk_FileExists(txt取込ファイル.Text.Trim) = False Then
+                    If Chk_FileExists(txt取込ファイル１.Text.Trim) = False Then
                         MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Text = ""
-                        txt取込ファイル.Focus()
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
                         Exit Function
                     End If
 
-                    If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP501ImpFileName) Then
+                    If Not Get_FileNameWithoutExtension(txt取込ファイル１.Text).Contains(HARKP5011ImpFileName) Then
                         MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Text = ""
-                        txt取込ファイル.Focus()
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
                         Exit Function
                     End If
 
                     '拡張子比較
-                    If Get_ExtensionEx(txt取込ファイル.Text).CompareTo(XLSXExtension) <> 0 Then
+                    If Get_ExtensionEx(txt取込ファイル１.Text).CompareTo(XLSXExtension) <> 0 Then
                         MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Text = ""
-                        txt取込ファイル.Focus()
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
                         Exit Function
                     End If
 
+                Case 3 'SPD採用商品マスタ一括更新処理
+
+                    '採用商品マスタ業者名付
+                    '取込ファイルチェック
+                    If IsNull(txt取込ファイル１.Text.Trim) = True Then
+                        MsgBox(MSG_501019, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル１.Focus()
+                        Exit Function
+                    End If
+
+                    If Chk_FileExists(txt取込ファイル１.Text.Trim) = False Then
+                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
+                        Exit Function
+                    End If
+
+                    If Not Get_FileNameWithoutExtension(txt取込ファイル１.Text).Contains(HARKP5012ImpFileName) Then
+                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
+                        Exit Function
+                    End If
+
+                    '拡張子比較
+                    If Get_Extension(txt取込ファイル１.Text).CompareTo(CSVExtension) <> 0 Then
+                        MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
+                        Exit Function
+                    End If
+
+                    '採用商品リスト
+                    '取込ファイルチェック
+                    If IsNull(txt取込ファイル２.Text.Trim) = True Then
+                        MsgBox(MSG_501001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル２.Focus()
+                        Exit Function
+                    End If
+
+                    If Chk_FileExists(txt取込ファイル２.Text.Trim) = False Then
+                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル２.Text = ""
+                        txt取込ファイル２.Focus()
+                        Exit Function
+                    End If
+
+                    If Not Get_FileNameWithoutExtension(txt取込ファイル２.Text).Contains(HARKP5011ImpFileName) Then
+                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル２.Text = ""
+                        txt取込ファイル２.Focus()
+                        Exit Function
+                    End If
+
+                    '拡張子比較
+                    If Get_Extension(txt取込ファイル２.Text).CompareTo(CSVExtension) <> 0 Then
+                        MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル２.Text = ""
+                        txt取込ファイル２.Focus()
+                        Exit Function
+                    End If
+
+                    '対象日
+                    If IsNull(txtDate.Text.Trim) = True Then
+                        MsgBox(MSG_501020, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txtDate.Focus()
+                        Exit Function
+                    End If
+
+                    If Chk_Date(txtDate.Text.Trim, 1) = False Then
+                        txtDate.Text = ""
+                        MsgBox(MSG_501021, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
+                        txtDate.Focus()
+                        Exit Function
+                    End If
+
+
+                    'データ出力先チェック
+                    If IsNull(txtデータ出力先.Text.Trim) = True Then
+                        MsgBox(MSG_301021, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txtデータ出力先.Focus()
+                        Exit Function
+                    End If
+
+                    If Chk_DirExists(txtデータ出力先.Text.Trim) = False Then
+                        MsgBox(MSG_301021, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txtデータ出力先.Text = ""
+                        txtデータ出力先.Focus()
+                        Exit Function
+                    End If
 
                 Case Else
 
                     Exit Function
 
             End Select
-
-            'とりあえず不要
-            ''データ出力先チェック
-            'If IsNull(txtデータ出力先.Text.Trim) = True Then
-            '    MsgBox(MSG_301021, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '    txtデータ出力先.Focus()
-            '    Exit Function
-            'End If
-
-            'If Chk_DirExists(txtデータ出力先.Text.Trim) = False Then
-            '    MsgBox(MSG_301021, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '    txtデータ出力先.Text = ""
-            '    txtデータ出力先.Focus()
-            '    Exit Function
-            'End If
 
             実行前チェック処理 = True
 
@@ -1321,13 +1564,12 @@ EndExecute:
     ' *　モジュール機能　：　取込エラーファイル複製
     ' *
     ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　なし
+    ' *　引数１　　　　　：　intFlg -- 1・txt取込ファイル１　2・txt取込ファイル２
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub 取込エラーファイル複製処理()
+    Private Sub 取込エラーファイル複製処理(ByVal intFlg As Integer)
 
         Dim strCopyFile As String
-
         Dim strBackupDir As String
         Dim strBackupFileName As String
 
@@ -1336,11 +1578,25 @@ EndExecute:
             strBackupDir = Set_FilePath(gstrAppFilePath, "error\" & Reflection.MethodBase.GetCurrentMethod.DeclaringType.Name)
             If Chk_DirExists(strBackupDir) = False Then gblRtn = Create_Dir(strBackupDir)
 
-            strBackupFileName = Get_FileName(txt取込ファイル.Text)
-            strCopyFile = strBackupDir & "\" & strBackupFileName
-            If Chk_FileExists(strCopyFile) = True Then gintRtn = Delete_File(strCopyFile)
+            Select Case intFlg
 
-            File.Copy(txt取込ファイル.Text, strCopyFile)
+                Case 1 'txt取込ファイル１
+
+                    strBackupFileName = Get_FileName(txt取込ファイル１.Text)
+                    strCopyFile = strBackupDir & "\" & strBackupFileName
+                    If Chk_FileExists(strCopyFile) = True Then gintRtn = Delete_File(strCopyFile)
+
+                    File.Copy(txt取込ファイル１.Text, strCopyFile)
+
+                Case 2 'txt取込ファイル２
+
+                    strBackupFileName = Get_FileName(txt取込ファイル２.Text)
+                    strCopyFile = strBackupDir & "\" & strBackupFileName
+                    If Chk_FileExists(strCopyFile) = True Then gintRtn = Delete_File(strCopyFile)
+
+                    File.Copy(txt取込ファイル２.Text, strCopyFile)
+
+            End Select
 
         Catch ex As Exception
 
@@ -1350,4 +1606,426 @@ EndExecute:
         End Try
 
     End Sub
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　フォームヘッダチェック処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　引数２　　　　　：　なし
+    ' *　戻値　　　　　　：　True・・正常、False・・異常
+    ' *-----------------------------------------------------------------------------/
+    Private Function フォームヘッダチェック処理() As Boolean
+
+        Try
+            フォームヘッダチェック処理 = False
+
+            If IsNull(cmb事業所.Text.Trim) = True Then
+                MsgBox(MSG_COM007, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                cmb事業所.Focus()
+                Exit Function
+            End If
+
+            If IsNull(txt入力担当コード.Text.Trim) = True Then
+                MsgBox(MSG_COM008, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt入力担当コード.Focus()
+                Exit Function
+            End If
+
+            If CLng(txt入力担当コード.Text.Trim) = 0 Then
+                MsgBox(MSG_COM008, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt入力担当コード.Focus()
+                Exit Function
+            End If
+
+            If DLTP0900_PROC0001(xxxstrProgram_ID, CLng(txt入力担当コード.Text.Trim), My.Settings.事業所コード, gintSQLCODE, gstrSQLERRM) = False Then
+                If gintSQLCODE = 1 Then
+                    MsgBox(MSG_COM009, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                Else
+                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                End If
+                txt入力担当コード.Text = ""
+                txt入力担当コード.Focus()
+                Exit Function
+            Else
+                SttBar_2.Text = gstr担当者名
+            End If
+
+            フォームヘッダチェック処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　テキスト取込処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　intFlg 　　　 -- 1・txt取込ファイル１　2・txt取込ファイル２
+    ' *　引数２　　　　　：　strFile 　　　-- ファイルパス
+    ' *　引数３　　　　　：　blnHeaderLine -- 1行目はヘッダ行とみなす
+    ' *　戻値　　　　　　：　True・・正常、False・・異常
+    ' *-----------------------------------------------------------------------------/
+    Private Function 値引用マスタデータ取込処理(intFlg As Integer, strFile As String, blnHeaderLine As Boolean) As Boolean
+
+        'Dim SR As New StreamReader(strFile, System.Text.Encoding.GetEncoding(932))
+        Dim SR As StreamReader = Nothing
+        Dim i As Integer
+        Dim blnFirstLine As Boolean
+        Dim line As String
+
+        Try
+
+            値引用マスタデータ取込処理 = False
+
+            Select Case intFlg
+
+
+                Case 1 '採用商品マスタ業者名付
+                    Set_ListItem(0, "")
+                    Set_ListItem(1, "【採用商品マスタ業者名付】" & MSG_301014)
+
+                Case 2 '採用商品リスト
+                    Set_ListItem(0, "")
+                    Set_ListItem(1, "【採用商品リスト】" & MSG_301014)
+
+                Case Else
+                    Set_ListItem(0, "")
+                    Set_ListItem(1, "【不明】")
+                    Set_ListItem(1, MSG_301014)
+                    Set_ListItem(1, MSG_301016)
+                    Set_ListItem(1, MSG_101109)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+            End Select
+
+            blnFirstLine = True
+            line = ""
+
+            i = 0
+
+            SR = New StreamReader(strFile, System.Text.Encoding.GetEncoding(932))
+
+            While SR.Peek() > -1
+
+                line = ""
+                line = SR.ReadLine
+
+                If blnHeaderLine = True Then
+                    '1行目はヘッダの為、スキップ
+                    If blnFirstLine = True Then
+                        blnFirstLine = False
+                        Continue While
+                    End If
+                End If
+
+                ReDim Preserve 取込データArray(i)
+
+                取込データArray(i).strRecData = line
+
+                i += 1
+
+            End While
+
+            gint取込データCnt = i
+
+            If gint取込データCnt = 0 Then
+                Set_ListItem(1, MSG_301016)
+                Set_ListItem(1, MSG_101109)
+                Set_ListItem(2, "")
+                Exit Function
+            End If
+
+            値引用マスタデータ取込処理 = True
+
+        Catch ex As FileNotFoundException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM016)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_301016 & vbCr & MSG_COM016, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As IOException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM015)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_301016 & vbCr & MSG_COM015, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As UnauthorizedAccessException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM018)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_301016 & vbCr & MSG_COM018, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As Exception
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM017)
+            Set_ListItem(1, CStr(Err.Number))
+            Set_ListItem(1, ex.ToString)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        Finally
+
+            If Not SR Is Nothing Then
+                SR.Close()
+                SR.Dispose()
+            End If
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：  データ出力処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　intFlg -- ファイル種類
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function データ出力処理(intFlg As Integer) As Boolean
+
+        Dim ColCnt As Integer
+        Dim ColMax As Integer
+        Dim RowCnt As Integer
+        Dim RowMax As Integer
+        Dim strHeaderText As String = Nothing
+        Dim stArrayData As String()
+        Dim FileName As String = Nothing
+        Dim strSheetName As String = Nothing
+        Dim i As Integer
+        Dim dtNow As DateTime = Now
+
+        Try
+
+            データ出力処理 = False
+
+            Select Case xxxintSubProgram_ID
+
+                Case 3 'SPD採用商品マスタ一括更新処理
+
+                    Select Case intFlg
+                        Case 1 '取込エラーデータ(採用商品マスタ業者名付)
+
+                            FileName = Set_FilePath(txtデータ出力先.Text, "取込エラーデータ_採用商品マスタ業者名付_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                            strSheetName = "取込エラーデータ"
+
+                            '出力ヘッダ取得
+                            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 2, 99, "出力ヘッダ")
+                            strHeaderText = gstrDLTP0997S_FUNC005
+
+                            '項目数取得
+                            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 2, 99, "項目数")
+                            ColMax = gintDLTP0997S_FUNC004
+
+                        Case 2 '取込エラーデータ(採用商品リスト)
+
+                            FileName = Set_FilePath(txtデータ出力先.Text, "取込エラーデータ_採用商品リスト_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                            strSheetName = "取込エラーデータ"
+
+                            '出力ヘッダ取得
+                            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 2, 99, "出力ヘッダ")
+                            strHeaderText = gstrDLTP0997S_FUNC005
+
+                            '項目数取得
+                            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 2, 99, "項目数")
+                            ColMax = gintDLTP0997S_FUNC004
+
+                        Case 3 '確認用データ(マルコ)
+
+                            FileName = Set_FilePath(txtデータ出力先.Text, "新規採用商品一覧(マルコ)_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                            strSheetName = "新規採用商品一覧"
+
+                            '出力ヘッダ取得
+                            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 4, 99, "出力ヘッダ")
+                            strHeaderText = gstrDLTP0997S_FUNC005
+
+                            '項目数取得
+                            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 4, 99, "項目数")
+                            ColMax = gintDLTP0997S_FUNC004
+
+                        Case 4 '確認用データ(マルビシ)
+
+                            FileName = Set_FilePath(txtデータ出力先.Text, "新規採用商品一覧(マルビシ)_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                            strSheetName = "新規採用商品一覧"
+
+                            '出力ヘッダ取得
+                            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 4, 99, "出力ヘッダ")
+                            strHeaderText = gstrDLTP0997S_FUNC005
+
+                            '項目数取得
+                            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 4, 99, "項目数")
+                            ColMax = gintDLTP0997S_FUNC004
+
+                    End Select
+
+                Case Else
+                    Set_ListItem(1, MSG_301019)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+            End Select
+
+            RowMax = gintResultCnt
+
+            '出力ヘッダを分割
+            stArrayData = strHeaderText.Split(","c)
+
+            i = 0
+
+            With ExcelCreator
+
+                .ExcelFileType = ExcelFileType.xlsx
+
+                'EXCEL作成
+                .CreateBook(FileName, 1, xlsxVersion.ver2013)
+
+                .DefaultFontName = "メイリオ"                                                   'デフォルトフォント
+                .DefaultFontPoint = 10                                                          'デフォルトフォントポイント
+                .SheetName = strSheetName                                                       'シート名
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.White                       '文字列色＝白
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold                       '文字列修飾＝太字
+                .Pos(0, 0, ColMax - 1, 0).Attr.BackColor = Color.FromArgb(91, 155, 213)         '背景色＝青
+
+                'ヘッダ項目出力
+                For Each stData As String In stArrayData
+                    .Pos(i, 0).Str = stData
+                    i += 1
+                Next stData
+
+                '明細行出力
+                For RowCnt = 0 To RowMax - 1
+
+                    For ColCnt = 0 To ColMax - 1
+
+                        .Pos(ColCnt, RowCnt + 1).Str = Results(RowCnt).strBuff(ColCnt)
+
+                    Next
+
+                Next
+
+                .CloseBook(True)
+
+            End With
+
+            データ出力処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　データ検索処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　intFlg -- 1・txt取込ファイル１　2・txt取込ファイル２
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function データ検索処理(intFlg As Integer, intclass As Integer) As Boolean
+
+        Try
+
+            データ検索処理 = False
+
+            Select Case intFlg
+
+                'エラーデータ
+                Case 1
+
+                    If intclass = 0 Then
+                        Set_ListItem(0, "")
+                        Set_ListItem(1, "【採用商品マスタ業者名付】" & MSG_501022)
+
+                        gintRtn = DLTP0501_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
+                    Else
+                        Set_ListItem(0, "")
+                        Set_ListItem(1, "【採用商品リスト】" & MSG_501022)
+
+                        gintRtn = DLTP0501_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
+                    End If
+
+                '特殊品目データ検索（仕入先：マルコ、マルビシ）
+                Case 2
+                    If intclass = 1 Then 'マルコ
+                        Set_ListItem(0, "")
+                        Set_ListItem(1, "【仕入先：マルコ】" & MSG_501023)
+
+                        gintRtn = DLTP0501_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, txtDate.Text.Trim, 1, gintSQLCODE, gstrSQLERRM)
+                    Else 'マルビシ
+                        Set_ListItem(0, "")
+                        Set_ListItem(1, "【仕入先：マルビシ】" & MSG_501023)
+
+                        gintRtn = DLTP0501_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, txtDate.Text.Trim, 1, gintSQLCODE, gstrSQLERRM)
+                    End If
+            End Select
+
+            Select Case gintRtn
+
+                Case 0 '正常終了
+
+                    gblRtn = データ出力処理(intFlg + intclass)
+
+                    If gblRtn = True Then
+
+                        Set_ListItem(1, MSG_301020 & "【" & gintResultCnt & "】")
+                        Set_ListItem(1, MSG_301018)
+                        Set_ListItem(2, "")
+
+                    Else
+
+                        Set_ListItem(1, MSG_301019)
+                        Set_ListItem(1, MSG_COM901)
+                        Set_ListItem(2, "")
+                        Exit Function
+
+                    End If
+
+                Case 2 '対象件数0件
+
+                    Set_ListItem(1, MSG_301005)
+                    Set_ListItem(2, "")
+
+                Case 9 'エラー
+
+                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                    Set_ListItem(1, MSG_301019)
+                    Set_ListItem(1, MSG_COM901)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+            End Select
+
+            データ検索処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+
 End Class

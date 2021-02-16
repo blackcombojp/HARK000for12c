@@ -277,6 +277,12 @@
     <Compile Include="HARK102\HARK102.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HARK103\HARK103.designer.vb">
+      <DependentUpon>HARK103.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK103\HARK103.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HARK201\HARK201.designer.vb">
       <DependentUpon>HARK201.vb</DependentUpon>
     </Compile>
@@ -374,6 +380,18 @@
       <DependentUpon>HARK403.vb</DependentUpon>
     </Compile>
     <Compile Include="HARK403\HARK403.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK501S1\HARK501S1.designer.vb">
+      <DependentUpon>HARK501S1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK501S1\HARK501S1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK501S2\HARK501S2.designer.vb">
+      <DependentUpon>HARK501S2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK501S2\HARK501S2.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HARK501\HARK501.designer.vb">
@@ -478,6 +496,9 @@
     <EmbeddedResource Include="HARK102\HARK102.resx">
       <DependentUpon>HARK102.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HARK103\HARK103.resx">
+      <DependentUpon>HARK103.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HARK201\HARK201.resx">
       <DependentUpon>HARK201.vb</DependentUpon>
     </EmbeddedResource>
@@ -519,6 +540,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HARK403\HARK403.resx">
       <DependentUpon>HARK403.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK501S1\HARK501S1.resx">
+      <DependentUpon>HARK501S1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK501S2\HARK501S2.resx">
+      <DependentUpon>HARK501S2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HARK501\HARK501.resx">
       <DependentUpon>HARK501.vb</DependentUpon>
