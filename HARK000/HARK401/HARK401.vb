@@ -2046,6 +2046,11 @@ EndExecute:
                 .Pos(11, 1, 11, RowMax).Attr.Format = "#,##0.00_ "                                     '数値表示(小数点以下2位表示)
                 .Pos(13, 1, 14, RowMax + 1).Attr.Format = "#,##0_ "                                    '数値表示
 
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineLeft(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineTop(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineRight(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineBottom(BorderStyle.Thin, xlColor.Black)
+
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
                     .Pos(i, 0).Str = stData
@@ -2131,6 +2136,11 @@ EndExecute:
                 .Pos(11, 1, 11, RowMax).Attr.Format = "#,##0.00_ "                                     '数値表示(小数点以下2位表示)
                 .Pos(13, 1, 14, RowMax + 1).Attr.Format = "#,##0_ "                                    '数値表示
 
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineLeft(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineTop(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineRight(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineBottom(BorderStyle.Thin, xlColor.Black)
+
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
                     .Pos(i, 0).Str = stData
@@ -2212,6 +2222,11 @@ EndExecute:
                 .Pos(3, 1, 3, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right             'テキスト横位置=右(金額)
                 .Pos(4, 1, 4, RowMax).Attr.HorizontalAlignment = HorizontalAlignment.Right             'テキスト横位置=右(値引金額)
                 .Pos(3, 1, 4, RowMax + 1).Attr.Format = "#,##0_ "                                      '数値表示
+
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineLeft(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineTop(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineRight(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.LineBottom(BorderStyle.Thin, xlColor.Black)
 
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
@@ -2342,6 +2357,11 @@ EndExecute:
                 .Pos(4, 5, 4, RowMax + 4).Attr.HorizontalAlignment = HorizontalAlignment.Right         'テキスト横位置=右(値引額)
                 .Pos(3, 5, 4, RowMax + 5).Attr.Format = "#,##0_ "                                      '数値表示
 
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.LineLeft(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.LineTop(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.LineRight(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.LineBottom(BorderStyle.Thin, xlColor.Black)
+
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
                     .Pos(i, 4).Str = stData
@@ -2425,6 +2445,12 @@ EndExecute:
                 .Pos(4, 5, 4, RowMax + 4).Attr.HorizontalAlignment = HorizontalAlignment.Right         'テキスト横位置=右(値引額)
                 .Pos(5, 5, 5, RowMax + 4).Attr.HorizontalAlignment = HorizontalAlignment.Right         'テキスト横位置=右(消費税)
                 .Pos(3, 5, 5, RowMax + 5).Attr.Format = "#,##0_ "                                      '数値表示
+
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.LineLeft(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.LineTop(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.LineRight(BorderStyle.Thin, xlColor.Black)
+                .Pos(0, 4, ColMax - 1, RowMax + 4).Attr.LineBottom(BorderStyle.Thin, xlColor.Black)
+
 
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData

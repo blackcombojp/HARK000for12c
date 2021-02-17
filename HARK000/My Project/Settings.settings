@@ -21,10 +21,10 @@
       <Value Profile="(Default)">https://webapp.iti-oliver.jp/hass/index/index.html</Value>
     </Setting>
     <Setting Name="入力担当コード" Type="System.Int64" Scope="User">
-      <Value Profile="(Default)">611381</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="事業所コード" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">113</Value>
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ManualUrl" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://webapp.iti-oliver.jp/hass/manual/index.html</Value>
