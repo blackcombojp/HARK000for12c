@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="WebSource" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://webapp.iti-oliver.jp/hass/HARK000UpdateFeed.xml</Value>
+      <Value Profile="(Default)">https://delta2.iticloud.net/delta/HARK000/TEST/HARK000UpdateFeed.xml</Value>
     </Setting>
     <Setting Name="WebProxy" Type="System.String" Scope="User">
       <Value Profile="(Default)">NONE</Value>
@@ -18,7 +18,7 @@
       <Value Profile="(Default)">ITI</Value>
     </Setting>
     <Setting Name="TopUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://webapp.iti-oliver.jp/hass/index/index.html</Value>
+      <Value Profile="(Default)">https://delta2.iticloud.net/delta/top/index.html</Value>
     </Setting>
     <Setting Name="入力担当コード" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -27,7 +27,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="ManualUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://webapp.iti-oliver.jp/hass/manual/index.html</Value>
+      <Value Profile="(Default)">https://delta2.iticloud.net/delta/manual/index.html</Value>
     </Setting>
   </Settings>
 </SettingsFile>

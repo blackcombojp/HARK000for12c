@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("https://webapp.iti-oliver.jp/hass/HARK000UpdateFeed.xml")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://delta2.iticloud.net/delta/HARK000/TEST/HARK000UpdateFeed.xml")>  _
         Public Property WebSource() As String
             Get
                 Return CType(Me("WebSource"),String)
@@ -116,7 +116,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("https://webapp.iti-oliver.jp/hass/index/index.html")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://delta2.iticloud.net/delta/top/index.html")>  _
         Public Property TopUrl() As String
             Get
                 Return CType(Me("TopUrl"),String)
@@ -152,7 +152,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("https://webapp.iti-oliver.jp/hass/manual/index.html")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://delta2.iticloud.net/delta/manual/index.html")>  _
         Public Property ManualUrl() As String
             Get
                 Return CType(Me("ManualUrl"),String)

@@ -298,6 +298,7 @@ Public Class HARK001
             log.Info("Update_Check")
             log.Info("現在のバージョン：" & My.Application.Info.Version.ToString)
             log.Info("現在の状態：" & UpdateManager.Instance.State.ToString)
+            HARK_Update.PerForm = Me
 
             Select Case (UpdateManager.Instance.State)
 
