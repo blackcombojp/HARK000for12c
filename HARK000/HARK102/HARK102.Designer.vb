@@ -301,13 +301,13 @@ Partial Class HARK102
         'BT_ID7
         '
         Me.BT_ID7.BackColor = System.Drawing.SystemColors.Control
-        Me.BT_ID7.Enabled = False
         Me.BT_ID7.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.BT_ID7.Location = New System.Drawing.Point(530, 0)
         Me.BT_ID7.Name = "BT_ID7"
         Me.BT_ID7.Size = New System.Drawing.Size(85, 24)
         Me.BT_ID7.TabIndex = 137
         Me.BT_ID7.Tag = "ID7"
+        Me.BT_ID7.Text = "LC設定(&F7)"
         Me.BT_ID7.UseVisualStyleBackColor = False
         '
         'BT_ID8

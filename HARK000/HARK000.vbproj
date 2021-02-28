@@ -461,6 +461,12 @@
     <Compile Include="HARK991\HARK991.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HARK992\HARK992.designer.vb">
+      <DependentUpon>HARK992.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK992\HARK992.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HARK_Runtime\HARK_Common.vb" />
     <Compile Include="HARK_Runtime\HARK_DBCommon.vb" />
     <Compile Include="HARK_Runtime\HARK_Define.vb" />
@@ -573,6 +579,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HARK991\HARK991.resx">
       <DependentUpon>HARK991.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK992\HARK992.resx">
+      <DependentUpon>HARK992.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">

@@ -729,6 +729,7 @@ Public Class HARK103
         Dim Tag As String
         'Dim i As Integer
         Dim strSendFile As String = Nothing
+        Dim SubForm As Form
         ' Dim m_lording As Thread = Nothing
 
         Try
@@ -930,7 +931,19 @@ EndExecute:
                     Exit Sub
 
                 Case "ID6" 'なし
-                Case "ID7" 'なし
+                Case "ID7" 'LC設定
+
+                    If IsNull(cmb事業所.Text.Trim) = True Then
+                        MsgBox(MSG_COM007, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        cmb事業所.Focus()
+                        Exit Sub
+                    End If
+
+                    SubForm = New HARK992(xxxstrForTitle & " ロジスティクスセンター設定", xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
+
+                    SubForm.ShowDialog(Me)
+                    SubForm.Dispose()
+
                 Case "ID8" 'エラーフォルダ表示
 
                     If IsNull(txtエラー出力先.Text) = False AndAlso Chk_DirExists(txtエラー出力先.Text) Then

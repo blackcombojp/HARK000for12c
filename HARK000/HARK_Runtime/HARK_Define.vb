@@ -226,6 +226,20 @@ Module HARK_Define
 
     Public Const MSG_505001 As String = "医療機関を選択してください"
 
+    Public Const MSG_992001 As String = "得意先を指定してください"
+    Public Const MSG_992002 As String = "需要先を指定してください"
+    Public Const MSG_992003 As String = "直先先を指定してください"
+    Public Const MSG_992004 As String = "指定されたロジスティクスセンター設定は他の端末で表示中です"
+    Public Const MSG_992005 As String = "指定されたロジスティクスセンター設定は新規登録となります"
+    Public Const MSG_992006 As String = "直送区分を指定してください"
+    Public Const MSG_992007 As String = "商品出荷指示区分を指定してください"
+    Public Const MSG_992008 As String = "商品手配方法区分を指定してください"
+    Public Const MSG_992009 As String = "発注納期設定区分を指定してください"
+    Public Const MSG_992010 As String = "発注納期設定する際はいづれかの曜日を指定してください"
+    Public Const MSG_992011 As String = "登録は正常終了しました"
+    Public Const MSG_992012 As String = "登録は異常終了しました"
+
+
     '*********************************************************************
     '各メッセージ（アップデート）
     '*********************************************************************

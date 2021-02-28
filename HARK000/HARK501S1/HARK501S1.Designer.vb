@@ -54,7 +54,6 @@ Partial Class HARK501S1
         Me.BT_ID6 = New System.Windows.Forms.Button()
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
-        Me.ExcelCreator = New AdvanceSoftware.ExcelCreator.Creator(Me.components)
         Me.pnl検索 = New System.Windows.Forms.Panel()
         Me.GB_更新 = New System.Windows.Forms.GroupBox()
         Me.RB_新規 = New System.Windows.Forms.RadioButton()
@@ -313,12 +312,6 @@ Partial Class HARK501S1
         Me.BT_ID5.Text = "確定(&F5)"
         Me.BT_ID5.UseVisualStyleBackColor = False
         '
-        'ExcelCreator
-        '
-        Me.ExcelCreator.ChangeRefSheetAddressMode = False
-        Me.ExcelCreator.ExcelFileType = AdvanceSoftware.ExcelCreator.ExcelFileType.xlsx
-        Me.ExcelCreator.TemporaryPath = ""
-        '
         'pnl検索
         '
         Me.pnl検索.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
@@ -443,7 +436,6 @@ Partial Class HARK501S1
     Private WithEvents BT_ID6 As Button
     Private WithEvents Bt_Close As Button
     Private WithEvents BT_ID5 As Button
-    Private WithEvents ExcelCreator As AdvanceSoftware.ExcelCreator.Creator
     Private WithEvents lbl明細施設 As Label
     Private WithEvents pnl検索 As Panel
     Private WithEvents txt部署コード As GrapeCity.Win.Editors.GcTextBox
