@@ -265,6 +265,18 @@
       <DependentUpon>HARK001.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HARK100S1\HARK100S1.designer.vb">
+      <DependentUpon>HARK100S1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK100S1\HARK100S1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK100S2\HARK100S2.designer.vb">
+      <DependentUpon>HARK100S2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK100S2\HARK100S2.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="HARK101\HARK101.Designer.vb">
       <DependentUpon>HARK101.vb</DependentUpon>
     </Compile>
@@ -282,6 +294,23 @@
     </Compile>
     <Compile Include="HARK103\HARK103.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK201S1\HARK201S1.designer.vb">
+      <DependentUpon>HARK201S1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK201S1\HARK201S1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK201S1\HARK201S1DS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HARK201S1DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HARK201S1\HARK201S1Template.designer.vb">
+      <DependentUpon>HARK201S1Template.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK201S1\HARK201S1Template.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="HARK201\HARK201.designer.vb">
       <DependentUpon>HARK201.vb</DependentUpon>
@@ -496,6 +525,12 @@
     <EmbeddedResource Include="HARK001\HARK001.resx">
       <DependentUpon>HARK001.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HARK100S1\HARK100S1.resx">
+      <DependentUpon>HARK100S1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK100S2\HARK100S2.resx">
+      <DependentUpon>HARK100S2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HARK101\HARK101.resx">
       <DependentUpon>HARK101.vb</DependentUpon>
     </EmbeddedResource>
@@ -504,6 +539,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="HARK103\HARK103.resx">
       <DependentUpon>HARK103.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK201S1\HARK201S1.resx">
+      <DependentUpon>HARK201S1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK201S1\HARK201S1Template.resx">
+      <DependentUpon>HARK201S1Template.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HARK201\HARK201.resx">
       <DependentUpon>HARK201.vb</DependentUpon>
@@ -592,6 +633,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="HARK201S1\HARK201S1DS.xsc">
+      <DependentUpon>HARK201S1DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK201S1\HARK201S1DS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HARK201S1DS.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HARK201S1\HARK201S1DS.xss">
+      <DependentUpon>HARK201S1DS.xsd</DependentUpon>
+    </None>
     <None Include="HARK202\HARK202DS.xsc">
       <DependentUpon>HARK202DS.xsd</DependentUpon>
     </None>

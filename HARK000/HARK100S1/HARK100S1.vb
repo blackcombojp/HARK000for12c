@@ -13,7 +13,7 @@ Imports HARK000.HARK_Common
 Imports HARK000.HARK_Sub
 Imports System.ComponentModel
 
-Public Class HARK301S2
+Public Class HARK100S1
     '/*-----------------------------------------------------------------------------
     ' *　モジュール機能　：　フォーム読み込み処理
     ' *
@@ -579,7 +579,7 @@ Public Class HARK301S2
 
                     End If
 
-                    gintRtn = DLTP0301_PROC0022(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt商品コード.Text.Trim, txt院内コード.Text.Trim, xxxint受注形態, xxxint出荷連携, xxxint取込除外, gintSQLCODE, gstrSQLERRM)
+                    gintRtn = DLTP0101_PROC0032(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt商品コード.Text.Trim, txt院内コード.Text.Trim, xxxint受注形態, xxxint出荷連携, xxxint取込除外, gintSQLCODE, gstrSQLERRM)
 
                     Select Case gintRtn
                         Case 0
@@ -723,7 +723,7 @@ Public Class HARK301S2
                             Exit Sub
                         End If
 
-                        gintRtn = DLTP0301_PROC0021(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt商品コード.Text.Trim, gintSQLCODE, gstrSQLERRM)
+                        gintRtn = DLTP0101_PROC0031(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt商品コード.Text.Trim, gintSQLCODE, gstrSQLERRM)
 
                         Select Case gintRtn
                             Case 0

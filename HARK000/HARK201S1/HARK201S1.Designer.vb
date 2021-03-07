@@ -6,7 +6,7 @@
 ' *-----------------------------------------------------------------------------/
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class HARK501S1
+Partial Class HARK201S1
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
@@ -30,18 +30,17 @@ Partial Class HARK501S1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK501S1))
+        Dim CellStyle1 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK201S1))
         Me.Menu_Log = New System.Windows.Forms.ToolStripMenuItem()
         Me.CntMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.Menu_ErrorLog = New System.Windows.Forms.ToolStripMenuItem()
         Me.BT_ID4 = New GrapeCity.Win.Buttons.GcSplitButton()
         Me.pnl明細 = New System.Windows.Forms.Panel()
-        Me.txt明細部署名 = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.lblID = New System.Windows.Forms.Label()
-        Me.lbl明細部署 = New System.Windows.Forms.Label()
-        Me.txt明細部署コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.cmb施設 = New System.Windows.Forms.ComboBox()
-        Me.lbl明細施設 = New System.Windows.Forms.Label()
+        Me.gcmr一覧 = New GrapeCity.Win.MultiRow.GcMultiRow()
+        Me.BS一覧 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.HARK201S1DS = New HARK000.HARK201S1DS()
+        Me.HARK201S1Template1 = New HARK000.HARK201S1Template()
         Me.SttBar_3 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBar_2 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBarPnl_Err = New System.Windows.Forms.StatusBarPanel()
@@ -55,21 +54,18 @@ Partial Class HARK501S1
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.pnl検索 = New System.Windows.Forms.Panel()
-        Me.GB_更新 = New System.Windows.Forms.GroupBox()
-        Me.RB_新規 = New System.Windows.Forms.RadioButton()
-        Me.RB_更新 = New System.Windows.Forms.RadioButton()
-        Me.lbl部署コード = New System.Windows.Forms.Label()
-        Me.txt部署コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl連携キー = New System.Windows.Forms.Label()
+        Me.txt連携キー = New GrapeCity.Win.Editors.GcTextBox(Me.components)
         Me.CntMenuStrip.SuspendLayout()
         Me.pnl明細.SuspendLayout()
-        CType(Me.txt明細部署名, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt明細部署コード, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.HARK201S1DS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl検索.SuspendLayout()
-        Me.GB_更新.SuspendLayout()
-        CType(Me.txt部署コード, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt連携キー, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu_Log
@@ -109,85 +105,47 @@ Partial Class HARK501S1
         '
         Me.pnl明細.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl明細.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl明細.Controls.Add(Me.txt明細部署名)
-        Me.pnl明細.Controls.Add(Me.lblID)
-        Me.pnl明細.Controls.Add(Me.lbl明細部署)
-        Me.pnl明細.Controls.Add(Me.txt明細部署コード)
-        Me.pnl明細.Controls.Add(Me.cmb施設)
-        Me.pnl明細.Controls.Add(Me.lbl明細施設)
-        Me.pnl明細.Location = New System.Drawing.Point(25, 128)
+        Me.pnl明細.Controls.Add(Me.gcmr一覧)
+        Me.pnl明細.Location = New System.Drawing.Point(25, 96)
         Me.pnl明細.Name = "pnl明細"
-        Me.pnl明細.Size = New System.Drawing.Size(955, 302)
+        Me.pnl明細.Size = New System.Drawing.Size(955, 334)
         Me.pnl明細.TabIndex = 185
         '
-        'txt明細部署名
+        'gcmr一覧
         '
-        Me.txt明細部署名.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
-        Me.txt明細部署名.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt明細部署名.Location = New System.Drawing.Point(243, 52)
-        Me.txt明細部署名.MaxLength = 60
-        Me.txt明細部署名.Name = "txt明細部署名"
-        Me.txt明細部署名.Size = New System.Drawing.Size(320, 26)
-        Me.txt明細部署名.TabIndex = 23
-        Me.txt明細部署名.Tag = "ID3"
+        Me.gcmr一覧.AllowClipboard = False
+        Me.gcmr一覧.AllowUserToAddRows = False
+        Me.gcmr一覧.AllowUserToAutoFitColumns = False
+        Me.gcmr一覧.AllowUserToDeleteRows = False
+        Me.gcmr一覧.AllowUserToResize = False
+        Me.gcmr一覧.AllowUserToTouchResize = False
+        Me.gcmr一覧.AllowUserToTouchZoom = False
+        Me.gcmr一覧.AllowUserToZoom = False
+        CellStyle1.BackColor = System.Drawing.Color.LightCyan
+        CellStyle1.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        Me.gcmr一覧.AlternatingRowsDefaultCellStyle = CellStyle1
+        Me.gcmr一覧.ClipboardCopyMode = GrapeCity.Win.MultiRow.ClipboardCopyMode.Disable
+        Me.gcmr一覧.CurrentCellBorderLine = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.None, System.Drawing.Color.Black)
+        Me.gcmr一覧.DataSource = Me.BS一覧
+        Me.gcmr一覧.Location = New System.Drawing.Point(17, 16)
+        Me.gcmr一覧.MultiSelect = False
+        Me.gcmr一覧.Name = "gcmr一覧"
+        Me.gcmr一覧.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.gcmr一覧.Size = New System.Drawing.Size(918, 296)
+        Me.gcmr一覧.SplitMode = GrapeCity.Win.MultiRow.SplitMode.None
+        Me.gcmr一覧.TabIndex = 0
+        Me.gcmr一覧.Template = Me.HARK201S1Template1
+        Me.gcmr一覧.Text = "gcmr一覧"
         '
-        'lblID
+        'BS一覧
         '
-        Me.lblID.AutoEllipsis = True
-        Me.lblID.BackColor = System.Drawing.SystemColors.Control
-        Me.lblID.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lblID.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblID.Location = New System.Drawing.Point(127, 85)
-        Me.lblID.Name = "lblID"
-        Me.lblID.Size = New System.Drawing.Size(110, 26)
-        Me.lblID.TabIndex = 201
-        Me.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.lblID.Visible = False
+        Me.BS一覧.DataMember = "ds一覧"
+        Me.BS一覧.DataSource = Me.HARK201S1DS
         '
-        'lbl明細部署
+        'HARK201S1DS
         '
-        Me.lbl明細部署.AutoSize = True
-        Me.lbl明細部署.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細部署.Location = New System.Drawing.Point(46, 55)
-        Me.lbl明細部署.Name = "lbl明細部署"
-        Me.lbl明細部署.Size = New System.Drawing.Size(61, 20)
-        Me.lbl明細部署.TabIndex = 220
-        Me.lbl明細部署.Text = "【部署】"
-        Me.lbl明細部署.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txt明細部署コード
-        '
-        Me.txt明細部署コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
-        Me.txt明細部署コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt明細部署コード.Format = "A9"
-        Me.txt明細部署コード.Location = New System.Drawing.Point(127, 52)
-        Me.txt明細部署コード.MaxLength = 10
-        Me.txt明細部署コード.Name = "txt明細部署コード"
-        Me.txt明細部署コード.Size = New System.Drawing.Size(110, 26)
-        Me.txt明細部署コード.TabIndex = 22
-        Me.txt明細部署コード.Tag = "ID2"
-        '
-        'cmb施設
-        '
-        Me.cmb施設.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb施設.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cmb施設.FormattingEnabled = True
-        Me.cmb施設.Location = New System.Drawing.Point(127, 20)
-        Me.cmb施設.Name = "cmb施設"
-        Me.cmb施設.Size = New System.Drawing.Size(291, 26)
-        Me.cmb施設.TabIndex = 21
-        Me.cmb施設.Tag = "ID1"
-        '
-        'lbl明細施設
-        '
-        Me.lbl明細施設.AutoSize = True
-        Me.lbl明細施設.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細施設.Location = New System.Drawing.Point(46, 23)
-        Me.lbl明細施設.Name = "lbl明細施設"
-        Me.lbl明細施設.Size = New System.Drawing.Size(61, 20)
-        Me.lbl明細施設.TabIndex = 169
-        Me.lbl明細施設.Text = "【施設】"
-        Me.lbl明細施設.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.HARK201S1DS.DataSetName = "HARK201S1DS"
+        Me.HARK201S1DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'SttBar_3
         '
@@ -316,68 +274,37 @@ Partial Class HARK501S1
         '
         Me.pnl検索.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl検索.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl検索.Controls.Add(Me.GB_更新)
-        Me.pnl検索.Controls.Add(Me.lbl部署コード)
-        Me.pnl検索.Controls.Add(Me.txt部署コード)
+        Me.pnl検索.Controls.Add(Me.lbl連携キー)
+        Me.pnl検索.Controls.Add(Me.txt連携キー)
         Me.pnl検索.Location = New System.Drawing.Point(25, 44)
         Me.pnl検索.Name = "pnl検索"
-        Me.pnl検索.Size = New System.Drawing.Size(955, 78)
+        Me.pnl検索.Size = New System.Drawing.Size(955, 46)
         Me.pnl検索.TabIndex = 184
         '
-        'GB_更新
+        'lbl連携キー
         '
-        Me.GB_更新.Controls.Add(Me.RB_新規)
-        Me.GB_更新.Controls.Add(Me.RB_更新)
-        Me.GB_更新.Location = New System.Drawing.Point(11, -1)
-        Me.GB_更新.Name = "GB_更新"
-        Me.GB_更新.Size = New System.Drawing.Size(226, 41)
-        Me.GB_更新.TabIndex = 168
-        Me.GB_更新.TabStop = False
+        Me.lbl連携キー.AutoSize = True
+        Me.lbl連携キー.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl連携キー.Location = New System.Drawing.Point(7, 12)
+        Me.lbl連携キー.Name = "lbl連携キー"
+        Me.lbl連携キー.Size = New System.Drawing.Size(87, 20)
+        Me.lbl連携キー.TabIndex = 167
+        Me.lbl連携キー.Text = "【連携キー】"
+        Me.lbl連携キー.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'RB_新規
+        'txt連携キー
         '
-        Me.RB_新規.AutoSize = True
-        Me.RB_新規.Location = New System.Drawing.Point(132, 16)
-        Me.RB_新規.Name = "RB_新規"
-        Me.RB_新規.Size = New System.Drawing.Size(47, 16)
-        Me.RB_新規.TabIndex = 102
-        Me.RB_新規.Text = "新規"
-        Me.RB_新規.UseVisualStyleBackColor = True
+        Me.txt連携キー.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txt連携キー.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt連携キー.Format = "A9"
+        Me.txt連携キー.Location = New System.Drawing.Point(96, 10)
+        Me.txt連携キー.MaxLength = 39
+        Me.txt連携キー.Name = "txt連携キー"
+        Me.txt連携キー.Size = New System.Drawing.Size(347, 24)
+        Me.txt連携キー.TabIndex = 11
+        Me.txt連携キー.Tag = "ID1"
         '
-        'RB_更新
-        '
-        Me.RB_更新.AutoSize = True
-        Me.RB_更新.Location = New System.Drawing.Point(39, 16)
-        Me.RB_更新.Name = "RB_更新"
-        Me.RB_更新.Size = New System.Drawing.Size(47, 16)
-        Me.RB_更新.TabIndex = 101
-        Me.RB_更新.Text = "更新"
-        Me.RB_更新.UseVisualStyleBackColor = True
-        '
-        'lbl部署コード
-        '
-        Me.lbl部署コード.AutoSize = True
-        Me.lbl部署コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl部署コード.Location = New System.Drawing.Point(7, 48)
-        Me.lbl部署コード.Name = "lbl部署コード"
-        Me.lbl部署コード.Size = New System.Drawing.Size(100, 20)
-        Me.lbl部署コード.TabIndex = 167
-        Me.lbl部署コード.Text = "【部署コード】"
-        Me.lbl部署コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txt部署コード
-        '
-        Me.txt部署コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
-        Me.txt部署コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt部署コード.Format = "A9"
-        Me.txt部署コード.Location = New System.Drawing.Point(127, 45)
-        Me.txt部署コード.MaxLength = 10
-        Me.txt部署コード.Name = "txt部署コード"
-        Me.txt部署コード.Size = New System.Drawing.Size(110, 26)
-        Me.txt部署コード.TabIndex = 11
-        Me.txt部署コード.Tag = "ID1"
-        '
-        'HARK501S1
+        'HARK201S1
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(230, Byte), Integer))
@@ -398,24 +325,22 @@ Partial Class HARK501S1
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximizeBox = False
-        Me.Name = "HARK501S1"
+        Me.Name = "HARK201S1"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FMTITLE"
         Me.CntMenuStrip.ResumeLayout(False)
         Me.pnl明細.ResumeLayout(False)
-        Me.pnl明細.PerformLayout()
-        CType(Me.txt明細部署名, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt明細部署コード, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.HARK201S1DS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl検索.ResumeLayout(False)
         Me.pnl検索.PerformLayout()
-        Me.GB_更新.ResumeLayout(False)
-        Me.GB_更新.PerformLayout()
-        CType(Me.txt部署コード, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt連携キー, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -436,18 +361,13 @@ Partial Class HARK501S1
     Private WithEvents BT_ID6 As Button
     Private WithEvents Bt_Close As Button
     Private WithEvents BT_ID5 As Button
-    Private WithEvents lbl明細施設 As Label
     Private WithEvents pnl検索 As Panel
-    Private WithEvents txt部署コード As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents lbl部署コード As Label
-    Private WithEvents txt明細部署コード As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents cmb施設 As ComboBox
-    Private WithEvents lbl明細部署 As Label
-    Private WithEvents lblID As Label
-    Private WithEvents txt明細部署名 As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents GB_更新 As GroupBox
-    Private WithEvents RB_新規 As RadioButton
-    Private WithEvents RB_更新 As RadioButton
+    Private WithEvents lbl連携キー As Label
+    Private WithEvents txt連携キー As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents BS一覧 As BindingSource
+    Private WithEvents HARK201S1DS As HARK201S1DS
+    Private WithEvents HARK201S1Template1 As HARK201S1Template
+    Private WithEvents gcmr一覧 As GrapeCity.Win.MultiRow.GcMultiRow
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -455,8 +375,6 @@ Partial Class HARK501S1
     Private xxxintSubProgram_ID As Integer
     Private xxxintSPDSystemCode As Integer
     Private xxxstrForTitle As String
-    Private xxxstr病院コード As String
-    Private xxxstr施設コード As String
 
 
     Public Sub New(ByVal PerFormTitle As String, ByVal PerProgramID As String, ByVal PreSubProgramID As Integer, ByVal PreSPDSystemCode As Integer)
@@ -472,31 +390,15 @@ Partial Class HARK501S1
         xxxstrProgram_ID = PerProgramID
         xxxintSubProgram_ID = PreSubProgramID
         xxxintSPDSystemCode = PreSPDSystemCode
-        xxxstr病院コード = "T01"
 
         'PreviewKeyDownイベントハンドラの追加
-        AddHandler txt部署コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
-        AddHandler txt明細部署コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
-        AddHandler txt明細部署名.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
-
-        'PreviewKeyDownイベントハンドラの追加
-        AddHandler cmb施設.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
+        AddHandler txt連携キー.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
 
         'KeyDownイベントハンドラの追加
-        AddHandler txt部署コード.KeyDown, AddressOf Txt_KeyDown
-        AddHandler cmb施設.KeyDown, AddressOf Txt_KeyDown
-        AddHandler txt明細部署コード.KeyDown, AddressOf Txt_KeyDown
-
-        'SelectedValueChangedイベントハンドラの追加
-        AddHandler cmb施設.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+        AddHandler txt連携キー.KeyDown, AddressOf Txt_KeyDown
 
         'Validatedイベントハンドラの追加
-        AddHandler txt部署コード.Validated, AddressOf Txt_Validated
-
-        'Rb_CheckedChanged
-        AddHandler RB_更新.CheckedChanged, AddressOf Rb_CheckedChanged
-        AddHandler RB_新規.CheckedChanged, AddressOf Rb_CheckedChanged
-
+        AddHandler txt連携キー.Validated, AddressOf Txt_Validated
 
         'Clickイベントハンドラの追加
         AddHandler BT_ID1.Click, AddressOf Bt_ID_Click
@@ -509,9 +411,5 @@ Partial Class HARK501S1
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
-
-
-
-
 
 End Class

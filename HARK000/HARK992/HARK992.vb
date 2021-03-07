@@ -674,7 +674,7 @@ Public Class HARK992
                     gintRtn = DLTP0100S_PROC0024(xxxstrProgram_ID,
                                                 xxxintSubProgram_ID,
                                                 xxxintSPDSystemCode,
-                                                xxxxint新規区分,
+                                                xxxint新規区分,
                                                 CLng(txt得意先コード.Text.Trim),
                                                 CLng(txt需要先コード.Text.Trim),
                                                 xxxint直送区分,
@@ -914,14 +914,14 @@ Public Class HARK992
                                     gblRtn = データ表示処理()
                                     txt得意先コード.Enabled = False
                                     txt需要先コード.Enabled = False
-                                    xxxxint新規区分 = 0
+                                    xxxint新規区分 = 0
                                     cmb直送区分.Focus()
                                     Exit Sub
                                 Case 2
                                     MsgBox(MSG_992005, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                                     txt得意先コード.Enabled = False
                                     txt需要先コード.Enabled = False
-                                    xxxxint新規区分 = 1
+                                    xxxint新規区分 = 1
                                     cmb直送区分.Focus()
                                     Exit Sub
                                 Case -54

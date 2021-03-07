@@ -6,7 +6,7 @@
 ' *-----------------------------------------------------------------------------/
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class HARK501S2
+Partial Class HARK100S1
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
@@ -30,33 +30,30 @@ Partial Class HARK501S2
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK501S2))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK100S1))
         Me.Menu_Log = New System.Windows.Forms.ToolStripMenuItem()
         Me.CntMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.Menu_ErrorLog = New System.Windows.Forms.ToolStripMenuItem()
         Me.BT_ID4 = New GrapeCity.Win.Buttons.GcSplitButton()
         Me.pnl明細 = New System.Windows.Forms.Panel()
-        Me.lbl明細仕入先名 = New System.Windows.Forms.Label()
-        Me.lbl明細９ = New System.Windows.Forms.Label()
+        Me.cmb取込除外 = New System.Windows.Forms.ComboBox()
         Me.lbl明細８ = New System.Windows.Forms.Label()
-        Me.lbl明細販売元 = New System.Windows.Forms.Label()
-        Me.cmbマルビシ対象 = New System.Windows.Forms.ComboBox()
-        Me.lbl明細業者用コード = New System.Windows.Forms.Label()
-        Me.cmb軽減税率対象 = New System.Windows.Forms.ComboBox()
+        Me.cmb出荷連携 = New System.Windows.Forms.ComboBox()
         Me.lbl明細７ = New System.Windows.Forms.Label()
-        Me.lbl商品ID = New System.Windows.Forms.Label()
+        Me.lblID = New System.Windows.Forms.Label()
         Me.lbl明細２ = New System.Windows.Forms.Label()
-        Me.cmbマルコ対象 = New System.Windows.Forms.ComboBox()
+        Me.txt院内コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.cmb受注形態 = New System.Windows.Forms.ComboBox()
+        Me.lbl注意 = New System.Windows.Forms.Label()
         Me.lbl明細６ = New System.Windows.Forms.Label()
         Me.lbl明細５ = New System.Windows.Forms.Label()
         Me.lbl明細３ = New System.Windows.Forms.Label()
         Me.lbl明細４ = New System.Windows.Forms.Label()
-        Me.lbl明細仕入先コード = New System.Windows.Forms.Label()
-        Me.lbl明細商品コード = New System.Windows.Forms.Label()
-        Me.lbl明細商品名 = New System.Windows.Forms.Label()
-        Me.lbl明細規格 = New System.Windows.Forms.Label()
+        Me.lbl規格 = New System.Windows.Forms.Label()
+        Me.lbl商品名 = New System.Windows.Forms.Label()
+        Me.lblメーカ = New System.Windows.Forms.Label()
+        Me.lblメーカ品番 = New System.Windows.Forms.Label()
         Me.lbl明細１ = New System.Windows.Forms.Label()
-        Me.txt院内コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
         Me.SttBar_3 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBar_2 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBarPnl_Err = New System.Windows.Forms.StatusBarPanel()
@@ -70,7 +67,8 @@ Partial Class HARK501S2
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.pnl検索 = New System.Windows.Forms.Panel()
-        Me.lbl院内コード = New System.Windows.Forms.Label()
+        Me.lbl商品コード = New System.Windows.Forms.Label()
+        Me.txt商品コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
         Me.CntMenuStrip.SuspendLayout()
         Me.pnl明細.SuspendLayout()
         CType(Me.txt院内コード, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +76,7 @@ Partial Class HARK501S2
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl検索.SuspendLayout()
+        CType(Me.txt商品コード, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu_Log
@@ -117,110 +116,61 @@ Partial Class HARK501S2
         '
         Me.pnl明細.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl明細.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl明細.Controls.Add(Me.lbl明細仕入先名)
-        Me.pnl明細.Controls.Add(Me.lbl明細９)
+        Me.pnl明細.Controls.Add(Me.cmb取込除外)
         Me.pnl明細.Controls.Add(Me.lbl明細８)
-        Me.pnl明細.Controls.Add(Me.lbl明細販売元)
-        Me.pnl明細.Controls.Add(Me.cmbマルビシ対象)
-        Me.pnl明細.Controls.Add(Me.lbl明細業者用コード)
-        Me.pnl明細.Controls.Add(Me.cmb軽減税率対象)
+        Me.pnl明細.Controls.Add(Me.cmb出荷連携)
         Me.pnl明細.Controls.Add(Me.lbl明細７)
-        Me.pnl明細.Controls.Add(Me.lbl商品ID)
+        Me.pnl明細.Controls.Add(Me.lblID)
         Me.pnl明細.Controls.Add(Me.lbl明細２)
-        Me.pnl明細.Controls.Add(Me.cmbマルコ対象)
+        Me.pnl明細.Controls.Add(Me.txt院内コード)
+        Me.pnl明細.Controls.Add(Me.cmb受注形態)
+        Me.pnl明細.Controls.Add(Me.lbl注意)
         Me.pnl明細.Controls.Add(Me.lbl明細６)
         Me.pnl明細.Controls.Add(Me.lbl明細５)
         Me.pnl明細.Controls.Add(Me.lbl明細３)
         Me.pnl明細.Controls.Add(Me.lbl明細４)
-        Me.pnl明細.Controls.Add(Me.lbl明細仕入先コード)
-        Me.pnl明細.Controls.Add(Me.lbl明細商品コード)
-        Me.pnl明細.Controls.Add(Me.lbl明細商品名)
-        Me.pnl明細.Controls.Add(Me.lbl明細規格)
+        Me.pnl明細.Controls.Add(Me.lbl規格)
+        Me.pnl明細.Controls.Add(Me.lbl商品名)
+        Me.pnl明細.Controls.Add(Me.lblメーカ)
+        Me.pnl明細.Controls.Add(Me.lblメーカ品番)
         Me.pnl明細.Controls.Add(Me.lbl明細１)
         Me.pnl明細.Location = New System.Drawing.Point(25, 96)
         Me.pnl明細.Name = "pnl明細"
         Me.pnl明細.Size = New System.Drawing.Size(955, 334)
         Me.pnl明細.TabIndex = 185
         '
-        'lbl明細仕入先名
+        'cmb取込除外
         '
-        Me.lbl明細仕入先名.AutoEllipsis = True
-        Me.lbl明細仕入先名.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl明細仕入先名.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbl明細仕入先名.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細仕入先名.Location = New System.Drawing.Point(234, 182)
-        Me.lbl明細仕入先名.Name = "lbl明細仕入先名"
-        Me.lbl明細仕入先名.Size = New System.Drawing.Size(461, 26)
-        Me.lbl明細仕入先名.TabIndex = 227
-        Me.lbl明細仕入先名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'lbl明細９
-        '
-        Me.lbl明細９.AutoSize = True
-        Me.lbl明細９.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細９.Location = New System.Drawing.Point(7, 286)
-        Me.lbl明細９.Name = "lbl明細９"
-        Me.lbl明細９.Size = New System.Drawing.Size(113, 20)
-        Me.lbl明細９.TabIndex = 226
-        Me.lbl明細９.Text = "【軽減税率対象】"
-        Me.lbl明細９.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmb取込除外.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb取込除外.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmb取込除外.FormattingEnabled = True
+        Me.cmb取込除外.Location = New System.Drawing.Point(127, 246)
+        Me.cmb取込除外.Name = "cmb取込除外"
+        Me.cmb取込除外.Size = New System.Drawing.Size(181, 26)
+        Me.cmb取込除外.TabIndex = 24
+        Me.cmb取込除外.Tag = "ID3"
         '
         'lbl明細８
         '
         Me.lbl明細８.AutoSize = True
         Me.lbl明細８.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細８.Location = New System.Drawing.Point(7, 252)
+        Me.lbl明細８.Location = New System.Drawing.Point(7, 249)
         Me.lbl明細８.Name = "lbl明細８"
         Me.lbl明細８.Size = New System.Drawing.Size(113, 20)
-        Me.lbl明細８.TabIndex = 225
-        Me.lbl明細８.Text = "【マルビシ対象】"
+        Me.lbl明細８.TabIndex = 223
+        Me.lbl明細８.Text = "【受注取込除外】"
         Me.lbl明細８.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbl明細販売元
+        'cmb出荷連携
         '
-        Me.lbl明細販売元.AutoEllipsis = True
-        Me.lbl明細販売元.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl明細販売元.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbl明細販売元.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細販売元.Location = New System.Drawing.Point(127, 54)
-        Me.lbl明細販売元.Name = "lbl明細販売元"
-        Me.lbl明細販売元.Size = New System.Drawing.Size(291, 26)
-        Me.lbl明細販売元.TabIndex = 224
-        Me.lbl明細販売元.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'cmbマルビシ対象
-        '
-        Me.cmbマルビシ対象.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbマルビシ対象.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cmbマルビシ対象.FormattingEnabled = True
-        Me.cmbマルビシ対象.Location = New System.Drawing.Point(127, 249)
-        Me.cmbマルビシ対象.Name = "cmbマルビシ対象"
-        Me.cmbマルビシ対象.Size = New System.Drawing.Size(181, 26)
-        Me.cmbマルビシ対象.TabIndex = 22
-        Me.cmbマルビシ対象.Tag = "ID2"
-        '
-        'lbl明細業者用コード
-        '
-        Me.lbl明細業者用コード.AutoEllipsis = True
-        Me.lbl明細業者用コード.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl明細業者用コード.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbl明細業者用コード.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細業者用コード.Location = New System.Drawing.Point(127, 22)
-        Me.lbl明細業者用コード.Name = "lbl明細業者用コード"
-        Me.lbl明細業者用コード.Size = New System.Drawing.Size(291, 26)
-        Me.lbl明細業者用コード.TabIndex = 222
-        Me.lbl明細業者用コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'cmb軽減税率対象
-        '
-        Me.cmb軽減税率対象.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb軽減税率対象.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cmb軽減税率対象.FormattingEnabled = True
-        Me.cmb軽減税率対象.Location = New System.Drawing.Point(127, 283)
-        Me.cmb軽減税率対象.Name = "cmb軽減税率対象"
-        Me.cmb軽減税率対象.Size = New System.Drawing.Size(181, 26)
-        Me.cmb軽減税率対象.TabIndex = 23
-        Me.cmb軽減税率対象.Tag = "ID3"
+        Me.cmb出荷連携.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb出荷連携.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmb出荷連携.FormattingEnabled = True
+        Me.cmb出荷連携.Location = New System.Drawing.Point(127, 214)
+        Me.cmb出荷連携.Name = "cmb出荷連携"
+        Me.cmb出荷連携.Size = New System.Drawing.Size(181, 26)
+        Me.cmb出荷連携.TabIndex = 23
+        Me.cmb出荷連携.Tag = "ID2"
         '
         'lbl明細７
         '
@@ -228,23 +178,23 @@ Partial Class HARK501S2
         Me.lbl明細７.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lbl明細７.Location = New System.Drawing.Point(7, 217)
         Me.lbl明細７.Name = "lbl明細７"
-        Me.lbl明細７.Size = New System.Drawing.Size(100, 20)
+        Me.lbl明細７.Size = New System.Drawing.Size(87, 20)
         Me.lbl明細７.TabIndex = 221
-        Me.lbl明細７.Text = "【マルコ対象】"
+        Me.lbl明細７.Text = "【出荷連携】"
         Me.lbl明細７.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbl商品ID
+        'lblID
         '
-        Me.lbl商品ID.AutoEllipsis = True
-        Me.lbl商品ID.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl商品ID.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbl商品ID.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl商品ID.Location = New System.Drawing.Point(488, 22)
-        Me.lbl商品ID.Name = "lbl商品ID"
-        Me.lbl商品ID.Size = New System.Drawing.Size(100, 26)
-        Me.lbl商品ID.TabIndex = 204
-        Me.lbl商品ID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.lbl商品ID.Visible = False
+        Me.lblID.AutoEllipsis = True
+        Me.lblID.BackColor = System.Drawing.SystemColors.Control
+        Me.lblID.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblID.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblID.Location = New System.Drawing.Point(488, 115)
+        Me.lblID.Name = "lblID"
+        Me.lblID.Size = New System.Drawing.Size(100, 26)
+        Me.lblID.TabIndex = 204
+        Me.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lblID.Visible = False
         '
         'lbl明細２
         '
@@ -252,21 +202,45 @@ Partial Class HARK501S2
         Me.lbl明細２.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lbl明細２.Location = New System.Drawing.Point(7, 57)
         Me.lbl明細２.Name = "lbl明細２"
-        Me.lbl明細２.Size = New System.Drawing.Size(74, 20)
+        Me.lbl明細２.Size = New System.Drawing.Size(100, 20)
         Me.lbl明細２.TabIndex = 220
-        Me.lbl明細２.Text = "【販売元】"
+        Me.lbl明細２.Text = "【院内コード】"
         Me.lbl明細２.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'cmbマルコ対象
+        'txt院内コード
         '
-        Me.cmbマルコ対象.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbマルコ対象.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cmbマルコ対象.FormattingEnabled = True
-        Me.cmbマルコ対象.Location = New System.Drawing.Point(127, 214)
-        Me.cmbマルコ対象.Name = "cmbマルコ対象"
-        Me.cmbマルコ対象.Size = New System.Drawing.Size(181, 26)
-        Me.cmbマルコ対象.TabIndex = 21
-        Me.cmbマルコ対象.Tag = "ID1"
+        Me.txt院内コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txt院内コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt院内コード.Format = "A9"
+        Me.txt院内コード.Location = New System.Drawing.Point(127, 54)
+        Me.txt院内コード.MaxLength = 30
+        Me.txt院内コード.Name = "txt院内コード"
+        Me.txt院内コード.Size = New System.Drawing.Size(181, 26)
+        Me.txt院内コード.TabIndex = 22
+        Me.txt院内コード.Tag = "ID2"
+        '
+        'cmb受注形態
+        '
+        Me.cmb受注形態.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb受注形態.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmb受注形態.FormattingEnabled = True
+        Me.cmb受注形態.Location = New System.Drawing.Point(127, 22)
+        Me.cmb受注形態.Name = "cmb受注形態"
+        Me.cmb受注形態.Size = New System.Drawing.Size(181, 26)
+        Me.cmb受注形態.TabIndex = 21
+        Me.cmb受注形態.Tag = "ID1"
+        '
+        'lbl注意
+        '
+        Me.lbl注意.AutoSize = True
+        Me.lbl注意.Font = New System.Drawing.Font("メイリオ", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl注意.ForeColor = System.Drawing.Color.Red
+        Me.lbl注意.Location = New System.Drawing.Point(16, 283)
+        Me.lbl注意.Name = "lbl注意"
+        Me.lbl注意.Size = New System.Drawing.Size(445, 23)
+        Me.lbl注意.TabIndex = 218
+        Me.lbl注意.Text = "※新規商品マスタはAptage登録10分後以降に処理してください"
+        Me.lbl注意.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbl明細６
         '
@@ -274,9 +248,9 @@ Partial Class HARK501S2
         Me.lbl明細６.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lbl明細６.Location = New System.Drawing.Point(7, 185)
         Me.lbl明細６.Name = "lbl明細６"
-        Me.lbl明細６.Size = New System.Drawing.Size(74, 20)
+        Me.lbl明細６.Size = New System.Drawing.Size(61, 20)
         Me.lbl明細６.TabIndex = 205
-        Me.lbl明細６.Text = "【仕入先】"
+        Me.lbl明細６.Text = "【規格】"
         Me.lbl明細６.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbl明細５
@@ -285,9 +259,9 @@ Partial Class HARK501S2
         Me.lbl明細５.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lbl明細５.Location = New System.Drawing.Point(7, 153)
         Me.lbl明細５.Name = "lbl明細５"
-        Me.lbl明細５.Size = New System.Drawing.Size(100, 20)
+        Me.lbl明細５.Size = New System.Drawing.Size(74, 20)
         Me.lbl明細５.TabIndex = 204
-        Me.lbl明細５.Text = "【商品コード】"
+        Me.lbl明細５.Text = "【商品名】"
         Me.lbl明細５.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbl明細３
@@ -298,7 +272,7 @@ Partial Class HARK501S2
         Me.lbl明細３.Name = "lbl明細３"
         Me.lbl明細３.Size = New System.Drawing.Size(74, 20)
         Me.lbl明細３.TabIndex = 203
-        Me.lbl明細３.Text = "【商品名】"
+        Me.lbl明細３.Text = "【メーカ】"
         Me.lbl明細３.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbl明細４
@@ -307,58 +281,58 @@ Partial Class HARK501S2
         Me.lbl明細４.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lbl明細４.Location = New System.Drawing.Point(7, 121)
         Me.lbl明細４.Name = "lbl明細４"
-        Me.lbl明細４.Size = New System.Drawing.Size(61, 20)
+        Me.lbl明細４.Size = New System.Drawing.Size(100, 20)
         Me.lbl明細４.TabIndex = 202
-        Me.lbl明細４.Text = "【規格】"
+        Me.lbl明細４.Text = "【メーカ品番】"
         Me.lbl明細４.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbl明細仕入先コード
+        'lbl規格
         '
-        Me.lbl明細仕入先コード.AutoEllipsis = True
-        Me.lbl明細仕入先コード.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl明細仕入先コード.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbl明細仕入先コード.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細仕入先コード.Location = New System.Drawing.Point(127, 182)
-        Me.lbl明細仕入先コード.Name = "lbl明細仕入先コード"
-        Me.lbl明細仕入先コード.Size = New System.Drawing.Size(101, 26)
-        Me.lbl明細仕入先コード.TabIndex = 203
-        Me.lbl明細仕入先コード.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.lbl規格.AutoEllipsis = True
+        Me.lbl規格.BackColor = System.Drawing.SystemColors.Control
+        Me.lbl規格.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lbl規格.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl規格.Location = New System.Drawing.Point(127, 182)
+        Me.lbl規格.Name = "lbl規格"
+        Me.lbl規格.Size = New System.Drawing.Size(461, 26)
+        Me.lbl規格.TabIndex = 203
+        Me.lbl規格.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbl明細商品コード
+        'lbl商品名
         '
-        Me.lbl明細商品コード.AutoEllipsis = True
-        Me.lbl明細商品コード.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl明細商品コード.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbl明細商品コード.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細商品コード.Location = New System.Drawing.Point(127, 150)
-        Me.lbl明細商品コード.Name = "lbl明細商品コード"
-        Me.lbl明細商品コード.Size = New System.Drawing.Size(461, 26)
-        Me.lbl明細商品コード.TabIndex = 202
-        Me.lbl明細商品コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lbl商品名.AutoEllipsis = True
+        Me.lbl商品名.BackColor = System.Drawing.SystemColors.Control
+        Me.lbl商品名.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lbl商品名.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl商品名.Location = New System.Drawing.Point(127, 150)
+        Me.lbl商品名.Name = "lbl商品名"
+        Me.lbl商品名.Size = New System.Drawing.Size(461, 26)
+        Me.lbl商品名.TabIndex = 202
+        Me.lbl商品名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbl明細商品名
+        'lblメーカ
         '
-        Me.lbl明細商品名.AutoEllipsis = True
-        Me.lbl明細商品名.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl明細商品名.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbl明細商品名.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細商品名.Location = New System.Drawing.Point(127, 86)
-        Me.lbl明細商品名.Name = "lbl明細商品名"
-        Me.lbl明細商品名.Size = New System.Drawing.Size(461, 26)
-        Me.lbl明細商品名.TabIndex = 200
-        Me.lbl明細商品名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblメーカ.AutoEllipsis = True
+        Me.lblメーカ.BackColor = System.Drawing.SystemColors.Control
+        Me.lblメーカ.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblメーカ.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblメーカ.Location = New System.Drawing.Point(127, 86)
+        Me.lblメーカ.Name = "lblメーカ"
+        Me.lblメーカ.Size = New System.Drawing.Size(291, 26)
+        Me.lblメーカ.TabIndex = 200
+        Me.lblメーカ.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbl明細規格
+        'lblメーカ品番
         '
-        Me.lbl明細規格.AutoEllipsis = True
-        Me.lbl明細規格.BackColor = System.Drawing.SystemColors.Control
-        Me.lbl明細規格.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.lbl明細規格.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細規格.Location = New System.Drawing.Point(127, 118)
-        Me.lbl明細規格.Name = "lbl明細規格"
-        Me.lbl明細規格.Size = New System.Drawing.Size(461, 26)
-        Me.lbl明細規格.TabIndex = 201
-        Me.lbl明細規格.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lblメーカ品番.AutoEllipsis = True
+        Me.lblメーカ品番.BackColor = System.Drawing.SystemColors.Control
+        Me.lblメーカ品番.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lblメーカ品番.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblメーカ品番.Location = New System.Drawing.Point(127, 118)
+        Me.lblメーカ品番.Name = "lblメーカ品番"
+        Me.lblメーカ品番.Size = New System.Drawing.Size(291, 26)
+        Me.lblメーカ品番.TabIndex = 201
+        Me.lblメーカ品番.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'lbl明細１
         '
@@ -366,22 +340,10 @@ Partial Class HARK501S2
         Me.lbl明細１.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lbl明細１.Location = New System.Drawing.Point(7, 25)
         Me.lbl明細１.Name = "lbl明細１"
-        Me.lbl明細１.Size = New System.Drawing.Size(113, 20)
+        Me.lbl明細１.Size = New System.Drawing.Size(87, 20)
         Me.lbl明細１.TabIndex = 169
-        Me.lbl明細１.Text = "【業者用コード】"
+        Me.lbl明細１.Text = "【受注形態】"
         Me.lbl明細１.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txt院内コード
-        '
-        Me.txt院内コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
-        Me.txt院内コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt院内コード.Format = "A9"
-        Me.txt院内コード.Location = New System.Drawing.Point(127, 10)
-        Me.txt院内コード.MaxLength = 40
-        Me.txt院内コード.Name = "txt院内コード"
-        Me.txt院内コード.Size = New System.Drawing.Size(181, 26)
-        Me.txt院内コード.TabIndex = 11
-        Me.txt院内コード.Tag = "ID1"
         '
         'SttBar_3
         '
@@ -510,25 +472,37 @@ Partial Class HARK501S2
         '
         Me.pnl検索.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl検索.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl検索.Controls.Add(Me.lbl院内コード)
-        Me.pnl検索.Controls.Add(Me.txt院内コード)
+        Me.pnl検索.Controls.Add(Me.lbl商品コード)
+        Me.pnl検索.Controls.Add(Me.txt商品コード)
         Me.pnl検索.Location = New System.Drawing.Point(25, 44)
         Me.pnl検索.Name = "pnl検索"
         Me.pnl検索.Size = New System.Drawing.Size(955, 46)
         Me.pnl検索.TabIndex = 184
         '
-        'lbl院内コード
+        'lbl商品コード
         '
-        Me.lbl院内コード.AutoSize = True
-        Me.lbl院内コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl院内コード.Location = New System.Drawing.Point(7, 13)
-        Me.lbl院内コード.Name = "lbl院内コード"
-        Me.lbl院内コード.Size = New System.Drawing.Size(100, 20)
-        Me.lbl院内コード.TabIndex = 167
-        Me.lbl院内コード.Text = "【院内コード】"
-        Me.lbl院内コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lbl商品コード.AutoSize = True
+        Me.lbl商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl商品コード.Location = New System.Drawing.Point(7, 13)
+        Me.lbl商品コード.Name = "lbl商品コード"
+        Me.lbl商品コード.Size = New System.Drawing.Size(100, 20)
+        Me.lbl商品コード.TabIndex = 167
+        Me.lbl商品コード.Text = "【商品コード】"
+        Me.lbl商品コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'HARK501S2
+        'txt商品コード
+        '
+        Me.txt商品コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txt商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt商品コード.Format = "9"
+        Me.txt商品コード.Location = New System.Drawing.Point(127, 10)
+        Me.txt商品コード.MaxLength = 60
+        Me.txt商品コード.Name = "txt商品コード"
+        Me.txt商品コード.Size = New System.Drawing.Size(181, 26)
+        Me.txt商品コード.TabIndex = 11
+        Me.txt商品コード.Tag = "ID1"
+        '
+        'HARK100S1
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(230, Byte), Integer))
@@ -549,7 +523,7 @@ Partial Class HARK501S2
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximizeBox = False
-        Me.Name = "HARK501S2"
+        Me.Name = "HARK100S1"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -563,6 +537,7 @@ Partial Class HARK501S2
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl検索.ResumeLayout(False)
         Me.pnl検索.PerformLayout()
+        CType(Me.txt商品コード, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -585,27 +560,25 @@ Partial Class HARK501S2
     Private WithEvents BT_ID5 As Button
     Private WithEvents lbl明細１ As Label
     Private WithEvents pnl検索 As Panel
-    Private WithEvents lbl明細仕入先コード As Label
-    Private WithEvents lbl明細商品コード As Label
-    Private WithEvents lbl明細商品名 As Label
-    Private WithEvents lbl明細規格 As Label
-    Private WithEvents lbl院内コード As Label
+    Private WithEvents txt商品コード As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents lbl規格 As Label
+    Private WithEvents lbl商品名 As Label
+    Private WithEvents lblメーカ As Label
+    Private WithEvents lblメーカ品番 As Label
+    Private WithEvents lbl商品コード As Label
     Private WithEvents lbl明細６ As Label
     Private WithEvents lbl明細５ As Label
     Private WithEvents lbl明細３ As Label
     Private WithEvents lbl明細４ As Label
+    Private WithEvents lbl注意 As Label
     Private WithEvents txt院内コード As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents cmbマルコ対象 As ComboBox
+    Private WithEvents cmb受注形態 As ComboBox
     Private WithEvents lbl明細２ As Label
-    Private WithEvents lbl商品ID As Label
-    Private WithEvents cmb軽減税率対象 As ComboBox
+    Private WithEvents lblID As Label
+    Private WithEvents cmb出荷連携 As ComboBox
     Private WithEvents lbl明細７ As Label
-    Private WithEvents lbl明細業者用コード As Label
-    Private WithEvents lbl明細９ As Label
+    Private WithEvents cmb取込除外 As ComboBox
     Private WithEvents lbl明細８ As Label
-    Private WithEvents lbl明細販売元 As Label
-    Private WithEvents cmbマルビシ対象 As ComboBox
-    Private WithEvents lbl明細仕入先名 As Label
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -613,10 +586,14 @@ Partial Class HARK501S2
     Private xxxintSubProgram_ID As Integer
     Private xxxintSPDSystemCode As Integer
     Private xxxstrForTitle As String
-    Private xxxintマルコ対象 As Integer
-    Private xxxintマルビシ対象 As Integer
-    Private xxxint軽減税率対象 As Integer
-    Private xxxstr病院コード As String
+    Private xxxint事業所コード As Integer
+    Private xxxstr担当者名 As String
+    Private xxxlng需要先コード As Long
+    Private xxxint受注形態 As Integer
+    Private xxxint出荷連携 As Integer
+    Private xxxint取込除外 As Integer
+    'Private xxxintCnt(3) As Integer
+    'Private xxxintNo As Integer
 
 
     Public Sub New(ByVal PerFormTitle As String, ByVal PerProgramID As String, ByVal PreSubProgramID As Integer, ByVal PreSPDSystemCode As Integer)
@@ -632,28 +609,29 @@ Partial Class HARK501S2
         xxxstrProgram_ID = PerProgramID
         xxxintSubProgram_ID = PreSubProgramID
         xxxintSPDSystemCode = PreSPDSystemCode
-        xxxstr病院コード = "T01"
 
         'PreviewKeyDownイベントハンドラの追加
-        AddHandler txt院内コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
+        AddHandler txt商品コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
+        'AddHandler txt院内コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
 
         'PreviewKeyDownイベントハンドラの追加
-        AddHandler cmb軽減税率対象.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
-        AddHandler cmbマルビシ対象.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
-        AddHandler cmbマルコ対象.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
+        AddHandler cmb出荷連携.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
+        AddHandler cmb受注形態.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
+        AddHandler cmb取込除外.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
 
         'KeyDownイベントハンドラの追加
-        AddHandler cmbマルコ対象.KeyDown, AddressOf Txt_KeyDown
-        AddHandler cmbマルビシ対象.KeyDown, AddressOf Txt_KeyDown
+        AddHandler txt商品コード.KeyDown, AddressOf Txt_KeyDown
+        AddHandler cmb受注形態.KeyDown, AddressOf Txt_KeyDown
+        AddHandler cmb出荷連携.KeyDown, AddressOf Txt_KeyDown
         AddHandler txt院内コード.KeyDown, AddressOf Txt_KeyDown
 
         'SelectedValueChangedイベントハンドラの追加
-        AddHandler cmbマルコ対象.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
-        AddHandler cmbマルビシ対象.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
-        AddHandler cmb軽減税率対象.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+        AddHandler cmb受注形態.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+        AddHandler cmb出荷連携.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+        AddHandler cmb取込除外.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
 
         'Validatedイベントハンドラの追加
-        AddHandler txt院内コード.Validated, AddressOf Txt_Validated
+        AddHandler txt商品コード.Validated, AddressOf Txt_Validated
 
         'Clickイベントハンドラの追加
         AddHandler BT_ID1.Click, AddressOf Bt_ID_Click
@@ -666,6 +644,7 @@ Partial Class HARK501S2
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
+
 
 
 End Class

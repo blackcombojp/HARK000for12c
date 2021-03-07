@@ -200,9 +200,9 @@ Partial Class HARK202
         Me.BT_ID4.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID4.DropDown = Me.CntMenuStrip
         Me.BT_ID4.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID4.Location = New System.Drawing.Point(255, 0)
+        Me.BT_ID4.Location = New System.Drawing.Point(270, 0)
         Me.BT_ID4.Name = "BT_ID4"
-        Me.BT_ID4.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID4.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID4.TabIndex = 134
         Me.BT_ID4.Tag = "ID4"
         Me.BT_ID4.Text = "ログ(&F4)"
@@ -278,9 +278,9 @@ Partial Class HARK202
         Me.BT_ID7.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID7.Enabled = False
         Me.BT_ID7.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID7.Location = New System.Drawing.Point(530, 0)
+        Me.BT_ID7.Location = New System.Drawing.Point(560, 0)
         Me.BT_ID7.Name = "BT_ID7"
-        Me.BT_ID7.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID7.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID7.TabIndex = 137
         Me.BT_ID7.Tag = "ID7"
         Me.BT_ID7.UseVisualStyleBackColor = False
@@ -290,9 +290,9 @@ Partial Class HARK202
         Me.BT_ID8.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID8.Enabled = False
         Me.BT_ID8.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID8.Location = New System.Drawing.Point(615, 0)
+        Me.BT_ID8.Location = New System.Drawing.Point(650, 0)
         Me.BT_ID8.Name = "BT_ID8"
-        Me.BT_ID8.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID8.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID8.TabIndex = 138
         Me.BT_ID8.Tag = "ID8"
         Me.BT_ID8.UseVisualStyleBackColor = False
@@ -301,9 +301,9 @@ Partial Class HARK202
         '
         Me.BT_ID3.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID3.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID3.Location = New System.Drawing.Point(170, 0)
+        Me.BT_ID3.Location = New System.Drawing.Point(180, 0)
         Me.BT_ID3.Name = "BT_ID3"
-        Me.BT_ID3.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID3.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID3.TabIndex = 133
         Me.BT_ID3.Tag = "ID3"
         Me.BT_ID3.Text = "クリア(&F3)"
@@ -314,9 +314,9 @@ Partial Class HARK202
         Me.BT_ID2.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID2.Enabled = False
         Me.BT_ID2.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID2.Location = New System.Drawing.Point(85, 0)
+        Me.BT_ID2.Location = New System.Drawing.Point(90, 0)
         Me.BT_ID2.Name = "BT_ID2"
-        Me.BT_ID2.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID2.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID2.TabIndex = 132
         Me.BT_ID2.Tag = "ID2"
         Me.BT_ID2.UseVisualStyleBackColor = False
@@ -328,7 +328,7 @@ Partial Class HARK202
         Me.BT_ID1.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.BT_ID1.Location = New System.Drawing.Point(0, 0)
         Me.BT_ID1.Name = "BT_ID1"
-        Me.BT_ID1.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID1.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID1.TabIndex = 131
         Me.BT_ID1.Tag = "ID1"
         Me.BT_ID1.UseVisualStyleBackColor = False
@@ -338,9 +338,9 @@ Partial Class HARK202
         Me.BT_ID6.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID6.Enabled = False
         Me.BT_ID6.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID6.Location = New System.Drawing.Point(445, 0)
+        Me.BT_ID6.Location = New System.Drawing.Point(470, 0)
         Me.BT_ID6.Name = "BT_ID6"
-        Me.BT_ID6.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID6.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID6.TabIndex = 136
         Me.BT_ID6.Tag = "ID6"
         Me.BT_ID6.UseVisualStyleBackColor = False
@@ -349,9 +349,9 @@ Partial Class HARK202
         '
         Me.Bt_Close.BackColor = System.Drawing.SystemColors.Control
         Me.Bt_Close.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Bt_Close.Location = New System.Drawing.Point(1175, 0)
+        Me.Bt_Close.Location = New System.Drawing.Point(1171, 0)
         Me.Bt_Close.Name = "Bt_Close"
-        Me.Bt_Close.Size = New System.Drawing.Size(85, 24)
+        Me.Bt_Close.Size = New System.Drawing.Size(90, 24)
         Me.Bt_Close.TabIndex = 130
         Me.Bt_Close.Text = "戻る(&F12)"
         Me.Bt_Close.UseVisualStyleBackColor = False
@@ -360,9 +360,9 @@ Partial Class HARK202
         '
         Me.BT_ID5.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID5.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID5.Location = New System.Drawing.Point(360, 0)
+        Me.BT_ID5.Location = New System.Drawing.Point(380, 0)
         Me.BT_ID5.Name = "BT_ID5"
-        Me.BT_ID5.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID5.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID5.TabIndex = 135
         Me.BT_ID5.Tag = "ID5"
         Me.BT_ID5.Text = "確定(&F5)"
@@ -785,7 +785,7 @@ Partial Class HARK202
         Me.btn履歴検索.BackColor = System.Drawing.SystemColors.Control
         Me.btn履歴検索.Location = New System.Drawing.Point(1088, 89)
         Me.btn履歴検索.Name = "btn履歴検索"
-        Me.btn履歴検索.Size = New System.Drawing.Size(85, 26)
+        Me.btn履歴検索.Size = New System.Drawing.Size(90, 26)
         Me.btn履歴検索.TabIndex = 211
         Me.btn履歴検索.Tag = "ID1"
         Me.btn履歴検索.Text = "検索(&R)"

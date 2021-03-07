@@ -6,7 +6,7 @@
 ' *-----------------------------------------------------------------------------/
 
 <Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class HARK501S1
+Partial Class HARK100S2
     Inherits System.Windows.Forms.Form
 
     'フォームがコンポーネントの一覧をクリーンアップするために dispose をオーバーライドします。
@@ -30,18 +30,15 @@ Partial Class HARK501S1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK501S1))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK100S2))
         Me.Menu_Log = New System.Windows.Forms.ToolStripMenuItem()
         Me.CntMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.Menu_ErrorLog = New System.Windows.Forms.ToolStripMenuItem()
         Me.BT_ID4 = New GrapeCity.Win.Buttons.GcSplitButton()
         Me.pnl明細 = New System.Windows.Forms.Panel()
-        Me.txt明細部署名 = New GrapeCity.Win.Editors.GcTextBox(Me.components)
         Me.lblID = New System.Windows.Forms.Label()
-        Me.lbl明細部署 = New System.Windows.Forms.Label()
-        Me.txt明細部署コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.cmb施設 = New System.Windows.Forms.ComboBox()
-        Me.lbl明細施設 = New System.Windows.Forms.Label()
+        Me.cmb取込除外区分 = New System.Windows.Forms.ComboBox()
+        Me.lbl取込除外 = New System.Windows.Forms.Label()
         Me.SttBar_3 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBar_2 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBarPnl_Err = New System.Windows.Forms.StatusBarPanel()
@@ -55,21 +52,27 @@ Partial Class HARK501S1
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.pnl検索 = New System.Windows.Forms.Panel()
-        Me.GB_更新 = New System.Windows.Forms.GroupBox()
-        Me.RB_新規 = New System.Windows.Forms.RadioButton()
-        Me.RB_更新 = New System.Windows.Forms.RadioButton()
-        Me.lbl部署コード = New System.Windows.Forms.Label()
-        Me.txt部署コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl得意先コード = New System.Windows.Forms.Label()
+        Me.txt需要先コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl需要先名 = New System.Windows.Forms.Label()
+        Me.txt得意先コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl得意先名 = New System.Windows.Forms.Label()
+        Me.lbl需要先コード = New System.Windows.Forms.Label()
+        Me.lbl商品コード = New System.Windows.Forms.Label()
+        Me.txt商品コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl相手先商品コード = New System.Windows.Forms.Label()
+        Me.txt相手先商品コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl注意 = New System.Windows.Forms.Label()
         Me.CntMenuStrip.SuspendLayout()
         Me.pnl明細.SuspendLayout()
-        CType(Me.txt明細部署名, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt明細部署コード, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl検索.SuspendLayout()
-        Me.GB_更新.SuspendLayout()
-        CType(Me.txt部署コード, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt需要先コード, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt得意先コード, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt商品コード, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt相手先商品コード, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu_Log
@@ -109,27 +112,14 @@ Partial Class HARK501S1
         '
         Me.pnl明細.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl明細.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl明細.Controls.Add(Me.txt明細部署名)
+        Me.pnl明細.Controls.Add(Me.lbl注意)
         Me.pnl明細.Controls.Add(Me.lblID)
-        Me.pnl明細.Controls.Add(Me.lbl明細部署)
-        Me.pnl明細.Controls.Add(Me.txt明細部署コード)
-        Me.pnl明細.Controls.Add(Me.cmb施設)
-        Me.pnl明細.Controls.Add(Me.lbl明細施設)
-        Me.pnl明細.Location = New System.Drawing.Point(25, 128)
+        Me.pnl明細.Controls.Add(Me.cmb取込除外区分)
+        Me.pnl明細.Controls.Add(Me.lbl取込除外)
+        Me.pnl明細.Location = New System.Drawing.Point(25, 183)
         Me.pnl明細.Name = "pnl明細"
-        Me.pnl明細.Size = New System.Drawing.Size(955, 302)
+        Me.pnl明細.Size = New System.Drawing.Size(955, 247)
         Me.pnl明細.TabIndex = 185
-        '
-        'txt明細部署名
-        '
-        Me.txt明細部署名.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
-        Me.txt明細部署名.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt明細部署名.Location = New System.Drawing.Point(243, 52)
-        Me.txt明細部署名.MaxLength = 60
-        Me.txt明細部署名.Name = "txt明細部署名"
-        Me.txt明細部署名.Size = New System.Drawing.Size(320, 26)
-        Me.txt明細部署名.TabIndex = 23
-        Me.txt明細部署名.Tag = "ID3"
         '
         'lblID
         '
@@ -137,57 +127,34 @@ Partial Class HARK501S1
         Me.lblID.BackColor = System.Drawing.SystemColors.Control
         Me.lblID.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.lblID.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblID.Location = New System.Drawing.Point(127, 85)
+        Me.lblID.Location = New System.Drawing.Point(303, 14)
         Me.lblID.Name = "lblID"
         Me.lblID.Size = New System.Drawing.Size(110, 26)
         Me.lblID.TabIndex = 201
         Me.lblID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.lblID.Visible = False
         '
-        'lbl明細部署
+        'cmb取込除外区分
         '
-        Me.lbl明細部署.AutoSize = True
-        Me.lbl明細部署.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細部署.Location = New System.Drawing.Point(46, 55)
-        Me.lbl明細部署.Name = "lbl明細部署"
-        Me.lbl明細部署.Size = New System.Drawing.Size(61, 20)
-        Me.lbl明細部署.TabIndex = 220
-        Me.lbl明細部署.Text = "【部署】"
-        Me.lbl明細部署.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.cmb取込除外区分.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb取込除外区分.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmb取込除外区分.FormattingEnabled = True
+        Me.cmb取込除外区分.Location = New System.Drawing.Point(162, 14)
+        Me.cmb取込除外区分.Name = "cmb取込除外区分"
+        Me.cmb取込除外区分.Size = New System.Drawing.Size(93, 26)
+        Me.cmb取込除外区分.TabIndex = 21
+        Me.cmb取込除外区分.Tag = "ID1"
         '
-        'txt明細部署コード
+        'lbl取込除外
         '
-        Me.txt明細部署コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
-        Me.txt明細部署コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt明細部署コード.Format = "A9"
-        Me.txt明細部署コード.Location = New System.Drawing.Point(127, 52)
-        Me.txt明細部署コード.MaxLength = 10
-        Me.txt明細部署コード.Name = "txt明細部署コード"
-        Me.txt明細部署コード.Size = New System.Drawing.Size(110, 26)
-        Me.txt明細部署コード.TabIndex = 22
-        Me.txt明細部署コード.Tag = "ID2"
-        '
-        'cmb施設
-        '
-        Me.cmb施設.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb施設.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cmb施設.FormattingEnabled = True
-        Me.cmb施設.Location = New System.Drawing.Point(127, 20)
-        Me.cmb施設.Name = "cmb施設"
-        Me.cmb施設.Size = New System.Drawing.Size(291, 26)
-        Me.cmb施設.TabIndex = 21
-        Me.cmb施設.Tag = "ID1"
-        '
-        'lbl明細施設
-        '
-        Me.lbl明細施設.AutoSize = True
-        Me.lbl明細施設.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl明細施設.Location = New System.Drawing.Point(46, 23)
-        Me.lbl明細施設.Name = "lbl明細施設"
-        Me.lbl明細施設.Size = New System.Drawing.Size(61, 20)
-        Me.lbl明細施設.TabIndex = 169
-        Me.lbl明細施設.Text = "【施設】"
-        Me.lbl明細施設.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.lbl取込除外.AutoSize = True
+        Me.lbl取込除外.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl取込除外.Location = New System.Drawing.Point(72, 17)
+        Me.lbl取込除外.Name = "lbl取込除外"
+        Me.lbl取込除外.Size = New System.Drawing.Size(87, 20)
+        Me.lbl取込除外.TabIndex = 169
+        Me.lbl取込除外.Text = "【取込除外】"
+        Me.lbl取込除外.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'SttBar_3
         '
@@ -316,68 +283,152 @@ Partial Class HARK501S1
         '
         Me.pnl検索.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl検索.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl検索.Controls.Add(Me.GB_更新)
-        Me.pnl検索.Controls.Add(Me.lbl部署コード)
-        Me.pnl検索.Controls.Add(Me.txt部署コード)
+        Me.pnl検索.Controls.Add(Me.lbl相手先商品コード)
+        Me.pnl検索.Controls.Add(Me.txt相手先商品コード)
+        Me.pnl検索.Controls.Add(Me.lbl商品コード)
+        Me.pnl検索.Controls.Add(Me.txt商品コード)
+        Me.pnl検索.Controls.Add(Me.lbl得意先コード)
+        Me.pnl検索.Controls.Add(Me.txt需要先コード)
+        Me.pnl検索.Controls.Add(Me.lbl需要先名)
+        Me.pnl検索.Controls.Add(Me.txt得意先コード)
+        Me.pnl検索.Controls.Add(Me.lbl得意先名)
+        Me.pnl検索.Controls.Add(Me.lbl需要先コード)
         Me.pnl検索.Location = New System.Drawing.Point(25, 44)
         Me.pnl検索.Name = "pnl検索"
-        Me.pnl検索.Size = New System.Drawing.Size(955, 78)
+        Me.pnl検索.Size = New System.Drawing.Size(955, 130)
         Me.pnl検索.TabIndex = 184
         '
-        'GB_更新
+        'lbl得意先コード
         '
-        Me.GB_更新.Controls.Add(Me.RB_新規)
-        Me.GB_更新.Controls.Add(Me.RB_更新)
-        Me.GB_更新.Location = New System.Drawing.Point(11, -1)
-        Me.GB_更新.Name = "GB_更新"
-        Me.GB_更新.Size = New System.Drawing.Size(226, 41)
-        Me.GB_更新.TabIndex = 168
-        Me.GB_更新.TabStop = False
+        Me.lbl得意先コード.AutoSize = True
+        Me.lbl得意先コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl得意先コード.Location = New System.Drawing.Point(85, 11)
+        Me.lbl得意先コード.Name = "lbl得意先コード"
+        Me.lbl得意先コード.Size = New System.Drawing.Size(74, 20)
+        Me.lbl得意先コード.TabIndex = 172
+        Me.lbl得意先コード.Text = "【得意先】"
+        Me.lbl得意先コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'RB_新規
+        'txt需要先コード
         '
-        Me.RB_新規.AutoSize = True
-        Me.RB_新規.Location = New System.Drawing.Point(132, 16)
-        Me.RB_新規.Name = "RB_新規"
-        Me.RB_新規.Size = New System.Drawing.Size(47, 16)
-        Me.RB_新規.TabIndex = 102
-        Me.RB_新規.Text = "新規"
-        Me.RB_新規.UseVisualStyleBackColor = True
+        Me.txt需要先コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleRight
+        Me.txt需要先コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt需要先コード.Format = "9"
+        Me.txt需要先コード.HighlightText = True
+        Me.txt需要先コード.Location = New System.Drawing.Point(162, 36)
+        Me.txt需要先コード.MaxLength = 10
+        Me.txt需要先コード.Name = "txt需要先コード"
+        Me.txt需要先コード.Size = New System.Drawing.Size(93, 24)
+        Me.txt需要先コード.TabIndex = 12
+        Me.txt需要先コード.Tag = "ID2"
         '
-        'RB_更新
+        'lbl需要先名
         '
-        Me.RB_更新.AutoSize = True
-        Me.RB_更新.Location = New System.Drawing.Point(39, 16)
-        Me.RB_更新.Name = "RB_更新"
-        Me.RB_更新.Size = New System.Drawing.Size(47, 16)
-        Me.RB_更新.TabIndex = 101
-        Me.RB_更新.Text = "更新"
-        Me.RB_更新.UseVisualStyleBackColor = True
+        Me.lbl需要先名.AutoEllipsis = True
+        Me.lbl需要先名.BackColor = System.Drawing.SystemColors.Control
+        Me.lbl需要先名.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lbl需要先名.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl需要先名.Location = New System.Drawing.Point(257, 36)
+        Me.lbl需要先名.Name = "lbl需要先名"
+        Me.lbl需要先名.Size = New System.Drawing.Size(287, 24)
+        Me.lbl需要先名.TabIndex = 171
+        Me.lbl需要先名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbl部署コード
+        'txt得意先コード
         '
-        Me.lbl部署コード.AutoSize = True
-        Me.lbl部署コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl部署コード.Location = New System.Drawing.Point(7, 48)
-        Me.lbl部署コード.Name = "lbl部署コード"
-        Me.lbl部署コード.Size = New System.Drawing.Size(100, 20)
-        Me.lbl部署コード.TabIndex = 167
-        Me.lbl部署コード.Text = "【部署コード】"
-        Me.lbl部署コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txt得意先コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleRight
+        Me.txt得意先コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt得意先コード.Format = "9"
+        Me.txt得意先コード.HighlightText = True
+        Me.txt得意先コード.Location = New System.Drawing.Point(162, 9)
+        Me.txt得意先コード.MaxLength = 10
+        Me.txt得意先コード.Name = "txt得意先コード"
+        Me.txt得意先コード.Size = New System.Drawing.Size(93, 24)
+        Me.txt得意先コード.TabIndex = 11
+        Me.txt得意先コード.Tag = "ID1"
         '
-        'txt部署コード
+        'lbl得意先名
         '
-        Me.txt部署コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
-        Me.txt部署コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt部署コード.Format = "A9"
-        Me.txt部署コード.Location = New System.Drawing.Point(127, 45)
-        Me.txt部署コード.MaxLength = 10
-        Me.txt部署コード.Name = "txt部署コード"
-        Me.txt部署コード.Size = New System.Drawing.Size(110, 26)
-        Me.txt部署コード.TabIndex = 11
-        Me.txt部署コード.Tag = "ID1"
+        Me.lbl得意先名.AutoEllipsis = True
+        Me.lbl得意先名.BackColor = System.Drawing.SystemColors.Control
+        Me.lbl得意先名.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.lbl得意先名.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl得意先名.Location = New System.Drawing.Point(257, 9)
+        Me.lbl得意先名.Name = "lbl得意先名"
+        Me.lbl得意先名.Size = New System.Drawing.Size(287, 24)
+        Me.lbl得意先名.TabIndex = 169
+        Me.lbl得意先名.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'HARK501S1
+        'lbl需要先コード
+        '
+        Me.lbl需要先コード.AutoSize = True
+        Me.lbl需要先コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl需要先コード.Location = New System.Drawing.Point(85, 38)
+        Me.lbl需要先コード.Name = "lbl需要先コード"
+        Me.lbl需要先コード.Size = New System.Drawing.Size(74, 20)
+        Me.lbl需要先コード.TabIndex = 167
+        Me.lbl需要先コード.Text = "【需要先】"
+        Me.lbl需要先コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'lbl商品コード
+        '
+        Me.lbl商品コード.AutoSize = True
+        Me.lbl商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl商品コード.Location = New System.Drawing.Point(59, 66)
+        Me.lbl商品コード.Name = "lbl商品コード"
+        Me.lbl商品コード.Size = New System.Drawing.Size(100, 20)
+        Me.lbl商品コード.TabIndex = 174
+        Me.lbl商品コード.Text = "【商品コード】"
+        Me.lbl商品コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txt商品コード
+        '
+        Me.txt商品コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txt商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt商品コード.Format = "9"
+        Me.txt商品コード.Location = New System.Drawing.Point(162, 63)
+        Me.txt商品コード.MaxLength = 60
+        Me.txt商品コード.Name = "txt商品コード"
+        Me.txt商品コード.Size = New System.Drawing.Size(181, 26)
+        Me.txt商品コード.TabIndex = 13
+        Me.txt商品コード.Tag = "ID3"
+        '
+        'lbl相手先商品コード
+        '
+        Me.lbl相手先商品コード.AutoSize = True
+        Me.lbl相手先商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl相手先商品コード.Location = New System.Drawing.Point(20, 95)
+        Me.lbl相手先商品コード.Name = "lbl相手先商品コード"
+        Me.lbl相手先商品コード.Size = New System.Drawing.Size(139, 20)
+        Me.lbl相手先商品コード.TabIndex = 176
+        Me.lbl相手先商品コード.Text = "【相手先商品コード】"
+        Me.lbl相手先商品コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txt相手先商品コード
+        '
+        Me.txt相手先商品コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txt相手先商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt相手先商品コード.Format = "Aa#@9"
+        Me.txt相手先商品コード.Location = New System.Drawing.Point(162, 92)
+        Me.txt相手先商品コード.MaxLength = 30
+        Me.txt相手先商品コード.Name = "txt相手先商品コード"
+        Me.txt相手先商品コード.Size = New System.Drawing.Size(181, 26)
+        Me.txt相手先商品コード.TabIndex = 14
+        Me.txt相手先商品コード.Tag = "ID4"
+        '
+        'lbl注意
+        '
+        Me.lbl注意.AutoSize = True
+        Me.lbl注意.Font = New System.Drawing.Font("メイリオ", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl注意.ForeColor = System.Drawing.Color.Red
+        Me.lbl注意.Location = New System.Drawing.Point(16, 209)
+        Me.lbl注意.Name = "lbl注意"
+        Me.lbl注意.Size = New System.Drawing.Size(445, 23)
+        Me.lbl注意.TabIndex = 219
+        Me.lbl注意.Text = "※新規商品マスタはAptage登録10分後以降に処理してください"
+        Me.lbl注意.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'HARK100S2
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(250, Byte), Integer), CType(CType(230, Byte), Integer))
@@ -398,7 +449,7 @@ Partial Class HARK501S1
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.KeyPreview = True
         Me.MaximizeBox = False
-        Me.Name = "HARK501S1"
+        Me.Name = "HARK100S2"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -406,16 +457,15 @@ Partial Class HARK501S1
         Me.CntMenuStrip.ResumeLayout(False)
         Me.pnl明細.ResumeLayout(False)
         Me.pnl明細.PerformLayout()
-        CType(Me.txt明細部署名, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt明細部署コード, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl検索.ResumeLayout(False)
         Me.pnl検索.PerformLayout()
-        Me.GB_更新.ResumeLayout(False)
-        Me.GB_更新.PerformLayout()
-        CType(Me.txt部署コード, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt需要先コード, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt得意先コード, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt商品コード, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt相手先商品コード, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -436,28 +486,32 @@ Partial Class HARK501S1
     Private WithEvents BT_ID6 As Button
     Private WithEvents Bt_Close As Button
     Private WithEvents BT_ID5 As Button
-    Private WithEvents lbl明細施設 As Label
+    Private WithEvents lbl取込除外 As Label
     Private WithEvents pnl検索 As Panel
-    Private WithEvents txt部署コード As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents lbl部署コード As Label
-    Private WithEvents txt明細部署コード As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents cmb施設 As ComboBox
-    Private WithEvents lbl明細部署 As Label
+    Private WithEvents lbl需要先コード As Label
+    Private WithEvents cmb取込除外区分 As ComboBox
     Private WithEvents lblID As Label
-    Private WithEvents txt明細部署名 As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents GB_更新 As GroupBox
-    Private WithEvents RB_新規 As RadioButton
-    Private WithEvents RB_更新 As RadioButton
+    Private WithEvents txt需要先コード As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents lbl需要先名 As Label
+    Private WithEvents txt得意先コード As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents lbl得意先名 As Label
+    Private WithEvents lbl得意先コード As Label
+    Private WithEvents lbl相手先商品コード As Label
+    Private WithEvents txt相手先商品コード As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents lbl商品コード As Label
+    Private WithEvents txt商品コード As GrapeCity.Win.Editors.GcTextBox
+    Private WithEvents lbl注意 As Label
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
+
 
     Private xxxstrProgram_ID As String
     Private xxxintSubProgram_ID As Integer
     Private xxxintSPDSystemCode As Integer
     Private xxxstrForTitle As String
-    Private xxxstr病院コード As String
-    Private xxxstr施設コード As String
-
+    Private xxxint新規区分 As Integer
+    Private xxxint取込除外区分 As Integer
+    Private xxx初期コントロール As GrapeCity.Win.Editors.GcTextBox
 
     Public Sub New(ByVal PerFormTitle As String, ByVal PerProgramID As String, ByVal PreSubProgramID As Integer, ByVal PreSPDSystemCode As Integer)
 
@@ -472,31 +526,28 @@ Partial Class HARK501S1
         xxxstrProgram_ID = PerProgramID
         xxxintSubProgram_ID = PreSubProgramID
         xxxintSPDSystemCode = PreSPDSystemCode
-        xxxstr病院コード = "T01"
 
         'PreviewKeyDownイベントハンドラの追加
-        AddHandler txt部署コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
-        AddHandler txt明細部署コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
-        AddHandler txt明細部署名.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
+        AddHandler txt得意先コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
+        AddHandler txt需要先コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
+        AddHandler txt商品コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
+        AddHandler txt相手先商品コード.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
 
         'PreviewKeyDownイベントハンドラの追加
-        AddHandler cmb施設.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
+        AddHandler cmb取込除外区分.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
 
         'KeyDownイベントハンドラの追加
-        AddHandler txt部署コード.KeyDown, AddressOf Txt_KeyDown
-        AddHandler cmb施設.KeyDown, AddressOf Txt_KeyDown
-        AddHandler txt明細部署コード.KeyDown, AddressOf Txt_KeyDown
+        AddHandler txt得意先コード.KeyDown, AddressOf Txt_KeyDown
+        AddHandler txt需要先コード.KeyDown, AddressOf Txt_KeyDown
+        AddHandler txt商品コード.KeyDown, AddressOf Txt_KeyDown
+        AddHandler txt相手先商品コード.KeyDown, AddressOf Txt_KeyDown
 
         'SelectedValueChangedイベントハンドラの追加
-        AddHandler cmb施設.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+        AddHandler cmb取込除外区分.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
 
         'Validatedイベントハンドラの追加
-        AddHandler txt部署コード.Validated, AddressOf Txt_Validated
-
-        'Rb_CheckedChanged
-        AddHandler RB_更新.CheckedChanged, AddressOf Rb_CheckedChanged
-        AddHandler RB_新規.CheckedChanged, AddressOf Rb_CheckedChanged
-
+        AddHandler txt得意先コード.Validated, AddressOf Txt_Validated
+        AddHandler txt需要先コード.Validated, AddressOf Txt_Validated
 
         'Clickイベントハンドラの追加
         AddHandler BT_ID1.Click, AddressOf Bt_ID_Click
@@ -509,8 +560,6 @@ Partial Class HARK501S1
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
-
-
 
 
 

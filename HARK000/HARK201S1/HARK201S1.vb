@@ -13,7 +13,7 @@ Imports HARK000.HARK_Common
 Imports HARK000.HARK_Sub
 Imports System.ComponentModel
 
-Public Class HARK301S2
+Public Class HARK201S1
     '/*-----------------------------------------------------------------------------
     ' *　モジュール機能　：　フォーム読み込み処理
     ' *
@@ -33,9 +33,6 @@ Public Class HARK301S2
             '各種情報表示
             SttBar_2.Text = gstr担当者名
             SttBar_3.Text = "Ver : " & Application.ProductVersion
-
-            'コンボに値設定
-            Set_CmbValue()
 
             '初期化
             Initialize()
@@ -63,7 +60,7 @@ Public Class HARK301S2
     Private Sub Fm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
         Try
-            txt商品コード.Focus()
+            txt連携キー.Focus()
 
         Catch ex As Exception
 
@@ -150,97 +147,6 @@ Public Class HARK301S2
 
     End Sub
     '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　コンボボックスに値をセット
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　なし
-    ' *　戻値　　　　　　：　なし
-    ' *
-    ' *-----------------------------------------------------------------------------/
-    Private Sub Set_CmbValue()
-
-        Dim i As Integer
-
-        Try
-
-            '項目一覧取得
-            If DLTP0901_PROC0005(xxxstrProgram_ID, "受注形態区分", gintSQLCODE, gstrSQLERRM) = False Then
-
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
-                Exit Sub
-
-            End If
-
-            '項目一覧
-            For i = 0 To gint項目辞書Cnt - 1
-
-                cmb受注形態.Items.Add(New 項目辞書一覧(項目辞書Array(i).str名称, 項目辞書Array(i).intコード))
-
-            Next
-
-            '空白行追加
-            cmb受注形態.Items.Add(New 項目辞書一覧("不明", 9))
-
-            ' 出荷連携
-            cmb出荷連携.Items.Add("標準")
-            cmb出荷連携.Items.Add("単位違い")
-
-            '取込除外
-            cmb取込除外.Items.Add("対象外")
-            cmb取込除外.Items.Add("対象")
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　コンボボックス選択時処理
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　sender -- オブジェクト識別クラス
-    ' *　引数２　　　　　：　e      -- イベントデータクラス
-    ' *　戻値　　　　　　：　なし
-    ' *-----------------------------------------------------------------------------/
-    Private Sub Cmb_SelectedValueChanged(sender As Object, e As EventArgs)
-
-        Dim Tag As String
-
-        Try
-
-            Tag = CStr(CType(sender, ComboBox).Tag)
-
-            Select Case Tag
-
-                Case "ID1" '受注形態コンボボックス
-
-                    With DirectCast(cmb受注形態.SelectedItem, 項目辞書一覧)
-                        xxxint受注形態 = .intコード
-                    End With
-
-                Case "ID2"
-
-                    xxxint出荷連携 = cmb出荷連携.SelectedIndex
-
-                Case "ID3"
-
-                    xxxint取込除外 = cmb取込除外.SelectedIndex
-
-            End Select
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
     ' *　モジュール機能　：　各種コンポーネント初期化
     ' *
     ' *　注意、制限事項　：　なし
@@ -251,42 +157,10 @@ Public Class HARK301S2
 
         Try
 
-            txt商品コード.Text = ""
-            txt商品コード.Enabled = True
+            txt連携キー.Text = ""
+            txt連携キー.Enabled = True
 
-            Initialize明細()
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　明細コンポーネント初期化
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　なし
-    ' *　戻値　　　　　　：　なし
-    ' *-----------------------------------------------------------------------------/
-    Private Sub Initialize明細()
-
-        Try
-
-            txt院内コード.Text = ""
-            cmb受注形態.SelectedIndex = gint項目辞書Cnt
-            lblメーカ品番.Text = ""
-            lblメーカ.Text = ""
-            lbl商品名.Text = ""
-            lbl規格.Text = ""
-            lblID.Text = ""
-            cmb出荷連携.SelectedIndex = 0
-            cmb取込除外.SelectedIndex = 0
-
-            xxxint受注形態 = 9
-            xxxint出荷連携 = 0
+            HARK201S1DS.ds一覧.Clear()
 
         Catch ex As Exception
 
@@ -366,84 +240,13 @@ Public Class HARK301S2
 
             Select Case Tag
 
-                Case "ID1"  '商品コード
+                Case "ID1"  '連携キー
 
                     If e.Shift = True Then
 
                         Select Case e.KeyCode
 
                             'Tabキーが押されてもフォーカスが移動しないようにする
-                            Case Keys.Tab
-                                e.IsInputKey = True
-
-                        End Select
-
-                    End If
-
-                    'Case "ID2"  '院内コード
-
-                    '    If e.Shift = False Then
-
-                    '        Select Case e.KeyCode
-
-                    '            'Tabキーが押されてもフォーカスが移動しないようにする
-                    '            Case Keys.Tab
-                    '                e.IsInputKey = True
-
-                    '        End Select
-
-                    '    End If
-
-            End Select
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　コンボボックスキー押下処理
-    ' *
-    ' *　注意、制限事項　：　タブ移動させたくないコントロールのみにハンドリングすること
-    ' *　引数１　　　　　：　sender・・オブジェクト識別クラス
-    ' *　引数２　　　　　：　e・・イベントデータクラス
-    ' *　戻値　　　　　　：　なし
-    ' *
-    ' *-----------------------------------------------------------------------------/
-    Private Sub Cmb_PreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
-
-        Dim Tag As String
-
-        Try
-
-            Tag = CStr(CType(sender, ComboBox).Tag)
-
-            Select Case Tag
-
-                Case "ID1"  '受注形態
-
-                    If e.Shift = True And txt商品コード.Enabled = False Then
-
-                        Select Case e.KeyCode
-
-                                'Tabキーが押されてもフォーカスが移動しないようにする
-                            Case Keys.Tab
-                                e.IsInputKey = True
-
-                        End Select
-
-                    End If
-
-                Case "ID3"  '取込除外
-
-                    If e.Shift = False Then
-
-                        Select Case e.KeyCode
-
-                                'Tabキーが押されてもフォーカスが移動しないようにする
                             Case Keys.Tab
                                 e.IsInputKey = True
 
@@ -479,7 +282,7 @@ Public Class HARK301S2
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt商品コード.Focus()
+            txt連携キー.Focus()
             Exit Sub
 
         End If
@@ -503,7 +306,7 @@ Public Class HARK301S2
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt商品コード.Focus()
+            txt連携キー.Focus()
             Exit Sub
 
         End If
@@ -556,7 +359,7 @@ Public Class HARK301S2
                     If gintRtn = vbYes Then
 
                         Initialize()
-                        txt商品コード.Focus()
+                        txt連携キー.Focus()
 
                     End If
 
@@ -574,24 +377,20 @@ Public Class HARK301S2
 
                     If gintRtn = vbNo Then
 
-                        cmb受注形態.Focus()
+                        Initialize()
+                        txt連携キー.Focus()
                         Exit Sub
 
                     End If
 
-                    gintRtn = DLTP0301_PROC0022(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt商品コード.Text.Trim, txt院内コード.Text.Trim, xxxint受注形態, xxxint出荷連携, xxxint取込除外, gintSQLCODE, gstrSQLERRM)
-
-                    Select Case gintRtn
-                        Case 0
-                            MsgBox(MSG_301041, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        Case -54
-                            MsgBox(MSG_301051, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                        Case Else
-                            MsgBox(MSG_301042 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                    End Select
+                    If DLTP0201_PROC0032(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt連携キー.Text.Trim, gintSQLCODE, gstrSQLERRM) = True Then
+                        MsgBox(MSG_301046, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    Else
+                        MsgBox(MSG_301047 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                    End If
 
                     Initialize()
-                    txt商品コード.Focus()
+                    txt連携キー.Focus()
                     Exit Sub
 
                 Case "ID6" 'なし
@@ -626,22 +425,16 @@ Public Class HARK301S2
 
             実行前チェック処理 = False
 
-            '商品コード
-            If IsNull(txt商品コード.Text.Trim) = True Then
-                MsgBox(MSG_301038, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt商品コード.Focus()
+            '連携キー
+            If IsNull(txt連携キー.Text.Trim) = True Then
+                MsgBox(MSG_301044, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt連携キー.Focus()
                 Exit Function
             End If
 
-            If IsNull(txt院内コード.Text.Trim) = True Then
-                MsgBox(MSG_301039, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt院内コード.Focus()
-                Exit Function
-            End If
-
-            If cmb受注形態.SelectedIndex = 3 Then
-                MsgBox(MSG_301040, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                cmb受注形態.Focus()
+            If gcmr一覧.RowCount < 1 Then
+                MsgBox(MSG_301045, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt連携キー.Focus()
                 Exit Function
             End If
 
@@ -666,22 +459,40 @@ Public Class HARK301S2
     ' *-----------------------------------------------------------------------------/
     Private Function データ表示処理() As Boolean
 
+        Dim intRowCnt As Integer
+
         Try
 
             データ表示処理 = False
 
-            Initialize明細()
+            HARK201S1DS.ds一覧.Clear()
 
-            cmb受注形態.Text = Results(0).strBuff(8)
-            xxxint受注形態 = CInt(Results(0).strBuff(7))
-            txt院内コード.Text = Results(0).strBuff(1)
-            lblメーカ.Text = Results(0).strBuff(3)
-            lblメーカ品番.Text = Results(0).strBuff(4)
-            lbl商品名.Text = Results(0).strBuff(5)
-            lbl規格.Text = Results(0).strBuff(6)
-            lblID.Text = Results(0).strBuff(0)
-            cmb出荷連携.SelectedIndex = CInt(Results(0).strBuff(9))
-            cmb取込除外.SelectedIndex = CInt(Results(0).strBuff(10))
+            For intRowCnt = 0 To gintResultCnt - 1
+
+                HARK201S1DS.ds一覧.Addds一覧Row(Results(intRowCnt).strBuff(0),
+                                                CLng(Results(intRowCnt).strBuff(1)),
+                                                CLng(Results(intRowCnt).strBuff(2)),
+                                                CLng(Results(intRowCnt).strBuff(3)),
+                                                Results(intRowCnt).strBuff(4),
+                                                CLng(Results(intRowCnt).strBuff(5)),
+                                                Results(intRowCnt).strBuff(6),
+                                                Results(intRowCnt).strBuff(7),
+                                                Results(intRowCnt).strBuff(8),
+                                                Results(intRowCnt).strBuff(9),
+                                                Results(intRowCnt).strBuff(10),
+                                                Results(intRowCnt).strBuff(11),
+                                                CInt(Results(intRowCnt).strBuff(12)),
+                                                Results(intRowCnt).strBuff(13),
+                                                Results(intRowCnt).strBuff(14),
+                                                CInt(Results(intRowCnt).strBuff(15)),
+                                                Results(intRowCnt).strBuff(16),
+                                                CLng(Results(intRowCnt).strBuff(17)),
+                                                CInt(Results(intRowCnt).strBuff(18)),
+                                                Results(intRowCnt).strBuff(19),
+                                                Results(intRowCnt).strBuff(20))
+
+
+            Next
 
             データ表示処理 = True
 
@@ -712,44 +523,39 @@ Public Class HARK301S2
 
             Select Case Tag
 
-                Case "ID1" '商品コード
+                Case "ID1" '連携キー
 
-                    If IsNull(txt商品コード.Text.Trim) = False Then
+                    If IsNull(txt連携キー.Text.Trim) = False Then
 
-                        If txt商品コード.Text.Trim.Length > 60 Then
-                            MsgBox(MSG_301035, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        If txt連携キー.Text.Trim.Length <> 39 Then
+                            MsgBox(MSG_301043, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                             Initialize()
-                            txt商品コード.Focus()
+                            txt連携キー.Focus()
                             Exit Sub
                         End If
 
-                        gintRtn = DLTP0301_PROC0021(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt商品コード.Text.Trim, gintSQLCODE, gstrSQLERRM)
+                        gintRtn = DLTP0201_PROC0031(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt連携キー.Text.Trim, gintSQLCODE, gstrSQLERRM)
 
                         Select Case gintRtn
                             Case 0
                                 gblRtn = データ表示処理()
-                                txt商品コード.Enabled = False
-                            Case 7
-                                MsgBox(MSG_301036, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt連携キー.Enabled = False
+                            Case 7, 8
+                                MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
-                                txt商品コード.Focus()
-                                Exit Sub
-                            Case 8
-                                MsgBox(MSG_301037 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                                Initialize()
-                                txt商品コード.Focus()
+                                txt連携キー.Focus()
                                 Exit Sub
                             Case Else
                                 MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                                 Initialize()
-                                txt商品コード.Focus()
+                                txt連携キー.Focus()
                                 Exit Sub
 
                         End Select
 
                     Else
                         Initialize()
-                        'txt商品コード.Focus()
+                        txt連携キー.Focus()
                     End If
 
             End Select

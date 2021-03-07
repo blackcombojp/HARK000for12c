@@ -461,6 +461,7 @@ Public Class HARK201
     Private Sub Cmb_SelectedValueChanged(sender As Object, e As EventArgs)
 
         Dim Tag As String
+        Dim SubForm As Form
 
         Try
 
@@ -508,6 +509,24 @@ Public Class HARK201
                     With DirectCast(cmbサブプログラム.SelectedItem, サブプログラム一覧)
                         xxxintSubProgram_ID = .intサブプログラムコード
                     End With
+
+                    Select Case xxxintSubProgram_ID
+
+                        Case 4 '分納データ完了処理
+
+                            If フォームヘッダチェック処理() = False Then Exit Sub
+
+                            SubForm = New HARK201S1(cmbサブプログラム.Text, xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
+
+                            SubForm.ShowDialog(Me)
+                            SubForm.Dispose()
+
+                            cmb需要先.SelectedIndex = gint需要先Cnt
+                            cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                            lb_Msg.Items.Clear()
+                            cmb需要先.Focus()
+
+                    End Select
 
             End Select
 
@@ -730,6 +749,7 @@ Public Class HARK201
         Dim Tag As String
         'Dim m_lording As Thread = Nothing
         Dim strSendFile As String = Nothing
+        Dim SubForm As Form
 
         Try
             'Oracle接続状態確認
@@ -928,8 +948,15 @@ EndExecute:
 
                     Exit Sub
 
+                Case "ID6" ''出荷設定
 
-                Case "ID6" 'なし
+                    If フォームヘッダチェック処理() = False Then Exit Sub
+
+                    SubForm = New HARK100S1(xxxstrForTitle & " 出荷連携メンテナンス", "HARKP101", 0, gintSPDシステムコード)
+
+                    SubForm.ShowDialog(Me)
+                    SubForm.Dispose()
+
                 Case "ID7" 'なし
                 Case "ID8" 'なし
 
@@ -1735,6 +1762,62 @@ EndExecute:
             End Select
 
             有効期限切迫データ出力結果更新処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　フォームヘッダチェック処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　引数２　　　　　：　なし
+    ' *　戻値　　　　　　：　True・・正常、False・・異常
+    ' *-----------------------------------------------------------------------------/
+    Private Function フォームヘッダチェック処理() As Boolean
+
+        Try
+            フォームヘッダチェック処理 = False
+
+            If IsNull(cmb事業所.Text.Trim) = True Then
+                MsgBox(MSG_COM007, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                cmb事業所.Focus()
+                Exit Function
+            End If
+
+            If IsNull(txt入力担当コード.Text.Trim) = True Then
+                MsgBox(MSG_COM008, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt入力担当コード.Focus()
+                Exit Function
+            End If
+
+            If CLng(txt入力担当コード.Text.Trim) = 0 Then
+                MsgBox(MSG_COM008, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt入力担当コード.Focus()
+                Exit Function
+            End If
+
+            If DLTP0900_PROC0001(xxxstrProgram_ID, CLng(txt入力担当コード.Text.Trim), My.Settings.事業所コード, gintSQLCODE, gstrSQLERRM) = False Then
+                If gintSQLCODE = 1 Then
+                    MsgBox(MSG_COM009, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                Else
+                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                    log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                End If
+                txt入力担当コード.Text = ""
+                txt入力担当コード.Focus()
+                Exit Function
+            Else
+                SttBar_2.Text = gstr担当者名
+            End If
+
+            フォームヘッダチェック処理 = True
 
         Catch ex As Exception
 

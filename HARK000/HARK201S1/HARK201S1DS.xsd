@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HARK201S1DS" targetNamespace="http://tempuri.org/HARK201S1DS.xsd" xmlns:mstns="http://tempuri.org/HARK201S1DS.xsd" xmlns="http://tempuri.org/HARK201S1DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HARK201S1DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="HARK201S1DS" msprop:Generator_UserDSName="HARK201S1DS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ds一覧" msprop:Generator_TableClassName="ds一覧DataTable" msprop:Generator_TableVarName="tableds一覧" msprop:Generator_TablePropName="ds一覧" msprop:Generator_RowDeletingName="ds一覧RowDeleting" msprop:Generator_RowChangingName="ds一覧RowChanging" msprop:Generator_RowEvHandlerName="ds一覧RowChangeEventHandler" msprop:Generator_RowDeletedName="ds一覧RowDeleted" msprop:Generator_UserTableName="ds一覧" msprop:Generator_RowChangedName="ds一覧RowChanged" msprop:Generator_RowEvArgName="ds一覧RowChangeEvent" msprop:Generator_RowClassName="ds一覧Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="連携キー" msprop:Generator_ColumnVarNameInTable="column連携キー" msprop:Generator_ColumnPropNameInRow="連携キー" msprop:Generator_ColumnPropNameInTable="連携キーColumn" msprop:Generator_UserColumnName="連携キー" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="39" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="発注書番号" msprop:Generator_ColumnVarNameInTable="column発注書番号" msprop:Generator_ColumnPropNameInRow="発注書番号" msprop:Generator_ColumnPropNameInTable="発注書番号Column" msprop:Generator_UserColumnName="発注書番号" type="xs:long" minOccurs="0" />
+              <xs:element name="ピッキング番号" msprop:Generator_ColumnVarNameInTable="columnピッキング番号" msprop:Generator_ColumnPropNameInRow="ピッキング番号" msprop:Generator_ColumnPropNameInTable="ピッキング番号Column" msprop:Generator_UserColumnName="ピッキング番号" type="xs:long" minOccurs="0" />
+              <xs:element name="需要先コード" msprop:Generator_ColumnVarNameInTable="column需要先コード" msprop:Generator_ColumnPropNameInRow="需要先コード" msprop:Generator_ColumnPropNameInTable="需要先コードColumn" msprop:Generator_UserColumnName="需要先コード" type="xs:long" minOccurs="0" />
+              <xs:element name="需要先名" msprop:Generator_ColumnVarNameInTable="column需要先名" msprop:Generator_ColumnPropNameInRow="需要先名" msprop:Generator_ColumnPropNameInTable="需要先名Column" msprop:Generator_UserColumnName="需要先名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="需要先部署コード" msprop:Generator_ColumnVarNameInTable="column需要先部署コード" msprop:Generator_ColumnPropNameInRow="需要先部署コード" msprop:Generator_ColumnPropNameInTable="需要先部署コードColumn" msprop:Generator_UserColumnName="需要先部署コード" type="xs:long" minOccurs="0" />
+              <xs:element name="部署名" msprop:Generator_ColumnVarNameInTable="column部署名" msprop:Generator_ColumnPropNameInRow="部署名" msprop:Generator_ColumnPropNameInTable="部署名Column" msprop:Generator_UserColumnName="部署名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="商品コード" msprop:Generator_ColumnVarNameInTable="column商品コード" msprop:Generator_ColumnPropNameInRow="商品コード" msprop:Generator_ColumnPropNameInTable="商品コードColumn" msprop:Generator_UserColumnName="商品コード" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="メーカ名" msprop:Generator_ColumnVarNameInTable="columnメーカ名" msprop:Generator_ColumnPropNameInRow="メーカ名" msprop:Generator_ColumnPropNameInTable="メーカ名Column" msprop:Generator_UserColumnName="メーカ名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="メーカ品番" msprop:Generator_ColumnVarNameInTable="columnメーカ品番" msprop:Generator_ColumnPropNameInRow="メーカ品番" msprop:Generator_ColumnPropNameInTable="メーカ品番Column" msprop:Generator_UserColumnName="メーカ品番" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="商品名" msprop:Generator_ColumnVarNameInTable="column商品名" msprop:Generator_ColumnPropNameInRow="商品名" msprop:Generator_ColumnPropNameInTable="商品名Column" msprop:Generator_UserColumnName="商品名" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="規格" msprop:Generator_ColumnVarNameInTable="column規格" msprop:Generator_ColumnPropNameInRow="規格" msprop:Generator_ColumnPropNameInTable="規格Column" msprop:Generator_UserColumnName="規格" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="60" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="受注数量" msprop:Generator_ColumnVarNameInTable="column受注数量" msprop:Generator_ColumnPropNameInRow="受注数量" msprop:Generator_ColumnPropNameInTable="受注数量Column" msprop:Generator_UserColumnName="受注数量" type="xs:int" minOccurs="0" />
+              <xs:element name="ロット番号" msprop:Generator_ColumnVarNameInTable="columnロット番号" msprop:Generator_ColumnPropNameInRow="ロット番号" msprop:Generator_ColumnPropNameInTable="ロット番号Column" msprop:Generator_UserColumnName="ロット番号" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="有効期限" msprop:Generator_ColumnVarNameInTable="column有効期限" msprop:Generator_ColumnPropNameInRow="有効期限" msprop:Generator_ColumnPropNameInTable="有効期限Column" msprop:Generator_UserColumnName="有効期限" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ピッキング数量" msprop:Generator_ColumnVarNameInTable="columnピッキング数量" msprop:Generator_ColumnPropNameInRow="ピッキング数量" msprop:Generator_ColumnPropNameInTable="ピッキング数量Column" msprop:Generator_UserColumnName="ピッキング数量" type="xs:int" minOccurs="0" />
+              <xs:element name="長期貸出番号" msprop:Generator_ColumnVarNameInTable="column長期貸出番号" msprop:Generator_ColumnPropNameInRow="長期貸出番号" msprop:Generator_ColumnPropNameInTable="長期貸出番号Column" msprop:Generator_UserColumnName="長期貸出番号" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="伝票番号" msprop:Generator_ColumnVarNameInTable="column伝票番号" msprop:Generator_ColumnPropNameInRow="伝票番号" msprop:Generator_ColumnPropNameInTable="伝票番号Column" msprop:Generator_UserColumnName="伝票番号" type="xs:long" minOccurs="0" />
+              <xs:element name="伝票行番号" msprop:Generator_ColumnVarNameInTable="column伝票行番号" msprop:Generator_ColumnPropNameInRow="伝票行番号" msprop:Generator_ColumnPropNameInTable="伝票行番号Column" msprop:Generator_UserColumnName="伝票行番号" type="xs:int" minOccurs="0" />
+              <xs:element name="エラー情報" msprop:Generator_ColumnVarNameInTable="columnエラー情報" msprop:Generator_ColumnPropNameInRow="エラー情報" msprop:Generator_ColumnPropNameInTable="エラー情報Column" msprop:Generator_UserColumnName="エラー情報" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="出荷日時" msprop:Generator_ColumnVarNameInTable="column出荷日時" msprop:Generator_ColumnPropNameInRow="出荷日時" msprop:Generator_ColumnPropNameInTable="出荷日時Column" msprop:Generator_UserColumnName="出荷日時" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

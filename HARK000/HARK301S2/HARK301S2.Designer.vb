@@ -36,6 +36,8 @@ Partial Class HARK301S2
         Me.Menu_ErrorLog = New System.Windows.Forms.ToolStripMenuItem()
         Me.BT_ID4 = New GrapeCity.Win.Buttons.GcSplitButton()
         Me.pnl明細 = New System.Windows.Forms.Panel()
+        Me.cmb取込除外 = New System.Windows.Forms.ComboBox()
+        Me.lbl明細８ = New System.Windows.Forms.Label()
         Me.cmb出荷連携 = New System.Windows.Forms.ComboBox()
         Me.lbl明細７ = New System.Windows.Forms.Label()
         Me.lblID = New System.Windows.Forms.Label()
@@ -102,9 +104,9 @@ Partial Class HARK301S2
         Me.BT_ID4.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID4.DropDown = Me.CntMenuStrip
         Me.BT_ID4.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID4.Location = New System.Drawing.Point(255, 0)
+        Me.BT_ID4.Location = New System.Drawing.Point(270, 0)
         Me.BT_ID4.Name = "BT_ID4"
-        Me.BT_ID4.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID4.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID4.TabIndex = 134
         Me.BT_ID4.Tag = "ID4"
         Me.BT_ID4.Text = "ログ(&F4)"
@@ -114,6 +116,8 @@ Partial Class HARK301S2
         '
         Me.pnl明細.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl明細.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnl明細.Controls.Add(Me.cmb取込除外)
+        Me.pnl明細.Controls.Add(Me.lbl明細８)
         Me.pnl明細.Controls.Add(Me.cmb出荷連携)
         Me.pnl明細.Controls.Add(Me.lbl明細７)
         Me.pnl明細.Controls.Add(Me.lblID)
@@ -134,6 +138,28 @@ Partial Class HARK301S2
         Me.pnl明細.Name = "pnl明細"
         Me.pnl明細.Size = New System.Drawing.Size(955, 334)
         Me.pnl明細.TabIndex = 185
+        '
+        'cmb取込除外
+        '
+        Me.cmb取込除外.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb取込除外.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmb取込除外.FormattingEnabled = True
+        Me.cmb取込除外.Location = New System.Drawing.Point(127, 246)
+        Me.cmb取込除外.Name = "cmb取込除外"
+        Me.cmb取込除外.Size = New System.Drawing.Size(181, 26)
+        Me.cmb取込除外.TabIndex = 24
+        Me.cmb取込除外.Tag = "ID3"
+        '
+        'lbl明細８
+        '
+        Me.lbl明細８.AutoSize = True
+        Me.lbl明細８.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl明細８.Location = New System.Drawing.Point(7, 249)
+        Me.lbl明細８.Name = "lbl明細８"
+        Me.lbl明細８.Size = New System.Drawing.Size(113, 20)
+        Me.lbl明細８.TabIndex = 223
+        Me.lbl明細８.Text = "【受注取込除外】"
+        Me.lbl明細８.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'cmb出荷連携
         '
@@ -209,7 +235,7 @@ Partial Class HARK301S2
         Me.lbl注意.AutoSize = True
         Me.lbl注意.Font = New System.Drawing.Font("メイリオ", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lbl注意.ForeColor = System.Drawing.Color.Red
-        Me.lbl注意.Location = New System.Drawing.Point(16, 254)
+        Me.lbl注意.Location = New System.Drawing.Point(16, 283)
         Me.lbl注意.Name = "lbl注意"
         Me.lbl注意.Size = New System.Drawing.Size(445, 23)
         Me.lbl注意.TabIndex = 218
@@ -351,9 +377,9 @@ Partial Class HARK301S2
         Me.BT_ID7.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID7.Enabled = False
         Me.BT_ID7.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID7.Location = New System.Drawing.Point(530, 0)
+        Me.BT_ID7.Location = New System.Drawing.Point(560, 0)
         Me.BT_ID7.Name = "BT_ID7"
-        Me.BT_ID7.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID7.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID7.TabIndex = 137
         Me.BT_ID7.Tag = "ID7"
         Me.BT_ID7.UseVisualStyleBackColor = False
@@ -363,9 +389,9 @@ Partial Class HARK301S2
         Me.BT_ID8.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID8.Enabled = False
         Me.BT_ID8.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID8.Location = New System.Drawing.Point(615, 0)
+        Me.BT_ID8.Location = New System.Drawing.Point(650, 0)
         Me.BT_ID8.Name = "BT_ID8"
-        Me.BT_ID8.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID8.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID8.TabIndex = 138
         Me.BT_ID8.Tag = "ID8"
         Me.BT_ID8.UseVisualStyleBackColor = False
@@ -374,9 +400,9 @@ Partial Class HARK301S2
         '
         Me.BT_ID3.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID3.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID3.Location = New System.Drawing.Point(170, 0)
+        Me.BT_ID3.Location = New System.Drawing.Point(180, 0)
         Me.BT_ID3.Name = "BT_ID3"
-        Me.BT_ID3.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID3.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID3.TabIndex = 133
         Me.BT_ID3.Tag = "ID3"
         Me.BT_ID3.Text = "クリア(&F3)"
@@ -387,9 +413,9 @@ Partial Class HARK301S2
         Me.BT_ID2.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID2.Enabled = False
         Me.BT_ID2.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID2.Location = New System.Drawing.Point(85, 0)
+        Me.BT_ID2.Location = New System.Drawing.Point(90, 0)
         Me.BT_ID2.Name = "BT_ID2"
-        Me.BT_ID2.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID2.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID2.TabIndex = 132
         Me.BT_ID2.Tag = "ID2"
         Me.BT_ID2.UseVisualStyleBackColor = False
@@ -401,7 +427,7 @@ Partial Class HARK301S2
         Me.BT_ID1.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.BT_ID1.Location = New System.Drawing.Point(0, 0)
         Me.BT_ID1.Name = "BT_ID1"
-        Me.BT_ID1.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID1.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID1.TabIndex = 131
         Me.BT_ID1.Tag = "ID1"
         Me.BT_ID1.UseVisualStyleBackColor = False
@@ -411,9 +437,9 @@ Partial Class HARK301S2
         Me.BT_ID6.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID6.Enabled = False
         Me.BT_ID6.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID6.Location = New System.Drawing.Point(445, 0)
+        Me.BT_ID6.Location = New System.Drawing.Point(470, 0)
         Me.BT_ID6.Name = "BT_ID6"
-        Me.BT_ID6.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID6.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID6.TabIndex = 136
         Me.BT_ID6.Tag = "ID6"
         Me.BT_ID6.UseVisualStyleBackColor = False
@@ -423,9 +449,9 @@ Partial Class HARK301S2
         Me.Bt_Close.BackColor = System.Drawing.SystemColors.Control
         Me.Bt_Close.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Bt_Close.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Bt_Close.Location = New System.Drawing.Point(919, 0)
+        Me.Bt_Close.Location = New System.Drawing.Point(914, 0)
         Me.Bt_Close.Name = "Bt_Close"
-        Me.Bt_Close.Size = New System.Drawing.Size(85, 24)
+        Me.Bt_Close.Size = New System.Drawing.Size(90, 24)
         Me.Bt_Close.TabIndex = 130
         Me.Bt_Close.Text = "戻る(&F12)"
         Me.Bt_Close.UseVisualStyleBackColor = False
@@ -434,9 +460,9 @@ Partial Class HARK301S2
         '
         Me.BT_ID5.BackColor = System.Drawing.SystemColors.Control
         Me.BT_ID5.Font = New System.Drawing.Font("Meiryo UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BT_ID5.Location = New System.Drawing.Point(360, 0)
+        Me.BT_ID5.Location = New System.Drawing.Point(380, 0)
         Me.BT_ID5.Name = "BT_ID5"
-        Me.BT_ID5.Size = New System.Drawing.Size(85, 24)
+        Me.BT_ID5.Size = New System.Drawing.Size(90, 24)
         Me.BT_ID5.TabIndex = 135
         Me.BT_ID5.Tag = "ID5"
         Me.BT_ID5.Text = "確定(&F5)"
@@ -551,6 +577,8 @@ Partial Class HARK301S2
     Private WithEvents lblID As Label
     Private WithEvents cmb出荷連携 As ComboBox
     Private WithEvents lbl明細７ As Label
+    Private WithEvents cmb取込除外 As ComboBox
+    Private WithEvents lbl明細８ As Label
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -563,6 +591,7 @@ Partial Class HARK301S2
     Private xxxlng需要先コード As Long
     Private xxxint受注形態 As Integer
     Private xxxint出荷連携 As Integer
+    Private xxxint取込除外 As Integer
     'Private xxxintCnt(3) As Integer
     'Private xxxintNo As Integer
 
@@ -588,15 +617,18 @@ Partial Class HARK301S2
         'PreviewKeyDownイベントハンドラの追加
         AddHandler cmb出荷連携.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
         AddHandler cmb受注形態.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
+        AddHandler cmb取込除外.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
 
         'KeyDownイベントハンドラの追加
         AddHandler txt商品コード.KeyDown, AddressOf Txt_KeyDown
         AddHandler cmb受注形態.KeyDown, AddressOf Txt_KeyDown
+        AddHandler cmb出荷連携.KeyDown, AddressOf Txt_KeyDown
         AddHandler txt院内コード.KeyDown, AddressOf Txt_KeyDown
 
         'SelectedValueChangedイベントハンドラの追加
         AddHandler cmb受注形態.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
         AddHandler cmb出荷連携.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+        AddHandler cmb取込除外.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
 
         'Validatedイベントハンドラの追加
         AddHandler txt商品コード.Validated, AddressOf Txt_Validated

@@ -282,6 +282,12 @@ Public Class HARK101
                     'XMLファイルから設定を読み込む
                     LoadFromXmlFile(Set_FilePath(gstrSettingFilePath, xxxstrProgram_ID & CStr(xxxintSubProgram_ID) & ".config"))
 
+                Case "HARKP104" 'Rツール連携
+
+                    '受注設定OFF
+                    BT_ID6.Text = ""
+                    BT_ID6.Enabled = False
+
                 Case Else
                     Exit Select
             End Select
@@ -985,20 +991,44 @@ EndExecute:
 
                     Exit Sub
 
-                Case "ID6" 'なし
+                Case "ID6" '受注設定
+
+                    If フォームヘッダチェック処理() = False Then Exit Sub
+
+                    Select Case xxxstrProgram_ID
+
+                        '天神会 SPD受注
+                        Case "HARKP101"
+
+                            SubForm = New HARK100S1(xxxstrForTitle & " 受注形態メンテナンス", xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
+
+                            SubForm.ShowDialog(Me)
+                            SubForm.Dispose()
+
+                        'KMC EDI受注
+                        'PHsmos連携
+                        '徳洲会連携
+                        Case "HARKP102", "HARKP105", "HARKP106" '
+
+                            SubForm = New HARK100S2(xxxstrForTitle & " 取込除外メンテナンス", xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
+
+                            SubForm.ShowDialog(Me)
+                            SubForm.Dispose()
+
+                        Case Else
+
+                            Exit Select
+
+                    End Select
+
                 Case "ID7" 'LC設定
 
-                    If IsNull(cmb事業所.Text.Trim) = True Then
-                        MsgBox(MSG_COM007, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        cmb事業所.Focus()
-                        Exit Sub
-                    End If
+                    If フォームヘッダチェック処理() = False Then Exit Sub
 
                     SubForm = New HARK992(xxxstrForTitle & " ロジスティクスセンター設定", xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
 
                     SubForm.ShowDialog(Me)
                     SubForm.Dispose()
-
 
                 Case "ID8" 'エラーフォルダ表示
 
@@ -2101,6 +2131,60 @@ EndExecute:
         End Try
 
     End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　フォームヘッダチェック処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　引数２　　　　　：　なし
+    ' *　戻値　　　　　　：　True・・正常、False・・異常
+    ' *-----------------------------------------------------------------------------/
+    Private Function フォームヘッダチェック処理() As Boolean
 
+        Try
+            フォームヘッダチェック処理 = False
+
+            If IsNull(cmb事業所.Text.Trim) = True Then
+                MsgBox(MSG_COM007, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                cmb事業所.Focus()
+                Exit Function
+            End If
+
+            If IsNull(txt入力担当コード.Text.Trim) = True Then
+                MsgBox(MSG_COM008, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt入力担当コード.Focus()
+                Exit Function
+            End If
+
+            If CLng(txt入力担当コード.Text.Trim) = 0 Then
+                MsgBox(MSG_COM008, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt入力担当コード.Focus()
+                Exit Function
+            End If
+
+            If DLTP0900_PROC0001(xxxstrProgram_ID, CLng(txt入力担当コード.Text.Trim), My.Settings.事業所コード, gintSQLCODE, gstrSQLERRM) = False Then
+                If gintSQLCODE = 1 Then
+                    MsgBox(MSG_COM009, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                Else
+                    MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                    log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                End If
+                txt入力担当コード.Text = ""
+                txt入力担当コード.Focus()
+                Exit Function
+            Else
+                SttBar_2.Text = gstr担当者名
+            End If
+
+            フォームヘッダチェック処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
 
 End Class

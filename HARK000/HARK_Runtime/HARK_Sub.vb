@@ -75,7 +75,7 @@ Public Class HARK_Sub
 
             'Oracle接続
             If OraConnect() = False Then
-                log.Error(Set_ErrMSG(0, MSG_COM004))
+                'log.Error(Set_ErrMSG(0, MSG_COM004))
                 MsgBox(MSG_COM004 & vbCr & MSG_COM019, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
                 Throw New Exception(MSG_COM004)
             End If
@@ -86,7 +86,7 @@ Public Class HARK_Sub
             Else
                 If DLTP0900_PROC0002("Sub_Main", gintSQLCODE, gstrSQLERRM) = False Then
                     MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                    Throw New Exception
+                    Throw New Exception(gintSQLCODE & "-" & gstrSQLERRM)
                 End If
             End If
 
@@ -96,26 +96,26 @@ Public Class HARK_Sub
             Else
                 If DLTP0900_PROC0001("Sub_Main", My.Settings.入力担当コード, vbNullString, gintSQLCODE, gstrSQLERRM) = False Then
                     MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                    Throw New Exception
+                    Throw New Exception(gintSQLCODE & "-" & gstrSQLERRM)
                 End If
             End If
 
             '事業所一覧取得
             If DLTP0901_PROC0001("Sub_Main", gintSQLCODE, gstrSQLERRM) = False Then
                 MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                Throw New Exception
+                Throw New Exception(gintSQLCODE & "-" & gstrSQLERRM)
             End If
 
             '掲示版一覧取得
             If DLTP0000_PROC0011("Sub_Main", gintSQLCODE, gstrSQLERRM) = False Then
                 MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                Throw New Exception
+                Throw New Exception(gintSQLCODE & "-" & gstrSQLERRM)
             End If
 
             'ログイン情報更新
             If DLTP0000_PROC0006(gintSQLCODE, gstrSQLERRM) = False Then
                 MsgBox(MSG_COM910 & vbCr & MSG_COM901 & vbCr & gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                Throw New Exception
+                Throw New Exception(MSG_COM910)
             End If
 
             '変数設定
@@ -128,7 +128,7 @@ Public Class HARK_Sub
         Catch ex As Exception
 
             log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
 
             Application.Exit()
 
