@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="HARK202DS" targetNamespace="http://tempuri.org/HARK202DS.xsd" xmlns:mstns="http://tempuri.org/HARK202DS.xsd" xmlns="http://tempuri.org/HARK202DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="HARK203DS" targetNamespace="http://tempuri.org/HARK203DS.xsd" xmlns:mstns="http://tempuri.org/HARK203DS.xsd" xmlns="http://tempuri.org/HARK203DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,7 +9,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="HARK202DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="HARK202DS" msprop:Generator_UserDSName="HARK202DS">
+  <xs:element name="HARK203DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="HARK203DS" msprop:Generator_UserDSName="HARK203DS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="ds未処理" msprop:Generator_TableClassName="ds未処理DataTable" msprop:Generator_TableVarName="tableds未処理" msprop:Generator_TablePropName="ds未処理" msprop:Generator_RowDeletingName="ds未処理RowDeleting" msprop:Generator_RowChangingName="ds未処理RowChanging" msprop:Generator_RowEvHandlerName="ds未処理RowChangeEventHandler" msprop:Generator_RowDeletedName="ds未処理RowDeleted" msprop:Generator_UserTableName="ds未処理" msprop:Generator_RowChangedName="ds未処理RowChanged" msprop:Generator_RowEvArgName="ds未処理RowChangeEvent" msprop:Generator_RowClassName="ds未処理Row">

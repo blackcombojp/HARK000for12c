@@ -613,24 +613,20 @@ Public Class HARK100S2
 
                     End If
 
-                    'gintRtn = DLTP0100S_PROC0024(xxxstrProgram_ID,
-                    '                            xxxintSubProgram_ID,
-                    '                            xxxintSPDSystemCode,
-                    '                            xxxxint新規区分,
-                    '                            CLng(txt得意先コード.Text.Trim),
-                    '                            CLng(txt需要先コード.Text.Trim),
-                    '                            xxxint直送区分,
-                    '                            xxxint商品出荷指示区分,
-                    '                            xxxint商品手配方法区分,
-                    '                            xxxint発注納期設定区分,
-                    '                            CLng(NvlString(txt直送先コード.Text.Trim, DUMMY_STRCODE)),
-                    '                            cmb希望発注納期_月.Text.Trim,
-                    '                            cmb希望発注納期_火.Text.Trim,
-                    '                            cmb希望発注納期_水.Text.Trim,
-                    '                            cmb希望発注納期_木.Text.Trim,
-                    '                            cmb希望発注納期_金.Text.Trim,
-                    '                            gintSQLCODE,
-                    '                            gstrSQLERRM)
+                    gblRtn = パラメータ設定処理()
+
+
+                    gintRtn = DLTP0100S_PROC0026(xxxstrProgram_ID,
+                                                xxxintSubProgram_ID,
+                                                xxxintSPDSystemCode,
+                                                xxxint新規区分,
+                                                xxxstr商品コード,
+                                                xxxstr相手先商品コード,
+                                                xxxlng得意先コード,
+                                                xxxlng需要先コード,
+                                                CLng(lblID.Text.Trim),
+                                                gintSQLCODE,
+                                                gstrSQLERRM)
 
                     If gintRtn = 0 Then
                         MsgBox(MSG_992011, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
@@ -675,26 +671,64 @@ Public Class HARK100S2
 
             実行前チェック処理 = False
 
-            '得意先コード
-            If IsNull(txt得意先コード.Text.Trim) = True Then
-                MsgBox(MSG_992001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt得意先コード.Focus()
-                Exit Function
-            End If
+            Select Case xxxstrProgram_ID
 
-            '需要先コード
-            If IsNull(txt需要先コード.Text.Trim) = True Then
-                MsgBox(MSG_992002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt需要先コード.Focus()
-                Exit Function
-            End If
+                Case "HARKP102" 'KMC EDI受注
 
-            '直送区分
-            If IsNull(cmb取込除外区分.Text.Trim) = True Then
-                MsgBox(MSG_992006, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                cmb取込除外区分.Focus()
-                Exit Function
-            End If
+                    '相手先商品コード
+                    If IsNull(txt相手先商品コード.Text.Trim) = True Then
+                        MsgBox(MSG_100001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt相手先商品コード.Focus()
+                        Exit Function
+                    End If
+
+                Case "HARKP105" 'PHsmos連携
+
+                    '得意先コード
+                    If IsNull(txt得意先コード.Text.Trim) = True Then
+                        MsgBox(MSG_992001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt得意先コード.Focus()
+                        Exit Function
+                    End If
+
+                    '需要先コード
+                    If IsNull(txt需要先コード.Text.Trim) = True Then
+                        MsgBox(MSG_992002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt需要先コード.Focus()
+                        Exit Function
+                    End If
+
+                    '商品コード
+                    If IsNull(txt商品コード.Text.Trim) = True Then
+                        MsgBox(MSG_100002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt商品コード.Focus()
+                        Exit Function
+                    End If
+
+                Case "HARKP106", "HARKP107" '徳洲会連携 汎用連携
+
+                    '得意先コード
+                    If IsNull(txt得意先コード.Text.Trim) = True Then
+                        MsgBox(MSG_992001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt得意先コード.Focus()
+                        Exit Function
+                    End If
+
+                    '需要先コード
+                    If IsNull(txt需要先コード.Text.Trim) = True Then
+                        MsgBox(MSG_992002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt需要先コード.Focus()
+                        Exit Function
+                    End If
+
+                    '相手先商品コード
+                    If IsNull(txt相手先商品コード.Text.Trim) = True Then
+                        MsgBox(MSG_100001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt相手先商品コード.Focus()
+                        Exit Function
+                    End If
+
+            End Select
 
             実行前チェック処理 = True
 
@@ -727,6 +761,39 @@ Public Class HARK100S2
             cmb取込除外区分.SelectedIndex = CInt(Results(0).strBuff(1))
 
             データ表示処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　パラメータ設定処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function パラメータ設定処理() As Boolean
+
+        Try
+
+            パラメータ設定処理 = False
+
+            xxxlng得意先コード = DUMMY_LNGCODE
+            xxxlng需要先コード = DUMMY_LNGCODE
+            xxxstr商品コード = DUMMY_STRNULL
+            xxxstr相手先商品コード = DUMMY_STRNULL
+
+            If IsNull(txt得意先コード.Text.Trim) = False Then xxxlng得意先コード = CLng(txt得意先コード.Text.Trim)
+            If IsNull(txt需要先コード.Text.Trim) = False Then xxxlng需要先コード = CLng(txt需要先コード.Text.Trim)
+            If IsNull(txt商品コード.Text.Trim) = False Then xxxstr商品コード = txt商品コード.Text.Trim
+            If IsNull(txt相手先商品コード.Text.Trim) = False Then xxxstr相手先商品コード = txt相手先商品コード.Text.Trim
+
+            パラメータ設定処理 = True
 
         Catch ex As Exception
 
@@ -784,41 +851,110 @@ Public Class HARK100S2
                             txt需要先コード.Focus()
                         Else
                             lbl需要先名.Text = gstr得意先名
+                        End If
+                    Else
+                        txt需要先コード.Text = ""
+                        lbl需要先名.Text = ""
+                    End If
 
-                            gintRtn = DLTP0100S_PROC0023(xxxstrProgram_ID, xxxintSPDSystemCode, xxxintSubProgram_ID, CLng(txt得意先コード.Text.Trim), CLng(txt需要先コード.Text.Trim), gintSQLCODE, gstrSQLERRM)
+                Case "ID3" '商品コード
+
+                    If IsNull(txt商品コード.Text.Trim) = False Then
+
+                        If txt相手先商品コード.Enabled = False Then
+
+                            If txt得意先コード.Enabled = False Then
+                                xxxlng得意先コード = DUMMY_LNGCODE
+                                xxxlng需要先コード = DUMMY_LNGCODE
+                            Else
+                                xxxlng得意先コード = CLng(txt得意先コード.Text.Trim)
+                                xxxlng需要先コード = CLng(txt需要先コード.Text.Trim)
+                            End If
+
+                            gintRtn = DLTP0100S_PROC0025(xxxstrProgram_ID, xxxintSPDSystemCode, xxxintSubProgram_ID, txt商品コード.Text.Trim, vbNullString, xxxlng得意先コード, xxxlng需要先コード, gintSQLCODE, gstrSQLERRM)
 
                             Select Case gintRtn
                                 Case 0
                                     gblRtn = データ表示処理()
                                     txt得意先コード.Enabled = False
                                     txt需要先コード.Enabled = False
+                                    txt商品コード.Enabled = False
+                                    txt相手先商品コード.Enabled = False
                                     xxxint新規区分 = 0
                                     cmb取込除外区分.Focus()
                                     Exit Sub
                                 Case 2
-                                    MsgBox(MSG_992005, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                                     txt得意先コード.Enabled = False
                                     txt需要先コード.Enabled = False
+                                    txt商品コード.Enabled = False
+                                    txt相手先商品コード.Enabled = False
                                     xxxint新規区分 = 1
+                                    lblID.Text = "0"
                                     cmb取込除外区分.Focus()
                                     Exit Sub
                                 Case -54
-                                    MsgBox(MSG_992004, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                                    MsgBox(MSG_100003, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                                     Initialize()
-                                    txt得意先コード.Focus()
+                                    xxx初期コントロール.Focus()
                                     Exit Sub
                                 Case Else
                                     MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                                     Initialize()
-                                    txt得意先コード.Focus()
+                                    xxx初期コントロール.Focus()
                                     Exit Sub
 
                             End Select
 
                         End If
-                    Else
-                        txt需要先コード.Text = ""
-                        lbl需要先名.Text = ""
+
+                    End If
+
+                Case "ID4" '相手先商品コード
+
+                    If IsNull(txt相手先商品コード.Text.Trim) = False Then
+
+                        If txt得意先コード.Enabled = False Then
+                            xxxlng得意先コード = DUMMY_LNGCODE
+                            xxxlng需要先コード = DUMMY_LNGCODE
+                        Else
+                            xxxlng得意先コード = CLng(txt得意先コード.Text.Trim)
+                            xxxlng需要先コード = CLng(txt需要先コード.Text.Trim)
+                        End If
+
+                        gintRtn = DLTP0100S_PROC0025(xxxstrProgram_ID, xxxintSPDSystemCode, xxxintSubProgram_ID, vbNullString, txt相手先商品コード.Text.Trim, xxxlng得意先コード, xxxlng需要先コード, gintSQLCODE, gstrSQLERRM)
+
+                        Select Case gintRtn
+                            Case 0
+                                gblRtn = データ表示処理()
+                                txt得意先コード.Enabled = False
+                                txt需要先コード.Enabled = False
+                                txt商品コード.Enabled = False
+                                txt相手先商品コード.Enabled = False
+                                xxxint新規区分 = 0
+                                cmb取込除外区分.Focus()
+                                Exit Sub
+                            Case 2
+                                txt得意先コード.Enabled = False
+                                txt需要先コード.Enabled = False
+                                txt商品コード.Enabled = False
+                                txt相手先商品コード.Enabled = False
+                                xxxint新規区分 = 1
+                                lblID.Text = "0"
+                                cmb取込除外区分.Focus()
+                                Exit Sub
+                            Case -54
+                                MsgBox(MSG_100003, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                                Initialize()
+                                xxx初期コントロール.Focus()
+                                Exit Sub
+                            Case Else
+                                MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                                Initialize()
+                                xxx初期コントロール.Focus()
+                                Exit Sub
+
+                        End Select
+
                     End If
 
             End Select

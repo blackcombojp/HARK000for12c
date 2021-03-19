@@ -52,27 +52,26 @@ Partial Class HARK100S2
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.pnl検索 = New System.Windows.Forms.Panel()
+        Me.lbl相手先商品コード = New System.Windows.Forms.Label()
+        Me.txt相手先商品コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.lbl商品コード = New System.Windows.Forms.Label()
+        Me.txt商品コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
         Me.lbl得意先コード = New System.Windows.Forms.Label()
         Me.txt需要先コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
         Me.lbl需要先名 = New System.Windows.Forms.Label()
         Me.txt得意先コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
         Me.lbl得意先名 = New System.Windows.Forms.Label()
         Me.lbl需要先コード = New System.Windows.Forms.Label()
-        Me.lbl商品コード = New System.Windows.Forms.Label()
-        Me.txt商品コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.lbl相手先商品コード = New System.Windows.Forms.Label()
-        Me.txt相手先商品コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
-        Me.lbl注意 = New System.Windows.Forms.Label()
         Me.CntMenuStrip.SuspendLayout()
         Me.pnl明細.SuspendLayout()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl検索.SuspendLayout()
+        CType(Me.txt相手先商品コード, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txt商品コード, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt需要先コード, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt得意先コード, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt商品コード, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txt相手先商品コード, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Menu_Log
@@ -112,7 +111,6 @@ Partial Class HARK100S2
         '
         Me.pnl明細.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl明細.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl明細.Controls.Add(Me.lbl注意)
         Me.pnl明細.Controls.Add(Me.lblID)
         Me.pnl明細.Controls.Add(Me.cmb取込除外区分)
         Me.pnl明細.Controls.Add(Me.lbl取込除外)
@@ -298,6 +296,52 @@ Partial Class HARK100S2
         Me.pnl検索.Size = New System.Drawing.Size(955, 130)
         Me.pnl検索.TabIndex = 184
         '
+        'lbl相手先商品コード
+        '
+        Me.lbl相手先商品コード.AutoSize = True
+        Me.lbl相手先商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl相手先商品コード.Location = New System.Drawing.Point(20, 95)
+        Me.lbl相手先商品コード.Name = "lbl相手先商品コード"
+        Me.lbl相手先商品コード.Size = New System.Drawing.Size(139, 20)
+        Me.lbl相手先商品コード.TabIndex = 176
+        Me.lbl相手先商品コード.Text = "【相手先商品コード】"
+        Me.lbl相手先商品コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txt相手先商品コード
+        '
+        Me.txt相手先商品コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txt相手先商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt相手先商品コード.Format = "Aa#@9"
+        Me.txt相手先商品コード.Location = New System.Drawing.Point(162, 92)
+        Me.txt相手先商品コード.MaxLength = 30
+        Me.txt相手先商品コード.Name = "txt相手先商品コード"
+        Me.txt相手先商品コード.Size = New System.Drawing.Size(181, 26)
+        Me.txt相手先商品コード.TabIndex = 14
+        Me.txt相手先商品コード.Tag = "ID4"
+        '
+        'lbl商品コード
+        '
+        Me.lbl商品コード.AutoSize = True
+        Me.lbl商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl商品コード.Location = New System.Drawing.Point(59, 66)
+        Me.lbl商品コード.Name = "lbl商品コード"
+        Me.lbl商品コード.Size = New System.Drawing.Size(100, 20)
+        Me.lbl商品コード.TabIndex = 174
+        Me.lbl商品コード.Text = "【商品コード】"
+        Me.lbl商品コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'txt商品コード
+        '
+        Me.txt商品コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
+        Me.txt商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.txt商品コード.Format = "9"
+        Me.txt商品コード.Location = New System.Drawing.Point(162, 63)
+        Me.txt商品コード.MaxLength = 60
+        Me.txt商品コード.Name = "txt商品コード"
+        Me.txt商品コード.Size = New System.Drawing.Size(181, 26)
+        Me.txt商品コード.TabIndex = 13
+        Me.txt商品コード.Tag = "ID3"
+        '
         'lbl得意先コード
         '
         Me.lbl得意先コード.AutoSize = True
@@ -370,64 +414,6 @@ Partial Class HARK100S2
         Me.lbl需要先コード.Text = "【需要先】"
         Me.lbl需要先コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'lbl商品コード
-        '
-        Me.lbl商品コード.AutoSize = True
-        Me.lbl商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl商品コード.Location = New System.Drawing.Point(59, 66)
-        Me.lbl商品コード.Name = "lbl商品コード"
-        Me.lbl商品コード.Size = New System.Drawing.Size(100, 20)
-        Me.lbl商品コード.TabIndex = 174
-        Me.lbl商品コード.Text = "【商品コード】"
-        Me.lbl商品コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txt商品コード
-        '
-        Me.txt商品コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
-        Me.txt商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt商品コード.Format = "9"
-        Me.txt商品コード.Location = New System.Drawing.Point(162, 63)
-        Me.txt商品コード.MaxLength = 60
-        Me.txt商品コード.Name = "txt商品コード"
-        Me.txt商品コード.Size = New System.Drawing.Size(181, 26)
-        Me.txt商品コード.TabIndex = 13
-        Me.txt商品コード.Tag = "ID3"
-        '
-        'lbl相手先商品コード
-        '
-        Me.lbl相手先商品コード.AutoSize = True
-        Me.lbl相手先商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl相手先商品コード.Location = New System.Drawing.Point(20, 95)
-        Me.lbl相手先商品コード.Name = "lbl相手先商品コード"
-        Me.lbl相手先商品コード.Size = New System.Drawing.Size(139, 20)
-        Me.lbl相手先商品コード.TabIndex = 176
-        Me.lbl相手先商品コード.Text = "【相手先商品コード】"
-        Me.lbl相手先商品コード.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'txt相手先商品コード
-        '
-        Me.txt相手先商品コード.ContentAlignment = System.Drawing.ContentAlignment.MiddleLeft
-        Me.txt相手先商品コード.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txt相手先商品コード.Format = "Aa#@9"
-        Me.txt相手先商品コード.Location = New System.Drawing.Point(162, 92)
-        Me.txt相手先商品コード.MaxLength = 30
-        Me.txt相手先商品コード.Name = "txt相手先商品コード"
-        Me.txt相手先商品コード.Size = New System.Drawing.Size(181, 26)
-        Me.txt相手先商品コード.TabIndex = 14
-        Me.txt相手先商品コード.Tag = "ID4"
-        '
-        'lbl注意
-        '
-        Me.lbl注意.AutoSize = True
-        Me.lbl注意.Font = New System.Drawing.Font("メイリオ", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl注意.ForeColor = System.Drawing.Color.Red
-        Me.lbl注意.Location = New System.Drawing.Point(16, 209)
-        Me.lbl注意.Name = "lbl注意"
-        Me.lbl注意.Size = New System.Drawing.Size(445, 23)
-        Me.lbl注意.TabIndex = 219
-        Me.lbl注意.Text = "※新規商品マスタはAptage登録10分後以降に処理してください"
-        Me.lbl注意.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'HARK100S2
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -462,10 +448,10 @@ Partial Class HARK100S2
         CType(Me.SttBarPnl_Err, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl検索.ResumeLayout(False)
         Me.pnl検索.PerformLayout()
+        CType(Me.txt相手先商品コード, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txt商品コード, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt需要先コード, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt得意先コード, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt商品コード, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txt相手先商品コード, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -500,7 +486,6 @@ Partial Class HARK100S2
     Private WithEvents txt相手先商品コード As GrapeCity.Win.Editors.GcTextBox
     Private WithEvents lbl商品コード As Label
     Private WithEvents txt商品コード As GrapeCity.Win.Editors.GcTextBox
-    Private WithEvents lbl注意 As Label
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -512,6 +497,10 @@ Partial Class HARK100S2
     Private xxxint新規区分 As Integer
     Private xxxint取込除外区分 As Integer
     Private xxx初期コントロール As GrapeCity.Win.Editors.GcTextBox
+    Private xxxlng得意先コード As Long
+    Private xxxlng需要先コード As Long
+    Private xxxstr商品コード As String
+    Private xxxstr相手先商品コード As String
 
     Public Sub New(ByVal PerFormTitle As String, ByVal PerProgramID As String, ByVal PreSubProgramID As Integer, ByVal PreSPDSystemCode As Integer)
 
@@ -548,6 +537,8 @@ Partial Class HARK100S2
         'Validatedイベントハンドラの追加
         AddHandler txt得意先コード.Validated, AddressOf Txt_Validated
         AddHandler txt需要先コード.Validated, AddressOf Txt_Validated
+        AddHandler txt商品コード.Validated, AddressOf Txt_Validated
+        AddHandler txt相手先商品コード.Validated, AddressOf Txt_Validated
 
         'Clickイベントハンドラの追加
         AddHandler BT_ID1.Click, AddressOf Bt_ID_Click

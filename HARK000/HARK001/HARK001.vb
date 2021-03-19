@@ -192,6 +192,9 @@ Public Class HARK001
             lblDebug.Visible = True
 #Else
             lblDebug.Visible = False
+            '暫定処理
+            btn出荷03.Visible = False 'KMC出荷連携
+            btn売上03.Visible = False 'MD-TraC売上連携
            
 #End If
             Update_Check()

@@ -20,6 +20,19 @@ Module HARK_Define
     '*********************************************************************
     '各メッセージ(プログラム）
     '*********************************************************************
+
+    Public Const MSG_100001 As String = "相手先商品コードを指定してください"
+    Public Const MSG_100002 As String = "商品コードを指定してください"
+    Public Const MSG_100003 As String = "指定された商品の取込除外設定は他の端末で表示中です"
+    'Public Const MSG_992005 As String = "指定されたロジスティクスセンター設定は新規登録となります"
+
+    'Public Const MSG_992007 As String = "商品出荷指示区分を指定してください"
+    'Public Const MSG_992008 As String = "商品手配方法区分を指定してください"
+    'Public Const MSG_992009 As String = "発注納期設定区分を指定してください"
+    'Public Const MSG_992010 As String = "発注納期設定する際はいづれかの曜日を指定してください"
+    'Public Const MSG_992011 As String = "登録は正常終了しました"
+    'Public Const MSG_992012 As String = "登録は異常終了しました"
+
     Public Const MSG_101001 As String = "取込ファイルを指定してください"
     Public Const MSG_101002 As String = "ファイル名が正しくありません"
     Public Const MSG_101103 As String = "ファイル拡張子が違います"

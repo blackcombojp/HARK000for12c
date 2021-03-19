@@ -50,6 +50,7 @@ Partial Class HARK001
         Me.lblバージョン = New GrapeCity.Win.Buttons.GcLabel()
         Me.lbl事業所 = New GrapeCity.Win.Buttons.GcLabel()
         Me.pnl受注 = New System.Windows.Forms.Panel()
+        Me.btn受注07 = New GrapeCity.Win.Buttons.GcButton()
         Me.btn受注01 = New GrapeCity.Win.Buttons.GcButton()
         Me.btn受注02 = New GrapeCity.Win.Buttons.GcButton()
         Me.btn受注03 = New GrapeCity.Win.Buttons.GcButton()
@@ -83,7 +84,7 @@ Partial Class HARK001
         Me.btn売上01 = New GrapeCity.Win.Buttons.GcButton()
         Me.btn売上02 = New GrapeCity.Win.Buttons.GcButton()
         Me.btn売上03 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn受注07 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn出荷03 = New GrapeCity.Win.Buttons.GcButton()
         Me.pnlSide.SuspendLayout()
         CType(Me.pic最大化, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pic最小化, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -363,6 +364,24 @@ Partial Class HARK001
         Me.pnl受注.TabIndex = 2
         Me.pnl受注.Tag = "0"
         '
+        'btn受注07
+        '
+        Me.btn受注07.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn受注07.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn受注07.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn受注07.FlatAppearance.BorderSize = 0
+        Me.btn受注07.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn受注07.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn受注07.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn受注07.Location = New System.Drawing.Point(420, 210)
+        Me.btn受注07.Name = "btn受注07"
+        Me.btn受注07.Size = New System.Drawing.Size(150, 150)
+        Me.btn受注07.TabIndex = 13
+        Me.btn受注07.Tag = "HARKP107"
+        Me.btn受注07.Text = "汎用" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "受注連携"
+        Me.btn受注07.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn受注07.UseVisualStyleBackColor = False
+        '
         'btn受注01
         '
         Me.btn受注01.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
@@ -496,6 +515,7 @@ Partial Class HARK001
         '
         Me.pnl出荷.Controls.Add(Me.btn出荷01)
         Me.pnl出荷.Controls.Add(Me.btn出荷02)
+        Me.pnl出荷.Controls.Add(Me.btn出荷03)
         Me.pnl出荷.Location = New System.Drawing.Point(200, 40)
         Me.pnl出荷.Name = "pnl出荷"
         Me.pnl出荷.Size = New System.Drawing.Size(824, 728)
@@ -534,7 +554,7 @@ Partial Class HARK001
         Me.btn出荷02.Size = New System.Drawing.Size(150, 150)
         Me.btn出荷02.TabIndex = 8
         Me.btn出荷02.Tag = "HARKP202"
-        Me.btn出荷02.Text = "KMC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "出荷連携"
+        Me.btn出荷02.Text = "天神会SPD" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "貸出棚卸"
         Me.btn出荷02.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
         Me.btn出荷02.UseVisualStyleBackColor = False
         '
@@ -857,25 +877,24 @@ Partial Class HARK001
         Me.btn売上03.Text = "MD-TraC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "売上連携"
         Me.btn売上03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
         Me.btn売上03.UseVisualStyleBackColor = False
-        Me.btn売上03.Visible = False
         '
-        'btn受注07
+        'btn出荷03
         '
-        Me.btn受注07.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
-        Me.btn受注07.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
-        Me.btn受注07.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.btn受注07.FlatAppearance.BorderSize = 0
-        Me.btn受注07.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
-        Me.btn受注07.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.btn受注07.ForeColor = System.Drawing.SystemColors.GrayText
-        Me.btn受注07.Location = New System.Drawing.Point(420, 210)
-        Me.btn受注07.Name = "btn受注07"
-        Me.btn受注07.Size = New System.Drawing.Size(150, 150)
-        Me.btn受注07.TabIndex = 13
-        Me.btn受注07.Tag = "HARKP107"
-        Me.btn受注07.Text = "汎用" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "受注連携"
-        Me.btn受注07.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
-        Me.btn受注07.UseVisualStyleBackColor = False
+        Me.btn出荷03.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(238, Byte), Integer), CType(CType(238, Byte), Integer))
+        Me.btn出荷03.BackgroundImage = Global.HARK000.My.Resources.Resources.Execute
+        Me.btn出荷03.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.btn出荷03.FlatAppearance.BorderSize = 0
+        Me.btn出荷03.FlatStyle = GrapeCity.Win.Common.FlatStyleEx.Flat
+        Me.btn出荷03.Font = New System.Drawing.Font("メイリオ", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.btn出荷03.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.btn出荷03.Location = New System.Drawing.Point(420, 30)
+        Me.btn出荷03.Name = "btn出荷03"
+        Me.btn出荷03.Size = New System.Drawing.Size(150, 150)
+        Me.btn出荷03.TabIndex = 9
+        Me.btn出荷03.Tag = "HARKP203"
+        Me.btn出荷03.Text = "KMC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "出荷連携"
+        Me.btn出荷03.TextAppearance = New GrapeCity.Win.Buttons.RotationTextAppearance(GrapeCity.Win.Common.TextEffect.Flat, GrapeCity.Win.Buttons.TextAdjustment.None, GrapeCity.Win.Buttons.TextAdjustment.None, 0)
+        Me.btn出荷03.UseVisualStyleBackColor = False
         '
         'HARK001
         '
@@ -883,10 +902,10 @@ Partial Class HARK001
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 768)
+        Me.Controls.Add(Me.pnl出荷)
+        Me.Controls.Add(Me.pnl売上)
         Me.Controls.Add(Me.pnl受注)
         Me.Controls.Add(Me.pnl管理)
-        Me.Controls.Add(Me.pnl売上)
-        Me.Controls.Add(Me.pnl出荷)
         Me.Controls.Add(Me.pnl請求)
         Me.Controls.Add(Me.pnlお知らせ)
         Me.Controls.Add(Me.pnlTop)
@@ -969,6 +988,7 @@ Partial Class HARK001
     Private WithEvents btn出荷02 As GrapeCity.Win.Buttons.GcButton
     Private WithEvents btn管理02 As GrapeCity.Win.Buttons.GcButton
     Private WithEvents btn受注07 As GrapeCity.Win.Buttons.GcButton
+    Private WithEvents btn出荷03 As GrapeCity.Win.Buttons.GcButton
 
     Private mousePoint As Point
     Private strProgram_ID As String
@@ -1018,9 +1038,10 @@ Partial Class HARK001
         Me.BtnExe_Grp1(6) = Me.btn受注07
 
         '出荷パネル
-        Me.BtnExe_Grp2 = New GrapeCity.Win.Buttons.GcButton(2) {}
+        Me.BtnExe_Grp2 = New GrapeCity.Win.Buttons.GcButton(3) {}
         Me.BtnExe_Grp2(0) = Me.btn出荷01
         Me.BtnExe_Grp2(1) = Me.btn出荷02
+        Me.BtnExe_Grp2(2) = Me.btn出荷03
 
         '売上パネル
         Me.BtnExe_Grp3 = New GrapeCity.Win.Buttons.GcButton(4) {}
@@ -1053,6 +1074,7 @@ Partial Class HARK001
 
         AddHandler btn出荷01.Click, AddressOf BtnExe_Click
         AddHandler btn出荷02.Click, AddressOf BtnExe_Click
+        AddHandler btn出荷03.Click, AddressOf BtnExe_Click
 
         AddHandler btn売上01.Click, AddressOf BtnExe_Click
         AddHandler btn売上02.Click, AddressOf BtnExe_Click
@@ -1087,6 +1109,7 @@ Partial Class HARK001
         UpdateManager.Instance.ReinstateIfRestarted()
 
     End Sub
+
 
 
 End Class

@@ -287,6 +287,7 @@ Public Class HARK100S1
 
             xxxint受注形態 = 9
             xxxint出荷連携 = 0
+            xxxint取込除外 = 0
 
         Catch ex As Exception
 
@@ -639,10 +640,12 @@ Public Class HARK100S1
                 Exit Function
             End If
 
-            If cmb受注形態.SelectedIndex = 3 Then
-                MsgBox(MSG_301040, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                cmb受注形態.Focus()
-                Exit Function
+            If xxxint取込除外 = 0 Then
+                If cmb受注形態.SelectedIndex = 3 Then
+                    MsgBox(MSG_301040, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    cmb受注形態.Focus()
+                    Exit Function
+                End If
             End If
 
             実行前チェック処理 = True

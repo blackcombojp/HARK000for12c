@@ -292,22 +292,6 @@ Public Class HARK501
 
             Select Case int区分
 
-                Case 1 'SPD採用情報マスタ更新処理
-
-                    lbl取込ファイル１.Text = "【採用商品リストファイル】"
-                    txt取込ファイル１.Text = ""
-                    txt取込ファイル１.Enabled = True
-                    btnファイル参照１.Enabled = True
-                    lbl取込ファイル２.Text = "【取込ファイル２】"
-                    txt取込ファイル２.Text = ""
-                    txt取込ファイル２.Enabled = False
-                    btnファイル参照２.Enabled = False
-                    txtDate.Text = ""
-                    txtDate.Enabled = False
-                    txtデータ出力先.Enabled = True
-                    btnフォルダ参照.Enabled = True
-
-
                 Case 3 'SPD採用商品マスタ一括更新処理
 
                     lbl取込ファイル１.Text = "【採用商品マスタ業者名付】"
@@ -672,9 +656,6 @@ Public Class HARK501
 
             Select Case xxxintSubProgram_ID
 
-                Case 1 'SPD採用情報マスタ更新処理
-                    strFilter = "xlsx Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
-
                 Case 3 'SPD採用商品マスタ一括更新処理
                     strFilter = "csv Files (*.csv)|*.csv|All Files (*.*)|*.*"
                 Case Else
@@ -923,36 +904,6 @@ Public Class HARK501
 
                     Select Case xxxintSubProgram_ID
 
-                        Case 1 'SPD採用情報マスタ更新処理
-
-                            If Read_ExcelData(txt取込ファイル１.Text.Trim) = False Then GoTo EndExecute
-
-                            'テキスト取込
-                            gintRtn = DLTP0501_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
-
-                            Select Case gintRtn
-
-                                Case 0 '正常終了
-
-                                    Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
-                                    Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
-                                    Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
-                                    Set_ListItem(1, MSG_501003)
-                                    Set_ListItem(2, "")
-
-
-                                Case 9 'エラー
-
-                                    取込エラーファイル複製処理(1)
-
-                                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
-                                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-                                    Set_ListItem(1, MSG_501004)
-                                    Set_ListItem(1, MSG_COM901)
-                                    Set_ListItem(2, "")
-
-                            End Select
-
                         Case 3 'SPD採用商品マスタ一括更新処理
 
                             '採用商品マスタ業者名付
@@ -1128,37 +1079,6 @@ EndExecute:
             End If
 
             Select Case xxxintSubProgram_ID
-
-                Case 1 'SPD採用情報マスタ更新処理
-
-                    '取込ファイルチェック
-                    If IsNull(txt取込ファイル１.Text.Trim) = True Then
-                        MsgBox(MSG_501001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル１.Focus()
-                        Exit Function
-                    End If
-
-                    If Chk_FileExists(txt取込ファイル１.Text.Trim) = False Then
-                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル１.Text = ""
-                        txt取込ファイル１.Focus()
-                        Exit Function
-                    End If
-
-                    If Not Get_FileNameWithoutExtension(txt取込ファイル１.Text).Contains(HARKP5011ImpFileName) Then
-                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル１.Text = ""
-                        txt取込ファイル１.Focus()
-                        Exit Function
-                    End If
-
-                    '拡張子比較
-                    If Get_ExtensionEx(txt取込ファイル１.Text).CompareTo(XLSXExtension) <> 0 Then
-                        MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル１.Text = ""
-                        txt取込ファイル１.Focus()
-                        Exit Function
-                    End If
 
                 Case 3 'SPD採用商品マスタ一括更新処理
 
@@ -1398,163 +1318,6 @@ EndExecute:
             If Not SR Is Nothing Then
                 SR.Close()
                 SR.Dispose()
-            End If
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　各種Excelデータ読込
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　strExcelFilePath -- クオン採用商品リストExcel
-    ' *　戻値　　　　　　：　True -- 正常終了 False -- 異常終了
-    ' *-----------------------------------------------------------------------------/
-    Private Function Read_ExcelData(ByVal strExcelFilePath As String) As Boolean
-
-        Dim inputStream As FileStream = Nothing
-        Dim lWBook As IWorkbook
-        Dim lSheet As ISheet
-        Dim lRow As IRow
-        Dim lCell(9) As ICell
-        Dim iRowCnt As Integer
-        Dim i As Integer
-        Dim iColCnt As Integer
-        Dim strLineData As String
-
-        Try
-
-            Read_ExcelData = False
-
-            Select Case xxxintSubProgram_ID
-
-                Case 1 'Oliver取込処理エラー結果出力
-
-                    Set_ListItem(0, "")
-                    Set_ListItem(1, "【" & cmbサブプログラム.Text & "】")
-                    Set_ListItem(1, MSG_501002)
-
-
-                Case Else
-                    Set_ListItem(0, "")
-                    Set_ListItem(1, "【不明】")
-                    Set_ListItem(1, MSG_301014)
-                    Set_ListItem(1, MSG_301016)
-                    Set_ListItem(1, MSG_101109)
-                    Set_ListItem(2, "")
-                    Exit Function
-
-            End Select
-
-            'ファイルストリームで開く
-            inputStream = New FileStream(strExcelFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
-            lWBook = WorkbookFactory.Create(inputStream)
-
-            lSheet = lWBook.GetSheetAt(0)
-
-            i = 0
-            gintExcelDataCnt = 0
-            取込データArray = Nothing
-
-            Select Case xxxintSubProgram_ID
-
-                Case 1 'SPD採用情報マスタ更新処理
-
-                    For iRowCnt = 0 To lSheet.LastRowNum
-
-                        '1行目はヘッダの為、スキップ
-                        If iRowCnt = 0 Then
-                            Continue For
-                        End If
-
-                        strLineData = vbNullString
-
-                        lRow = lSheet.GetRow(iRowCnt)      '行取得
-
-                        lCell(0) = lRow.GetCell(3)      '院内コード
-                        lCell(1) = lRow.GetCell(1)      '業者用コード
-                        lCell(2) = lRow.GetCell(16)     '管理区分
-                        lCell(3) = lRow.GetCell(8)      'ＪＡＮコード
-                        lCell(4) = lRow.GetCell(18)     '採用開始日
-                        lCell(5) = lRow.GetCell(19)     '採用中止日
-                        lCell(6) = lRow.GetCell(5)      '商品名
-                        lCell(7) = lRow.GetCell(6)      '規格
-                        lCell(8) = lRow.GetCell(7)      '商品コード
-
-                        For iColCnt = 0 To 8
-                            'セルにデータがあれば格納
-                            If lCell(iColCnt) IsNot Nothing Then
-                                Select Case iColCnt
-                                    Case 3
-                                        If lCell(iColCnt).CellType = CellType.Numeric Then
-                                            strLineData &= ","
-                                        Else
-                                            strLineData = strLineData & lCell(iColCnt).StringCellValue & ","
-                                        End If
-                                    Case 4, 5
-                                        strLineData = strLineData & Replace(lCell(iColCnt).StringCellValue, "/", "") & ","
-                                    Case 6, 7, 8
-                                        strLineData = strLineData & """" & lCell(iColCnt).StringCellValue & """" & ","
-                                    Case Else
-                                        strLineData = strLineData & lCell(iColCnt).StringCellValue & ","
-                                End Select
-                            Else
-                                strLineData &= ","
-                            End If
-                        Next
-
-                        strLineData = strLineData.Substring(0, strLineData.Length - 1)
-
-                        ReDim Preserve 取込データArray(i)
-
-                        取込データArray(i).strRecData = strLineData
-
-                        i += 1
-
-                    Next
-
-                Case Else
-
-                    Exit Function
-
-            End Select
-
-            gintExcelDataCnt = i
-
-            lWBook.Close()
-
-            ' inputStream = Nothing
-
-            Read_ExcelData = True
-
-        Catch ex As FileNotFoundException
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM016, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-            'Throw
-
-        Catch ex As IOException
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM015, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-            'Throw
-
-        Catch ex As UnauthorizedAccessException
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM018, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-            'Throw
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        Finally
-
-            If inputStream IsNot Nothing Then
-                inputStream.Close()
-                inputStream.Dispose()
             End If
 
         End Try

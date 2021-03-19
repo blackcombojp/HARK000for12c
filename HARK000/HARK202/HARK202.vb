@@ -13,6 +13,7 @@ Imports HARK000.HARK_Common
 Imports HARK000.HARK_Sub
 Imports AdvanceSoftware.ExcelCreator
 Imports System.ComponentModel
+Imports NPOI.SS.UserModel
 Imports System.IO
 
 
@@ -25,7 +26,7 @@ Public Class HARK202
     ' *　引数２　　　　　：　e・・イベントデータクラス
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub Fm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Fm_Load(sender As Object, e As EventArgs) Handles Me.Load
 
         Try
             Cursor = Cursors.WaitCursor
@@ -37,6 +38,11 @@ Public Class HARK202
             txt入力担当コード.Text = CStr(IIf(My.Settings.入力担当コード = 0, "", My.Settings.入力担当コード))
             SttBar_2.Text = gstr担当者名
             SttBar_3.Text = "Ver : " & Application.ProductVersion
+
+            If DLTP0000_PROC0005(xxxstrProgram_ID, gintSQLCODE, gstrSQLERRM) = False Then
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                txtデータ出力先.Text = Get_DesktopPath()
+            End If
 
             'コンボに値設定
             Set_CmbValue()
@@ -64,11 +70,11 @@ Public Class HARK202
     ' *　引数２　　　　　：　e・・イベントデータクラス
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub Fm_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+    Private Sub Fm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
         Try
             '初期フォーカスを設定
-            'txt取込ファイル.Focus()
+            cmbサブプログラム.Focus()
 
         Catch ex As Exception
 
@@ -120,7 +126,7 @@ Public Class HARK202
     ' *　引数２　　　　　：　e      -- イベントデータクラス
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub Fm_Closing(sender As Object, e As CancelEventArgs) Handles MyBase.Closing
+    Private Sub Fm_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
 
         Try
 
@@ -199,6 +205,44 @@ Public Class HARK202
             '空白行追加
             cmb事業所.Items.Add(New 事業所一覧("", 0))
 
+            'サブプログラム一覧取得
+            If DLTP0901_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, gintSQLCODE, gstrSQLERRM) = False Then
+
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                Exit Sub
+
+            End If
+
+            'サブプログラム一覧
+            For i = 0 To gintサブプログラムCnt - 1
+
+                cmbサブプログラム.Items.Add(New サブプログラム一覧(サブプログラムArray(i).strサブプログラム名, サブプログラムArray(i).intサブプログラムコード))
+
+            Next
+
+            '空白行追加
+            cmbサブプログラム.Items.Add(New サブプログラム一覧("", 0))
+
+
+            '需要先一覧取得
+            If DLTP0997S_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, 0, 0, gintSQLCODE, gstrSQLERRM) = False Then
+
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
+                Exit Sub
+
+            End If
+
+            '需要先一覧
+            For i = 0 To gint需要先Cnt - 1
+
+                cmb需要先.Items.Add(New 需要先一覧(需要先Array(i).str需要先名, 需要先Array(i).lng需要先コード))
+
+            Next
+
+            '空白行追加
+            cmb需要先.Items.Add(New 需要先一覧("", 0))
 
         Catch ex As Exception
 
@@ -238,6 +282,71 @@ Public Class HARK202
             End If
 
             xxxstr担当者名 = gstr担当者名
+
+            'メッセージリストボックス初期化
+            lb_Msg.Items.Clear()
+
+            cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+            txtDate.Text = ""
+
+            txt取込ファイル.Text = ""
+            txtデータ出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Sub
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　各種コンポーネント初期化
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　区分・・サブプログラムID
+    ' *　戻値　　　　　　：　なし
+    ' *-----------------------------------------------------------------------------/
+    Private Sub Initialize条件(ByVal int区分 As Integer)
+
+        Try
+
+            Select Case int区分
+
+                Case 1, 2 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
+
+                    cmb需要先.SelectedIndex = gint需要先Cnt
+                    cmb需要先.Enabled = True
+                    txtDate.Text = ""
+                    lbl取込ファイル.Text = "【取込ファイル】"
+                    txt取込ファイル.Text = ""
+                    txtDate.Enabled = False
+                    txt取込ファイル.Enabled = False
+                    btnファイル参照.Enabled = False
+
+                Case 3 '登録外読込データ確認（羅針盤用）
+
+                    cmb需要先.SelectedIndex = gint需要先Cnt
+                    cmb需要先.Enabled = False
+                    txtDate.Text = ""
+                    lbl取込ファイル.Text = "【R登録外読込みファイル】"
+                    txt取込ファイル.Text = ""
+                    txtDate.Enabled = False
+                    txt取込ファイル.Enabled = True
+                    btnファイル参照.Enabled = True
+
+                Case Else
+
+                    cmb需要先.SelectedIndex = gint需要先Cnt
+                    cmb需要先.Enabled = True
+                    txtDate.Text = ""
+                    lbl取込ファイル.Text = "【取込ファイル】"
+                    txt取込ファイル.Text = ""
+                    txtDate.Enabled = True
+                    txt取込ファイル.Enabled = True
+                    btnファイル参照.Enabled = True
+
+            End Select
 
         Catch ex As Exception
 
@@ -317,9 +426,23 @@ Public Class HARK202
 
             Select Case Tag
 
-                Case "ID1"  '取込ファイル
+                'Case "ID1"  '取込ファイル
 
-                    If e.Shift = True Then
+                '    If e.Shift = True Then
+
+                '        Select Case e.KeyCode
+
+                '            'Tabキーが押されてもフォーカスが移動しないようにする
+                '            Case Keys.Tab
+                '                e.IsInputKey = True
+
+                '        End Select
+
+                '    End If
+
+                Case "ID2"  'データ出力先
+
+                    If e.Shift = False Then
 
                         Select Case e.KeyCode
 
@@ -331,9 +454,48 @@ Public Class HARK202
 
                     End If
 
-                Case "ID2"  'エラー出力先
+            End Select
 
-                    If e.Shift = False Then
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+
+        End Try
+
+    End Sub
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　コンボボックスキー押下処理
+    ' *
+    ' *　注意、制限事項　：　タブ移動させたくないコントロールのみにハンドリングすること
+    ' *　引数１　　　　　：　sender・・オブジェクト識別クラス
+    ' *　引数２　　　　　：　e・・イベントデータクラス
+    ' *　戻値　　　　　　：　なし
+    ' *
+    ' *-----------------------------------------------------------------------------/
+    Private Sub Cmb_PreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
+
+        Dim Tag As String
+
+        Try
+
+            Tag = CStr(CType(sender, ComboBox).Tag)
+
+            Select Case Tag
+
+                Case "ID1"  '事業所
+
+                    Select Case e.KeyCode
+
+                            'Tabキーが押されてもフォーカスが移動しないようにする
+                        Case Keys.Tab
+                            e.IsInputKey = True
+
+                    End Select
+
+                Case "ID2"  'サブプログラム
+
+                    If e.Shift = True Then
 
                         Select Case e.KeyCode
 
@@ -386,6 +548,29 @@ Public Class HARK202
                         Exit Sub
                     End If
 
+                    If My.Settings.事業所コード <> 0 Then
+                        If DLTP0000_PROC0005(xxxstrProgram_ID, gintSQLCODE, gstrSQLERRM) = False Then
+                            MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                            txtデータ出力先.Text = Get_DesktopPath()
+                        Else
+                            txtデータ出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
+                        End If
+                    End If
+
+
+                Case "ID2" 'サブプログラム
+
+                    With DirectCast(cmbサブプログラム.SelectedItem, サブプログラム一覧)
+                        xxxintSubProgram_ID = .intサブプログラムコード
+                    End With
+
+                    Initialize条件(xxxintSubProgram_ID)
+
+                Case "ID3" '需要先
+
+                    With DirectCast(cmb需要先.SelectedItem, 需要先一覧)
+                        xxxlng需要先コード = .lng需要先コード
+                    End With
 
             End Select
 
@@ -415,7 +600,7 @@ Public Class HARK202
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            'txt取込ファイル.Focus()
+            txt取込ファイル.Focus()
             Exit Sub
 
         End If
@@ -439,7 +624,7 @@ Public Class HARK202
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            'txt取込ファイル.Focus()
+            txt取込ファイル.Focus()
             Exit Sub
 
         End If
@@ -453,7 +638,46 @@ Public Class HARK202
     ' *　引数２　　　　　：　e      -- イベントデータクラス
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub Btnファイル参照_Click(sender As Object, e As EventArgs)
+    Private Sub Btnファイル参照_Click(sender As Object, e As EventArgs) Handles btnファイル参照.Click
+
+        Dim OFDlg As New OpenFileDialog
+        Dim strFilter As String = Nothing
+
+        Try
+
+            Select Case xxxintSubProgram_ID
+
+                Case 3 '登録外読込データ確認（羅針盤用）
+                    strFilter = "EXCEL Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
+
+                Case Else
+                    Exit Sub
+
+            End Select
+
+            OFDlg.InitialDirectory = Get_DesktopPath()
+            OFDlg.Filter = strFilter
+            OFDlg.FilterIndex = 1
+            OFDlg.RestoreDirectory = True
+
+            If OFDlg.ShowDialog() = DialogResult.OK Then
+
+                txt取込ファイル.Text = OFDlg.FileName
+                txtデータ出力先.Focus()
+
+            Else
+
+                txt取込ファイル.Text = ""
+                txt取込ファイル.Focus()
+
+            End If
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+
+        End Try
 
     End Sub
     '/*-----------------------------------------------------------------------------
@@ -464,7 +688,7 @@ Public Class HARK202
     ' *　引数２　　　　　：　e      -- イベントデータクラス
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub Btnフォルダ参照_Click(sender As Object, e As EventArgs)
+    Private Sub Btnフォルダ参照_Click(sender As Object, e As EventArgs) Handles btnフォルダ参照.Click
 
         Dim FDDlg As New FolderBrowserDialog
         Dim Tag As String
@@ -475,12 +699,12 @@ Public Class HARK202
 
             Select Case Tag
 
-                Case "ID1" '正常保存先
+                Case "ID1" 'データ出力先
 
                     If FDDlg.ShowDialog() = DialogResult.OK Then
 
-                        'txtエラー出力先.Text = ""
-                        'txtエラー出力先.Text = FDDlg.SelectedPath
+                        txtデータ出力先.Text = ""
+                        txtデータ出力先.Text = FDDlg.SelectedPath
 
                     End If
 
@@ -510,6 +734,48 @@ Public Class HARK202
 
         'PrintScreenキーは無効
         If gintKeyControl01 = 1 AndAlso e.KeyCode = Keys.PrintScreen Then Clipboard.SetDataObject(MSG_COM006, True)
+
+    End Sub
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　ListBoxにメッセージを表示
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　line・・メッセージ区分
+    ' *　引数２　　　　　：　msg・・メッセージ本文
+    ' *　戻値　　　　　　：　なし
+    ' *-----------------------------------------------------------------------------/
+    Private Sub Set_ListItem(ByVal Line As Integer, ByVal msg As String)
+
+        Dim DateTime As String
+
+        'スタートライン
+        If Line = 0 Then
+
+            lb_Msg.Items.Add("------------------------------------------------------------------------")
+            log.Info("------------------------------------------------------------------------")
+
+            lb_Msg.SelectedIndex = lb_Msg.Items.Count - 2
+
+            '文字列
+        ElseIf Line = 1 Then
+
+            DateTime = CType(Microsoft.VisualBasic.Format(Now(), "yyyy/MM/dd HH:mm:ss"), String)
+
+            lb_Msg.Items.Add(DateTime & "  " & msg)
+            log.Info(msg)
+            lb_Msg.SelectedIndex = lb_Msg.Items.Count - 1
+
+            'エンドライン
+        ElseIf Line = 2 Then
+
+            lb_Msg.Items.Add("------------------------------------------------------------------------")
+            log.Info("------------------------------------------------------------------------")
+
+            lb_Msg.SelectedIndex = lb_Msg.Items.Count - 1
+
+        End If
+
+        Refresh()
 
     End Sub
     '/*-----------------------------------------------------------------------------
@@ -546,7 +812,6 @@ Public Class HARK202
     Private Sub Bt_ID_Click(ByVal sender As Object, ByVal e As EventArgs)
 
         Dim Tag As String
-        'Dim i As Integer
         Dim strSendFile As String = Nothing
         'Dim m_lording As Thread = Nothing
 
@@ -569,10 +834,10 @@ Public Class HARK202
 
                     If gintRtn = vbYes Then
 
-                        'txt取込ファイル.Text = ""
-                        'lb_Msg.Items.Clear()
-
-                        'txt取込ファイル.Focus()
+                        cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                        Initialize条件(0)
+                        lb_Msg.Items.Clear()
+                        cmbサブプログラム.Focus()
 
                     End If
 
@@ -584,22 +849,23 @@ Public Class HARK202
 
                 Case "ID5" '実行
 
-                    If 実行前チェック処理() = False Then
-                        Exit Sub
-                    End If
+                    If 実行前チェック処理() = False Then Exit Sub
 
                     gintRtn = MsgBox(MSG_101105, CType(MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title)
 
                     If gintRtn = vbNo Then
 
-                        'txt取込ファイル.Text = ""
-                        'txt取込ファイル.Focus()
+                        cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                        Initialize条件(0)
+                        cmbサブプログラム.Focus()
 
                         Exit Sub
 
                     End If
 
                     Cursor = Cursors.WaitCursor
+
+                    lb_Msg.Items.Add("")
 
                     ''処理中画面
                     'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
@@ -608,6 +874,39 @@ Public Class HARK202
 
                     'm_lording.Start()
 
+                    Select Case xxxintSubProgram_ID
+
+                        Case 1, 2 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
+
+                            Set_ListItem(0, "")
+                            Set_ListItem(1, MSG_301017)
+
+                            gblRtn = データ検索処理()
+
+                        Case 3 '登録外読込データ確認（羅針盤用）
+
+                            If Read_ExcelData(txt取込ファイル.Text.Trim) = False Then
+                                取込エラーファイル複製処理()
+                                GoTo EndExecute
+                            End If
+
+                            Set_ListItem(0, "")
+                            Set_ListItem(1, MSG_301017)
+
+                            gblRtn = データ検索処理()
+
+                        Case Else
+
+                            Exit Sub
+
+                    End Select
+
+EndExecute:
+                    cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                    Initialize条件(0)
+                    cmbサブプログラム.Focus()
+
+                    Exit Sub
 
 
                 Case "ID6" 'なし
@@ -650,6 +949,579 @@ Public Class HARK202
 
             実行前チェック処理 = False
 
+            If フォームヘッダチェック処理() = False Then Exit Function
+
+            'サブプログラムチェック
+            If IsNull(cmbサブプログラム.Text.Trim) = True Then
+                MsgBox(MSG_COM012, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                cmbサブプログラム.Focus()
+                Exit Function
+            End If
+
+            Select Case xxxintSubProgram_ID
+
+                Case 1, 2 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
+
+                    '需要先全て
+                    If xxxlng需要先コード = 0 Then
+                        MsgBox(MSG_301048, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        cmb需要先.Focus()
+                        Exit Function
+                    End If
+
+                Case 3 '登録外読込データ確認（羅針盤用）
+
+                    '取込ファイルチェック
+                    If IsNull(txt取込ファイル.Text.Trim) = True Then
+                        MsgBox(MSG_301049, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル.Focus()
+                        Exit Function
+                    End If
+
+                    If Chk_FileExists(txt取込ファイル.Text.Trim) = False Then
+                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル.Text = ""
+                        txt取込ファイル.Focus()
+                        Exit Function
+                    End If
+
+                    If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP3012ImpFileName) Then
+                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル.Text = ""
+                        txt取込ファイル.Focus()
+                        Exit Function
+                    End If
+
+                    '拡張子比較
+                    If Get_ExtensionEx(txt取込ファイル.Text).CompareTo(XLSXExtension) <> 0 Then
+                        MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル.Text = ""
+                        txt取込ファイル.Focus()
+                        Exit Function
+                    End If
+
+                Case Else
+
+                    Exit Function
+
+            End Select
+
+            'データ出力先チェック
+            If IsNull(txtデータ出力先.Text.Trim) = True Then
+                MsgBox(MSG_301021, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txtデータ出力先.Focus()
+                Exit Function
+            End If
+
+            If Chk_DirExists(txtデータ出力先.Text.Trim) = False Then
+                MsgBox(MSG_301021, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txtデータ出力先.Text = ""
+                txtデータ出力先.Focus()
+                Exit Function
+            End If
+
+            実行前チェック処理 = True
+
+            Exit Function
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　テキスト取込処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　strFile 　　　-- ファイルパス
+    ' *　引数２　　　　　：　blnHeaderLine -- 1行目はヘッダ行とみなす
+    ' *　戻値　　　　　　：　True・・正常、False・・異常
+    ' *-----------------------------------------------------------------------------/
+    Private Function テキスト取込処理(ByVal strFile As String) As Boolean
+
+        'Dim SR As New StreamReader(strFile, System.Text.Encoding.GetEncoding(932))
+        Dim SR As StreamReader = Nothing
+        Dim i As Integer
+        Dim blnFirstLine As Boolean
+        Dim blnHeaderLine As Boolean
+        Dim line As String
+
+        Try
+
+            テキスト取込処理 = False
+
+            Select Case xxxintSubProgram_ID
+
+                'Case 3
+
+                '    blnHeaderLine = False
+                '    Set_ListItem(0, "")
+                '    Set_ListItem(1, "【" & cmbサブプログラム.Text & "】")
+                '    Set_ListItem(1, MSG_301014)
+
+                Case Else
+                    Set_ListItem(0, "")
+                    Set_ListItem(1, "【不明】")
+                    Set_ListItem(1, MSG_301014)
+                    Set_ListItem(1, MSG_301016)
+                    Set_ListItem(1, MSG_101109)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+            End Select
+
+            blnFirstLine = True
+            line = ""
+
+            i = 0
+
+            SR = New StreamReader(strFile, System.Text.Encoding.GetEncoding(932))
+
+            While SR.Peek() > -1
+
+                line = ""
+                line = SR.ReadLine
+
+                If blnHeaderLine = True Then
+                    '1行目はヘッダの為、スキップ
+                    If blnFirstLine = True Then
+                        blnFirstLine = False
+                        Continue While
+                    End If
+                End If
+
+                ReDim Preserve 取込データArray(i)
+
+                取込データArray(i).strRecData = line
+
+                i += 1
+
+            End While
+
+            gint取込データCnt = i
+
+            If gint取込データCnt = 0 Then
+                Set_ListItem(1, MSG_301016)
+                Set_ListItem(1, MSG_101109)
+                Set_ListItem(2, "")
+                Exit Function
+            End If
+
+            テキスト取込処理 = True
+
+        Catch ex As FileNotFoundException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM016)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_301016 & vbCr & MSG_COM016, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As IOException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM015)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_301016 & vbCr & MSG_COM015, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As UnauthorizedAccessException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM018)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_301016 & vbCr & MSG_COM018, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As Exception
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM017)
+            Set_ListItem(1, CStr(Err.Number))
+            Set_ListItem(1, ex.ToString)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        Finally
+
+            If Not SR Is Nothing Then
+                SR.Close()
+                SR.Dispose()
+            End If
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　各種Excelデータ読込
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　strExcelFilePath -- クオン採用商品リストExcel
+    ' *　戻値　　　　　　：　True -- 正常終了 False -- 異常終了
+    ' *-----------------------------------------------------------------------------/
+    Private Function Read_ExcelData(ByVal strExcelFilePath As String) As Boolean
+
+        Dim inputStream As FileStream = Nothing
+        Dim lWBook As IWorkbook
+        Dim lSheet As ISheet
+        Dim lRow As IRow
+        Dim lCell(5) As ICell
+        Dim iRowCnt As Integer
+        Dim i As Integer
+        Dim iColCnt As Integer
+        Dim strLineData As String
+
+        Try
+
+            Read_ExcelData = False
+
+
+            Set_ListItem(0, "")
+            Set_ListItem(1, "【" & cmbサブプログラム.Text & "】")
+            Set_ListItem(1, MSG_301050)
+
+            'ファイルストリームで開く
+            inputStream = New FileStream(strExcelFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+            lWBook = WorkbookFactory.Create(inputStream)
+
+            lSheet = lWBook.GetSheetAt(0)
+
+            i = 0
+            gintExcelDataCnt = 0
+            取込データArray = Nothing
+
+            Select Case xxxintSubProgram_ID
+
+                Case 3 'R登録外読込みデータ
+
+                    For iRowCnt = 0 To lSheet.LastRowNum
+
+                        '1行目はヘッダの為、スキップ
+                        If iRowCnt = 0 Then
+                            Continue For
+                        End If
+
+                        strLineData = vbNullString
+
+                        lRow = lSheet.GetRow(iRowCnt)   '行取得
+
+                        lCell(0) = lRow.GetCell(0)      '登録日時
+                        lCell(1) = lRow.GetCell(3)      '実施者
+                        lCell(2) = lRow.GetCell(5)      '部署コード
+                        lCell(3) = lRow.GetCell(6)      '部署名
+                        lCell(4) = lRow.GetCell(7)      'SCAN明細
+
+                        For iColCnt = 0 To 4
+                            'セルにデータがあれば格納
+                            If lCell(iColCnt) IsNot Nothing Then
+                                Select Case iColCnt
+                                    Case 2, 4
+                                        If lCell(iColCnt).CellType = CellType.Numeric Then
+                                            strLineData = strLineData & lCell(iColCnt).NumericCellValue & ","
+                                        Else
+                                            strLineData = strLineData & lCell(iColCnt).StringCellValue & ","
+                                        End If
+                                    Case Else
+                                        strLineData = strLineData & lCell(iColCnt).StringCellValue & ","
+                                End Select
+                            Else
+                                strLineData &= ","
+                            End If
+                        Next
+
+                        strLineData = strLineData.Substring(0, strLineData.Length - 1)
+
+                        ReDim Preserve 取込データArray(i)
+
+                        取込データArray(i).strRecData = strLineData
+
+                        i += 1
+
+                    Next
+
+                Case Else
+
+                    Exit Function
+
+            End Select
+
+            gintExcelDataCnt = i
+
+            lWBook.Close()
+
+            ' inputStream = Nothing
+
+            If gintExcelDataCnt = 0 Then
+                Set_ListItem(1, MSG_301016)
+                Set_ListItem(1, MSG_101109)
+                Set_ListItem(2, "")
+                Exit Function
+            End If
+
+            Set_ListItem(1, MSG_301015)
+            Set_ListItem(2, "")
+
+            Read_ExcelData = True
+
+        Catch ex As FileNotFoundException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM016)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM016, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As IOException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM015)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM015, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As UnauthorizedAccessException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM018)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM018, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As Exception
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM017)
+            Set_ListItem(1, CStr(Err.Number))
+            Set_ListItem(1, ex.ToString)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        Finally
+
+            If inputStream IsNot Nothing Then
+                inputStream.Close()
+                inputStream.Dispose()
+            End If
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：  データ出力処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function データ出力処理() As Boolean
+
+        Dim ColCnt As Integer
+        Dim ColMax As Integer
+        Dim RowCnt As Integer
+        Dim RowMax As Integer
+        Dim strHeaderText As String
+        Dim stArrayData As String()
+        Dim FileName As String
+        Dim strSheetName As String
+        Dim i As Integer
+        Dim dtNow As DateTime = Now
+
+        Try
+
+            データ出力処理 = False
+
+            Select Case xxxintSubProgram_ID
+
+                Case 1 '部署マスタ出力（羅針盤用）
+                    FileName = Set_FilePath(txtデータ出力先.Text, "羅針盤用部署マスタ_" & cmb需要先.Text.Trim & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                    strSheetName = "羅針盤用部署マスタ"
+
+                Case 2 '棚卸対象データ出力（羅針盤用）
+                    FileName = Set_FilePath(txtデータ出力先.Text, "羅針盤用棚卸対象データ_" & cmb需要先.Text.Trim & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                    strSheetName = "羅針盤用棚卸対象データ"
+
+                Case 3 '登録外読込データ確認（羅針盤用）
+                    FileName = Set_FilePath(txtデータ出力先.Text, "登録外読込データ(棚卸結果)_" & cmb需要先.Text.Trim & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                    strSheetName = "羅針盤用登録外読込データ"
+
+                Case Else
+                    Set_ListItem(1, MSG_301019)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+            End Select
+
+            '出力ヘッダ取得
+            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "出力ヘッダ")
+            strHeaderText = gstrDLTP0997S_FUNC005
+
+            '項目数取得
+            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "項目数")
+            ColMax = gintDLTP0997S_FUNC004
+
+            RowMax = gintResultCnt
+
+            '出力ヘッダを分割
+            stArrayData = strHeaderText.Split(","c)
+
+            i = 0
+
+            With ExcelCreator
+
+                .ExcelFileType = ExcelFileType.xlsx
+
+                'EXCEL作成
+                .CreateBook(FileName, 1, xlsxVersion.ver2013)
+
+                .DefaultFontName = "メイリオ"                                                   'デフォルトフォント
+                .DefaultFontPoint = 10                                                          'デフォルトフォントポイント
+                .SheetName = strSheetName                                                       'シート名
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.White                       '文字列色＝白
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold                       '文字列修飾＝太字
+                .Pos(0, 0, ColMax - 1, 0).Attr.BackColor = Color.FromArgb(91, 155, 213)         '背景色＝青
+
+                'ヘッダ項目出力
+                For Each stData As String In stArrayData
+                    .Pos(i, 0).Str = stData
+                    i += 1
+                Next stData
+
+                '明細行出力
+                For RowCnt = 0 To RowMax - 1
+
+                    For ColCnt = 0 To ColMax - 1
+
+                        .Pos(ColCnt, RowCnt + 1).Str = Results(RowCnt).strBuff(ColCnt)
+
+                    Next
+
+                Next
+
+                .CloseBook(True)
+
+            End With
+
+            データ出力処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　データ検索処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function データ検索処理() As Boolean
+
+        Try
+
+            データ検索処理 = False
+
+            Select Case xxxintSubProgram_ID
+
+                Case 1, 2 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
+                    gintRtn = DLTP0202_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxlng需要先コード, gintSQLCODE, gstrSQLERRM)
+
+                Case 3 '登録外読込データ確認（羅針盤用）
+                    gintRtn = DLTP0202_PROC0003(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
+
+                Case Else
+                    Set_ListItem(1, MSG_301019)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+            End Select
+
+            Select Case gintRtn
+
+                Case 0 '正常終了
+
+                    gblRtn = データ出力処理()
+
+                    If gblRtn = True Then
+
+                        Set_ListItem(1, MSG_301020 & "【" & gintResultCnt & "】")
+                        Set_ListItem(1, MSG_301018)
+                        Set_ListItem(2, "")
+
+                    Else
+
+                        Set_ListItem(1, MSG_301019)
+                        Set_ListItem(1, MSG_COM901)
+                        Set_ListItem(2, "")
+                        Exit Function
+
+
+                    End If
+
+                Case 2 '対象件数0件
+
+                    Set_ListItem(1, MSG_301005)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+
+                Case 9 'エラー
+
+                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                    Set_ListItem(1, MSG_301019)
+                    Set_ListItem(1, MSG_COM901)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+
+            End Select
+
+            データ検索処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　フォームヘッダチェック処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　引数２　　　　　：　なし
+    ' *　戻値　　　　　　：　True・・正常、False・・異常
+    ' *-----------------------------------------------------------------------------/
+    Private Function フォームヘッダチェック処理() As Boolean
+
+        Try
+            フォームヘッダチェック処理 = False
+
             If IsNull(cmb事業所.Text.Trim) = True Then
                 MsgBox(MSG_COM007, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                 cmb事業所.Focus()
@@ -682,143 +1554,7 @@ Public Class HARK202
                 SttBar_2.Text = gstr担当者名
             End If
 
-            ''取込ファイルチェック
-            'If IsNull(txt取込ファイル.Text.Trim) = True Then
-            '    MsgBox(MSG_101001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '    txt取込ファイル.Focus()
-            '    Exit Function
-            'End If
-
-            'If Chk_FileExists(txt取込ファイル.Text.Trim) = False Then
-            '    MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '    txt取込ファイル.Text = ""
-            '    txt取込ファイル.Focus()
-            '    Exit Function
-            'End If
-
-            'Select Case xxxstrProgram_ID
-
-            '    Case "HARKP101" '天神会 SPD受注
-
-            '        If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP101ImpFileName) Then
-            '            MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        '拡張子比較
-            '        If Get_Extension(txt取込ファイル.Text).CompareTo(DATExtension) <> 0 Then
-            '            MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        Exit Select
-
-            '    Case "HARKP102" 'KMC EDI受注
-
-            '        '個別対応
-            '        HARKP102拡張子変更処理(txt取込ファイル.Text.Trim)
-
-            '        If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP102ImpFileName) Then
-            '            MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        '拡張子比較
-            '        If Get_Extension(txt取込ファイル.Text).CompareTo(CSVExtension) <> 0 Then
-            '            MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        Exit Select
-
-            '    Case "HARKP104" 'Rツール連携
-
-            '        If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP104ImpFileName) Then
-            '            MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        '拡張子比較
-            '        If Get_Extension(txt取込ファイル.Text).CompareTo(TXTExtension) <> 0 Then
-            '            MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        Exit Select
-
-            '    Case "HARKP105" 'PHsmos連携
-
-            '        If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP105ImpFileName) Then
-            '            MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        '拡張子比較
-            '        If Get_Extension(txt取込ファイル.Text).CompareTo(CSVExtension) <> 0 Then
-            '            MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        Exit Select
-
-            '    Case "HARKP106" '徳洲会連携
-
-            '        If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP106ImpFileName) Then
-            '            MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        '拡張子比較
-            '        If Get_Extension(txt取込ファイル.Text).CompareTo(CSVExtension) <> 0 Then
-            '            MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '            txt取込ファイル.Text = ""
-            '            txt取込ファイル.Focus()
-            '            Exit Function
-            '        End If
-
-            '        Exit Select
-
-            '    Case Else
-
-            '        Exit Function
-
-            'End Select
-
-            ''エラー出力先チェック
-            'If IsNull(txtエラー出力先.Text.Trim) = True Then
-            '    MsgBox(MSG_101104, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '    txtエラー出力先.Focus()
-            '    Exit Function
-            'End If
-
-            'If Chk_DirExists(txtエラー出力先.Text.Trim) = False Then
-            '    MsgBox(MSG_101104, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            '    txtエラー出力先.Text = ""
-            '    txtエラー出力先.Focus()
-            '    Exit Function
-            'End If
-
-            実行前チェック処理 = True
-
-            Exit Function
+            フォームヘッダチェック処理 = True
 
         Catch ex As Exception
 
@@ -829,46 +1565,29 @@ Public Class HARK202
 
     End Function
     '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　取込ファイルリネーム
+    ' *　モジュール機能　：　取込エラーファイル複製
     ' *
-    ' *　注意、制限事項　：　HARKP102(KMC EDI受注)個別対応
+    ' *　注意、制限事項　：　なし
     ' *　引数１　　　　　：　なし
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub HARKP102拡張子変更処理(ByVal FilePath As String)
+    Private Sub 取込エラーファイル複製処理()
 
-        Dim newFileName As String
-        Dim strMoveFile As String
-        Dim strDir As String
-        Dim strFileName As String
-        Dim strExtensionTemp As String
+        Dim strCopyFile As String
+
+        Dim strBackupDir As String
+        Dim strBackupFileName As String
 
         Try
 
-            '拡張子からSEQを取得
-            strExtensionTemp = Path.GetExtension(FilePath).ToLower
+            strBackupDir = Set_FilePath(gstrAppFilePath, "error\" & Reflection.MethodBase.GetCurrentMethod.DeclaringType.Name)
+            If Chk_DirExists(strBackupDir) = False Then gblRtn = Create_Dir(strBackupDir)
 
-            '拡張子比較
-            If strExtensionTemp.CompareTo(CSVExtension) <> 0 Then
+            strBackupFileName = Get_FileName(txt取込ファイル.Text)
+            strCopyFile = strBackupDir & "\" & strBackupFileName
+            If Chk_FileExists(strCopyFile) = True Then gintRtn = Delete_File(strCopyFile)
 
-                If Len(strExtensionTemp) = 4 Then Exit Sub
-
-                strExtensionTemp = Mid(strExtensionTemp, 6, Len(strExtensionTemp) - 4)
-
-                strDir = Get_DirectoryName(FilePath)
-
-                newFileName = Path.ChangeExtension(FilePath, CSVExtension)
-
-                strFileName = Get_FileName(newFileName)
-
-                strMoveFile = strDir & "\" & strExtensionTemp & "_" & strFileName
-
-                If Chk_FileExists(strMoveFile) = False Then File.Move(FilePath, strMoveFile)
-
-
-                'txt取込ファイル.Text = strMoveFile
-
-            End If
+            File.Copy(txt取込ファイル.Text, strCopyFile)
 
         Catch ex As Exception
 
@@ -878,863 +1597,4 @@ Public Class HARK202
         End Try
 
     End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　受注ファイル読み込み
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　strFile 　　　-- ファイルパス
-    ' *　引数２　　　　　：　blnHeaderLine -- 1行目はヘッダ行とみなす
-    ' *　戻値　　　　　　：　True・・正常、False・・異常
-    ' *-----------------------------------------------------------------------------/
-    Private Function テキスト取込処理(ByVal strFile As String) As Boolean
-
-        'Dim SR As StreamReader = Nothing
-        'Dim i As Integer
-        'Dim blnFirstLine As Boolean
-        'Dim blnHeaderLine As Boolean
-        'Dim line As String
-
-        'Try
-
-        テキスト取込処理 = False
-
-        '    Set_ListItem(0, "")
-        '    Set_ListItem(1, "【" & xxxstrForTitle & "】")
-        '    Set_ListItem(1, MSG_101106)
-
-        '    Select Case xxxstrProgram_ID
-
-        '        Case "HARKP104" 'Rツール連携
-        '            blnHeaderLine = False
-
-        '        Case Else
-        '            blnHeaderLine = True
-
-        '    End Select
-
-        '    blnFirstLine = True
-        '    line = ""
-
-        '    i = 0
-
-        '    SR = New StreamReader(strFile, System.Text.Encoding.GetEncoding(932))
-
-        '    While SR.Peek() > -1
-
-        '        line = ""
-        '        line = SR.ReadLine
-
-        '        If blnHeaderLine = True Then
-        '            '1行目はヘッダの為、スキップ
-        '            If blnFirstLine = True Then
-        '                blnFirstLine = False
-        '                Continue While
-        '            End If
-        '        End If
-
-        '        ReDim Preserve 取込データArray(i)
-
-        '        取込データArray(i).strRecData = line
-
-        '        i += 1
-
-        '    End While
-
-        '    gint取込データCnt = i
-
-        '    If gint取込データCnt = 0 Then
-        '        Set_ListItem(1, MSG_101108)
-        '        Set_ListItem(1, MSG_101109)
-        '        Set_ListItem(2, "")
-        '        Exit Function
-        '    End If
-
-        '    テキスト取込処理 = True
-
-        'Catch ex As FileNotFoundException
-
-        '    Set_ListItem(1, MSG_101108)
-        '    Set_ListItem(1, MSG_COM016)
-        '    Set_ListItem(2, "")
-
-        '    log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-        '    MsgBox(MSG_101108 & vbCr & MSG_COM016, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-        '    'Throw
-
-        'Catch ex As IOException
-
-        '    Set_ListItem(1, MSG_101108)
-        '    Set_ListItem(1, MSG_COM015)
-        '    Set_ListItem(2, "")
-
-        '    log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-        '    MsgBox(MSG_101108 & vbCr & MSG_COM015, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-        '    'Throw
-
-        'Catch ex As UnauthorizedAccessException
-
-        '    Set_ListItem(1, MSG_101108)
-        '    Set_ListItem(1, MSG_COM018)
-        '    Set_ListItem(2, "")
-
-        '    log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-        '    MsgBox(MSG_101108 & vbCr & MSG_COM018, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-        '    'Throw
-
-        'Catch ex As Exception
-
-        '    Set_ListItem(1, MSG_101108)
-        '    Set_ListItem(1, MSG_COM017)
-        '    Set_ListItem(1, CStr(Err.Number))
-        '    Set_ListItem(1, ex.ToString)
-        '    Set_ListItem(2, "")
-
-        '    log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-        '    Throw
-
-        'Finally
-        '    '確実にファイルを閉じる
-        '    If Not SR Is Nothing Then
-        '        SR.Close()
-        '        SR.Dispose()
-        '    End If
-
-        'End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　取込済ファイル移動
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　なし
-    ' *　戻値　　　　　　：　なし
-    ' *-----------------------------------------------------------------------------/
-    Private Sub 取込済ファイル移動処理()
-
-        'Dim strMoveFile As String
-        'Dim strBackupDir As String
-        'Dim strBackupFileName As String
-
-        Try
-
-            'strBackupDir = Get_DirectoryName(txt取込ファイル.Text) & "\backup"
-            'strBackupFileName = Get_FileName(txt取込ファイル.Text)
-
-            'If Chk_DirExists(strBackupDir) = False Then
-
-            '    gblRtn = Create_Dir(strBackupDir)
-
-            'End If
-
-            'strMoveFile = strBackupDir & "\" & strBackupFileName
-
-            'If Chk_FileExists(strMoveFile) = True Then
-
-            '    gintRtn = Delete_File(strMoveFile)
-
-            'End If
-
-            'File.Move(txt取込ファイル.Text, strMoveFile)
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　エラーデータ出力処理
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　なし
-    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
-    ' *-----------------------------------------------------------------------------/
-    Private Function エラーデータ出力処理() As Boolean
-
-        'Dim ColCnt As Integer
-        'Dim ColMax As Integer
-        'Dim RowCnt As Integer
-        'Dim RowMax As Integer
-        'Dim strHeaderText As String
-        'Dim stArrayData As String()
-        'Dim FileName As String
-        'Dim i As Integer
-        'Dim dtNow As DateTime = Now
-
-        Try
-
-            エラーデータ出力処理 = False
-
-            'Select Case xxxstrProgram_ID
-
-            '    Case "HARKP101" '天神会 SPD受注
-            '        FileName = Set_FilePath(txtエラー出力先.Text, "天神会SPD-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-            '        Exit Select
-            '    Case "HARKP102" 'KMC EDI受注
-            '        FileName = Set_FilePath(txtエラー出力先.Text, "KMC-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-            '        Exit Select
-            '    Case "HARKP104" 'Rツール連携
-            '        FileName = Set_FilePath(txtエラー出力先.Text, "Rツール-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-            '        Exit Select
-            '    Case "HARKP105" 'PHsmos連携
-            '        FileName = Set_FilePath(txtエラー出力先.Text, "PHsmos-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-            '        Exit Select
-            '    Case "HARKP106" '徳洲会連携
-            '        FileName = Set_FilePath(txtエラー出力先.Text, "徳洲会-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-            '        Exit Select
-            '    Case Else
-            '        Set_ListItem(1, MSG_101117)
-            '        Set_ListItem(2, "")
-            '        Exit Function
-
-            'End Select
-
-            ''出力ヘッダ取得
-            'gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "出力ヘッダ")
-            'strHeaderText = gstrDLTP0997S_FUNC005
-
-            ''項目数取得
-            'gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "項目数")
-            'ColMax = gintDLTP0997S_FUNC004
-
-            'RowMax = gintErrorExportDataCnt
-
-            ''出力ヘッダを分割
-            'stArrayData = strHeaderText.Split(","c)
-
-            'i = 0
-
-            'With ExcelCreator
-
-            '    .ExcelFileType = ExcelFileType.xlsx
-
-            '    'EXCEL作成
-            '    .CreateBook(FileName, 1, xlsxVersion.ver2013)
-
-            '    .DefaultFontName = "メイリオ"                                                   'デフォルトフォント
-            '    .DefaultFontPoint = 10                                                          'デフォルトフォントポイント
-            '    .SheetName = "エラーデータ"                                                     'シート名
-            '    .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.White                       '文字列色＝白
-            '    .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold                       '文字列修飾＝太字
-            '    .Pos(0, 0, ColMax - 1, 0).Attr.BackColor = Color.FromArgb(91, 155, 213)         '背景色＝青
-
-            '    'ヘッダ項目出力
-            '    For Each stData As String In stArrayData
-            '        .Pos(i, 0).Str = stData
-            '        i += 1
-            '    Next stData
-
-            '    '明細行出力
-            '    For RowCnt = 0 To RowMax - 1
-
-            '        For ColCnt = 0 To ColMax - 1
-
-            '            .Pos(ColCnt, RowCnt + 1).Str = Results(RowCnt).strBuff(ColCnt)
-
-            '        Next
-
-            '    Next
-
-            '    .CloseBook(True)
-
-            'End With
-
-            'エラーデータ出力処理 = True
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　エラー出力結果更新処理
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　なし
-    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
-    ' *-----------------------------------------------------------------------------/
-    Private Function エラー出力結果更新処理() As Boolean
-
-        Try
-
-            'エラー出力結果更新処理 = False
-
-            ''出力結果を元にテーブルを更新
-            'gintRtn = DLTP0101_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 1, gintSQLCODE, gstrSQLERRM)
-
-            'Select Case gintRtn
-
-            '    Case 0
-
-            '        Set_ListItem(1, MSG_101118)
-            '        Set_ListItem(2, "")
-
-            '        Exit Select
-
-            '    Case 9
-
-            '        Set_ListItem(1, MSG_COM899 & gintSQLCODE)
-            '        Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-            '        Set_ListItem(1, MSG_101119)
-            '        Set_ListItem(1, MSG_COM901)
-            '        Set_ListItem(2, "")
-            '        Exit Function
-
-            '        Exit Select
-
-            'End Select
-
-            'エラー出力結果更新処理 = True
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　エラーデータ検索処理
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　なし
-    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
-    ' *-----------------------------------------------------------------------------/
-    Private Function エラーデータ検索処理() As Boolean
-
-        Try
-
-            'エラーデータ検索処理 = False
-
-            ''エラーデータ検索
-            'gintRtn = DLTP0101_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, gintSQLCODE, gstrSQLERRM)
-
-            'Select Case gintRtn
-
-            '    Case 0 '正常終了
-
-            '        gblRtn = エラーデータ出力処理()
-
-            '        If gblRtn = True Then
-
-            '            Set_ListItem(1, MSG_101116)
-
-            '            Exit Select
-
-            '        Else
-
-            '            Set_ListItem(1, MSG_101117)
-            '            Set_ListItem(1, MSG_COM901)
-            '            Set_ListItem(2, "")
-            '            Exit Function
-
-            '            Exit Select
-
-            '        End If
-
-            '    Case 2 '対象件数0件
-
-            '        Set_ListItem(1, MSG_101120)
-            '        Set_ListItem(2, "")
-            '        Exit Function
-
-            '        Exit Select
-
-            '    Case 9 'エラー
-
-            '        Set_ListItem(1, MSG_COM899 & gintSQLCODE)
-            '        Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-            '        Set_ListItem(1, MSG_101108)
-            '        Set_ListItem(1, MSG_COM901)
-            '        Set_ListItem(2, "")
-            '        Exit Function
-
-            '        Exit Select
-
-            'End Select
-
-            'エラーデータ検索処理 = True
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　送信用エラーデータ検索処理
-    ' *
-    ' *　注意、制限事項　：　HARKP101(天神会SPD受注)個別対応
-    ' *　引数１　　　　　：　添付ファイル
-    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
-    ' *-----------------------------------------------------------------------------/
-    Private Function HARKP101送信用エラーデータ検索処理(ByRef str添付ファイル As String) As Boolean
-
-        Dim dtNow As DateTime = Now
-        'Dim str添付ファイルパス As String
-
-        Try
-
-            'HARKP101送信用エラーデータ検索処理 = False
-
-            ''エラーデータ検索
-            'gintRtn = DLTP0101_PROC0021(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, gintSQLCODE, gstrSQLERRM)
-
-            'Select Case gintRtn
-
-            '    Case 0 '正常終了
-
-            '        str添付ファイルパス = Instance.送信保存先 & "\" & gintSPDシステムコード & "\temp"
-            '        If Chk_DirExists(str添付ファイルパス) = False Then
-            '            gblRtn = Create_Dir(str添付ファイルパス)
-            '        End If
-            '        str添付ファイル = Set_FilePath(str添付ファイルパス, Instance.送信添付ファイル名 & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xls")
-
-            '        gblRtn = HARKP101送信用エラーデータ出力処理(str添付ファイル)
-
-            '        If gblRtn = True Then
-
-            '            Set_ListItem(1, MSG_101122)
-
-            '            Exit Select
-
-            '        Else
-
-            '            Set_ListItem(1, MSG_101123)
-            '            Set_ListItem(1, MSG_COM901)
-            '            Set_ListItem(2, "")
-            '            Exit Function
-
-            '            Exit Select
-
-            '        End If
-
-            '    Case 2 '対象件数0件
-
-            '        Set_ListItem(1, MSG_101126)
-            '        Set_ListItem(2, "")
-            '        Exit Function
-
-            '        Exit Select
-
-            '    Case 9 'エラー
-
-            '        Set_ListItem(1, MSG_COM899 & gintSQLCODE)
-            '        Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-            '        Set_ListItem(1, MSG_101108)
-            '        Set_ListItem(1, MSG_COM901)
-            '        Set_ListItem(2, "")
-            '        Exit Function
-
-            '        Exit Select
-
-            'End Select
-
-            'HARKP101送信用エラーデータ検索処理 = True
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　送信用エラーデータ出力処理
-    ' *
-    ' *　注意、制限事項　：　HARKP101(天神会SPD受注)個別対応
-    ' *　引数１　　　　　：　FileName -- 出力パス
-    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
-    ' *-----------------------------------------------------------------------------/
-    Private Function HARKP101送信用エラーデータ出力処理(ByVal FileName As String) As Boolean
-
-        'Dim ColCnt As Integer
-        'Dim ColMax As Integer
-        'Dim RowCnt As Integer
-        'Dim RowMax As Integer
-        'Dim strHeaderText As String
-        'Dim stArrayData As String()
-        'Dim i As Integer
-
-        Try
-
-            'HARKP101送信用エラーデータ出力処理 = False
-
-            ''出力ヘッダ取得
-            'gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 5, 99, "出力ヘッダ")
-            'strHeaderText = gstrDLTP0997S_FUNC005
-
-            ''項目数取得
-            'gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 5, 99, "項目数")
-            'ColMax = gintDLTP0997S_FUNC004
-
-            'RowMax = gintErrorSendDataCnt
-
-            ''出力ヘッダを分割
-            'stArrayData = strHeaderText.Split(","c)
-
-            'i = 0
-
-            'With ExcelCreator
-
-            '    .ExcelFileType = ExcelFileType.xls
-
-            '    'EXCEL作成
-            '    .CreateBook(FileName, 1, xlsVersion.ver2003)
-
-            '    .DefaultFontName = "ＭＳ 明朝"                              'デフォルトフォント
-            '    .DefaultFontPoint = 10                                      'デフォルトフォントポイント
-            '    .SheetName = "エラーデータ"                                 'シート名
-            '    .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.Black   '文字列色＝白
-            '    .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold   '文字列修飾＝太字
-
-            '    'ヘッダ項目出力
-            '    For Each stData As String In stArrayData
-            '        .Pos(i, 0).Str = stData
-            '        i += 1
-            '    Next stData
-
-            '    '明細行出力
-            '    For RowCnt = 0 To RowMax - 1
-
-            '        For ColCnt = 0 To ColMax - 1
-
-            '            .Pos(ColCnt, RowCnt + 1).Str = Results(RowCnt).strBuff(ColCnt)
-
-            '        Next
-
-            '    Next
-
-            '    .CloseBook(True)
-
-            'End With
-
-            'HARKP101送信用エラーデータ出力処理 = True
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　メッセージの受信イベント
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　sender -- オブジェクト識別クラス
-    ' *　引数２　　　　　：　e      -- イベントデータクラス
-    ' *　戻値　　　　　　：　なし
-    ' *-----------------------------------------------------------------------------/
-    Private Sub Smtp_MessageReceive(ByVal sender As Object, ByVal e As TKMP.Net.MessageArgs)
-
-        Try
-
-            'Set_ListItem(1, e.Message)
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　メッセージの送信イベント
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　sender -- オブジェクト識別クラス
-    ' *　引数２　　　　　：　e      -- イベントデータクラス
-    ' *　戻値　　　　　　：　なし
-    ' *-----------------------------------------------------------------------------/
-    Private Sub Smtp_MessageSend(ByVal sender As Object, ByVal e As TKMP.Net.MessageArgs)
-
-        Try
-
-            'Set_ListItem(1, e.Message)
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　メール送信
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　FilePath -- 添付ファイルパス
-    ' *　戻値　　　　　　：　0 -- 正常終了 9 -- 異常終了
-    ' *-----------------------------------------------------------------------------/
-    Private Function Send_Mail(ByVal FilePath As String) As Integer
-
-        'Dim Mail As New TKMP.Writer.MailWriter
-        'Dim Server As System.Net.IPAddress
-        'Dim Smtp As TKMP.Net.SmtpClient = Nothing
-        'Dim strBody As String = Nothing
-        'Dim i As Integer
-        'Dim dtNow As DateTime = Now
-        'Dim blConnectFlg As Boolean
-        'Dim blToAddressFlg As Boolean
-        'Dim strSendToAddress(5) As String
-
-        Try
-
-            'Send_Mail = 9
-            'blConnectFlg = False
-            'blToAddressFlg = False
-
-            'Try
-            '    Server = Net.Dns.GetHostEntry(Instance.送信元サーバ).AddressList(0)
-            '    Smtp = New TKMP.Net.SmtpClient(Server, Instance.送信元ポート)
-            'Catch ex As Exception
-            '    log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            '    Exit Function
-            'End Try
-
-            'strSendToAddress(0) = Instance.送信先アドレス1
-            'strSendToAddress(1) = Instance.送信先アドレス2
-            'strSendToAddress(2) = Instance.送信先アドレス3
-            'strSendToAddress(3) = Instance.送信先アドレス4
-            'strSendToAddress(4) = Instance.送信先アドレス5
-
-            ''宛先アドレス作成
-            'For i = 0 To 4
-            '    If IsNull(strSendToAddress(i)) = False Then
-            '        'あて先アドレスをセット
-            '        Mail.ToAddressList.Add(strSendToAddress(i))
-            '        'ヘッダ情報を追加
-            '        Mail.Headers.Add("To", strSendToAddress(i))
-            '        blToAddressFlg = True
-            '    End If
-            'Next
-
-            'If blToAddressFlg = False Then
-            '    '宛先なし
-            '    Send_Mail = 8
-            '    Exit Function
-            'End If
-
-            'strBody = ""
-            'strBody &= "エラーデータ送信" & vbCr
-            'strBody &= "送信日時：" & dtNow.ToString("yyyy年MM月dd日 HH時mm分") & vbCr
-            'strBody &= " " & vbCr
-            'strBody &= "自動送信専用アドレスの為、このメールに返信しないでください。"
-
-            ''差出人のアドレスをセット
-            'Mail.FromAddress = Instance.送信元アドレス
-            ''Bccに自分のアドレスをセット
-            'Mail.ToAddressList.Add(Instance.送信元アドレス)
-
-            ''本文のクラスを作成
-            'Dim part As New TKMP.Writer.MultiPart(
-            'New TKMP.Writer.TextPart(strBody),
-            'New TKMP.Writer.FilePart(FilePath)
-            ')
-
-            ''送信メールクラスに本文を登録
-            'Mail.MainPart = part
-
-            ''ヘッダ情報を追加
-            'Mail.Headers.Add("From", Instance.送信元アドレス)
-            'Mail.Headers.Add("Bcc", Instance.送信元アドレス)
-            'Mail.Headers.Add("Subject", Instance.送信タイトル)
-
-            ''通信ログのイベント
-            'AddHandler Smtp.MessageReceive, AddressOf Smtp_MessageReceive
-            'AddHandler Smtp.MessageSend, AddressOf Smtp_MessageSend
-
-            ''接続
-            'If Not Smtp.Connect() Then
-            '    Exit Function
-            'End If
-
-            'blConnectFlg = True
-
-            'Smtp.SendMail(Mail)
-
-            'Smtp.Close()
-
-            'blConnectFlg = False
-
-            'Send_Mail = 0
-
-        Catch ex As Exception
-
-            'If blConnectFlg = True Then
-            '    Smtp.Close()
-            'End If
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　送信済ファイル移動
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　Flg -- 0・・成功 1・・失敗
-    ' *　戻値　　　　　　：　なし
-    ' *-----------------------------------------------------------------------------/
-    Private Sub 送信済ファイル移動処理(ByVal FileName As String, ByVal Flg As Integer)
-
-        'Dim str送信正常保存先 As String
-        'Dim str送信異常保存先 As String
-        'Dim strMoveFile As String
-
-        Try
-
-            'str送信正常保存先 = Instance.送信保存先 & "\" & gintSPDシステムコード & "\success"
-            'If Chk_DirExists(str送信正常保存先) = False Then
-            '    gblRtn = Create_Dir(str送信正常保存先)
-            'End If
-
-            'str送信異常保存先 = Instance.送信保存先 & "\" & gintSPDシステムコード & "\fail"
-            'If Chk_DirExists(str送信異常保存先) = False Then
-            '    gblRtn = Create_Dir(str送信異常保存先)
-            'End If
-
-
-            'If Flg = 0 Then '成功
-            '    strMoveFile = str送信正常保存先 & "\" & Get_FileName(FileName)
-            'Else '失敗
-            '    strMoveFile = str送信異常保存先 & "\" & Get_FileName(FileName)
-            'End If
-
-            'File.Move(FileName, strMoveFile)
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　送信用エラー出力結果更新処理
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　SendFlg・・成功、9・・失敗
-    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
-    ' *-----------------------------------------------------------------------------/
-    Private Function HARKP101送信用エラー出力結果更新処理(ByVal intSendFlg As Integer) As Boolean
-
-        Try
-
-            'HARKP101送信用エラー出力結果更新処理 = False
-
-            ''出力結果を元にテーブルを更新
-            'gintRtn = DLTP0101_PROC0022(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, intSendFlg, gintSQLCODE, gstrSQLERRM)
-
-            'Select Case gintRtn
-
-            '    Case 0
-
-            '        Set_ListItem(1, MSG_101124)
-            '        Set_ListItem(2, "")
-
-            '        Exit Select
-
-            '    Case 9
-
-            '        Set_ListItem(1, MSG_COM899 & gintSQLCODE)
-            '        Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-            '        Set_ListItem(1, MSG_101125)
-            '        Set_ListItem(1, MSG_COM901)
-            '        Set_ListItem(2, "")
-            '        Exit Function
-
-            '        Exit Select
-
-            'End Select
-
-            'HARKP101送信用エラー出力結果更新処理 = True
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　メール送信処理
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　FilePath・・添付ファイル
-    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
-    ' *-----------------------------------------------------------------------------/
-    Private Function メール送信処理(ByVal FilePath As String) As Boolean
-
-        Try
-
-            'メール送信処理 = False
-
-            ''メール送信
-            'gintRtn = Send_Mail(FilePath)
-
-            'Select Case gintRtn
-
-            '    Case 0 '正常
-
-            '        Set_ListItem(1, MSG_101128)
-            '        Set_ListItem(2, "")
-            '        送信済ファイル移動処理(FilePath, 0) '成功用フォルダへファイル移動
-
-            '        If HARKP101送信用エラー出力結果更新処理(1) = False Then Exit Function
-
-            '        Exit Select
-
-            '    Case 8 '送信先アドレス不明
-
-            '        Set_ListItem(1, MSG_101129)
-            '        Set_ListItem(1, MSG_101130)
-            '        Set_ListItem(2, "")
-            '        送信済ファイル移動処理(FilePath, 1) '失敗用フォルダへファイル移動
-
-            '        If HARKP101送信用エラー出力結果更新処理(9) = False Then Exit Function
-
-            '        Exit Select
-
-            '    Case 9 'エラー
-
-            '        Set_ListItem(1, MSG_101129)
-            '        Set_ListItem(2, "")
-            '        送信済ファイル移動処理(FilePath, 1) '失敗用フォルダへファイル移動
-
-            '        If HARKP101送信用エラー出力結果更新処理(9) = False Then Exit Function
-
-            '        Exit Select
-
-            'End Select
-
-            'メール送信処理 = True
-
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        End Try
-
-    End Function
-
-
 End Class

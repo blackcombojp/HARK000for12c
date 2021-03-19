@@ -368,32 +368,6 @@ Public Class HARK301
                     txt取込ファイル.Enabled = False
                     btnファイル参照.Enabled = False
 
-                Case 8, 9 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
-
-                    cmb需要先.SelectedIndex = gint需要先Cnt
-                    cmb需要先.Enabled = True
-                    txtDate.Text = ""
-                    lbl取込ファイル.Text = "【取込ファイル】"
-                    txt取込ファイル.Text = ""
-                    txtDate.Enabled = False
-                    Chk長期貸出番号出力区分.Checked = False
-                    Chk長期貸出番号出力区分.Visible = False
-                    txt取込ファイル.Enabled = False
-                    btnファイル参照.Enabled = False
-
-                Case 10 '登録外読込データ確認（羅針盤用）
-
-                    cmb需要先.SelectedIndex = gint需要先Cnt
-                    cmb需要先.Enabled = False
-                    txtDate.Text = ""
-                    lbl取込ファイル.Text = "【R登録外読込みファイル】"
-                    txt取込ファイル.Text = ""
-                    txtDate.Enabled = False
-                    Chk長期貸出番号出力区分.Checked = False
-                    Chk長期貸出番号出力区分.Visible = False
-                    txt取込ファイル.Enabled = True
-                    btnファイル参照.Enabled = True
-
                 Case Else
 
                     cmb需要先.SelectedIndex = gint需要先Cnt
@@ -647,40 +621,6 @@ Public Class HARK301
                             lb_Msg.Items.Clear()
                             cmbサブプログラム.Focus()
 
-                        Case 5 '受注形態メンテナンス
-
-                            If フォームヘッダチェック処理() = False Then
-                                cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
-                                Exit Sub
-                            End If
-
-                            SubForm = New HARK301S2(cmbサブプログラム.Text, xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
-
-                            SubForm.ShowDialog(Me)
-                            SubForm.Dispose()
-
-                            cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
-                            Initialize条件(0)
-                            lb_Msg.Items.Clear()
-                            cmbサブプログラム.Focus()
-
-                        Case 7 '分納データ完了処理
-
-                            If フォームヘッダチェック処理() = False Then
-                                cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
-                                Exit Sub
-                            End If
-
-                            SubForm = New HARK301S3(cmbサブプログラム.Text, xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
-
-                            SubForm.ShowDialog(Me)
-                            SubForm.Dispose()
-
-                            cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
-                            Initialize条件(0)
-                            lb_Msg.Items.Clear()
-                            cmbサブプログラム.Focus()
-
                     End Select
 
                 Case "ID3" '需要先
@@ -772,9 +712,6 @@ Public Class HARK301
 
                 Case 3 '長期貸出番号情報出力
                     Exit Sub
-
-                Case 10 '登録外読込データ確認（羅針盤用）
-                    strFilter = "EXCEL Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
 
                 Case Else
                     Exit Sub
@@ -1060,25 +997,6 @@ Public Class HARK301
 
                             gblRtn = データ検索処理()
 
-                        Case 8, 9 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
-
-                            Set_ListItem(0, "")
-                            Set_ListItem(1, MSG_301017)
-
-                            gblRtn = データ検索処理()
-
-                        Case 10 '登録外読込データ確認（羅針盤用）
-
-                            If Read_ExcelData(txt取込ファイル.Text.Trim) = False Then
-                                取込エラーファイル複製処理()
-                                GoTo EndExecute
-                            End If
-
-                            Set_ListItem(0, "")
-                            Set_ListItem(1, MSG_301017)
-
-                            gblRtn = データ検索処理()
-
                         Case Else
 
                             Exit Sub
@@ -1224,46 +1142,6 @@ EndExecute:
                         txtDate.Text = ""
                         MsgBox(MSG_301012, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
                         txtDate.Focus()
-                        Exit Function
-                    End If
-
-                Case 8, 9 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
-
-                    '需要先全て
-                    If xxxlng需要先コード = 0 Then
-                        MsgBox(MSG_301048, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        cmb需要先.Focus()
-                        Exit Function
-                    End If
-
-                Case 10 '登録外読込データ確認（羅針盤用）
-
-                    '取込ファイルチェック
-                    If IsNull(txt取込ファイル.Text.Trim) = True Then
-                        MsgBox(MSG_301049, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Focus()
-                        Exit Function
-                    End If
-
-                    If Chk_FileExists(txt取込ファイル.Text.Trim) = False Then
-                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Text = ""
-                        txt取込ファイル.Focus()
-                        Exit Function
-                    End If
-
-                    If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP3012ImpFileName) Then
-                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Text = ""
-                        txt取込ファイル.Focus()
-                        Exit Function
-                    End If
-
-                    '拡張子比較
-                    If Get_ExtensionEx(txt取込ファイル.Text).CompareTo(XLSXExtension) <> 0 Then
-                        MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Text = ""
-                        txt取込ファイル.Focus()
                         Exit Function
                     End If
 
@@ -1438,168 +1316,6 @@ EndExecute:
 
     End Function
     '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　各種Excelデータ読込
-    ' *
-    ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　strExcelFilePath -- クオン採用商品リストExcel
-    ' *　戻値　　　　　　：　True -- 正常終了 False -- 異常終了
-    ' *-----------------------------------------------------------------------------/
-    Private Function Read_ExcelData(ByVal strExcelFilePath As String) As Boolean
-
-        Dim inputStream As FileStream = Nothing
-        Dim lWBook As IWorkbook
-        Dim lSheet As ISheet
-        Dim lRow As IRow
-        Dim lCell(5) As ICell
-        Dim iRowCnt As Integer
-        Dim i As Integer
-        Dim iColCnt As Integer
-        Dim strLineData As String
-
-        Try
-
-            Read_ExcelData = False
-
-
-            Set_ListItem(0, "")
-            Set_ListItem(1, "【" & cmbサブプログラム.Text & "】")
-            Set_ListItem(1, MSG_301050)
-
-            'ファイルストリームで開く
-            inputStream = New FileStream(strExcelFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
-            lWBook = WorkbookFactory.Create(inputStream)
-
-            lSheet = lWBook.GetSheetAt(0)
-
-            i = 0
-            gintExcelDataCnt = 0
-            取込データArray = Nothing
-
-            Select Case xxxintSubProgram_ID
-
-                Case 10 'R登録外読込みデータ
-
-                    For iRowCnt = 0 To lSheet.LastRowNum
-
-                        '1行目はヘッダの為、スキップ
-                        If iRowCnt = 0 Then
-                            Continue For
-                        End If
-
-                        strLineData = vbNullString
-
-                        lRow = lSheet.GetRow(iRowCnt)   '行取得
-
-                        lCell(0) = lRow.GetCell(0)      '登録日時
-                        lCell(1) = lRow.GetCell(3)      '実施者
-                        lCell(2) = lRow.GetCell(4)      '部署コード
-                        lCell(3) = lRow.GetCell(5)      '部署名
-                        lCell(4) = lRow.GetCell(6)      'SCAN明細
-
-                        For iColCnt = 0 To 4
-                            'セルにデータがあれば格納
-                            If lCell(iColCnt) IsNot Nothing Then
-                                Select Case iColCnt
-                                    Case 2, 4
-                                        If lCell(iColCnt).CellType = CellType.Numeric Then
-                                            strLineData = strLineData & lCell(iColCnt).NumericCellValue & ","
-                                        Else
-                                            strLineData = strLineData & lCell(iColCnt).StringCellValue & ","
-                                        End If
-                                    Case Else
-                                        strLineData = strLineData & lCell(iColCnt).StringCellValue & ","
-                                End Select
-                            Else
-                                strLineData &= ","
-                            End If
-                        Next
-
-                        strLineData = strLineData.Substring(0, strLineData.Length - 1)
-
-                        ReDim Preserve 取込データArray(i)
-
-                        取込データArray(i).strRecData = strLineData
-
-                        i += 1
-
-                    Next
-
-                Case Else
-
-                    Exit Function
-
-            End Select
-
-            gintExcelDataCnt = i
-
-            lWBook.Close()
-
-            ' inputStream = Nothing
-
-            If gintExcelDataCnt = 0 Then
-                Set_ListItem(1, MSG_301016)
-                Set_ListItem(1, MSG_101109)
-                Set_ListItem(2, "")
-                Exit Function
-            End If
-
-            Set_ListItem(1, MSG_301015)
-            Set_ListItem(2, "")
-
-            Read_ExcelData = True
-
-        Catch ex As FileNotFoundException
-
-            Set_ListItem(1, MSG_301016)
-            Set_ListItem(1, MSG_COM016)
-            Set_ListItem(2, "")
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM016, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-            'Throw
-
-        Catch ex As IOException
-
-            Set_ListItem(1, MSG_301016)
-            Set_ListItem(1, MSG_COM015)
-            Set_ListItem(2, "")
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM015, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-            'Throw
-
-        Catch ex As UnauthorizedAccessException
-
-            Set_ListItem(1, MSG_301016)
-            Set_ListItem(1, MSG_COM018)
-            Set_ListItem(2, "")
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM018, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-            'Throw
-
-        Catch ex As Exception
-
-            Set_ListItem(1, MSG_301016)
-            Set_ListItem(1, MSG_COM017)
-            Set_ListItem(1, CStr(Err.Number))
-            Set_ListItem(1, ex.ToString)
-            Set_ListItem(2, "")
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            Throw
-
-        Finally
-
-            If inputStream IsNot Nothing Then
-                inputStream.Close()
-                inputStream.Dispose()
-            End If
-
-        End Try
-
-    End Function
-    '/*-----------------------------------------------------------------------------
     ' *　モジュール機能　：  データ出力処理
     ' *
     ' *　注意、制限事項　：　なし
@@ -1640,18 +1356,6 @@ EndExecute:
                 Case 6 '有効期限切迫品出荷明細出力
                     FileName = Set_FilePath(txtデータ出力先.Text, "有効期限切迫品出荷明細_" & cmb需要先.Text.Trim & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
                     strSheetName = "有効期限切迫品出荷明細"
-
-                Case 8 '部署マスタ出力（羅針盤用）
-                    FileName = Set_FilePath(txtデータ出力先.Text, "羅針盤用部署マスタ_" & cmb需要先.Text.Trim & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-                    strSheetName = "羅針盤用部署マスタ"
-
-                Case 9 '棚卸対象データ出力（羅針盤用）
-                    FileName = Set_FilePath(txtデータ出力先.Text, "羅針盤用棚卸対象データ_" & cmb需要先.Text.Trim & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-                    strSheetName = "羅針盤用棚卸対象データ"
-
-                Case 10 '登録外読込データ確認（羅針盤用）
-                    FileName = Set_FilePath(txtデータ出力先.Text, "登録外読込データ(棚卸結果)_" & cmb需要先.Text.Trim & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-                    strSheetName = "羅針盤用登録外読込データ"
 
                 Case Else
                     Set_ListItem(1, MSG_301019)
@@ -1746,12 +1450,6 @@ EndExecute:
 
                 Case 6 '有効期限切迫品出荷明細出力
                     gintRtn = DLTP0301_PROC0016(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, txtDate.Text.Trim, gintSQLCODE, gstrSQLERRM)
-
-                Case 8, 9 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
-                    gintRtn = DLTP0301_PROC0025(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxlng需要先コード, gintSQLCODE, gstrSQLERRM)
-
-                Case 10 '登録外読込データ確認（羅針盤用）
-                    gintRtn = DLTP0301_PROC0027(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
 
                 Case Else
                     Set_ListItem(1, MSG_301019)
