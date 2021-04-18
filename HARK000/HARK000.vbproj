@@ -699,9 +699,6 @@
     <None Include="HARK_Resource\SideBtn.gif" />
     <Content Include="HARK_Resource\Visual Studio Team Services.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="HARK301S2\" />
-    <Folder Include="HARK301S3\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

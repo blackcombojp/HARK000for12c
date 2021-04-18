@@ -206,7 +206,7 @@ Public Class HARK103
             cmb事業所.Items.Add(New 事業所一覧("", 0))
 
             'サブプログラム一覧取得
-            If DLTP0901_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, gintSQLCODE, gstrSQLERRM) = False Then
+            If DLTP0107_PROC0020(xxxstrProgram_ID, gintSPDシステムコード, gintSQLCODE, gstrSQLERRM) = False Then
 
                 MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 Exit Sub
@@ -450,6 +450,7 @@ Public Class HARK103
     Private Sub Cmb_SelectedValueChanged(sender As Object, e As EventArgs)
 
         Dim Tag As String
+        Dim i As Integer
 
         Try
 
@@ -478,6 +479,26 @@ Public Class HARK103
                             txtエラー出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
                         End If
                     End If
+
+                    cmbサブプログラム.Items.Clear()
+
+                    'サブプログラム一覧取得
+                    If DLTP0107_PROC0020(xxxstrProgram_ID, gintSPDシステムコード, gintSQLCODE, gstrSQLERRM) = False Then
+
+                        MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Sub
+
+                    End If
+
+                    'サブプログラム一覧
+                    For i = 0 To gintサブプログラムCnt - 1
+
+                        cmbサブプログラム.Items.Add(New サブプログラム一覧(サブプログラムArray(i).strサブプログラム名, サブプログラムArray(i).intサブプログラムコード))
+
+                    Next
+
+                    '空白行追加
+                    cmbサブプログラム.Items.Add(New サブプログラム一覧("", 0))
 
                 Case "ID2" 'cmbサブプログラム
 
@@ -560,7 +581,7 @@ Public Class HARK103
 
             Select Case xxxintSubProgram_ID
 
-                Case 1 '中央医科薬品
+                Case 1, 2 '中央医科薬品
 
                     strFilter = "Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
 
@@ -793,15 +814,16 @@ Public Class HARK103
 
                     Select Case xxxintSubProgram_ID
 
-                        Case 1 '中央医科薬品
+                        Case 1, 2 '中央医科薬品
                             If Read_ExcelData(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
+
+                            '受注テキスト取込＆チェック
+                            gintRtn = DLTP0107_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+
                         Case Else
                             If テキスト取込処理(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
 
                     End Select
-
-                    '受注テキスト取込＆チェック
-                    gintRtn = DLTP0101_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
 
                     Select Case gintRtn
 
@@ -1044,7 +1066,7 @@ EndExecute:
 
             Select Case xxxintSubProgram_ID
 
-                Case 1 '中央医科薬品
+                Case 1, 2 '中央医科薬品
 
                     'If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP103ImpFileName) Then
                     '    MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
@@ -1282,7 +1304,7 @@ EndExecute:
 
             Select Case xxxintSubProgram_ID
 
-                Case 1 '中央医科薬品
+                Case 1, 2 '中央医科薬品
                     FileName = Set_FilePath(txtエラー出力先.Text, "中央医科薬品-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
                 Case Else
                     Set_ListItem(1, MSG_101117)
@@ -1533,7 +1555,7 @@ EndExecute:
 
             Select Case xxxintSubProgram_ID
 
-                Case 1 '中央医科薬品
+                Case 1, 2 '中央医科薬品
 
                     For iRowCnt = 0 To lSheet.LastRowNum
 

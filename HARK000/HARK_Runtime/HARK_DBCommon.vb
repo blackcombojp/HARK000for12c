@@ -11933,5 +11933,244 @@ Public Class HARK_DBCommon
         End Try
 
     End Function
+    ''' <summary>
+    ''' サブプログラム一覧取得
+    ''' </summary>
+    ''' <param name="PI_strProgram_ID">プログラム_ID</param>
+    ''' <param name="PI_intSPDSystemcode">SPDシステムコード</param>
+    ''' <param name="PO_intSQLCODE">Oracleエラーコード（戻値）</param>
+    ''' <param name="PO_strSQLERRM">Oracleエラーメッセージ（戻値）</param>
+    ''' <returns>True -- 正常取得 False -- エラー</returns>
+    Public Shared Function DLTP0107_PROC0020(ByVal PI_strProgram_ID As String,
+                                             ByVal PI_intSPDSystemcode As Integer,
+                                             ByRef PO_intSQLCODE As Integer,
+                                             ByRef PO_strSQLERRM As String) As Boolean
 
+        Dim PI_01 As OracleParameter
+        Dim PI_02 As OracleParameter
+        Dim PO_01 As OracleParameter
+        Dim PO_02 As OracleParameter
+        Dim PO_03 As OracleParameter
+
+        Dim i As Integer
+
+        Try
+            DLTP0107_PROC0020 = False
+
+            gintサブプログラムCnt = 0
+
+            'ストアドプロシージャ設定
+            Oracmd = Oracomm.CreateCommand()
+            Oracmd.CommandText = "DLTP0107.PROC0020"
+            Oracmd.CommandType = CommandType.StoredProcedure
+
+
+            'インプットパラメータ設定
+            PI_01 = Oracmd.Parameters.Add("PI_01", OracleDbType.Int32, ParameterDirection.Input)
+            PI_02 = Oracmd.Parameters.Add("PI_02", OracleDbType.Int32, ParameterDirection.Input)
+
+            'Outputパラメータ設定
+            PO_01 = Oracmd.Parameters.Add("PO_01", OracleDbType.RefCursor, ParameterDirection.Output)
+            PO_02 = Oracmd.Parameters.Add("PO_02", OracleDbType.Int32, ParameterDirection.Output)
+            PO_03 = Oracmd.Parameters.Add("PO_03", OracleDbType.Varchar2, 1024, DBNull.Value, ParameterDirection.Output)
+
+            'インプット値設定
+            PI_01.Value = PI_intSPDSystemcode
+            PI_02.Value = My.Settings.事業所コード
+
+            'ストアドプロシージャCall
+            OraDr = Oracmd.ExecuteReader()
+
+            PO_intSQLCODE = CInt(PO_02.Value.ToString)
+            PO_strSQLERRM = PO_03.Value.ToString
+
+            サブプログラムArray = Nothing
+
+            'リターンコードでの処理振り分け
+            If PO_intSQLCODE = 0 Then
+
+                i = 0
+
+                While OraDr.Read
+
+                    'メモリ再取得
+                    ReDim Preserve サブプログラムArray(i)
+
+                    'グローバル変数にセット
+                    サブプログラムArray(i).intサブプログラムコード = OraDr.GetInt32(0)
+                    サブプログラムArray(i).strサブプログラム名 = OraDr.GetString(1)
+
+                    i += 1
+
+                End While
+
+                gintサブプログラムCnt = i
+
+            Else
+
+                log.Error(Set_ErrMSG(PO_intSQLCODE, PO_strSQLERRM))
+
+                Exit Function
+
+            End If
+
+            DLTP0107_PROC0020 = True
+
+        Catch Oraex As OracleException
+
+            log.Error(Set_ErrMSG(Oraex.Number, Oraex.ToString))
+            Throw
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        Finally
+
+            Oracmd.Dispose()
+
+        End Try
+
+    End Function
+    ''' <summary>
+    ''' 受注テキスト取込＆チェック
+    ''' </summary>
+    ''' <param name="PI_strProgram_ID">プログラム_ID</param>
+    ''' <param name="PI_intSPDSystemcode">SPDシステムコード</param>
+    ''' <param name="PI_intSubProgram_ID">サブプログラム_ID</param>
+    ''' <param name="PO_intNo">取込番号（戻値）</param>
+    ''' <param name="PO_intCnt0">対象件数（戻値）</param>
+    ''' <param name="PO_intCnt1">正常件数（戻値）</param>
+    ''' <param name="PO_intCnt2">エラー件数（戻値）</param>
+    ''' <param name="PO_intSQLCODE">Oracleエラーコード（戻値）</param>
+    ''' <param name="PO_strSQLERRM">Oracleエラーメッセージ（戻値）</param>
+    ''' <returns>0 -- 正常取得 9 -- エラー</returns>
+    Public Shared Function DLTP0107_PROC0001(ByVal PI_strProgram_ID As String,
+                                             ByVal PI_intSPDSystemcode As Integer,
+                                             ByVal PI_intSubProgram_ID As Integer,
+                                             ByRef PO_intNo As Integer,
+                                             ByRef PO_intCnt0 As Integer,
+                                             ByRef PO_intCnt1 As Integer,
+                                             ByRef PO_intCnt2 As Integer,
+                                             ByRef PO_intSQLCODE As Integer,
+                                             ByRef PO_strSQLERRM As String) As Integer
+
+        Dim strPROC As String
+        Dim i As Integer
+        Dim Data() As String
+        Dim PI_01 As OracleParameter
+        Dim PI_02 As OracleParameter
+        Dim PI_03 As OracleParameter
+        Dim PI_04 As OracleParameter
+        Dim PO_01 As OracleParameter
+        Dim PO_02 As OracleParameter
+        Dim PO_03 As OracleParameter
+        Dim PO_04 As OracleParameter
+        Dim PO_05 As OracleParameter
+        Dim PO_06 As OracleParameter
+
+        Try
+
+            DLTP0107_PROC0001 = 9
+
+            'プログラム_ID取得
+            gintRtn = DLTP0997S_FUNC005(PI_strProgram_ID, PI_intSPDSystemcode, PI_intSubProgram_ID, 1, 1, "処理関数")
+            strPROC = gstrDLTP0997S_FUNC005
+
+            ReDim Data(gint取込データCnt - 1)
+
+            For i = 0 To gint取込データCnt - 1
+                Data(i) = 取込データArray(i).strRecData
+            Next
+
+            'ストアドプロシージャ設定
+            Oracmd = Oracomm.CreateCommand()
+            Oracmd.CommandText = strPROC
+            Oracmd.CommandType = CommandType.StoredProcedure
+
+            OraTran = Oracomm.BeginTransaction
+
+            'インプットパラメータ設定
+            PI_01 = Oracmd.Parameters.Add("PI_01", OracleDbType.Varchar2)
+            PI_02 = Oracmd.Parameters.Add("PI_02", OracleDbType.Int32, ParameterDirection.Input)
+            PI_03 = Oracmd.Parameters.Add("PI_03", OracleDbType.Int32, ParameterDirection.Input)
+            PI_04 = Oracmd.Parameters.Add("PI_04", OracleDbType.Int32, ParameterDirection.Input)
+
+            'Outputパラメータ設定
+            PO_01 = Oracmd.Parameters.Add("PO_01", OracleDbType.Int32, ParameterDirection.Output)
+            PO_02 = Oracmd.Parameters.Add("PO_02", OracleDbType.Int32, ParameterDirection.Output)
+            PO_03 = Oracmd.Parameters.Add("PO_03", OracleDbType.Int32, ParameterDirection.Output)
+            PO_04 = Oracmd.Parameters.Add("PO_04", OracleDbType.Int32, ParameterDirection.Output)
+            PO_05 = Oracmd.Parameters.Add("PO_05", OracleDbType.Int32, ParameterDirection.Output)
+            PO_06 = Oracmd.Parameters.Add("PO_06", OracleDbType.Varchar2, 1024, DBNull.Value, ParameterDirection.Output)
+
+
+            PI_01.CollectionType = OracleCollectionType.PLSQLAssociativeArray
+            PI_01.Size = gint取込データCnt
+
+            'インプット値設定
+            PI_01.Value = Data
+            PI_02.Value = PI_intSPDSystemcode
+            PI_03.Value = PI_intSubProgram_ID
+            PI_04.Value = My.Settings.事業所コード
+
+            'ストアドプロシージャCall
+            Oracmd.ExecuteNonQuery()
+
+            PO_intNo = CType(PO_01.Value.ToString, Integer)
+            PO_intCnt0 = CType(PO_02.Value.ToString, Integer)
+            PO_intCnt1 = CType(PO_03.Value.ToString, Integer)
+            PO_intCnt2 = CType(PO_04.Value.ToString, Integer)
+            PO_intSQLCODE = CType(PO_05.Value.ToString, Integer)
+            PO_strSQLERRM = PO_06.Value.ToString
+
+            'リターンコードでの処理振り分け
+            If PO_intSQLCODE = 0 Then
+
+                OraTran.Commit()
+
+                If PO_intCnt0 = 0 Then
+                    DLTP0107_PROC0001 = 8
+                Else
+                    DLTP0107_PROC0001 = 0
+                End If
+
+                Exit Function
+
+            End If
+
+            log.Error(Set_ErrMSG(PO_intSQLCODE, PO_strSQLERRM))
+
+            OraTran.Rollback()
+
+        Catch Oraex As OracleException
+
+            If Not IsNothing(OraTran) Then
+                OraTran.Rollback()
+            End If
+
+            log.Error(Set_ErrMSG(Oraex.Number, Oraex.ToString))
+            Throw
+
+        Catch ex As Exception
+
+            If Not IsNothing(OraTran) Then
+                OraTran.Rollback()
+            End If
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        Finally
+
+            If Not IsNothing(OraTran) Then
+                OraTran.Dispose()
+            End If
+
+            Oracmd.Dispose()
+
+        End Try
+
+    End Function
 End Class
