@@ -30,6 +30,8 @@ Partial Class HARK202
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim CellStyle1 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim CellStyle2 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim DateYearField1 As GrapeCity.Win.Editors.Fields.DateYearField = New GrapeCity.Win.Editors.Fields.DateYearField()
         Dim DateLiteralField1 As GrapeCity.Win.Editors.Fields.DateLiteralField = New GrapeCity.Win.Editors.Fields.DateLiteralField()
         Dim DateMonthField1 As GrapeCity.Win.Editors.Fields.DateMonthField = New GrapeCity.Win.Editors.Fields.DateMonthField()
@@ -49,7 +51,15 @@ Partial Class HARK202
         Me.lbl取込ファイル = New System.Windows.Forms.Label()
         Me.lblエラーデータ出力先 = New System.Windows.Forms.Label()
         Me.pnl操作 = New System.Windows.Forms.Panel()
-        Me.clb部署 = New System.Windows.Forms.CheckedListBox()
+        Me.gcmr一覧 = New GrapeCity.Win.MultiRow.GcMultiRow()
+        Me.BS一覧 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.HARK202DS = New HARK000.HARK202DS()
+        Me.HARK202Template1 = New HARK000.HARK202Template()
+        Me.lbl部署 = New System.Windows.Forms.Label()
+        Me.btn全解除 = New GrapeCity.Win.Buttons.GcButton()
+        Me.btn全選択 = New GrapeCity.Win.Buttons.GcButton()
+        Me.cmb棚卸 = New System.Windows.Forms.ComboBox()
+        Me.lbl棚卸 = New System.Windows.Forms.Label()
         Me.cmb需要先 = New System.Windows.Forms.ComboBox()
         Me.lbl需要先 = New System.Windows.Forms.Label()
         Me.txtDate = New GrapeCity.Win.Editors.GcDate(Me.components)
@@ -73,16 +83,14 @@ Partial Class HARK202
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.ExcelCreator = New AdvanceSoftware.ExcelCreator.Creator(Me.components)
-        Me.cmb棚卸 = New System.Windows.Forms.ComboBox()
-        Me.lbl棚卸 = New System.Windows.Forms.Label()
-        Me.btn全選択 = New GrapeCity.Win.Buttons.GcButton()
-        Me.btn全解除 = New GrapeCity.Win.Buttons.GcButton()
-        Me.lbl部署 = New System.Windows.Forms.Label()
         Me.CntMenuStrip.SuspendLayout()
         CType(Me.lb_Msg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt取込ファイル, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtデータ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnl操作.SuspendLayout()
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.HARK202DS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txt入力担当コード, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,7 +223,7 @@ Partial Class HARK202
         '
         Me.pnl操作.BackColor = System.Drawing.Color.FromArgb(CType(CType(211, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.pnl操作.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.pnl操作.Controls.Add(Me.clb部署)
+        Me.pnl操作.Controls.Add(Me.gcmr一覧)
         Me.pnl操作.Controls.Add(Me.lbl部署)
         Me.pnl操作.Controls.Add(Me.btn全解除)
         Me.pnl操作.Controls.Add(Me.btn全選択)
@@ -238,14 +246,99 @@ Partial Class HARK202
         Me.pnl操作.Size = New System.Drawing.Size(475, 614)
         Me.pnl操作.TabIndex = 183
         '
-        'clb部署
+        'gcmr一覧
         '
-        Me.clb部署.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.clb部署.FormattingEnabled = True
-        Me.clb部署.Location = New System.Drawing.Point(12, 207)
-        Me.clb部署.Name = "clb部署"
-        Me.clb部署.Size = New System.Drawing.Size(288, 114)
-        Me.clb部署.TabIndex = 172
+        Me.gcmr一覧.AllowClipboard = False
+        Me.gcmr一覧.AllowUserToAddRows = False
+        Me.gcmr一覧.AllowUserToAutoFitColumns = False
+        Me.gcmr一覧.AllowUserToDeleteRows = False
+        Me.gcmr一覧.AllowUserToResize = False
+        Me.gcmr一覧.AllowUserToTouchResize = False
+        Me.gcmr一覧.AllowUserToTouchZoom = False
+        Me.gcmr一覧.AllowUserToZoom = False
+        CellStyle1.BackColor = System.Drawing.Color.LightCyan
+        CellStyle1.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        Me.gcmr一覧.AlternatingRowsDefaultCellStyle = CellStyle1
+        CellStyle2.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        Me.gcmr一覧.AlternatingRowsDefaultHeaderCellStyle = CellStyle2
+        Me.gcmr一覧.ClipboardCopyMode = GrapeCity.Win.MultiRow.ClipboardCopyMode.Disable
+        Me.gcmr一覧.CurrentCellBorderLine = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.None, System.Drawing.Color.Black)
+        Me.gcmr一覧.DataSource = Me.BS一覧
+        Me.gcmr一覧.Location = New System.Drawing.Point(12, 207)
+        Me.gcmr一覧.Name = "gcmr一覧"
+        Me.gcmr一覧.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.gcmr一覧.Size = New System.Drawing.Size(288, 113)
+        Me.gcmr一覧.SplitMode = GrapeCity.Win.MultiRow.SplitMode.None
+        Me.gcmr一覧.TabIndex = 178
+        Me.gcmr一覧.Template = Me.HARK202Template1
+        Me.gcmr一覧.Text = "gcmr一覧"
+        '
+        'BS一覧
+        '
+        Me.BS一覧.DataMember = "ds一覧"
+        Me.BS一覧.DataSource = Me.HARK202DS
+        '
+        'HARK202DS
+        '
+        Me.HARK202DS.DataSetName = "HARK202DS"
+        Me.HARK202DS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'lbl部署
+        '
+        Me.lbl部署.AutoSize = True
+        Me.lbl部署.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl部署.Location = New System.Drawing.Point(12, 184)
+        Me.lbl部署.Name = "lbl部署"
+        Me.lbl部署.Size = New System.Drawing.Size(61, 20)
+        Me.lbl部署.TabIndex = 177
+        Me.lbl部署.Text = "【部署】"
+        Me.lbl部署.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'btn全解除
+        '
+        Me.btn全解除.BackColor = System.Drawing.SystemColors.Control
+        Me.btn全解除.Location = New System.Drawing.Point(306, 298)
+        Me.btn全解除.Name = "btn全解除"
+        Me.btn全解除.Size = New System.Drawing.Size(88, 23)
+        Me.btn全解除.TabIndex = 176
+        Me.btn全解除.TabStop = False
+        Me.btn全解除.Tag = "ID1"
+        Me.btn全解除.Text = "全解除"
+        Me.btn全解除.UseVisualStyleBackColor = False
+        '
+        'btn全選択
+        '
+        Me.btn全選択.BackColor = System.Drawing.SystemColors.Control
+        Me.btn全選択.Location = New System.Drawing.Point(306, 269)
+        Me.btn全選択.Name = "btn全選択"
+        Me.btn全選択.Size = New System.Drawing.Size(88, 23)
+        Me.btn全選択.TabIndex = 175
+        Me.btn全選択.TabStop = False
+        Me.btn全選択.Tag = "ID1"
+        Me.btn全選択.Text = "全選択"
+        Me.btn全選択.UseVisualStyleBackColor = False
+        '
+        'cmb棚卸
+        '
+        Me.cmb棚卸.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb棚卸.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmb棚卸.FormattingEnabled = True
+        Me.cmb棚卸.Location = New System.Drawing.Point(12, 95)
+        Me.cmb棚卸.Name = "cmb棚卸"
+        Me.cmb棚卸.Size = New System.Drawing.Size(382, 26)
+        Me.cmb棚卸.TabIndex = 173
+        Me.cmb棚卸.Tag = "ID2"
+        '
+        'lbl棚卸
+        '
+        Me.lbl棚卸.AutoSize = True
+        Me.lbl棚卸.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl棚卸.Location = New System.Drawing.Point(12, 72)
+        Me.lbl棚卸.Name = "lbl棚卸"
+        Me.lbl棚卸.Size = New System.Drawing.Size(61, 20)
+        Me.lbl棚卸.TabIndex = 174
+        Me.lbl棚卸.Text = "【棚卸】"
+        Me.lbl棚卸.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'cmb需要先
         '
@@ -491,63 +584,6 @@ Partial Class HARK202
         Me.ExcelCreator.ExcelFileType = AdvanceSoftware.ExcelCreator.ExcelFileType.xlsx
         Me.ExcelCreator.TemporaryPath = ""
         '
-        'cmb棚卸
-        '
-        Me.cmb棚卸.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmb棚卸.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.cmb棚卸.FormattingEnabled = True
-        Me.cmb棚卸.Location = New System.Drawing.Point(12, 95)
-        Me.cmb棚卸.Name = "cmb棚卸"
-        Me.cmb棚卸.Size = New System.Drawing.Size(382, 26)
-        Me.cmb棚卸.TabIndex = 173
-        Me.cmb棚卸.Tag = "ID2"
-        '
-        'lbl棚卸
-        '
-        Me.lbl棚卸.AutoSize = True
-        Me.lbl棚卸.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl棚卸.Location = New System.Drawing.Point(12, 72)
-        Me.lbl棚卸.Name = "lbl棚卸"
-        Me.lbl棚卸.Size = New System.Drawing.Size(61, 20)
-        Me.lbl棚卸.TabIndex = 174
-        Me.lbl棚卸.Text = "【棚卸】"
-        Me.lbl棚卸.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'btn全選択
-        '
-        Me.btn全選択.BackColor = System.Drawing.SystemColors.Control
-        Me.btn全選択.Location = New System.Drawing.Point(306, 269)
-        Me.btn全選択.Name = "btn全選択"
-        Me.btn全選択.Size = New System.Drawing.Size(88, 23)
-        Me.btn全選択.TabIndex = 175
-        Me.btn全選択.TabStop = False
-        Me.btn全選択.Tag = "ID1"
-        Me.btn全選択.Text = "全選択"
-        Me.btn全選択.UseVisualStyleBackColor = False
-        '
-        'btn全解除
-        '
-        Me.btn全解除.BackColor = System.Drawing.SystemColors.Control
-        Me.btn全解除.Location = New System.Drawing.Point(306, 298)
-        Me.btn全解除.Name = "btn全解除"
-        Me.btn全解除.Size = New System.Drawing.Size(88, 23)
-        Me.btn全解除.TabIndex = 176
-        Me.btn全解除.TabStop = False
-        Me.btn全解除.Tag = "ID1"
-        Me.btn全解除.Text = "全解除"
-        Me.btn全解除.UseVisualStyleBackColor = False
-        '
-        'lbl部署
-        '
-        Me.lbl部署.AutoSize = True
-        Me.lbl部署.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lbl部署.Location = New System.Drawing.Point(12, 184)
-        Me.lbl部署.Name = "lbl部署"
-        Me.lbl部署.Size = New System.Drawing.Size(61, 20)
-        Me.lbl部署.TabIndex = 177
-        Me.lbl部署.Text = "【部署】"
-        Me.lbl部署.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
         'HARK202
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -582,6 +618,9 @@ Partial Class HARK202
         CType(Me.txtデータ出力先, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnl操作.ResumeLayout(False)
         Me.pnl操作.PerformLayout()
+        CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BS一覧, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.HARK202DS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txt入力担当コード, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SttBar_3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -685,11 +724,13 @@ Partial Class HARK202
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
-
-    Friend WithEvents clb部署 As CheckedListBox
     Private WithEvents btn全解除 As GrapeCity.Win.Buttons.GcButton
     Private WithEvents btn全選択 As GrapeCity.Win.Buttons.GcButton
     Private WithEvents cmb棚卸 As ComboBox
     Private WithEvents lbl棚卸 As Label
     Private WithEvents lbl部署 As Label
+    Friend WithEvents BS一覧 As BindingSource
+    Friend WithEvents HARK202DS As HARK202DS
+    Friend WithEvents gcmr一覧 As GrapeCity.Win.MultiRow.GcMultiRow
+    Friend WithEvents HARK202Template1 As HARK202Template
 End Class

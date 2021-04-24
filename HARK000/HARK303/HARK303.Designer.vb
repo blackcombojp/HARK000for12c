@@ -31,6 +31,7 @@ Partial Class HARK303
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim CellStyle1 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim CellStyle2 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim ShortcutKeyManager1 As GrapeCity.Win.MultiRow.ShortcutKeyManager = New GrapeCity.Win.MultiRow.ShortcutKeyManager()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK303))
         Me.cmb事業所 = New System.Windows.Forms.ComboBox()
@@ -314,9 +315,11 @@ Partial Class HARK303
         Me.gcmr一覧.AllowUserToTouchResize = False
         Me.gcmr一覧.AllowUserToTouchZoom = False
         Me.gcmr一覧.AllowUserToZoom = False
-        CellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        CellStyle1.BackColor = System.Drawing.Color.LightCyan
         CellStyle1.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
         Me.gcmr一覧.AlternatingRowsDefaultCellStyle = CellStyle1
+        CellStyle2.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        Me.gcmr一覧.AlternatingRowsDefaultHeaderCellStyle = CellStyle2
         Me.gcmr一覧.ClipboardCopyMode = GrapeCity.Win.MultiRow.ClipboardCopyMode.Disable
         Me.gcmr一覧.CurrentCellBorderLine = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.None, System.Drawing.Color.Black)
         Me.gcmr一覧.DataSource = Me.BS一覧
@@ -463,7 +466,7 @@ Partial Class HARK303
         Me.gcmr一覧.TabIndex = 301
         Me.gcmr一覧.TabStop = False
         Me.gcmr一覧.Template = Me.HARK303Template1
-        Me.gcmr一覧.Text = "GcMultiRow1"
+        Me.gcmr一覧.Text = "gcmr一覧"
         '
         'HARK303
         '

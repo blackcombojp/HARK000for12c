@@ -500,10 +500,10 @@ Partial Class HARK504Template
     Private WithEvents txt明細許可証番号 As GrapeCity.Win.MultiRow.TextBoxCell
     Private WithEvents txt明細許可開始日付 As GrapeCity.Win.MultiRow.TextBoxCell
     Private WithEvents txt明細許可終了日付 As GrapeCity.Win.MultiRow.TextBoxCell
-    Friend WithEvents bt明細画像 As GrapeCity.Win.MultiRow.ButtonCell
-    Friend WithEvents chk明細削除区分 As GrapeCity.Win.MultiRow.CheckBoxCell
+    Private WithEvents bt明細画像 As GrapeCity.Win.MultiRow.ButtonCell
     Private WithEvents txt明細販売許可証管理情報_ID As GrapeCity.Win.MultiRow.TextBoxCell
     Private WithEvents txt明細取引停止 As GrapeCity.Win.MultiRow.TextBoxCell
     Private WithEvents chc明細取引停止 As GrapeCity.Win.MultiRow.ColumnHeaderCell
     Private WithEvents txt画像 As GrapeCity.Win.MultiRow.TextBoxCell
+    Private WithEvents chk明細削除区分 As GrapeCity.Win.MultiRow.CheckBoxCell
 End Class

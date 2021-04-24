@@ -36,6 +36,7 @@ Partial Class HARK504
         Dim DateLiteralField2 As GrapeCity.Win.Editors.Fields.DateLiteralField = New GrapeCity.Win.Editors.Fields.DateLiteralField()
         Dim DateDayField1 As GrapeCity.Win.Editors.Fields.DateDayField = New GrapeCity.Win.Editors.Fields.DateDayField()
         Dim CellStyle1 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim CellStyle2 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim ShortcutKeyManager1 As GrapeCity.Win.MultiRow.ShortcutKeyManager = New GrapeCity.Win.MultiRow.ShortcutKeyManager()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(HARK504))
         Me.cmb事業所 = New System.Windows.Forms.ComboBox()
@@ -563,6 +564,8 @@ Partial Class HARK504
         CellStyle1.BackColor = System.Drawing.Color.LightCyan
         CellStyle1.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
         Me.gcmr一覧.AlternatingRowsDefaultCellStyle = CellStyle1
+        CellStyle2.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        Me.gcmr一覧.AlternatingRowsDefaultHeaderCellStyle = CellStyle2
         Me.gcmr一覧.ClipboardCopyMode = GrapeCity.Win.MultiRow.ClipboardCopyMode.Disable
         Me.gcmr一覧.CurrentCellBorderLine = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.None, System.Drawing.Color.Black)
         Me.gcmr一覧.DataSource = Me.BS一覧

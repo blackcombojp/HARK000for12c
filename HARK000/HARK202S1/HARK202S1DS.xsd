@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="HARK202S1DS" targetNamespace="http://tempuri.org/HARK202S1DS.xsd" xmlns:mstns="http://tempuri.org/HARK202S1DS.xsd" xmlns="http://tempuri.org/HARK202S1DS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="HARK202S1DS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="HARK202S1DS" msprop:Generator_UserDSName="HARK202S1DS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ds一覧" msprop:Generator_TableClassName="ds一覧DataTable" msprop:Generator_TableVarName="tableds一覧" msprop:Generator_TablePropName="ds一覧" msprop:Generator_RowDeletingName="ds一覧RowDeleting" msprop:Generator_RowChangingName="ds一覧RowChanging" msprop:Generator_RowEvHandlerName="ds一覧RowChangeEventHandler" msprop:Generator_RowDeletedName="ds一覧RowDeleted" msprop:Generator_UserTableName="ds一覧" msprop:Generator_RowChangedName="ds一覧RowChanged" msprop:Generator_RowEvArgName="ds一覧RowChangeEvent" msprop:Generator_RowClassName="ds一覧Row">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
