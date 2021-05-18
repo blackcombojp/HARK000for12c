@@ -867,6 +867,16 @@ Public Class HARK100S2
                                 xxxlng得意先コード = DUMMY_LNGCODE
                                 xxxlng需要先コード = DUMMY_LNGCODE
                             Else
+                                If IsNull(txt得意先コード.Text.Trim) Then
+                                    MsgBox(MSG_992001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                    txt得意先コード.Focus()
+                                    Exit Sub
+                                End If
+                                If IsNull(txt需要先コード.Text.Trim) Then
+                                    MsgBox(MSG_992002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                    txt需要先コード.Focus()
+                                    Exit Sub
+                                End If
                                 xxxlng得意先コード = CLng(txt得意先コード.Text.Trim)
                                 xxxlng需要先コード = CLng(txt需要先コード.Text.Trim)
                             End If
@@ -917,6 +927,16 @@ Public Class HARK100S2
                             xxxlng得意先コード = DUMMY_LNGCODE
                             xxxlng需要先コード = DUMMY_LNGCODE
                         Else
+                            If IsNull(txt得意先コード.Text.Trim) Then
+                                MsgBox(MSG_992001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt得意先コード.Focus()
+                                Exit Sub
+                            End If
+                            If IsNull(txt需要先コード.Text.Trim) Then
+                                MsgBox(MSG_992002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt需要先コード.Focus()
+                                Exit Sub
+                            End If
                             xxxlng得意先コード = CLng(txt得意先コード.Text.Trim)
                             xxxlng需要先コード = CLng(txt需要先コード.Text.Trim)
                         End If

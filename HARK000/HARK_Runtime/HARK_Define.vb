@@ -82,6 +82,8 @@ Module HARK_Define
     Public Const MSG_201012 As String = "有効期限切迫"
     Public Const MSG_201013 As String = "対象件数："
 
+    Public Const MSG_202001 As String = "部署を選択してください"
+    Public Const MSG_202002 As String = "需要先を指定して、部署を選択してください"
 
 
     Public Const MSG_301001 As String = "伝送番号："
@@ -135,7 +137,7 @@ Module HARK_Define
     Public Const MSG_301049 As String = "R登録外読込みデータを指定してください"
     Public Const MSG_301050 As String = "R登録外読込みデータ読込中"
     Public Const MSG_301051 As String = "指定した商品コードは他の端末で表示中です"
-
+    Public Const MSG_301052 As String = "いづれかの条件を指定してください"
 
 
 

@@ -369,6 +369,23 @@
     <Compile Include="HARK301S1\HARK301S1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="HARK301S2\HARK301S2.designer.vb">
+      <DependentUpon>HARK301S2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301S2\HARK301S2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HARK301S2\HARK301S2DS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HARK301S2DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301S2\HARK301S2Template.designer.vb">
+      <DependentUpon>HARK301S2Template.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HARK301S2\HARK301S2Template.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HARK301\HARK301.designer.vb">
       <DependentUpon>HARK301.vb</DependentUpon>
     </Compile>
@@ -578,6 +595,12 @@
     <EmbeddedResource Include="HARK301S1\HARK301S1.resx">
       <DependentUpon>HARK301S1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HARK301S2\HARK301S2.resx">
+      <DependentUpon>HARK301S2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HARK301S2\HARK301S2Template.resx">
+      <DependentUpon>HARK301S2Template.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HARK301\HARK301.resx">
       <DependentUpon>HARK301.vb</DependentUpon>
     </EmbeddedResource>
@@ -690,6 +713,17 @@
     </None>
     <None Include="HARK203\HARK203DS.xss">
       <DependentUpon>HARK203DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK301S2\HARK301S2DS.xsc">
+      <DependentUpon>HARK301S2DS.xsd</DependentUpon>
+    </None>
+    <None Include="HARK301S2\HARK301S2DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HARK301S2DS.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="HARK301S2\HARK301S2DS.xss">
+      <DependentUpon>HARK301S2DS.xsd</DependentUpon>
     </None>
     <None Include="HARK303\HARK303DS.xsc">
       <DependentUpon>HARK303DS.xsd</DependentUpon>

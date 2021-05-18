@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="WebSource" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://delta2.iticloud.net/delta/HARK000/TEST/HARK000UpdateFeed.xml</Value>
+      <Value Profile="(Default)">https://delta2.iticloud.net/delta/HARK000/HARK000UpdateFeed.xml</Value>
     </Setting>
     <Setting Name="WebProxy" Type="System.String" Scope="User">
       <Value Profile="(Default)">NONE</Value>

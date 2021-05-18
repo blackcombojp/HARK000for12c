@@ -621,6 +621,23 @@ Public Class HARK301
                             lb_Msg.Items.Clear()
                             cmbサブプログラム.Focus()
 
+                        Case 7 '倉庫在庫照会
+
+                            If フォームヘッダチェック処理() = False Then
+                                cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                                Exit Sub
+                            End If
+
+                            SubForm = New HARK301S2(cmbサブプログラム.Text, xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
+
+                            SubForm.ShowDialog(Me)
+                            SubForm.Dispose()
+
+                            cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+                            Initialize条件(0)
+                            lb_Msg.Items.Clear()
+                            cmbサブプログラム.Focus()
+
                     End Select
 
                 Case "ID3" '需要先

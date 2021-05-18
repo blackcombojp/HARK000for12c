@@ -288,9 +288,16 @@ Public Class HARK202
 
             cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
             txtDate.Text = ""
+            HARK202DS.ds一覧.Clear()
 
             txt取込ファイル.Text = ""
             txtデータ出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
+
+            'とりあえず
+            lbl棚卸.Visible = False
+            cmb棚卸.Visible = False
+            lbl棚卸日.Visible = False
+            txtDate.Visible = False
 
         Catch ex As Exception
 
@@ -313,7 +320,7 @@ Public Class HARK202
 
             Select Case int区分
 
-                Case 1, 2 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
+                Case 1 '部署マスタ出力（羅針盤用)
 
                     cmb需要先.SelectedIndex = gint需要先Cnt
                     cmb需要先.Enabled = True
@@ -323,6 +330,25 @@ Public Class HARK202
                     txtDate.Enabled = False
                     txt取込ファイル.Enabled = False
                     btnファイル参照.Enabled = False
+                    HARK202DS.ds一覧.Clear()
+                    gcmr一覧.Enabled = False
+                    btn全選択.Enabled = False
+                    btn全解除.Enabled = False
+
+                Case 2 '棚卸対象データ出力（羅針盤用）
+
+                    cmb需要先.SelectedIndex = gint需要先Cnt
+                    cmb需要先.Enabled = True
+                    txtDate.Text = ""
+                    lbl取込ファイル.Text = "【取込ファイル】"
+                    txt取込ファイル.Text = ""
+                    txtDate.Enabled = False
+                    txt取込ファイル.Enabled = False
+                    btnファイル参照.Enabled = False
+                    HARK202DS.ds一覧.Clear()
+                    gcmr一覧.Enabled = True
+                    btn全選択.Enabled = True
+                    btn全解除.Enabled = True
 
                 Case 3 '登録外読込データ確認（羅針盤用）
 
@@ -334,6 +360,10 @@ Public Class HARK202
                     txtDate.Enabled = False
                     txt取込ファイル.Enabled = True
                     btnファイル参照.Enabled = True
+                    HARK202DS.ds一覧.Clear()
+                    gcmr一覧.Enabled = False
+                    btn全選択.Enabled = False
+                    btn全解除.Enabled = False
 
                 Case Else
 
@@ -345,6 +375,10 @@ Public Class HARK202
                     txtDate.Enabled = True
                     txt取込ファイル.Enabled = True
                     btnファイル参照.Enabled = True
+                    HARK202DS.ds一覧.Clear()
+                    gcmr一覧.Enabled = False
+                    btn全選択.Enabled = False
+                    btn全解除.Enabled = False
 
             End Select
 
@@ -566,11 +600,18 @@ Public Class HARK202
 
                     Initialize条件(xxxintSubProgram_ID)
 
-                Case "ID3" '需要先
+                Case "ID4" '需要先
 
                     With DirectCast(cmb需要先.SelectedItem, 需要先一覧)
                         xxxlng需要先コード = .lng需要先コード
                     End With
+
+                    '部署一覧作成
+                    If xxxintSubProgram_ID = 2 Then
+
+                        DLTP0202_PROC0010(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxlng需要先コード, HARK202DS, gintSQLCODE, gstrSQLERRM)
+
+                    End If
 
             End Select
 
@@ -883,6 +924,9 @@ Public Class HARK202
 
                             gblRtn = データ検索処理()
 
+                            'セッション情報削除
+                            gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "棚卸対象データ出力", xxxintSubProgram_ID)
+
                         Case 3 '登録外読込データ確認（羅針盤用）
 
                             If Read_ExcelData(txt取込ファイル.Text.Trim) = False Then
@@ -895,6 +939,9 @@ Public Class HARK202
 
                             gblRtn = データ検索処理()
 
+                            'セッション情報削除
+                            gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "棚卸結果登録外読込データ出力", xxxintSubProgram_ID)
+
                         Case Else
 
                             Exit Sub
@@ -902,6 +949,7 @@ Public Class HARK202
                     End Select
 
 EndExecute:
+
                     cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
                     Initialize条件(0)
                     cmbサブプログラム.Focus()
@@ -945,6 +993,9 @@ EndExecute:
     ' *-----------------------------------------------------------------------------/
     Private Function 実行前チェック処理() As Boolean
 
+        Dim intRowCnt As Integer
+        Dim blnChkFLG As Boolean = False
+
         Try
 
             実行前チェック処理 = False
@@ -967,6 +1018,36 @@ EndExecute:
                         MsgBox(MSG_301048, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                         cmb需要先.Focus()
                         Exit Function
+                    End If
+
+                    '棚卸対象データ出力（羅針盤用）
+                    If xxxintSubProgram_ID = 2 Then
+
+                        If gcmr一覧.RowCount < 1 Then
+                            MsgBox(MSG_202002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                            cmb需要先.Focus()
+                            Exit Function
+                        End If
+
+                        xxxintResultCnt = 0
+                        xxxlngResults = Nothing
+
+                        For intRowCnt = 0 To gcmr一覧.RowCount - 1
+                            If CByte(gcmr一覧.Item(intRowCnt, "chk明細選択区分").Value) = 1 Then
+                                blnChkFLG = True
+                                ReDim Preserve xxxlngResults(xxxintResultCnt)
+                                xxxlngResults(xxxintResultCnt) = CLng(gcmr一覧.Item(intRowCnt, "txt明細部署コード").Value)
+                                xxxintResultCnt += 1
+                            End If
+                        Next
+
+                        If blnChkFLG = False Then
+                            MsgBox(MSG_202001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                            gcmr一覧.Item(0, "chk明細選択区分").Selected = True
+                            Exit Function
+
+                        End If
+
                     End If
 
                 Case 3 '登録外読込データ確認（羅針盤用）
@@ -1218,9 +1299,9 @@ EndExecute:
 
                         lCell(0) = lRow.GetCell(0)      '登録日時
                         lCell(1) = lRow.GetCell(3)      '実施者
-                        lCell(2) = lRow.GetCell(5)      '部署コード
-                        lCell(3) = lRow.GetCell(6)      '部署名
-                        lCell(4) = lRow.GetCell(7)      'SCAN明細
+                        lCell(2) = lRow.GetCell(4)      '部署コード
+                        lCell(3) = lRow.GetCell(5)      '部署名
+                        lCell(4) = lRow.GetCell(6)      'SCAN明細
 
                         For iColCnt = 0 To 4
                             'セルにデータがあれば格納
@@ -1445,8 +1526,11 @@ EndExecute:
 
             Select Case xxxintSubProgram_ID
 
-                Case 1, 2 '部署マスタ出力（羅針盤用）/棚卸対象データ出力（羅針盤用）
+                Case 1 '部署マスタ出力（羅針盤用）
                     gintRtn = DLTP0202_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxlng需要先コード, gintSQLCODE, gstrSQLERRM)
+
+                Case 2 '棚卸対象データ出力（羅針盤用）
+                    gintRtn = DLTP0202_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxlng需要先コード, xxxintResultCnt, xxxlngResults, gintSQLCODE, gstrSQLERRM)
 
                 Case 3 '登録外読込データ確認（羅針盤用）
                     gintRtn = DLTP0202_PROC0003(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
@@ -1588,6 +1672,56 @@ EndExecute:
             If Chk_FileExists(strCopyFile) = True Then gintRtn = Delete_File(strCopyFile)
 
             File.Copy(txt取込ファイル.Text, strCopyFile)
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Sub
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　「全選択」「全解除」ボタン押下処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　sender・・オブジェクト識別クラス
+    ' *　引数２　　　　　：　e・・イベントデータクラス
+    ' *　戻値　　　　　　：　なし
+    ' *-----------------------------------------------------------------------------/
+    Private Sub btn選択_Click(sender As Object, e As EventArgs) Handles btn全選択.Click, btn全解除.Click
+
+        Dim Tag As String
+        Dim intRowCnt As Integer
+
+        Try
+
+            Tag = CStr(CType(sender, GrapeCity.Win.Buttons.GcButton).Tag)
+
+            Select Case Tag
+
+                '全選択
+                Case "ID1"
+
+                    If gcmr一覧.RowCount < 1 Then Exit Sub
+
+                    For intRowCnt = 0 To gcmr一覧.RowCount - 1
+                        gcmr一覧.Item(intRowCnt, "chk明細選択区分").Value = 1
+                    Next
+
+                '全解除
+                Case "ID2"
+
+                    If gcmr一覧.RowCount < 1 Then Exit Sub
+
+                    For intRowCnt = 0 To gcmr一覧.RowCount - 1
+                        gcmr一覧.Item(intRowCnt, "chk明細選択区分").Value = 0
+                    Next
+
+                Case Else
+                    Exit Sub
+
+            End Select
 
         Catch ex As Exception
 

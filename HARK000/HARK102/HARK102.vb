@@ -901,7 +901,7 @@ Public Class HARK102
                     End Select
 
                     '結果表示用対象得意先一覧取得
-                    gintRtn = DLTP0103_PROC0015(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, gintSQLCODE, gstrSQLERRM)
+                    gintRtn = DLTP0103_PROC0015(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, 5, gintSQLCODE, gstrSQLERRM)
 
                     If gintResultCnt > 0 Then Set_ListItem(1, MSG_101134)
                     For i = 0 To gintResultCnt - 1

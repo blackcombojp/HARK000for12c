@@ -56,7 +56,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("https://delta2.iticloud.net/delta/HARK000/TEST/HARK000UpdateFeed.xml")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("https://delta2.iticloud.net/delta/HARK000/HARK000UpdateFeed.xml")>  _
         Public Property WebSource() As String
             Get
                 Return CType(Me("WebSource"),String)

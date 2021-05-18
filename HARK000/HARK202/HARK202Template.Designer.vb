@@ -20,24 +20,31 @@ Partial Class HARK202Template
     'コード エディタを使って変更しないでください。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim CellStyle3 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
-        Dim Border3 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle4 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border4 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle5 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border5 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle1 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border1 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Dim CellStyle2 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
         Dim Border2 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle6 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border6 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
+        Dim CellStyle3 As GrapeCity.Win.MultiRow.CellStyle = New GrapeCity.Win.MultiRow.CellStyle()
+        Dim Border3 As GrapeCity.Win.MultiRow.Border = New GrapeCity.Win.MultiRow.Border()
         Me.HeaderSection = New GrapeCity.Win.MultiRow.ColumnHeaderSection()
         Me.chc明細選択区分 = New GrapeCity.Win.MultiRow.ColumnHeaderCell()
         Me.chc明細部署名 = New GrapeCity.Win.MultiRow.ColumnHeaderCell()
         Me.txt明細部署名 = New GrapeCity.Win.MultiRow.TextBoxCell()
         Me.chk明細選択区分 = New GrapeCity.Win.MultiRow.CheckBoxCell()
+        Me.chc明細部署コード = New GrapeCity.Win.MultiRow.ColumnHeaderCell()
+        Me.txt明細部署コード = New GrapeCity.Win.MultiRow.TextBoxCell()
         '
         'Row
         '
         Me.Row.Cells.Add(Me.txt明細部署名)
         Me.Row.Cells.Add(Me.chk明細選択区分)
+        Me.Row.Cells.Add(Me.txt明細部署コード)
         Me.Row.Height = 21
         Me.Row.Width = 266
         '
@@ -45,6 +52,7 @@ Partial Class HARK202Template
         '
         Me.HeaderSection.Cells.Add(Me.chc明細選択区分)
         Me.HeaderSection.Cells.Add(Me.chc明細部署名)
+        Me.HeaderSection.Cells.Add(Me.chc明細部署コード)
         Me.HeaderSection.Height = 21
         Me.HeaderSection.Name = "HeaderSection"
         Me.HeaderSection.Width = 266
@@ -58,32 +66,32 @@ Partial Class HARK202Template
         Me.chc明細選択区分.Size = New System.Drawing.Size(39, 21)
         Me.chc明細選択区分.SortCellName = "chk明細選択区分"
         Me.chc明細選択区分.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic
-        CellStyle3.BackColor = System.Drawing.SystemColors.Control
-        Border3.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle3.Border = Border3
-        CellStyle3.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle3.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.chc明細選択区分.Style = CellStyle3
+        CellStyle4.BackColor = System.Drawing.SystemColors.Control
+        Border4.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle4.Border = Border4
+        CellStyle4.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.chc明細選択区分.Style = CellStyle4
         Me.chc明細選択区分.TabIndex = 1
         Me.chc明細選択区分.TabStop = False
         Me.chc明細選択区分.Value = "選択"
         '
         'chc明細部署名
         '
-        Me.chc明細部署名.Location = New System.Drawing.Point(39, 0)
+        Me.chc明細部署名.Location = New System.Drawing.Point(88, 0)
         Me.chc明細部署名.Name = "chc明細部署名"
         Me.chc明細部署名.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
         Me.chc明細部署名.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
-        Me.chc明細部署名.Size = New System.Drawing.Size(227, 21)
+        Me.chc明細部署名.Size = New System.Drawing.Size(178, 21)
         Me.chc明細部署名.SortCellName = "txt明細部署名"
         Me.chc明細部署名.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic
-        CellStyle4.BackColor = System.Drawing.SystemColors.Control
-        Border4.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
-        CellStyle4.Border = Border4
-        CellStyle4.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        CellStyle4.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
-        CellStyle4.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
-        Me.chc明細部署名.Style = CellStyle4
+        CellStyle5.BackColor = System.Drawing.SystemColors.Control
+        Border5.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle5.Border = Border5
+        CellStyle5.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle5.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        CellStyle5.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.chc明細部署名.Style = CellStyle5
         Me.chc明細部署名.TabIndex = 2
         Me.chc明細部署名.TabStop = False
         Me.chc明細部署名.Value = "部署名"
@@ -92,10 +100,10 @@ Partial Class HARK202Template
         '
         Me.txt明細部署名.DataField = "部署名"
         Me.txt明細部署名.Ellipsis = GrapeCity.Win.MultiRow.MultiRowEllipsisMode.EllipsisEnd
-        Me.txt明細部署名.Location = New System.Drawing.Point(39, 0)
+        Me.txt明細部署名.Location = New System.Drawing.Point(88, 0)
         Me.txt明細部署名.Name = "txt明細部署名"
         Me.txt明細部署名.ReadOnly = True
-        Me.txt明細部署名.Size = New System.Drawing.Size(227, 21)
+        Me.txt明細部署名.Size = New System.Drawing.Size(178, 21)
         Border1.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
         CellStyle1.Border = Border1
         CellStyle1.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -118,6 +126,42 @@ Partial Class HARK202Template
         Me.chk明細選択区分.Style = CellStyle2
         Me.chk明細選択区分.TabIndex = 1
         '
+        'chc明細部署コード
+        '
+        Me.chc明細部署コード.Location = New System.Drawing.Point(39, 0)
+        Me.chc明細部署コード.Name = "chc明細部署コード"
+        Me.chc明細部署コード.ResizeMode = GrapeCity.Win.MultiRow.ResizeMode.None
+        Me.chc明細部署コード.SelectionMode = GrapeCity.Win.MultiRow.MultiRowSelectionMode.None
+        Me.chc明細部署コード.Size = New System.Drawing.Size(49, 21)
+        Me.chc明細部署コード.SortCellName = "txt明細部署コード"
+        Me.chc明細部署コード.SortMode = GrapeCity.Win.MultiRow.SortMode.Automatic
+        CellStyle6.BackColor = System.Drawing.SystemColors.Control
+        Border6.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle6.Border = Border6
+        CellStyle6.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle6.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        CellStyle6.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleLeft
+        Me.chc明細部署コード.Style = CellStyle6
+        Me.chc明細部署コード.TabIndex = 3
+        Me.chc明細部署コード.TabStop = False
+        Me.chc明細部署コード.Value = "コード"
+        '
+        'txt明細部署コード
+        '
+        Me.txt明細部署コード.DataField = "部署コード"
+        Me.txt明細部署コード.Ellipsis = GrapeCity.Win.MultiRow.MultiRowEllipsisMode.EllipsisEnd
+        Me.txt明細部署コード.Location = New System.Drawing.Point(39, 0)
+        Me.txt明細部署コード.Name = "txt明細部署コード"
+        Me.txt明細部署コード.ReadOnly = True
+        Me.txt明細部署コード.Size = New System.Drawing.Size(49, 21)
+        Border3.Outline = New GrapeCity.Win.MultiRow.Line(GrapeCity.Win.MultiRow.LineStyle.Thin, System.Drawing.Color.Black)
+        CellStyle3.Border = Border3
+        CellStyle3.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        CellStyle3.Multiline = GrapeCity.Win.MultiRow.MultiRowTriState.[False]
+        CellStyle3.TextAlign = GrapeCity.Win.MultiRow.MultiRowContentAlignment.MiddleRight
+        Me.txt明細部署コード.Style = CellStyle3
+        Me.txt明細部署コード.TabIndex = 3
+        '
         'HARK202Template
         '
         Me.ColumnHeaders.AddRange(New GrapeCity.Win.MultiRow.ColumnHeaderSection() {Me.HeaderSection})
@@ -130,4 +174,6 @@ Partial Class HARK202Template
     Private WithEvents chk明細選択区分 As GrapeCity.Win.MultiRow.CheckBoxCell
     Private WithEvents chc明細部署名 As GrapeCity.Win.MultiRow.ColumnHeaderCell
     Private WithEvents chc明細選択区分 As GrapeCity.Win.MultiRow.ColumnHeaderCell
+    Private WithEvents txt明細部署コード As GrapeCity.Win.MultiRow.TextBoxCell
+    Private WithEvents chc明細部署コード As GrapeCity.Win.MultiRow.ColumnHeaderCell
 End Class

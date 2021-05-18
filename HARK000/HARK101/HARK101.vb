@@ -705,6 +705,7 @@ Public Class HARK101
         Dim i As Integer
         Dim strSendFile As String = Nothing
         Dim SubForm As Form
+        Dim lintrtn As Integer
         'Dim m_lording As Thread = Nothing
 
         Try
@@ -851,8 +852,8 @@ Public Class HARK101
                         '天神会 SPD受注
                         'KMC EDI受注
                         'Rツール連携
-                        'PHsmos連携
-                        Case "HARKP101", "HARKP102", "HARKP104", "HARKP105"
+
+                        Case "HARKP101", "HARKP102", "HARKP104"
 
                             'Aptage汎用受注データ作成
                             gintRtn = DLTP0101_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, CLng(txt入力担当コード.Text.Trim), xxxintNo, xxxintSubProgram_ID, xxxstr得意先情報, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
@@ -894,25 +895,23 @@ Public Class HARK101
 
                             End Select
 
-                        '徳洲会連携
-                        Case "HARKP106"
+                        'PHsmos連携
+                        Case "HARKP105"
 
                             'Aptage汎用受注データ作成
-                            gintRtn = DLTP0106_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, CLng(txt入力担当コード.Text.Trim), xxxintNo, xxxintSubProgram_ID, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+                            gintRtn = DLTP0101_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, CLng(txt入力担当コード.Text.Trim), xxxintNo, xxxintSubProgram_ID, xxxstr得意先情報, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
 
                             '結果表示用対象得意先一覧取得
-                            gintRtn = DLTP0103_PROC0015(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, gintSQLCODE, gstrSQLERRM)
+                            lintrtn = DLTP0103_PROC0015(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, 5, gintSQLCODE, gstrSQLERRM)
+
+                            If gintResultCnt > 0 Then Set_ListItem(1, MSG_101134)
+                            For i = 0 To gintResultCnt - 1
+                                Set_ListItem(1, 結果表示用得意先一覧Array(i).strRecData)
+                            Next
 
                             Select Case gintRtn
 
                                 Case 0 '正常終了
-
-                                    If gintResultCnt > 0 Then
-                                        Set_ListItem(1, MSG_101134)
-                                        For i = 0 To gintResultCnt - 1
-                                            Set_ListItem(1, 結果表示用得意先一覧Array(i).strRecData)
-                                        Next
-                                    End If
 
                                     If xxxintCnt(0) = 0 Or xxxintCnt(1) = 0 Then '対象件数0件
 
@@ -934,12 +933,54 @@ Public Class HARK101
 
                                 Case 9 'エラー
 
-                                    If gintResultCnt > 0 Then
-                                        Set_ListItem(1, MSG_101134)
-                                        For i = 0 To gintResultCnt - 1
-                                            Set_ListItem(1, 結果表示用得意先一覧Array(i).strRecData)
-                                        Next
+                                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                                    Set_ListItem(1, MSG_101132)
+                                    Set_ListItem(1, MSG_COM901)
+                                    Set_ListItem(2, "")
+
+                                    GoTo EndExecute
+
+                            End Select
+
+
+                        '徳洲会連携
+                        Case "HARKP106"
+
+                            'Aptage汎用受注データ作成
+                            gintRtn = DLTP0106_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, CLng(txt入力担当コード.Text.Trim), xxxintNo, xxxintSubProgram_ID, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+
+                            '結果表示用対象得意先一覧取得
+                            lintrtn = DLTP0103_PROC0015(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, 5, gintSQLCODE, gstrSQLERRM)
+
+                            If gintResultCnt > 0 Then Set_ListItem(1, MSG_101134)
+                            For i = 0 To gintResultCnt - 1
+                                Set_ListItem(1, 結果表示用得意先一覧Array(i).strRecData)
+                            Next
+
+                            Select Case gintRtn
+
+                                Case 0 '正常終了
+
+                                    If xxxintCnt(0) = 0 Or xxxintCnt(1) = 0 Then '対象件数0件
+
+                                        Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
+                                        Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
+                                        Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
+                                        Set_ListItem(1, MSG_101131)
+                                        Set_ListItem(1, MSG_101109)
+                                        Set_ListItem(2, "")
+
+                                        Exit Select
+
                                     End If
+
+                                    Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
+                                    Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
+                                    Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
+                                    Set_ListItem(1, MSG_101131)
+
+                                Case 9 'エラー
 
                                     Set_ListItem(1, MSG_COM899 & gintSQLCODE)
                                     Set_ListItem(1, MSG_COM900 & gstrSQLERRM)

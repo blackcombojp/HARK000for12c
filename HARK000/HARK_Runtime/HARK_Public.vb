@@ -42,6 +42,7 @@ Module HARK_Public
     Public gstr担当者名 As String               '担当者名
     Public gstr部門名 As String                 '部門名
     Public gstr得意先名 As String               '得意先名
+    Public gstrメーカ名 As String               'メーカ名
 
     '*********************************************************************
     'レコードカウント変数

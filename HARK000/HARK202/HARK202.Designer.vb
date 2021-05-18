@@ -185,7 +185,7 @@ Partial Class HARK202
         Me.txt取込ファイル.Location = New System.Drawing.Point(12, 405)
         Me.txt取込ファイル.Name = "txt取込ファイル"
         Me.txt取込ファイル.Size = New System.Drawing.Size(382, 24)
-        Me.txt取込ファイル.TabIndex = 14
+        Me.txt取込ファイル.TabIndex = 16
         Me.txt取込ファイル.Tag = "ID1"
         '
         'txtデータ出力先
@@ -194,7 +194,7 @@ Partial Class HARK202
         Me.txtデータ出力先.Location = New System.Drawing.Point(12, 461)
         Me.txtデータ出力先.Name = "txtデータ出力先"
         Me.txtデータ出力先.Size = New System.Drawing.Size(382, 24)
-        Me.txtデータ出力先.TabIndex = 16
+        Me.txtデータ出力先.TabIndex = 17
         Me.txtデータ出力先.Tag = "ID2"
         '
         'lbl取込ファイル
@@ -267,9 +267,9 @@ Partial Class HARK202
         Me.gcmr一覧.Location = New System.Drawing.Point(12, 207)
         Me.gcmr一覧.Name = "gcmr一覧"
         Me.gcmr一覧.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.gcmr一覧.Size = New System.Drawing.Size(288, 113)
+        Me.gcmr一覧.Size = New System.Drawing.Size(288, 109)
         Me.gcmr一覧.SplitMode = GrapeCity.Win.MultiRow.SplitMode.None
-        Me.gcmr一覧.TabIndex = 178
+        Me.gcmr一覧.TabIndex = 14
         Me.gcmr一覧.Template = Me.HARK202Template1
         Me.gcmr一覧.Text = "gcmr一覧"
         '
@@ -297,19 +297,19 @@ Partial Class HARK202
         'btn全解除
         '
         Me.btn全解除.BackColor = System.Drawing.SystemColors.Control
-        Me.btn全解除.Location = New System.Drawing.Point(306, 298)
+        Me.btn全解除.Location = New System.Drawing.Point(306, 294)
         Me.btn全解除.Name = "btn全解除"
         Me.btn全解除.Size = New System.Drawing.Size(88, 23)
         Me.btn全解除.TabIndex = 176
         Me.btn全解除.TabStop = False
-        Me.btn全解除.Tag = "ID1"
+        Me.btn全解除.Tag = "ID2"
         Me.btn全解除.Text = "全解除"
         Me.btn全解除.UseVisualStyleBackColor = False
         '
         'btn全選択
         '
         Me.btn全選択.BackColor = System.Drawing.SystemColors.Control
-        Me.btn全選択.Location = New System.Drawing.Point(306, 269)
+        Me.btn全選択.Location = New System.Drawing.Point(306, 266)
         Me.btn全選択.Name = "btn全選択"
         Me.btn全選択.Size = New System.Drawing.Size(88, 23)
         Me.btn全選択.TabIndex = 175
@@ -326,8 +326,8 @@ Partial Class HARK202
         Me.cmb棚卸.Location = New System.Drawing.Point(12, 95)
         Me.cmb棚卸.Name = "cmb棚卸"
         Me.cmb棚卸.Size = New System.Drawing.Size(382, 26)
-        Me.cmb棚卸.TabIndex = 173
-        Me.cmb棚卸.Tag = "ID2"
+        Me.cmb棚卸.TabIndex = 12
+        Me.cmb棚卸.Tag = "ID3"
         '
         'lbl棚卸
         '
@@ -348,8 +348,8 @@ Partial Class HARK202
         Me.cmb需要先.Location = New System.Drawing.Point(12, 151)
         Me.cmb需要先.Name = "cmb需要先"
         Me.cmb需要先.Size = New System.Drawing.Size(382, 26)
-        Me.cmb需要先.TabIndex = 12
-        Me.cmb需要先.Tag = "ID3"
+        Me.cmb需要先.TabIndex = 13
+        Me.cmb需要先.Tag = "ID4"
         '
         'lbl需要先
         '
@@ -378,7 +378,7 @@ Partial Class HARK202
         Me.txtDate.Name = "txtDate"
         Me.txtDate.SideButtons.AddRange(New GrapeCity.Win.Editors.SideButtonBase() {Me.DropDownButton1})
         Me.txtDate.Size = New System.Drawing.Size(118, 26)
-        Me.txtDate.TabIndex = 13
+        Me.txtDate.TabIndex = 15
         Me.txtDate.Value = Nothing
         '
         'DropDownButton1
@@ -667,6 +667,15 @@ Partial Class HARK202
     Private WithEvents lbl棚卸日 As Label
     Private WithEvents cmb需要先 As ComboBox
     Private WithEvents lbl需要先 As Label
+    Private WithEvents btn全解除 As GrapeCity.Win.Buttons.GcButton
+    Private WithEvents btn全選択 As GrapeCity.Win.Buttons.GcButton
+    Private WithEvents cmb棚卸 As ComboBox
+    Private WithEvents lbl棚卸 As Label
+    Private WithEvents lbl部署 As Label
+    Private WithEvents BS一覧 As BindingSource
+    Private WithEvents HARK202DS As HARK202DS
+    Private WithEvents gcmr一覧 As GrapeCity.Win.MultiRow.GcMultiRow
+    Private WithEvents HARK202Template1 As HARK202Template
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -677,8 +686,9 @@ Partial Class HARK202
     Private xxxint事業所コード As Integer
     Private xxxstr担当者名 As String
     Private xxxlng需要先コード As Long
-    'Private xxxintCnt(3) As Integer
-    'Private xxxintNo As Integer
+    Private xxxlngResults() As Long
+    Private xxxintResultCnt As Integer
+
 
 
     Public Sub New(ByVal PerForm As Form, ByVal PerFormTitle As String, ByVal PerProgramID As String)
@@ -701,12 +711,13 @@ Partial Class HARK202
         'PreviewKeyDownイベントハンドラの追加
         AddHandler cmbサブプログラム.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
 
-
         'KeyDownイベントハンドラの追加
         AddHandler txt取込ファイル.KeyDown, AddressOf Txt_KeyDown
         AddHandler cmbサブプログラム.KeyDown, AddressOf Txt_KeyDown
         AddHandler txtDate.KeyDown, AddressOf Txt_KeyDown
         AddHandler cmb需要先.KeyDown, AddressOf Txt_KeyDown
+        AddHandler gcmr一覧.KeyDown, AddressOf Txt_KeyDown
+        AddHandler cmb棚卸.KeyDown, AddressOf Txt_KeyDown
 
         'SelectedValueChangedイベントハンドラの追加
         AddHandler cmb事業所.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
@@ -724,13 +735,5 @@ Partial Class HARK202
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
-    Private WithEvents btn全解除 As GrapeCity.Win.Buttons.GcButton
-    Private WithEvents btn全選択 As GrapeCity.Win.Buttons.GcButton
-    Private WithEvents cmb棚卸 As ComboBox
-    Private WithEvents lbl棚卸 As Label
-    Private WithEvents lbl部署 As Label
-    Friend WithEvents BS一覧 As BindingSource
-    Friend WithEvents HARK202DS As HARK202DS
-    Friend WithEvents gcmr一覧 As GrapeCity.Win.MultiRow.GcMultiRow
-    Friend WithEvents HARK202Template1 As HARK202Template
+
 End Class
