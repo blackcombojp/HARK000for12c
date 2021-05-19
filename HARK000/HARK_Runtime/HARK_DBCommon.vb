@@ -475,17 +475,20 @@ Public Class HARK_DBCommon
     ''' <param name="PI_strProgram_ID">プログラム_ID（未使用）</param>
     ''' <param name="PI_lng得意先コード">得意先コード</param>
     ''' <param name="PI_obj事業所コード">事業所コード</param>
+    ''' <param name="PI_得意先区分">得意先区分</param>
     ''' <param name="PO_intSQLCODE">Oracleエラーコード（戻値）</param>
     ''' <param name="PO_strSQLERRM">Oracleエラーメッセージ（戻値）</param>
     ''' <returns>True -- 正常取得 False -- エラー</returns>
     Public Shared Function DLTP0900_PROC0003(ByVal PI_strProgram_ID As String,
                                              ByVal PI_lng得意先コード As Long,
                                              ByVal PI_obj事業所コード As Object,
+                                             ByVal PI_得意先区分 As Integer,
                                              ByRef PO_intSQLCODE As Integer,
                                              ByRef PO_strSQLERRM As String) As Boolean
 
         Dim PI_01 As OracleParameter
         Dim PI_02 As OracleParameter
+        Dim PI_03 As OracleParameter
         Dim PO_01 As OracleParameter
         Dim PO_02 As OracleParameter
         Dim PO_03 As OracleParameter
@@ -501,10 +504,12 @@ Public Class HARK_DBCommon
             'インプットパラメータ設定
             PI_01 = Oracmd.Parameters.Add("PI_01", OracleDbType.Int32, ParameterDirection.Input)
             PI_02 = Oracmd.Parameters.Add("PI_02", OracleDbType.Int64, ParameterDirection.Input)
+            PI_03 = Oracmd.Parameters.Add("PI_03", OracleDbType.Int32, ParameterDirection.Input)
 
             'インプット値設定
             PI_01.Value = PI_obj事業所コード
             PI_02.Value = PI_lng得意先コード
+            PI_03.Value = PI_得意先区分
 
             'Outputパラメータ設定
             PO_01 = Oracmd.Parameters.Add("PO_01", OracleDbType.Varchar2, 60, DBNull.Value, ParameterDirection.Output)

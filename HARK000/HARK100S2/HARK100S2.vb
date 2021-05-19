@@ -827,7 +827,7 @@ Public Class HARK100S2
 
                     If IsNull(txt得意先コード.Text.Trim) = False Then
 
-                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt得意先コード.Text.Trim), My.Settings.事業所コード, gintSQLCODE, gstrSQLERRM) = False Then
+                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt得意先コード.Text.Trim), My.Settings.事業所コード, 1, gintSQLCODE, gstrSQLERRM) = False Then
                             MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                             txt得意先コード.Text = ""
                             lbl得意先名.Text = ""
@@ -844,7 +844,7 @@ Public Class HARK100S2
 
                     If IsNull(txt需要先コード.Text.Trim) = False Then
 
-                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt需要先コード.Text.Trim), My.Settings.事業所コード, gintSQLCODE, gstrSQLERRM) = False Then
+                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt需要先コード.Text.Trim), My.Settings.事業所コード, 2, gintSQLCODE, gstrSQLERRM) = False Then
                             MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                             txt需要先コード.Text = ""
                             lbl需要先名.Text = ""

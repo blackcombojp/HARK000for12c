@@ -3,7 +3,7 @@
   <Tasks>
     <FileUpdateTask hotswap="false" localPath="HARK000.exe" updateTo="https://delta2.iticloud.net/delta/HARK000/HARK000.exe">
       <Conditions>
-        <FileVersionCondition what="below" version="0.0.5.5" />
+        <FileVersionCondition what="below" version="0.0.5.6" />
       </Conditions>
     </FileUpdateTask>
   </Tasks>

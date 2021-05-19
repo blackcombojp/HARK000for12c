@@ -882,7 +882,7 @@ Public Class HARK992
 
                     If IsNull(txt得意先コード.Text.Trim) = False Then
 
-                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt得意先コード.Text.Trim), My.Settings.事業所コード, gintSQLCODE, gstrSQLERRM) = False Then
+                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt得意先コード.Text.Trim), My.Settings.事業所コード, 1, gintSQLCODE, gstrSQLERRM) = False Then
                             MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                             txt得意先コード.Text = ""
                             lbl得意先名.Text = ""
@@ -899,13 +899,19 @@ Public Class HARK992
 
                     If IsNull(txt需要先コード.Text.Trim) = False Then
 
-                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt需要先コード.Text.Trim), My.Settings.事業所コード, gintSQLCODE, gstrSQLERRM) = False Then
+                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt需要先コード.Text.Trim), My.Settings.事業所コード, 2, gintSQLCODE, gstrSQLERRM) = False Then
                             MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                             txt需要先コード.Text = ""
                             lbl需要先名.Text = ""
                             txt需要先コード.Focus()
                         Else
                             lbl需要先名.Text = gstr得意先名
+
+                            If IsNull(txt得意先コード.Text.Trim) = True Then
+                                MsgBox(MSG_992001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt得意先コード.Focus()
+                                Exit Sub
+                            End If
 
                             gintRtn = DLTP0100S_PROC0023(xxxstrProgram_ID, xxxintSPDSystemCode, xxxintSubProgram_ID, CLng(txt得意先コード.Text.Trim), CLng(txt需要先コード.Text.Trim), gintSQLCODE, gstrSQLERRM)
 
@@ -947,7 +953,7 @@ Public Class HARK992
 
                     If IsNull(txt直送先コード.Text.Trim) = False Then
 
-                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt直送先コード.Text.Trim), My.Settings.事業所コード, gintSQLCODE, gstrSQLERRM) = False Then
+                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt直送先コード.Text.Trim), My.Settings.事業所コード, 2, gintSQLCODE, gstrSQLERRM) = False Then
                             MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                             txt直送先コード.Text = ""
                             lbl直送先名.Text = ""
