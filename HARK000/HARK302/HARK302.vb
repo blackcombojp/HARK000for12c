@@ -1015,6 +1015,7 @@ EndExecute:
 
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
+                    .Pos(i, 0).Attr.HorizontalAlignment = HorizontalAlignment.Center       'テキスト横位置=中心
                     .Pos(i, 0).Str = stData
                     i += 1
                 Next stData
@@ -1029,6 +1030,9 @@ EndExecute:
                     Next
 
                 Next
+
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, BorderStyle.Thin, Color.FromArgb(91, 155, 213))
 
                 .CloseBook(True)
 

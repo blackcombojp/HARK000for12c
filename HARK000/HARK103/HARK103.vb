@@ -578,29 +578,35 @@ Public Class HARK103
         Dim strFilter As String
 
         Try
-            Select Case My.Settings.事業所コード
 
-                Case 113 '埼玉
+            If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
+                strFilter = "Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
+            Else
+                Select Case My.Settings.事業所コード
 
-                    Select Case xxxintSubProgram_ID
+                    Case 113 '埼玉
 
-                        Case 1, 2 '中央医科薬品
+                        Select Case xxxintSubProgram_ID
 
-                            strFilter = "Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
+                            Case 1, 2 '中央医科薬品
 
-                        Case 3, 4, 5 'エアウォーター入間SPD,深谷赤十字SPD
+                                strFilter = "Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
 
-                            strFilter = "csv Files (*.csv)|*.csv|All Files (*.*)|*.*"
+                            Case 3, 4, 5, 6, 7 'エアウォーター入間SPD,深谷赤十字SPD,エアウォーター千葉SPD
 
-                        Case Else
+                                strFilter = "csv Files (*.csv)|*.csv|All Files (*.*)|*.*"
 
-                            Exit Sub
+                            Case Else
 
-                    End Select
+                                Exit Sub
 
-                Case Else
-                    Exit Sub
-            End Select
+                        End Select
+
+                    Case Else
+                        Exit Sub
+                End Select
+
+            End If
 
             OFDlg.InitialDirectory = Get_DesktopPath()
             OFDlg.Filter = strFilter
@@ -762,7 +768,6 @@ Public Class HARK103
         'Dim i As Integer
         Dim strSendFile As String = Nothing
         Dim SubForm As Form
-        ' Dim m_lording As Thread = Nothing
 
         Try
             'Oracle接続状態確認
@@ -816,41 +821,41 @@ Public Class HARK103
 
                     lb_Msg.Items.Add("")
 
-                    ''処理中画面
-                    'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
-                    '    .IsBackground = True
-                    '}
+                    If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
+                        If Read_共通ExcelData(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
 
-                    'm_lording.Start()
+                        '受注テキスト取込＆チェック
+                        gintRtn = DLTP0107_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+                    Else
+                        Select Case My.Settings.事業所コード
 
-                    Select Case My.Settings.事業所コード
+                            Case 113 '埼玉
 
-                        Case 113 '埼玉
+                                Select Case xxxintSubProgram_ID
 
-                            Select Case xxxintSubProgram_ID
+                                    Case 1, 2 '中央医科薬品
+                                        If Read_ExcelData(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
 
-                                Case 1, 2 '中央医科薬品
-                                    If Read_ExcelData(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
+                                        '受注テキスト取込＆チェック
+                                        gintRtn = DLTP0107_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
 
-                                    '受注テキスト取込＆チェック
-                                    gintRtn = DLTP0107_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+                                    Case 3, 4, 5, 6, 7 'エアウォーター入間SPD,深谷赤十字SPD,エアウォーター千葉SPD
 
-                                Case 3, 4, 5 'エアウォーター入間SPD,深谷赤十字SPD
+                                        If テキスト取込処理(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
 
-                                    If テキスト取込処理(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
+                                        '受注テキスト取込＆チェック
+                                        gintRtn = DLTP0107_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
 
-                                    '受注テキスト取込＆チェック
-                                    gintRtn = DLTP0107_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+                                    Case Else
 
-                                Case Else
+                                        Exit Sub
 
-                                    Exit Sub
+                                End Select
 
-                            End Select
-
-                        Case Else
-                            Exit Sub
-                    End Select
+                            Case Else
+                                Exit Sub
+                        End Select
+                    End If
 
                     Select Case gintRtn
 
@@ -913,15 +918,20 @@ Public Class HARK103
                     Set_ListItem(0, "")
                     Set_ListItem(1, MSG_101114)
 
-                    Select Case My.Settings.事業所コード
+                    If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
+                        'Aptage汎用受注データ作成
+                        gintRtn = DLTP0107_PROC0028(xxxstrProgram_ID, gintSPDシステムコード, CLng(txt入力担当コード.Text.Trim), xxxintNo, xxxintSubProgram_ID, xxxstr得意先情報, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+                    Else
+                        Select Case My.Settings.事業所コード
 
-                        Case 113 '埼玉
-                            'Aptage汎用受注データ作成
-                            gintRtn = DLTP0101_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, CLng(txt入力担当コード.Text.Trim), xxxintNo, xxxintSubProgram_ID, xxxstr得意先情報, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+                            Case 113 '埼玉
+                                'Aptage汎用受注データ作成
+                                gintRtn = DLTP0101_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, CLng(txt入力担当コード.Text.Trim), xxxintNo, xxxintSubProgram_ID, xxxstr得意先情報, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
 
-                        Case Else
-                            Exit Sub
-                    End Select
+                            Case Else
+                                Exit Sub
+                        End Select
+                    End If
 
                     Select Case gintRtn
 
@@ -961,14 +971,6 @@ Public Class HARK103
 
 
                     End Select
-
-                    ''結果表示用対象得意先一覧取得
-                    'gintRtn = DLTP0103_PROC0015(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, gintSQLCODE, gstrSQLERRM)
-
-                    'If gintResultCnt > 0 Then Set_ListItem(1, MSG_101134)
-                    'For i = 0 To gintResultCnt - 1
-                    '    Set_ListItem(1, 結果表示用得意先一覧Array(i).strRecData)
-                    'Next
 
 ErrorDataExport:
 
@@ -1017,12 +1019,6 @@ EndExecute:
             MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
 
         Finally
-
-            ''処理中画面廃棄
-            'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
-            '    m_lording.Abort()
-            '    m_lording = Nothing
-            'End If
 
             'メモリ開放
             GC.Collect()
@@ -1097,48 +1093,60 @@ EndExecute:
                 Exit Function
             End If
 
-            Select Case My.Settings.事業所コード
+            If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
 
-                Case 113 '埼玉
-
-                    Select Case xxxintSubProgram_ID
-
-                        Case 1, 2 '中央医科薬品
-
-                            'If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP103ImpFileName) Then
-                            '    MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                            '    txt取込ファイル.Text = ""
-                            '    txt取込ファイル.Focus()
-                            '    Exit Function
-                            'End If
-
-                            '拡張子比較
-                            If Get_ExtensionEx(txt取込ファイル.Text).CompareTo(XLSXExtension) <> 0 Then
-                                MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                                txt取込ファイル.Text = ""
-                                txt取込ファイル.Focus()
-                                Exit Function
-                            End If
-
-                        Case 3, 4, 5  'エアウォーター入間SPD,深谷赤十字SPD
-
-                            '拡張子比較
-                            If Get_Extension(txt取込ファイル.Text).CompareTo(CSVExtension) <> 0 Then
-                                MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                                txt取込ファイル.Text = ""
-                                txt取込ファイル.Focus()
-                                Exit Function
-                            End If
-
-                        Case Else
-
-                            Exit Function
-
-                    End Select
-
-                Case Else
+                If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP1071ImpFileName) Then
+                    MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    txt取込ファイル.Text = ""
+                    txt取込ファイル.Focus()
                     Exit Function
-            End Select
+                End If
+
+                '拡張子比較
+                If Get_ExtensionEx(txt取込ファイル.Text).CompareTo(XLSXExtension) <> 0 Then
+                    MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                    txt取込ファイル.Text = ""
+                    txt取込ファイル.Focus()
+                    Exit Function
+                End If
+
+            Else
+                Select Case My.Settings.事業所コード
+
+                    Case 113 '埼玉
+
+                        Select Case xxxintSubProgram_ID
+
+                            Case 1, 2 '中央医科薬品
+
+                                '拡張子比較
+                                If Get_ExtensionEx(txt取込ファイル.Text).CompareTo(XLSXExtension) <> 0 Then
+                                    MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                    txt取込ファイル.Text = ""
+                                    txt取込ファイル.Focus()
+                                    Exit Function
+                                End If
+
+                            Case 3, 4, 5, 6, 7  'エアウォーター入間SPD,深谷赤十字SPD,エアウォーター千葉SPD
+
+                                '拡張子比較
+                                If Get_Extension(txt取込ファイル.Text).CompareTo(CSVExtension) <> 0 Then
+                                    MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                    txt取込ファイル.Text = ""
+                                    txt取込ファイル.Focus()
+                                    Exit Function
+                                End If
+
+                            Case Else
+
+                                Exit Function
+
+                        End Select
+
+                    Case Else
+                        Exit Function
+                End Select
+            End If
 
             'エラー出力先チェック
             If IsNull(txtエラー出力先.Text.Trim) = True Then
@@ -1193,7 +1201,7 @@ EndExecute:
 
                     Select Case xxxintSubProgram_ID
 
-                        Case 3, 4, 5 'エアウォーター入間SPD,深谷赤十字SPD
+                        Case 3, 4, 5, 6, 7 'エアウォーター入間SPD,深谷赤十字SPD,エアウォーター千葉SPD
                             blnHeaderLine = True
                             Set_ListItem(0, "")
                             Set_ListItem(1, "【" & cmbサブプログラム.Text & "】")
@@ -1224,7 +1232,7 @@ EndExecute:
             While SR.Peek() > -1
 
                 line = ""
-                line = SR.ReadLine
+                line = SR.ReadLine.Replace("""", vbNullString)
 
                 If blnHeaderLine = True Then
                     '1行目はヘッダの為、スキップ
@@ -1361,27 +1369,33 @@ EndExecute:
 
             エラーデータ出力処理 = False
 
-            Select Case My.Settings.事業所コード
+            If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
+                FileName = Set_FilePath(txtエラー出力先.Text, "オンライン注文書-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+            Else
+                Select Case My.Settings.事業所コード
 
-                Case 113 '埼玉
-                    Select Case xxxintSubProgram_ID
+                    Case 113 '埼玉
+                        Select Case xxxintSubProgram_ID
 
-                        Case 1, 2 '中央医科薬品
-                            FileName = Set_FilePath(txtエラー出力先.Text, "中央医科薬品-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-                        Case 3, 4 'エアウォーター入間SPD
-                            FileName = Set_FilePath(txtエラー出力先.Text, "エアウォーター入間SPD-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-                        Case 5    '深谷赤十字SPD
-                            FileName = Set_FilePath(txtエラー出力先.Text, "深谷赤十字SPD-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-                        Case Else
-                            Set_ListItem(1, MSG_101117)
-                            Set_ListItem(2, "")
-                            Exit Function
+                            Case 1, 2 '中央医科薬品
+                                FileName = Set_FilePath(txtエラー出力先.Text, "中央医科薬品-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                            Case 3, 4 'エアウォーター入間SPD
+                                FileName = Set_FilePath(txtエラー出力先.Text, "エアウォーター入間SPD-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                            Case 5    '深谷赤十字SPD
+                                FileName = Set_FilePath(txtエラー出力先.Text, "深谷赤十字SPD-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                            Case 6, 7 'エアウォーター千葉SPD
+                                FileName = Set_FilePath(txtエラー出力先.Text, "エアウォーター千葉SPD-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                            Case Else
+                                Set_ListItem(1, MSG_101117)
+                                Set_ListItem(2, "")
+                                Exit Function
 
-                    End Select
+                        End Select
 
-                Case Else
-                    Exit Function
-            End Select
+                    Case Else
+                        Exit Function
+                End Select
+            End If
 
             '出力ヘッダ取得
             gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "出力ヘッダ")
@@ -1414,6 +1428,7 @@ EndExecute:
 
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
+                    .Pos(i, 0).Attr.HorizontalAlignment = AdvanceSoftware.ExcelCreator.HorizontalAlignment.Center       'テキスト横位置=中心
                     .Pos(i, 0).Str = stData
                     i += 1
                 Next stData
@@ -1428,6 +1443,9 @@ EndExecute:
                     Next
 
                 Next
+
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
 
                 .CloseBook(True)
 
@@ -1810,6 +1828,182 @@ EndExecute:
 
             log.Error(Set_ErrMSG(Err.Number, ex.ToString))
             Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　Excelデータ読込(オンライン注文書(共通))
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　strExcelFilePath
+    ' *　戻値　　　　　　：　True -- 正常終了 False -- 異常終了
+    ' *-----------------------------------------------------------------------------/
+    Private Function Read_共通ExcelData(ByVal strExcelFilePath As String) As Boolean
+
+        Dim inputStream As FileStream = Nothing
+        Dim lWBook As IWorkbook
+        Dim lSheet As ISheet
+        Dim lRow As IRow
+        Dim lCell(4) As ICell
+        Dim strCellValue(4) As String
+        Dim iRowCnt As Integer
+        Dim i As Integer
+        ' Dim iColCnt As Integer
+        Dim strLineData As String
+
+        Try
+
+            Read_共通ExcelData = False
+
+            Set_ListItem(0, "")
+            Set_ListItem(1, "【" & cmbサブプログラム.Text & "】")
+            Set_ListItem(1, MSG_101106)
+
+            'ファイルストリームで開く
+            inputStream = New FileStream(strExcelFilePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)
+            lWBook = WorkbookFactory.Create(inputStream)
+
+            lSheet = lWBook.GetSheetAt(0)
+
+            i = 0
+            gintExcelDataCnt = 0
+            取込データArray = Nothing
+
+
+            For iRowCnt = 0 To lSheet.LastRowNum
+
+                lRow = lSheet.GetRow(iRowCnt)   '行取得
+
+                '得意先コード、需要先コード取得
+                If iRowCnt = 0 Or iRowCnt = 1 Then
+                    lCell(iRowCnt) = lRow.GetCell(7)
+                    If lCell(iRowCnt) IsNot Nothing Then
+                        Select Case lCell(iRowCnt).CellType
+                            Case CellType.Numeric
+                                strCellValue(iRowCnt) = CStr(lCell(iRowCnt).NumericCellValue)
+                            Case CellType.String
+                                strCellValue(iRowCnt) = lCell(iRowCnt).StringCellValue
+                            Case Else
+                                strCellValue(iRowCnt) = vbNullString
+                        End Select
+                    End If
+                    Continue For
+                End If
+
+                '3行目は明細ヘッダの為、スキップ
+                If iRowCnt = 2 Then
+                    Continue For
+                End If
+
+                strLineData = vbNullString
+                strLineData = strCellValue(0) & "," & strCellValue(1) & ","
+
+                '         lRow = lSheet.GetRow(iRowCnt)   '行取得
+
+                lCell(2) = lRow.GetCell(0)  '商品コード
+                lCell(3) = lRow.GetCell(5)  '発注数量
+
+                '発注数量セルにデータがあれば格納
+                If IsNull(lCell(3).ToString) = False Then
+
+                    Select Case lCell(2).CellType
+                        Case CellType.Numeric
+                            strCellValue(2) = CStr(lCell(2).NumericCellValue)
+                        Case CellType.String
+                            strCellValue(2) = lCell(2).StringCellValue
+                        Case Else
+                            strCellValue(2) = vbNullString
+                    End Select
+
+                    Select Case lCell(3).CellType
+                        Case CellType.Numeric
+                            strCellValue(3) = CStr(lCell(3).NumericCellValue)
+                        Case CellType.String
+                            strCellValue(3) = lCell(3).StringCellValue
+                        Case Else
+                            strCellValue(3) = vbNullString
+                    End Select
+                Else
+                    Continue For
+                End If
+
+                strLineData = strLineData & strCellValue(2) & "," & strCellValue(3)
+
+                ReDim Preserve 取込データArray(i)
+
+                取込データArray(i).strRecData = strLineData
+
+                i += 1
+
+            Next
+
+            gintExcelDataCnt = i
+            gint取込データCnt = i
+
+            lWBook.Close()
+
+            ' inputStream = Nothing
+
+            If gintExcelDataCnt = 0 Then
+                Set_ListItem(1, MSG_301016)
+                Set_ListItem(1, MSG_101109)
+                Set_ListItem(2, "")
+                Exit Function
+            End If
+
+            Set_ListItem(1, MSG_301015)
+            Set_ListItem(2, "")
+
+            Read_共通ExcelData = True
+
+        Catch ex As FileNotFoundException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM016)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM016, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As IOException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM015)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM015, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As UnauthorizedAccessException
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM018)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM018, MsgBoxStyle.Information Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+            'Throw
+
+        Catch ex As Exception
+
+            Set_ListItem(1, MSG_301016)
+            Set_ListItem(1, MSG_COM017)
+            Set_ListItem(1, CStr(Err.Number))
+            Set_ListItem(1, ex.ToString)
+            Set_ListItem(2, "")
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        Finally
+
+            If inputStream IsNot Nothing Then
+                inputStream.Close()
+                inputStream.Dispose()
+            End If
 
         End Try
 

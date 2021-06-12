@@ -368,6 +368,19 @@ Public Class HARK301
                     txt取込ファイル.Enabled = False
                     btnファイル参照.Enabled = False
 
+                Case 8 '発注入荷状況出力
+
+                    cmb需要先.SelectedIndex = gint需要先Cnt
+                    cmb需要先.Enabled = False
+                    txtDate.Text = ""
+                    lbl取込ファイル.Text = "【取込ファイル】"
+                    txt取込ファイル.Text = ""
+                    txtDate.Enabled = False
+                    Chk長期貸出番号出力区分.Checked = False
+                    Chk長期貸出番号出力区分.Visible = False
+                    txt取込ファイル.Enabled = False
+                    btnファイル参照.Enabled = False
+
                 Case Else
 
                     cmb需要先.SelectedIndex = gint需要先Cnt
@@ -978,6 +991,9 @@ Public Class HARK301
 
                                 Case 0 '正常終了
 
+                                    Set_ListItem(1, MSG_301015)
+                                    Set_ListItem(2, "")
+
                                     Exit Select
 
                                 Case 9 'エラー
@@ -1013,6 +1029,16 @@ Public Class HARK301
                             Set_ListItem(1, MSG_301017)
 
                             gblRtn = データ検索処理()
+
+                        Case 8 '発注入荷状況出力
+
+                            Set_ListItem(0, "")
+                            Set_ListItem(1, MSG_301017)
+
+                            gblRtn = データ検索処理()
+
+                            'セッション情報削除
+                            gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "発注入荷状況出力", xxxintSubProgram_ID)
 
                         Case Else
 
@@ -1161,6 +1187,10 @@ EndExecute:
                         txtDate.Focus()
                         Exit Function
                     End If
+
+                Case 8 '発注入荷状況出力
+
+                    Exit Select
 
                 Case Else
 
@@ -1374,6 +1404,10 @@ EndExecute:
                     FileName = Set_FilePath(txtデータ出力先.Text, "有効期限切迫品出荷明細_" & cmb需要先.Text.Trim & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
                     strSheetName = "有効期限切迫品出荷明細"
 
+                Case 8 '発注入荷状況出力
+                    FileName = Set_FilePath(txtデータ出力先.Text, "発注入荷状況明細_" & cmb需要先.Text.Trim & "_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                    strSheetName = "発注入荷状況明細"
+
                 Case Else
                     Set_ListItem(1, MSG_301019)
                     Set_ListItem(2, "")
@@ -1412,6 +1446,7 @@ EndExecute:
 
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
+                    .Pos(i, 0).Attr.HorizontalAlignment = AdvanceSoftware.ExcelCreator.HorizontalAlignment.Center       'テキスト横位置=中心
                     .Pos(i, 0).Str = stData
                     i += 1
                 Next stData
@@ -1426,6 +1461,9 @@ EndExecute:
                     Next
 
                 Next
+
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
 
                 .CloseBook(True)
 
@@ -1467,6 +1505,9 @@ EndExecute:
 
                 Case 6 '有効期限切迫品出荷明細出力
                     gintRtn = DLTP0301_PROC0016(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, txtDate.Text.Trim, gintSQLCODE, gstrSQLERRM)
+
+                Case 8 '発注入荷状況出力
+                    gintRtn = DLTP0301_PROC0018(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
 
                 Case Else
                     Set_ListItem(1, MSG_301019)

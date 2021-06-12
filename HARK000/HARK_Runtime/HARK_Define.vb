@@ -196,6 +196,8 @@ Module HARK_Define
     Public Const MSG_501021 As String = "検索日の書式が間違っています"
     Public Const MSG_501022 As String = "エラーデータ出力中"
     Public Const MSG_501023 As String = "確認必要データ出力中"
+    Public Const MSG_501024 As String = "定数設定一覧表２ファイルを指定してください"
+
 
     Public Const MSG_502001 As String = "医薬品区分を選択してください"
     Public Const MSG_502002 As String = "検索開始月を指定してください"
@@ -240,6 +242,13 @@ Module HARK_Define
 
 
     Public Const MSG_505001 As String = "医療機関を選択してください"
+
+    Public Const MSG_506001 As String = "需要先を指定してください"
+    Public Const MSG_506002 As String = "出力先に同名ファイルが存在します"
+    Public Const MSG_506003 As String = "元ファイルは削除されますが、よろしいですか？"
+    Public Const MSG_506004 As String = "出力ファイル名："
+
+
 
     Public Const MSG_992001 As String = "得意先を指定してください"
     Public Const MSG_992002 As String = "需要先を指定してください"
@@ -320,6 +329,7 @@ Module HARK_Define
     Public Const HARKP104ImpFileName As String = "Romulus受注データ"
     Public Const HARKP105ImpFileName As String = "PHsmos_卸_受注データ"
     Public Const HARKP106ImpFileName As String = "_HAT_"
+    Public Const HARKP1071ImpFileName As String = "オンライン注文書"
     Public Const HARKP3011ImpFileName As String = "Aptage連携用ファイル"
     Public Const HARKP3012ImpFileName As String = "R登録外読込み"
     Public Const HARKP4011ImpFileName As String = "WEB在庫移動ログ"
@@ -327,6 +337,8 @@ Module HARK_Define
     Public Const HARKP402ImpFileName As String = "仕入一覧"
     Public Const HARKP5011ImpFileName As String = "採用商品リスト"
     Public Const HARKP5012ImpFileName As String = "採用商品マスタ業者名付"
+    Public Const HARKP5013ImpFileName As String = "定数設定一覧表２"
+
 
 
     Public Const CSVExtension As String = "csv"

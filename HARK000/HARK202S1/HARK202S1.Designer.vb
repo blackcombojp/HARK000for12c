@@ -39,6 +39,7 @@ Partial Class HARK202S1
         Me.BT_ID4 = New GrapeCity.Win.Buttons.GcSplitButton()
         Me.pnl明細 = New System.Windows.Forms.Panel()
         Me.gcmr一覧 = New GrapeCity.Win.MultiRow.GcMultiRow()
+        Me.HarK202S1Template1 = New HARK000.HARK202S1Template()
         Me.SttBar_3 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBar_2 = New System.Windows.Forms.StatusBarPanel()
         Me.SttBarPnl_Err = New System.Windows.Forms.StatusBarPanel()
@@ -63,7 +64,6 @@ Partial Class HARK202S1
         Me.txt棚卸名 = New GrapeCity.Win.Editors.GcTextBox(Me.components)
         Me.BS一覧 = New System.Windows.Forms.BindingSource(Me.components)
         Me.HARK202S1DS = New HARK000.HARK202S1DS()
-        Me.HarK202S1Template1 = New HARK000.HARK202S1Template()
         Me.CntMenuStrip.SuspendLayout()
         Me.pnl明細.SuspendLayout()
         CType(Me.gcmr一覧, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -316,7 +316,7 @@ Partial Class HARK202S1
         Me.cmb完了区分.Location = New System.Drawing.Point(127, 109)
         Me.cmb完了区分.Name = "cmb完了区分"
         Me.cmb完了区分.Size = New System.Drawing.Size(88, 26)
-        Me.cmb完了区分.TabIndex = 170
+        Me.cmb完了区分.TabIndex = 15
         Me.cmb完了区分.Tag = "ID1"
         '
         'cmb棚卸区分
@@ -327,7 +327,7 @@ Partial Class HARK202S1
         Me.cmb棚卸区分.Location = New System.Drawing.Point(127, 77)
         Me.cmb棚卸区分.Name = "cmb棚卸区分"
         Me.cmb棚卸区分.Size = New System.Drawing.Size(88, 26)
-        Me.cmb棚卸区分.TabIndex = 169
+        Me.cmb棚卸区分.TabIndex = 14
         Me.cmb棚卸区分.Tag = "ID1"
         '
         'GB_更新
@@ -346,7 +346,7 @@ Partial Class HARK202S1
         Me.RB_新規.Location = New System.Drawing.Point(39, 16)
         Me.RB_新規.Name = "RB_新規"
         Me.RB_新規.Size = New System.Drawing.Size(47, 16)
-        Me.RB_新規.TabIndex = 102
+        Me.RB_新規.TabIndex = 11
         Me.RB_新規.Text = "新規"
         Me.RB_新規.UseVisualStyleBackColor = True
         '
@@ -356,7 +356,7 @@ Partial Class HARK202S1
         Me.RB_更新.Location = New System.Drawing.Point(140, 16)
         Me.RB_更新.Name = "RB_更新"
         Me.RB_更新.Size = New System.Drawing.Size(47, 16)
-        Me.RB_更新.TabIndex = 101
+        Me.RB_更新.TabIndex = 12
         Me.RB_更新.Text = "更新"
         Me.RB_更新.UseVisualStyleBackColor = True
         '
@@ -380,7 +380,7 @@ Partial Class HARK202S1
         Me.txt棚卸名.MaxLength = 10
         Me.txt棚卸名.Name = "txt棚卸名"
         Me.txt棚卸名.Size = New System.Drawing.Size(291, 26)
-        Me.txt棚卸名.TabIndex = 11
+        Me.txt棚卸名.TabIndex = 13
         Me.txt棚卸名.Tag = "ID1"
         '
         'BS一覧
@@ -458,6 +458,14 @@ Partial Class HARK202S1
     Private WithEvents GB_更新 As GroupBox
     Private WithEvents RB_新規 As RadioButton
     Private WithEvents RB_更新 As RadioButton
+    Private WithEvents cmb完了区分 As ComboBox
+    Private WithEvents cmb棚卸区分 As ComboBox
+    Private WithEvents gcmr一覧 As GrapeCity.Win.MultiRow.GcMultiRow
+    Private WithEvents lbl完了区分 As Label
+    Private WithEvents lbl棚卸区分 As Label
+    Private WithEvents BS一覧 As BindingSource
+    Private WithEvents HARK202S1DS As HARK202S1DS
+    Private WithEvents HarK202S1Template1 As HARK202S1Template
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -465,8 +473,7 @@ Partial Class HARK202S1
     Private xxxintSubProgram_ID As Integer
     Private xxxintSPDSystemCode As Integer
     Private xxxstrForTitle As String
-    Private xxxstr病院コード As String
-    Private xxxstr施設コード As String
+
 
 
     Public Sub New(ByVal PerFormTitle As String, ByVal PerProgramID As String, ByVal PreSubProgramID As Integer, ByVal PreSPDSystemCode As Integer)
@@ -482,7 +489,6 @@ Partial Class HARK202S1
         xxxstrProgram_ID = PerProgramID
         xxxintSubProgram_ID = PreSubProgramID
         xxxintSPDSystemCode = PreSPDSystemCode
-        xxxstr病院コード = "T01"
 
         'PreviewKeyDownイベントハンドラの追加
         AddHandler txt棚卸名.PreviewKeyDown, AddressOf Txt_PreviewKeyDown
@@ -517,12 +523,5 @@ Partial Class HARK202S1
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
-    Private WithEvents cmb完了区分 As ComboBox
-    Private WithEvents cmb棚卸区分 As ComboBox
-    Private WithEvents gcmr一覧 As GrapeCity.Win.MultiRow.GcMultiRow
-    Private WithEvents lbl完了区分 As Label
-    Private WithEvents lbl棚卸区分 As Label
-    Friend WithEvents BS一覧 As BindingSource
-    Friend WithEvents HARK202S1DS As HARK202S1DS
-    Friend WithEvents HarK202S1Template1 As HARK202S1Template
+
 End Class

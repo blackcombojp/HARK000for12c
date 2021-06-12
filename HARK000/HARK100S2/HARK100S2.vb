@@ -253,7 +253,7 @@ Public Class HARK100S2
 
                     xxx初期コントロール = txt得意先コード
 
-                Case "HARKP106", "HARKP107" '徳洲会連携 汎用連携
+                Case "HARKP106" '徳洲会連携 
 
                     txt得意先コード.Text = ""
                     txt需要先コード.Text = ""
@@ -268,6 +268,49 @@ Public Class HARK100S2
                     txt相手先商品コード.Enabled = True
 
                     xxx初期コントロール = txt得意先コード
+
+                Case "HARKP107" '汎用連携
+
+                    If xxxintSubProgram_ID = 0 Then
+
+                        txt得意先コード.Text = ""
+                        txt需要先コード.Text = ""
+                        lbl得意先名.Text = ""
+                        lbl需要先名.Text = ""
+                        txt商品コード.Text = ""
+                        txt相手先商品コード.Text = ""
+
+                        txt得意先コード.Enabled = True
+                        txt需要先コード.Enabled = True
+                        txt商品コード.Enabled = True
+                        txt相手先商品コード.Enabled = False
+
+                        xxx初期コントロール = txt得意先コード
+
+                    Else
+
+                        Select Case My.Settings.事業所コード
+
+                            Case 113 '埼玉
+
+                                txt得意先コード.Text = ""
+                                txt需要先コード.Text = ""
+                                lbl得意先名.Text = ""
+                                lbl需要先名.Text = ""
+                                txt商品コード.Text = ""
+                                txt相手先商品コード.Text = ""
+
+                                txt得意先コード.Enabled = True
+                                txt需要先コード.Enabled = True
+                                txt商品コード.Enabled = False
+                                txt相手先商品コード.Enabled = True
+
+                                xxx初期コントロール = txt得意先コード
+                            Case Else
+                                Exit Sub
+                        End Select
+
+                    End If
 
                 Case Else
 
@@ -705,7 +748,7 @@ Public Class HARK100S2
                         Exit Function
                     End If
 
-                Case "HARKP106", "HARKP107" '徳洲会連携 汎用連携
+                Case "HARKP106" '徳洲会連携
 
                     '得意先コード
                     If IsNull(txt得意先コード.Text.Trim) = True Then
@@ -726,6 +769,59 @@ Public Class HARK100S2
                         MsgBox(MSG_100001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
                         txt相手先商品コード.Focus()
                         Exit Function
+                    End If
+
+                Case "HARKP107" '汎用受注
+
+                    If xxxintSubProgram_ID = 0 Then
+                        '得意先コード
+                        If IsNull(txt得意先コード.Text.Trim) = True Then
+                            MsgBox(MSG_992001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                            txt得意先コード.Focus()
+                            Exit Function
+                        End If
+
+                        '需要先コード
+                        If IsNull(txt需要先コード.Text.Trim) = True Then
+                            MsgBox(MSG_992002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                            txt需要先コード.Focus()
+                            Exit Function
+                        End If
+
+                        '商品コード
+                        If IsNull(txt商品コード.Text.Trim) = True Then
+                            MsgBox(MSG_100002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                            txt商品コード.Focus()
+                            Exit Function
+                        End If
+                    Else
+                        Select Case My.Settings.事業所コード
+
+                            Case 113 '埼玉
+                                '得意先コード
+                                If IsNull(txt得意先コード.Text.Trim) = True Then
+                                    MsgBox(MSG_992001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                    txt得意先コード.Focus()
+                                    Exit Function
+                                End If
+
+                                '需要先コード
+                                If IsNull(txt需要先コード.Text.Trim) = True Then
+                                    MsgBox(MSG_992002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                    txt需要先コード.Focus()
+                                    Exit Function
+                                End If
+
+                                '相手先商品コード
+                                If IsNull(txt相手先商品コード.Text.Trim) = True Then
+                                    MsgBox(MSG_100001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                    txt相手先商品コード.Focus()
+                                    Exit Function
+                                End If
+
+                            Case Else
+                                Exit Function
+                        End Select
                     End If
 
             End Select

@@ -13,10 +13,9 @@ Imports HARK000.HARK_Common
 Imports HARK000.HARK_Sub
 Imports AdvanceSoftware.ExcelCreator
 Imports System.ComponentModel
-Imports System.IO
 
 
-Public Class HARK304
+Public Class HARK506
     '/*-----------------------------------------------------------------------------
     ' *　モジュール機能　：　フォーム読み込み処理
     ' *
@@ -26,8 +25,6 @@ Public Class HARK304
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
     Private Sub Fm_Load(sender As Object, e As EventArgs) Handles Me.Load
-
-        Dim str備考 As String
 
         Try
             Cursor = Cursors.WaitCursor
@@ -44,12 +41,6 @@ Public Class HARK304
                 MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM908 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
                 txtデータ出力先.Text = Get_DesktopPath()
             End If
-
-            '備考取得
-            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 0, 0, 1, "備考")
-            str備考 = gstrDLTP0997S_FUNC005
-
-            If str備考 <> "null" Then lbl備考.Text = str備考 Else lbl備考.Visible = False
 
             'コンボに値設定
             Set_CmbValue()
@@ -80,8 +71,8 @@ Public Class HARK304
     Private Sub Fm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
         Try
-            '初期フォーカスを設定
-            cmb売上先.Focus()
+            '初期フォーカスを項目に設定
+            txt得意先コード.Focus()
 
         Catch ex As Exception
 
@@ -212,45 +203,6 @@ Public Class HARK304
             '空白行追加
             cmb事業所.Items.Add(New 事業所一覧("", 0))
 
-            '得意先一覧取得
-            If DLTP0304_PROC0020(xxxstrProgram_ID, gintSPDシステムコード, 0, gintSQLCODE, gstrSQLERRM) = False Then
-
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
-                Exit Sub
-
-            End If
-
-            '得意先一覧
-            For i = 0 To gint得意先Cnt - 1
-
-                cmb売上先.Items.Add(New 得意先一覧(得意先Array(i).str得意先名, 得意先Array(i).lng得意先コード))
-
-            Next
-
-            '空白行追加
-            cmb売上先.Items.Add(New 得意先一覧("全て", 0))
-
-
-            'サブプログラム一覧取得
-            If DLTP0901_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, gintSQLCODE, gstrSQLERRM) = False Then
-
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
-                Exit Sub
-
-            End If
-
-            'サブプログラム一覧
-            For i = 0 To gintサブプログラムCnt - 1
-
-                cmbサブプログラム.Items.Add(New サブプログラム一覧(サブプログラムArray(i).strサブプログラム名, サブプログラムArray(i).intサブプログラムコード))
-
-            Next
-
-            '空白行追加
-            cmbサブプログラム.Items.Add(New サブプログラム一覧("", 0))
-
         Catch ex As Exception
 
             log.Error(Set_ErrMSG(Err.Number, ex.ToString))
@@ -293,13 +245,33 @@ Public Class HARK304
             'メッセージリストボックス初期化
             lb_Msg.Items.Clear()
 
-            cmb売上先.SelectedIndex = gint得意先Cnt
-            cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
-            txt売上開始日.Text = ""
-            txt売上終了日.Text = ""
-
+            Initialize明細()
 
             txtデータ出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Sub
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　各種コンポーネント初期化
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　なし
+    ' *-----------------------------------------------------------------------------/
+    Private Sub Initialize明細()
+
+        Try
+
+            txt得意先コード.Text = ""
+            lbl得意先名.Text = ""
+            txt需要先コード.Text = ""
+            lbl需要先名.Text = ""
 
         Catch ex As Exception
 
@@ -379,9 +351,9 @@ Public Class HARK304
 
             Select Case Tag
 
-                Case "ID1"  'データ出力先
+                Case "ID1"  '得意先コード
 
-                    If e.Shift = False Then
+                    If e.Shift = True Then
 
                         Select Case e.KeyCode
 
@@ -393,52 +365,13 @@ Public Class HARK304
 
                     End If
 
-            End Select
+                Case "ID3"  'データ出力先
 
-        Catch ex As Exception
-
-            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
-            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
-
-        End Try
-
-    End Sub
-    '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　コンボボックスキー押下処理
-    ' *
-    ' *　注意、制限事項　：　タブ移動させたくないコントロールのみにハンドリングすること
-    ' *　引数１　　　　　：　sender・・オブジェクト識別クラス
-    ' *　引数２　　　　　：　e・・イベントデータクラス
-    ' *　戻値　　　　　　：　なし
-    ' *
-    ' *-----------------------------------------------------------------------------/
-    Private Sub Cmb_PreviewKeyDown(ByVal sender As Object, ByVal e As PreviewKeyDownEventArgs)
-
-        Dim Tag As String
-
-        Try
-
-            Tag = CStr(CType(sender, ComboBox).Tag)
-
-            Select Case Tag
-
-                Case "ID1"  '事業所
-
-                    Select Case e.KeyCode
-
-                            'Tabキーが押されてもフォーカスが移動しないようにする
-                        Case Keys.Tab
-                            e.IsInputKey = True
-
-                    End Select
-
-                Case "ID2"  '売上先
-
-                    If e.Shift = True Then
+                    If e.Shift = False Then
 
                         Select Case e.KeyCode
 
-                                'Tabキーが押されてもフォーカスが移動しないようにする
+                            'Tabキーが押されてもフォーカスが移動しないようにする
                             Case Keys.Tab
                                 e.IsInputKey = True
 
@@ -467,7 +400,6 @@ Public Class HARK304
     Private Sub Cmb_SelectedValueChanged(sender As Object, e As EventArgs)
 
         Dim Tag As String
-        Dim i As Integer
 
         Try
 
@@ -497,40 +429,6 @@ Public Class HARK304
                         End If
                     End If
 
-                    cmb売上先.Items.Clear()
-
-                    '得意先一覧取得
-                    If DLTP0304_PROC0020(xxxstrProgram_ID, gintSPDシステムコード, 0, gintSQLCODE, gstrSQLERRM) = False Then
-
-                        MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                        log.Error(Set_ErrMSG(gintSQLCODE, gstrSQLERRM))
-                        Exit Sub
-
-                    End If
-
-                    '得意先一覧
-                    For i = 0 To gint得意先Cnt - 1
-
-                        cmb売上先.Items.Add(New 得意先一覧(得意先Array(i).str得意先名, 得意先Array(i).lng得意先コード))
-
-                    Next
-
-                    '空白行追加
-                    cmb売上先.Items.Add(New 得意先一覧("全て", 0))
-
-
-                Case "ID2" '売上先
-
-                    With DirectCast(cmb売上先.SelectedItem, 得意先一覧)
-                        xxxlng売上先コード = .lng得意先コード
-                    End With
-
-                Case "ID3" 'サブプログラム
-
-                    With DirectCast(cmbサブプログラム.SelectedItem, サブプログラム一覧)
-                        xxxintSubProgram_ID = .intサブプログラムコード
-                    End With
-
             End Select
 
         Catch ex As Exception
@@ -559,7 +457,7 @@ Public Class HARK304
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txtデータ出力先.Focus()
+            txt得意先コード.Focus()
             Exit Sub
 
         End If
@@ -583,7 +481,7 @@ Public Class HARK304
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txtデータ出力先.Focus()
+            txt得意先コード.Focus()
             Exit Sub
 
         End If
@@ -597,7 +495,7 @@ Public Class HARK304
     ' *　引数２　　　　　：　e      -- イベントデータクラス
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub Btnフォルダ参照_Click(sender As Object, e As EventArgs)
+    Private Sub Btnフォルダ参照_Click(sender As Object, e As EventArgs) Handles btnフォルダ参照.Click
 
         Dim FDDlg As New FolderBrowserDialog
         Dim Tag As String
@@ -608,7 +506,7 @@ Public Class HARK304
 
             Select Case Tag
 
-                Case "ID1" '連携データ
+                Case "ID1" 'データ出力先
 
                     If FDDlg.ShowDialog() = DialogResult.OK Then
 
@@ -721,8 +619,6 @@ Public Class HARK304
     Private Sub Bt_ID_Click(ByVal sender As Object, ByVal e As EventArgs)
 
         Dim Tag As String
-        'Dim m_lording As Thread = Nothing
-        Dim strSendFile As String = Nothing
 
         Try
             'Oracle接続状態確認
@@ -743,12 +639,9 @@ Public Class HARK304
 
                     If gintRtn = vbYes Then
 
-                        cmb売上先.SelectedIndex = gint得意先Cnt
-                        cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
-                        txt売上開始日.Text = ""
-                        txt売上終了日.Text = ""
+                        Initialize明細()
                         lb_Msg.Items.Clear()
-                        cmb売上先.Focus()
+                        txt得意先コード.Focus()
 
                     End If
 
@@ -762,140 +655,84 @@ Public Class HARK304
 
                     If 実行前チェック処理() = False Then Exit Sub
 
-                    gintRtn = MsgBox(MSG_101105, CType(MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title)
+                    xxxFileName = Set_FilePath(txtデータ出力先.Text, "オンライン注文書_" & lbl得意先名.Text & "様用.xlsx")
+
+                    If Chk_FileExists(xxxFileName) Then
+
+                        gintRtn = MsgBox(MSG_506004 & Get_FileNameWithoutExtension(xxxFileName) & vbCr & vbCr & MSG_506002 & vbCr & MSG_506003, CType(MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title)
+
+                        If gintRtn = vbNo Then
+
+                            txtデータ出力先.Focus()
+
+                            Exit Sub
+
+                        End If
+
+                    End If
+
+                    gintRtn = MsgBox(MSG_506004 & Get_FileNameWithoutExtension(xxxFileName) & vbCr & vbCr & MSG_101105, CType(MsgBoxStyle.YesNo + MsgBoxStyle.DefaultButton2 + MsgBoxStyle.Question, MsgBoxStyle), My.Application.Info.Title)
 
                     If gintRtn = vbNo Then
 
-                        cmb売上先.SelectedIndex = gint得意先Cnt
-                        cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
-                        txt売上開始日.Text = ""
-                        txt売上終了日.Text = ""
+                        Initialize明細()
                         lb_Msg.Items.Clear()
-                        cmb売上先.Focus()
+                        txt得意先コード.Focus()
 
                         Exit Sub
+
+                    End If
+
+                    If Chk_FileExists(xxxFileName) Then
+
+                        gintRtn = Delete_File(xxxFileName)
+
+                        Select Case gintRtn
+                            Case 0
+                                Exit Select
+                            Case 55
+                                MsgBox(MSG_COM896, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt得意先コード.Focus()
+                                Exit Sub
+                            Case 53
+                                MsgBox(MSG_COM897, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt得意先コード.Focus()
+                                Exit Sub
+                            Case 99
+                                MsgBox(MSG_COM898, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt得意先コード.Focus()
+                                Exit Sub
+                        End Select
 
                     End If
 
                     Cursor = Cursors.WaitCursor
 
                     lb_Msg.Items.Add("")
-
-                    ''処理中画面
-                    'm_lording = New Thread(New ThreadStart(AddressOf NowLording)) With {
-                    '    .IsBackground = True
-                    '}
-
-                    'm_lording.Start()
-
                     Set_ListItem(0, "")
-                    Set_ListItem(1, "【" & cmb売上先.Text & "】")
-                    Set_ListItem(1, "【" & cmbサブプログラム.Text & "】")
-                    Set_ListItem(1, MSG_304004)
+                    Set_ListItem(1, MSG_301017)
 
-                    'データ作成
-                    gintRtn = DLTP0304_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, 0, xxxlng売上先コード, txt売上開始日.Text.Trim, txt売上終了日.Text.Trim, xxxintNo, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+                    gblRtn = データ検索処理(xxxFileName)
 
                     Select Case gintRtn
 
-                        Case 8
+                        Case 0 '正常終了
 
-                            Set_ListItem(1, MSG_201009 & "《" & xxxintNo & "》")
-                            Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
-                            Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
-                            Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
-                            Set_ListItem(1, MSG_201006)
-                            Set_ListItem(2, "")
+                            Exit Select
 
-                            GoTo EndExecute
-
-
-                        Case 9
-
-                            Set_ListItem(1, MSG_201009 & "《" & xxxintNo & "》")
-                            Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
-                            Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
-                            Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
-                            Set_ListItem(1, MSG_COM899 & gintSQLCODE)
-                            Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-                            Set_ListItem(1, MSG_201003)
-                            Set_ListItem(1, MSG_COM901)
-                            Set_ListItem(2, "")
-
-                            GoTo EndExecute
-
-
-                    End Select
-
-                    Set_ListItem(1, MSG_201009 & "《" & xxxintNo & "》")
-                    Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
-                    Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
-                    Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
-
-                    'データ検索
-                    gintRtn = DLTP0304_PROC0021(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxintNo, gintSQLCODE, gstrSQLERRM)
-
-                    Select Case gintRtn
-
-                        Case 2
-
-                            Set_ListItem(1, MSG_304005)
-                            Set_ListItem(1, MSG_201003)
-                            Set_ListItem(1, MSG_COM901)
-                            Set_ListItem(2, "")
-
-                            GoTo EndExecute
-
-
-                        Case 9
+                        Case 9 'エラー
 
                             Set_ListItem(1, MSG_COM899 & gintSQLCODE)
                             Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
-                            Set_ListItem(1, MSG_201003)
+                            Set_ListItem(1, MSG_301019)
                             Set_ListItem(1, MSG_COM901)
                             Set_ListItem(2, "")
 
-                            GoTo EndExecute
-
-
                     End Select
 
-                    Select Case xxxintSubProgram_ID
-
-                        Case 1
-                            If Excelデータ出力処理() = True Then
-                                Set_ListItem(1, MSG_301018)
-                                Set_ListItem(2, "")
-                            Else
-                                Set_ListItem(1, MSG_301019)
-                                Set_ListItem(1, MSG_COM901)
-                                Set_ListItem(2, "")
-                            End If
-
-                        Case 2
-                            If Output_RawData() = True Then
-                                Set_ListItem(1, MSG_301018)
-                                Set_ListItem(2, "")
-                            Else
-                                Set_ListItem(1, MSG_301019)
-                                Set_ListItem(1, MSG_COM901)
-                                Set_ListItem(2, "")
-                            End If
-
-                    End Select
-
-EndExecute:
-                    'セッション情報削除
-                    gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "徳洲会納品情報送信", 1)
-
-                    cmb売上先.SelectedIndex = gint得意先Cnt
-                    cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
-                    txt売上開始日.Text = ""
-                    txt売上終了日.Text = ""
-                    cmb売上先.Focus()
+                    txt得意先コード.Focus()
 
                     Exit Sub
-
 
                 Case "ID6" 'なし
                 Case "ID7" 'なし
@@ -909,12 +746,6 @@ EndExecute:
             MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
 
         Finally
-
-            ''処理中画面廃棄
-            'If Not m_lording Is Nothing AndAlso m_lording.IsAlive Then
-            '    m_lording.Abort()
-            '    m_lording = Nothing
-            'End If
 
             'メモリ開放
             GC.Collect()
@@ -969,18 +800,36 @@ EndExecute:
                 SttBar_2.Text = gstr担当者名
             End If
 
-            '売掛先
-            If IsNull(cmb売上先.Text.Trim) = True Then
-                MsgBox(MSG_304001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                cmb売上先.Focus()
+            '得意先
+            If IsNull(txt得意先コード.Text.Trim) = True Then
+                MsgBox(MSG_402002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt得意先コード.Focus()
                 Exit Function
             End If
 
-            'サブプログラムチェック
-            If IsNull(cmbサブプログラム.Text.Trim) = True Then
-                MsgBox(MSG_COM012, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                cmbサブプログラム.Focus()
+            If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt得意先コード.Text.Trim), My.Settings.事業所コード, 1, gintSQLCODE, gstrSQLERRM) = False Then
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                txt得意先コード.Focus()
+                txt得意先コード.Text = ""
+                lbl得意先名.Text = ""
+            Else
+                lbl得意先名.Text = gstr得意先名
+            End If
+
+            '需要先
+            If IsNull(txt需要先コード.Text.Trim) = True Then
+                MsgBox(MSG_506001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                txt需要先コード.Focus()
                 Exit Function
+            End If
+
+            If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt需要先コード.Text.Trim), My.Settings.事業所コード, 1, gintSQLCODE, gstrSQLERRM) = False Then
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                txt需要先コード.Focus()
+                txt需要先コード.Text = ""
+                lbl需要先名.Text = ""
+            Else
+                lbl需要先名.Text = gstr得意先名
             End If
 
             'データ出力先チェック
@@ -997,34 +846,6 @@ EndExecute:
                 Exit Function
             End If
 
-            '売上開始日チェック
-            If IsNull(txt売上開始日.Text.Trim) = True Then
-                MsgBox(MSG_304002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt売上開始日.Focus()
-                Exit Function
-            End If
-
-            If Chk_Date(txt売上開始日.Text.Trim, 1) = False Then
-                txt売上開始日.Text = ""
-                MsgBox(MSG_301012, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
-                txt売上開始日.Focus()
-                Exit Function
-            End If
-
-            '売上終了日チェック
-            If IsNull(txt売上終了日.Text.Trim) = True Then
-                MsgBox(MSG_304003, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt売上終了日.Focus()
-                Exit Function
-            End If
-
-            If Chk_Date(txt売上終了日.Text.Trim, 1) = False Then
-                txt売上終了日.Text = ""
-                MsgBox(MSG_301012, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
-                txt売上終了日.Focus()
-                Exit Function
-            End If
-
             実行前チェック処理 = True
 
             Exit Function
@@ -1038,40 +859,37 @@ EndExecute:
 
     End Function
     '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　Excelデータ出力処理
+    ' *　モジュール機能　：  データ出力処理
     ' *
     ' *　注意、制限事項　：　なし
     ' *　引数１　　　　　：　なし
-    ' *　戻値　　　　　　：　0 -- 成功 9 -- 失敗
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
     ' *-----------------------------------------------------------------------------/
-    Private Function Excelデータ出力処理() As Boolean
+    Private Function データ出力処理(FileName As String) As Boolean
 
         Dim ColCnt As Integer
         Dim ColMax As Integer
         Dim RowCnt As Integer
         Dim RowMax As Integer
-        Dim strHeaderText As String = Nothing
+        Dim strSheetName As String
+        Dim strHeaderText As String
         Dim stArrayData As String()
-        Dim FileName As String = Nothing
-        Dim strSheetName As String = Nothing
         Dim i As Integer
         Dim dtNow As DateTime = Now
 
         Try
 
-            Excelデータ出力処理 = False
+            データ出力処理 = False
 
-            FileName = Set_FilePath(txtデータ出力先.Text, Results(0).strBuff(1) & "_SYOG_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
-            strSheetName = Results(0).strBuff(1) & "_SYOG_" & dtNow.ToString("yyyyMMddHHmmss")
+            strSheetName = "注文書"
 
             '出力ヘッダ取得
-            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "出力ヘッダ")
+            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 0, 1, 99, "出力ヘッダ")
             strHeaderText = gstrDLTP0997S_FUNC005
 
             '項目数取得
-            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "項目数")
+            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 0, 1, 99, "項目数")
             ColMax = gintDLTP0997S_FUNC004
-
 
             RowMax = gintResultCnt
 
@@ -1087,19 +905,42 @@ EndExecute:
                 'EXCEL作成
                 .CreateBook(FileName, 1, xlsxVersion.ver2013)
 
-                .DefaultFontName = "メイリオ"                                                   'デフォルトフォント
-                .DefaultFontPoint = 10                                                          'デフォルトフォントポイント
-                .SheetName = strSheetName                                                       'シート名
-                .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.White                       '文字列色＝白
-                .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold                       '文字列修飾＝太字
-                .Pos(0, 0, 27, 0).Attr.BackColor = Color.FromArgb(91, 155, 213)                 '背景色＝青
-                .Pos(28, 0, ColMax - 1, 0).Attr.BackColor = Color.FromArgb(255, 101, 101)       '背景色＝赤
+                .DefaultFontName = "メイリオ"                                                   　　　'デフォルトフォント
+                .DefaultFontPoint = 10                                                          　　　'デフォルトフォントポイント
+                .SheetName = strSheetName                                                             'シート名
+
+                ''ヘッダ部
+                .Pos(0, 0, ColMax - 1, 1).Attr.FontColor2 = xlColor.White                       　　　   '文字列色＝白
+                .Pos(0, 0, ColMax - 1, 1).Attr.FontStyle = FontStyle.Bold                       　　　   '文字列修飾＝太字
+                .Pos(0, 0, ColMax - 1, 1).Attr.BackColor = Color.FromArgb(91, 155, 213)                  '背景色＝青
+                .Pos(0, 0, ColMax - 2, 1).Attr.HorizontalAlignment = HorizontalAlignment.Left            'テキスト横位置=左
+                .Pos(ColMax - 2, 0, ColMax - 1, 1).Attr.HorizontalAlignment = HorizontalAlignment.Right  'テキスト横位置=右
+                .Pos(0, 0, ColMax - 1, 1).Attr.VerticalAlignment = VerticalAlignment.Top                 'テキスト縦位置=上
+                .Pos(0, 0, ColMax - 2, 1).Attr.MergeCells = True                                         '結合
+                .Cell("1").RowHeight = 15
+                .Cell("2").RowHeight = 15
+                .Pos(0, 0, ColMax - 1, 2).Attr.Box(BoxType.Box, BorderStyle.Medium, xlColor.White)
+                .Pos(0, 0, ColMax - 1, 2).Attr.Box(BoxType.Ltc, BorderStyle.Medium, xlColor.White)
+
+                .Pos(0, 0).Str = "オンライン注文書(" & lbl得意先名.Text & "様専用)"
+                .Pos(0, 0).Attr.FontPoint = 20
+                .Pos(0, 0).Attr.FontName = "メイリオ"
+                .Pos(ColMax - 1, 0).Str = txt得意先コード.Text.Trim
+                .Pos(ColMax - 1, 1).Str = txt需要先コード.Text.Trim
+
+
+                ''明細部
+                .Pos(0, 2, ColMax - 1, 2).Attr.FontColor2 = xlColor.White                       　　　'文字列色＝白
+                .Pos(0, 2, ColMax - 1, 2).Attr.FontStyle = FontStyle.Bold                       　　　'文字列修飾＝太字
+                .Pos(0, 2, ColMax - 1, 2).Attr.BackColor = Color.FromArgb(91, 155, 213)         　　　'背景色＝青
+                .Pos(0, 2, ColMax - 1, 2).Attr.VerticalAlignment = VerticalAlignment.Center           'テキスト縦位置=中心
+                .Pos(0, 2, ColMax - 1, 2).Attr.HorizontalAlignment = HorizontalAlignment.Center       'テキスト横位置=中心
+                .Pos(0, 3, ColMax - 1, RowMax + 2).Attr.Box(BoxType.Ltc, BorderStyle.Thin, Color.FromArgb(91, 155, 213))
 
 
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
-                    .Pos(i, 0).Attr.HorizontalAlignment = HorizontalAlignment.Center       'テキスト横位置=中心
-                    .Pos(i, 0).Str = stData
+                    .Pos(i, 2).Str = stData
                     i += 1
                 Next stData
 
@@ -1108,20 +949,29 @@ EndExecute:
 
                     For ColCnt = 0 To ColMax - 1
 
-                        .Pos(ColCnt, RowCnt + 1).Str = Results(RowCnt).strBuff(ColCnt)
+                        .Pos(ColCnt, RowCnt + 3).Str = Results(RowCnt).strBuff(ColCnt)
 
                     Next
 
+                    .Pos(0, RowCnt + 3, ColMax - 1, RowCnt + 3).Attr.LineBottom(BorderStyle.Dotted, Color.FromArgb(91, 155, 213))
+                    .Pos(0, RowCnt + 3, ColMax - 1, RowCnt + 3).Attr.LineTop(BorderStyle.Dotted, Color.FromArgb(91, 155, 213))
+
+                    If (RowCnt + 3) Mod 2 = 0 Then
+                        .Pos(0, RowCnt + 3, ColMax - 1, RowCnt + 3).Attr.BackColor = Color.FromArgb(221, 235, 247)
+                    End If
+
                 Next
 
-                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, BorderStyle.Thin, Color.FromArgb(91, 155, 213))
-                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 3, ColMax - 1, RowMax + 2).Attr.Box(BoxType.Box, BorderStyle.Medium, Color.FromArgb(91, 155, 213))
+                .Pos(5, 3, 5, RowMax + 2).Attr.Box(BoxType.Box, BorderStyle.Medium, Color.FromArgb(91, 155, 213))
+                .Pos(5, 3, 5, RowMax + 2).Attr.Box(BoxType.Ltc, BorderStyle.Medium, Color.FromArgb(91, 155, 213))
+
 
                 .CloseBook(True)
 
             End With
 
-            Excelデータ出力処理 = True
+            データ出力処理 = True
 
         Catch ex As Exception
 
@@ -1132,93 +982,67 @@ EndExecute:
 
     End Function
     '/*-----------------------------------------------------------------------------
-    ' *　モジュール機能　：　CSVデータ出力処理
+    ' *　モジュール機能　：　データ検索処理
     ' *
     ' *　注意、制限事項　：　なし
-    ' *　引数１　　　　　：　FileName -- 出力パス
+    ' *　引数１　　　　　：　なし
     ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
     ' *-----------------------------------------------------------------------------/
-    Private Function Output_RawData() As Boolean
+    Private Function データ検索処理(FileName As String) As Boolean
 
-        Dim strstreamWriter As StreamWriter
-        Dim strDataText As String
-        Dim strHeaderText As String
-        Dim strBreak As String = Nothing
-        Dim FileName As String
-        Dim ColCnt As Integer
-        Dim ColMax As Integer
-        Dim RowCnt As Integer
-        Dim dtNow As DateTime = Now
+        Dim int単価区分 As Integer
 
         Try
 
-            Output_RawData = False
+            データ検索処理 = False
 
-            FileName = Set_FilePath(txtデータ出力先.Text, Results(0).strBuff(1) & "_SYOG_" & dtNow.ToString("yyyyMMddHHmmss") & ".csv")
+            If txt得意先コード.Text.Trim.Equals(txt需要先コード.Text.Trim) Then int単価区分 = 1 Else int単価区分 = 2
 
-            '出力ヘッダ取得
-            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "出力ヘッダ")
-            strHeaderText = gstrDLTP0997S_FUNC005
+            gintRtn = DLTP0506_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, CLng(txt得意先コード.Text.Trim), CLng(txt需要先コード.Text.Trim), int単価区分, gintSQLCODE, gstrSQLERRM)
 
-            '出力区切文字取得
-            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "出力区切文字")
-            Select Case gstrDLTP0997S_FUNC005
+            Select Case gintRtn
 
-                Case "TAB"
-                    strBreak = vbTab
+                Case 0 '正常終了
 
-                Case "CSV"
-                    strBreak = ","
+                    gblRtn = データ出力処理(FileName)
 
-                Case "NULL"
-                    strBreak = ""
+                    If gblRtn = True Then
+
+                        Set_ListItem(1, MSG_301020 & "【" & gintResultCnt & "】")
+                        Set_ListItem(1, MSG_301018)
+                        Set_ListItem(2, "")
+
+
+                    Else
+
+                        Set_ListItem(1, MSG_301019)
+                        Set_ListItem(1, MSG_COM901)
+                        Set_ListItem(2, "")
+                        Exit Function
+
+
+                    End If
+
+                Case 2 '対象件数0件
+
+                    Set_ListItem(1, MSG_301005)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+
+                Case 9 'エラー
+
+                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                    Set_ListItem(1, MSG_301019)
+                    Set_ListItem(1, MSG_COM901)
+                    Set_ListItem(2, "")
+                    Exit Function
+
 
             End Select
 
-            '項目数取得
-            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "項目数")
-            ColMax = gintDLTP0997S_FUNC004
-
-
-            '書き込み準備
-            strstreamWriter = New StreamWriter(FileName, True, System.Text.Encoding.GetEncoding(932))
-
-            If strHeaderText <> "NULL" Then
-                'へッダ書き込み
-                strstreamWriter.WriteLine(strHeaderText)
-            End If
-
-            For RowCnt = 0 To gintResultCnt - 1
-
-                strDataText = ""
-
-                For ColCnt = 0 To ColMax - 1
-
-                    'strDataText = strDataText & Chr(34) & Results(RowCnt).strBuff(ColCnt) & Chr(34) & strBreak
-                    strDataText = strDataText & Results(RowCnt).strBuff(ColCnt) & strBreak
-
-                Next
-
-                Select Case gstrDLTP0997S_FUNC005
-
-                    Case "CSV"
-                        strDataText = strDataText.Substring(0, strDataText.Length - 1)
-
-                    Case "TAB"
-                        strDataText = strDataText.Trim
-
-                End Select
-
-                'データ書き込み
-                strstreamWriter.WriteLine(strDataText)
-
-            Next
-
-            '後処理
-            strstreamWriter.Flush()
-            strstreamWriter.Close()
-
-            Output_RawData = True
+            データ検索処理 = True
 
         Catch ex As Exception
 
@@ -1228,6 +1052,68 @@ EndExecute:
         End Try
 
     End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　テキストボックスフォーカス検証後
+    ' *
+    ' *　注意、制限事項　：　タブ移動させたくないコントロールのみにハンドリングすること
+    ' *　引数１　　　　　：　sender・・オブジェクト識別クラス
+    ' *　引数２　　　　　：　e・・イベントデータクラス
+    ' *　戻値　　　　　　：　なし
+    ' *
+    ' *-----------------------------------------------------------------------------/
+    Private Sub Txt_Validated(ByVal sender As Object, ByVal e As EventArgs)
 
+        Dim Tag As String
+
+        Try
+
+            Tag = CStr(CType(sender, GrapeCity.Win.Editors.GcTextBox).Tag)
+
+            Select Case Tag
+
+                Case "ID1" '得意先コード
+
+                    If IsNull(txt得意先コード.Text.Trim) = False Then
+
+                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt得意先コード.Text.Trim), My.Settings.事業所コード, 1, gintSQLCODE, gstrSQLERRM) = False Then
+                            MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                            txt得意先コード.Text = ""
+                            lbl得意先名.Text = ""
+                            txt得意先コード.Focus()
+                        Else
+                            lbl得意先名.Text = gstr得意先名
+                        End If
+                    Else
+                        txt得意先コード.Text = ""
+                        lbl得意先名.Text = ""
+                    End If
+
+                Case "ID2" '需要先コード
+
+                    If IsNull(txt需要先コード.Text.Trim) = False Then
+
+                        If DLTP0900_PROC0003(xxxstrProgram_ID, CLng(txt需要先コード.Text.Trim), My.Settings.事業所コード, 1, gintSQLCODE, gstrSQLERRM) = False Then
+                            MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                            txt需要先コード.Text = ""
+                            lbl需要先名.Text = ""
+                            txt需要先コード.Focus()
+                        Else
+                            lbl需要先名.Text = gstr得意先名
+                        End If
+                    Else
+                        txt需要先コード.Text = ""
+                        lbl需要先名.Text = ""
+                    End If
+
+            End Select
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            MsgBox(MSG_COM902 & vbCr & Err.Number & vbCr & ex.Message, MsgBoxStyle.Critical Or MsgBoxStyle.OkOnly, My.Application.Info.Title)
+
+        End Try
+
+    End Sub
 
 End Class

@@ -1498,6 +1498,9 @@ Public Class HARK504
 
                 Next
 
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+
                 .CloseBook(True)
 
             End With

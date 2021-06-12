@@ -63,7 +63,8 @@ Public Class HARK202S1
     Private Sub Fm_Shown(sender As Object, e As EventArgs) Handles Me.Shown
 
         Try
-            txt棚卸名.Focus()
+            RB_新規.Checked = True
+            RB_新規.Focus()
 
         Catch ex As Exception
 
@@ -164,13 +165,13 @@ Public Class HARK202S1
 
         Try
 
-            '施設一覧取得
-            If DLTP0501_PROC0101(xxxstrProgram_ID, xxxintSPDSystemCode, xxxintSubProgram_ID, xxxstr病院コード, gintSQLCODE, gstrSQLERRM) = False Then
+            ''施設一覧取得
+            'If DLTP0501_PROC0101(xxxstrProgram_ID, xxxintSPDSystemCode, xxxintSubProgram_ID, xxxstr病院コード, gintSQLCODE, gstrSQLERRM) = False Then
 
-                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
-                Exit Sub
+            '    MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+            '    Exit Sub
 
-            End If
+            'End If
 
             ''施設一覧
             'For i = 0 To gin施設Cnt - 1
@@ -768,7 +769,7 @@ Public Class HARK202S1
                             Exit Sub
                         End If
 
-                        gintRtn = DLTP0501_PROC0102(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, xxxstr病院コード, txt棚卸名.Text.Trim, gintSQLCODE, gstrSQLERRM)
+                        'gintRtn = DLTP0501_PROC0102(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, xxxstr病院コード, txt棚卸名.Text.Trim, gintSQLCODE, gstrSQLERRM)
 
                         Select Case gintRtn
                             Case 0

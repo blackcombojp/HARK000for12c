@@ -307,6 +307,21 @@ Public Class HARK501
                     txtデータ出力先.Enabled = True
                     btnフォルダ参照.Enabled = True
 
+                Case 5 'SPD定数一覧表出力
+
+                    lbl取込ファイル１.Text = "【定数設定一覧表２】"
+                    txt取込ファイル１.Text = ""
+                    txt取込ファイル１.Enabled = True
+                    btnファイル参照１.Enabled = True
+                    lbl取込ファイル２.Text = "【取込ファイル２】"
+                    txt取込ファイル２.Text = ""
+                    txt取込ファイル２.Enabled = False
+                    btnファイル参照２.Enabled = False
+                    txtDate.Text = ""
+                    txtDate.Enabled = False
+                    txtデータ出力先.Enabled = True
+                    btnフォルダ参照.Enabled = True
+
                 Case Else
 
                     lbl取込ファイル１.Text = "【取込ファイル１】"
@@ -656,7 +671,7 @@ Public Class HARK501
 
             Select Case xxxintSubProgram_ID
 
-                Case 3 'SPD採用商品マスタ一括更新処理
+                Case 3, 5 'SPD採用商品マスタ一括更新処理,SPD定数一覧表出力
                     strFilter = "csv Files (*.csv)|*.csv|All Files (*.*)|*.*"
                 Case Else
                     Exit Sub
@@ -938,7 +953,7 @@ Public Class HARK501
                             End Select
 
                             If xxxintCnt(2) > 0 Then
-                                gblRtn = データ検索処理(1, 0)
+                                gblRtn = 値引用データ検索処理(1, 0)
                                 GoTo EndExecute
                             End If
 
@@ -975,16 +990,50 @@ Public Class HARK501
                             End Select
 
                             If xxxintCnt(2) > 0 Then
-                                gblRtn = データ検索処理(1, 1)
+                                gblRtn = 値引用データ検索処理(1, 1)
                                 GoTo EndExecute
                             End If
 
                             '結果出力
                             'マルコ
-                            If データ検索処理(2, 1) = False Then GoTo EndExecute
+                            If 値引用データ検索処理(2, 1) = False Then GoTo EndExecute
 
                             'マルビシ
-                            If データ検索処理(2, 2) = False Then GoTo EndExecute
+                            If 値引用データ検索処理(2, 2) = False Then GoTo EndExecute
+
+                        Case 5 'SPD定数一覧表出力
+
+                            '定数設定一覧表２
+                            If テキスト取込処理(txt取込ファイル１.Text.Trim, True) = False Then GoTo EndExecute
+
+                            'テキスト取込
+                            gintRtn = DLTP0501_PROC0031(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
+
+                            Select Case gintRtn
+
+                                Case 0 '正常終了
+
+                                    Set_ListItem(1, MSG_301015)
+                                    Set_ListItem(2, "")
+
+                                Case 9 'エラー
+
+                                    取込エラーファイル複製処理(1)
+
+                                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                                    Set_ListItem(1, MSG_301016)
+                                    Set_ListItem(1, MSG_COM901)
+                                    Set_ListItem(2, "")
+
+                                    GoTo EndExecute
+
+                            End Select
+
+                            Set_ListItem(0, "")
+                            Set_ListItem(1, MSG_301017)
+
+                            gblRtn = データ検索処理()
 
                         Case Else
 
@@ -1171,6 +1220,52 @@ EndExecute:
                         Exit Function
                     End If
 
+                Case 5 'SPD定数一覧表出力
+
+                    '定数設定一覧表２
+                    '取込ファイルチェック
+                    If IsNull(txt取込ファイル１.Text.Trim) = True Then
+                        MsgBox(MSG_501024, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル１.Focus()
+                        Exit Function
+                    End If
+
+                    If Chk_FileExists(txt取込ファイル１.Text.Trim) = False Then
+                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
+                        Exit Function
+                    End If
+
+                    If Not Get_FileNameWithoutExtension(txt取込ファイル１.Text).Contains(HARKP5013ImpFileName) Then
+                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
+                        Exit Function
+                    End If
+
+                    '拡張子比較
+                    If Get_Extension(txt取込ファイル１.Text).CompareTo(CSVExtension) <> 0 Then
+                        MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
+                        Exit Function
+                    End If
+
+                    'データ出力先チェック
+                    If IsNull(txtデータ出力先.Text.Trim) = True Then
+                        MsgBox(MSG_301021, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txtデータ出力先.Focus()
+                        Exit Function
+                    End If
+
+                    If Chk_DirExists(txtデータ出力先.Text.Trim) = False Then
+                        MsgBox(MSG_301021, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txtデータ出力先.Text = ""
+                        txtデータ出力先.Focus()
+                        Exit Function
+                    End If
+
                 Case Else
 
                     Exit Function
@@ -1197,13 +1292,12 @@ EndExecute:
     ' *　引数２　　　　　：　blnHeaderLine -- 1行目はヘッダ行とみなす
     ' *　戻値　　　　　　：　True・・正常、False・・異常
     ' *-----------------------------------------------------------------------------/
-    Private Function テキスト取込処理(ByVal strFile As String) As Boolean
+    Private Function テキスト取込処理(strFile As String, blnHeaderLine As Boolean) As Boolean
 
         'Dim SR As New StreamReader(strFile, System.Text.Encoding.GetEncoding(932))
         Dim SR As StreamReader = Nothing
         Dim i As Integer
         Dim blnFirstLine As Boolean
-        Dim blnHeaderLine As Boolean
         Dim line As String
 
         Try
@@ -1212,15 +1306,10 @@ EndExecute:
 
             Select Case xxxintSubProgram_ID
 
-                Case 1 'SPD採用情報マスタ更新処理
-                    Exit Function
-
-                Case 2 '
-                    blnHeaderLine = False
+                Case 5 'SPD定数一覧表出力
                     Set_ListItem(0, "")
                     Set_ListItem(1, "【" & cmbサブプログラム.Text & "】")
                     Set_ListItem(1, MSG_301014)
-
 
                 Case Else
                     Set_ListItem(0, "")
@@ -1563,7 +1652,7 @@ EndExecute:
     ' *　引数１　　　　　：　intFlg -- ファイル種類
     ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
     ' *-----------------------------------------------------------------------------/
-    Private Function データ出力処理(intFlg As Integer) As Boolean
+    Private Function 値引用データ出力処理(intFlg As Integer) As Boolean
 
         Dim ColCnt As Integer
         Dim ColMax As Integer
@@ -1578,7 +1667,7 @@ EndExecute:
 
         Try
 
-            データ出力処理 = False
+            値引用データ出力処理 = False
 
             Select Case xxxintSubProgram_ID
 
@@ -1669,6 +1758,7 @@ EndExecute:
 
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
+                    .Pos(i, 0).Attr.HorizontalAlignment = AdvanceSoftware.ExcelCreator.HorizontalAlignment.Center       'テキスト横位置=中心
                     .Pos(i, 0).Str = stData
                     i += 1
                 Next stData
@@ -1684,11 +1774,14 @@ EndExecute:
 
                 Next
 
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+
                 .CloseBook(True)
 
             End With
 
-            データ出力処理 = True
+            値引用データ出力処理 = True
 
         Catch ex As Exception
 
@@ -1705,11 +1798,11 @@ EndExecute:
     ' *　引数１　　　　　：　intFlg -- 1・txt取込ファイル１　2・txt取込ファイル２
     ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
     ' *-----------------------------------------------------------------------------/
-    Private Function データ検索処理(intFlg As Integer, intclass As Integer) As Boolean
+    Private Function 値引用データ検索処理(intFlg As Integer, intclass As Integer) As Boolean
 
         Try
 
-            データ検索処理 = False
+            値引用データ検索処理 = False
 
             Select Case intFlg
 
@@ -1747,7 +1840,7 @@ EndExecute:
 
                 Case 0 '正常終了
 
-                    gblRtn = データ出力処理(intFlg + intclass)
+                    gblRtn = 値引用データ出力処理(intFlg + intclass)
 
                     If gblRtn = True Then
 
@@ -1780,6 +1873,82 @@ EndExecute:
 
             End Select
 
+            値引用データ検索処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　データ検索処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function データ検索処理() As Boolean
+
+        Try
+
+            データ検索処理 = False
+
+            Select Case xxxintSubProgram_ID
+
+                Case 5 'SPD定数一覧表出力
+                    gintRtn = DLTP0301_PROC0011(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
+
+                Case Else
+                    Set_ListItem(1, MSG_301019)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+            End Select
+
+            Select Case gintRtn
+
+                Case 0 '正常終了
+
+                    gblRtn = データ出力処理()
+
+                    If gblRtn = True Then
+
+                        Set_ListItem(1, MSG_301020 & "【" & gintResultCnt & "】")
+                        Set_ListItem(1, MSG_301018)
+                        Set_ListItem(2, "")
+
+                    Else
+
+                        Set_ListItem(1, MSG_301019)
+                        Set_ListItem(1, MSG_COM901)
+                        Set_ListItem(2, "")
+                        Exit Function
+
+
+                    End If
+
+                Case 2 '対象件数0件
+
+                    Set_ListItem(1, MSG_301005)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+
+                Case 9 'エラー
+
+                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                    Set_ListItem(1, MSG_301019)
+                    Set_ListItem(1, MSG_COM901)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+
+            End Select
+
             データ検索処理 = True
 
         Catch ex As Exception
@@ -1790,5 +1959,105 @@ EndExecute:
         End Try
 
     End Function
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：  データ出力処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function データ出力処理() As Boolean
 
+        Dim ColCnt As Integer
+        Dim ColMax As Integer
+        Dim RowCnt As Integer
+        Dim RowMax As Integer
+        Dim strHeaderText As String
+        Dim stArrayData As String()
+        Dim FileName As String
+        Dim strSheetName As String
+        Dim i As Integer
+        Dim dtNow As DateTime = Now
+
+        Try
+
+            データ出力処理 = False
+
+            Select Case xxxintSubProgram_ID
+
+                Case 5 'SPD定数一覧表出力
+                    FileName = Set_FilePath(txtデータ出力先.Text, "定数設定一覧表_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+                    strSheetName = "定数設定一覧表"
+
+                Case Else
+                    Set_ListItem(1, MSG_301019)
+                    Set_ListItem(2, "")
+                    Exit Function
+
+            End Select
+
+            '出力ヘッダ取得
+            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "出力ヘッダ")
+            strHeaderText = gstrDLTP0997S_FUNC005
+
+            '項目数取得
+            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "項目数")
+            ColMax = gintDLTP0997S_FUNC004
+
+            RowMax = gintResultCnt
+
+            '出力ヘッダを分割
+            stArrayData = strHeaderText.Split(","c)
+
+            i = 0
+
+            With ExcelCreator
+
+                .ExcelFileType = ExcelFileType.xlsx
+
+                'EXCEL作成
+                .CreateBook(FileName, 1, xlsxVersion.ver2013)
+
+                .DefaultFontName = "メイリオ"                                                   'デフォルトフォント
+                .DefaultFontPoint = 10                                                          'デフォルトフォントポイント
+                .SheetName = strSheetName                                                       'シート名
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontColor2 = xlColor.White                       '文字列色＝白
+                .Pos(0, 0, ColMax - 1, 0).Attr.FontStyle = FontStyle.Bold                       '文字列修飾＝太字
+                .Pos(0, 0, ColMax - 1, 0).Attr.BackColor = Color.FromArgb(91, 155, 213)         '背景色＝青
+
+                'ヘッダ項目出力
+                For Each stData As String In stArrayData
+                    .Pos(i, 0).Attr.HorizontalAlignment = AdvanceSoftware.ExcelCreator.HorizontalAlignment.Center       'テキスト横位置=中心
+                    .Pos(i, 0).Str = stData
+                    i += 1
+                Next stData
+
+                '明細行出力
+                For RowCnt = 0 To RowMax - 1
+
+                    For ColCnt = 0 To ColMax - 1
+
+                        .Pos(ColCnt, RowCnt + 1).Str = Results(RowCnt).strBuff(ColCnt)
+
+                    Next
+
+                Next
+
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+
+                .CloseBook(True)
+
+            End With
+
+            データ出力処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
 End Class

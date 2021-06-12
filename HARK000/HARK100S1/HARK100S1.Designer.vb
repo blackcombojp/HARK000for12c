@@ -69,6 +69,8 @@ Partial Class HARK100S1
         Me.pnl検索 = New System.Windows.Forms.Panel()
         Me.lbl商品コード = New System.Windows.Forms.Label()
         Me.txt商品コード = New GrapeCity.Win.Editors.GcTextBox(Me.components)
+        Me.cmb振替除外 = New System.Windows.Forms.ComboBox()
+        Me.lbl明細９ = New System.Windows.Forms.Label()
         Me.CntMenuStrip.SuspendLayout()
         Me.pnl明細.SuspendLayout()
         CType(Me.txt院内コード, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +118,8 @@ Partial Class HARK100S1
         '
         Me.pnl明細.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(240, Byte), Integer), CType(CType(181, Byte), Integer))
         Me.pnl明細.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnl明細.Controls.Add(Me.cmb振替除外)
+        Me.pnl明細.Controls.Add(Me.lbl明細９)
         Me.pnl明細.Controls.Add(Me.cmb取込除外)
         Me.pnl明細.Controls.Add(Me.lbl明細８)
         Me.pnl明細.Controls.Add(Me.cmb出荷連携)
@@ -124,7 +128,6 @@ Partial Class HARK100S1
         Me.pnl明細.Controls.Add(Me.lbl明細２)
         Me.pnl明細.Controls.Add(Me.txt院内コード)
         Me.pnl明細.Controls.Add(Me.cmb受注形態)
-        Me.pnl明細.Controls.Add(Me.lbl注意)
         Me.pnl明細.Controls.Add(Me.lbl明細６)
         Me.pnl明細.Controls.Add(Me.lbl明細５)
         Me.pnl明細.Controls.Add(Me.lbl明細３)
@@ -235,7 +238,7 @@ Partial Class HARK100S1
         Me.lbl注意.AutoSize = True
         Me.lbl注意.Font = New System.Drawing.Font("メイリオ", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.lbl注意.ForeColor = System.Drawing.Color.Red
-        Me.lbl注意.Location = New System.Drawing.Point(16, 283)
+        Me.lbl注意.Location = New System.Drawing.Point(484, 13)
         Me.lbl注意.Name = "lbl注意"
         Me.lbl注意.Size = New System.Drawing.Size(445, 23)
         Me.lbl注意.TabIndex = 218
@@ -474,6 +477,7 @@ Partial Class HARK100S1
         Me.pnl検索.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.pnl検索.Controls.Add(Me.lbl商品コード)
         Me.pnl検索.Controls.Add(Me.txt商品コード)
+        Me.pnl検索.Controls.Add(Me.lbl注意)
         Me.pnl検索.Location = New System.Drawing.Point(25, 44)
         Me.pnl検索.Name = "pnl検索"
         Me.pnl検索.Size = New System.Drawing.Size(955, 46)
@@ -501,6 +505,28 @@ Partial Class HARK100S1
         Me.txt商品コード.Size = New System.Drawing.Size(181, 26)
         Me.txt商品コード.TabIndex = 11
         Me.txt商品コード.Tag = "ID1"
+        '
+        'cmb振替除外
+        '
+        Me.cmb振替除外.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmb振替除外.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmb振替除外.FormattingEnabled = True
+        Me.cmb振替除外.Location = New System.Drawing.Point(127, 278)
+        Me.cmb振替除外.Name = "cmb振替除外"
+        Me.cmb振替除外.Size = New System.Drawing.Size(181, 26)
+        Me.cmb振替除外.TabIndex = 25
+        Me.cmb振替除外.Tag = "ID4"
+        '
+        'lbl明細９
+        '
+        Me.lbl明細９.AutoSize = True
+        Me.lbl明細９.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lbl明細９.Location = New System.Drawing.Point(7, 281)
+        Me.lbl明細９.Name = "lbl明細９"
+        Me.lbl明細９.Size = New System.Drawing.Size(113, 20)
+        Me.lbl明細９.TabIndex = 225
+        Me.lbl明細９.Text = "【振替商品除外】"
+        Me.lbl明細９.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'HARK100S1
         '
@@ -579,6 +605,8 @@ Partial Class HARK100S1
     Private WithEvents lbl明細７ As Label
     Private WithEvents cmb取込除外 As ComboBox
     Private WithEvents lbl明細８ As Label
+    Private WithEvents cmb振替除外 As ComboBox
+    Private WithEvents lbl明細９ As Label
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -592,6 +620,7 @@ Partial Class HARK100S1
     Private xxxint受注形態 As Integer
     Private xxxint出荷連携 As Integer
     Private xxxint取込除外 As Integer
+    Private xxxint振替除外 As Integer
     'Private xxxintCnt(3) As Integer
     'Private xxxintNo As Integer
 
@@ -618,17 +647,23 @@ Partial Class HARK100S1
         AddHandler cmb出荷連携.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
         AddHandler cmb受注形態.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
         AddHandler cmb取込除外.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
+        AddHandler cmb振替除外.PreviewKeyDown, AddressOf Cmb_PreviewKeyDown
+
 
         'KeyDownイベントハンドラの追加
         AddHandler txt商品コード.KeyDown, AddressOf Txt_KeyDown
         AddHandler cmb受注形態.KeyDown, AddressOf Txt_KeyDown
         AddHandler cmb出荷連携.KeyDown, AddressOf Txt_KeyDown
         AddHandler txt院内コード.KeyDown, AddressOf Txt_KeyDown
+        AddHandler cmb取込除外.KeyDown, AddressOf Txt_KeyDown
+
 
         'SelectedValueChangedイベントハンドラの追加
         AddHandler cmb受注形態.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
         AddHandler cmb出荷連携.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
         AddHandler cmb取込除外.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+        AddHandler cmb振替除外.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+
 
         'Validatedイベントハンドラの追加
         AddHandler txt商品コード.Validated, AddressOf Txt_Validated
@@ -644,6 +679,7 @@ Partial Class HARK100S1
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
+
 
 
 

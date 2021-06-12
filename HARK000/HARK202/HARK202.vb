@@ -562,6 +562,7 @@ Public Class HARK202
     Private Sub Cmb_SelectedValueChanged(sender As Object, e As EventArgs)
 
         Dim Tag As String
+        Dim SubForm As Form
 
         Try
 
@@ -599,6 +600,19 @@ Public Class HARK202
                     End With
 
                     Initialize条件(xxxintSubProgram_ID)
+
+                    Select Case xxxintSubProgram_ID
+
+                        Case 4 '棚卸情報メンテナンス
+
+                            If フォームヘッダチェック処理() = False Then Exit Sub
+
+                            SubForm = New HARK202S1(cmbサブプログラム.Text, xxxstrProgram_ID, xxxintSubProgram_ID, gintSPDシステムコード)
+
+                            SubForm.ShowDialog(Me)
+                            SubForm.Dispose()
+
+                    End Select
 
                 Case "ID4" '需要先
 
@@ -1482,6 +1496,7 @@ EndExecute:
 
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
+                    .Pos(i, 0).Attr.HorizontalAlignment = AdvanceSoftware.ExcelCreator.HorizontalAlignment.Center       'テキスト横位置=中心
                     .Pos(i, 0).Str = stData
                     i += 1
                 Next stData
@@ -1496,6 +1511,9 @@ EndExecute:
                     Next
 
                 Next
+
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 0, ColMax - 1, RowMax).Attr.Box(BoxType.Ltc, AdvanceSoftware.ExcelCreator.BorderStyle.Thin, Color.FromArgb(91, 155, 213))
 
                 .CloseBook(True)
 

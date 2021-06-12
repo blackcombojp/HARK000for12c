@@ -190,6 +190,10 @@ Public Class HARK100S1
             cmb取込除外.Items.Add("対象外")
             cmb取込除外.Items.Add("対象")
 
+            '振替除外
+            cmb振替除外.Items.Add("対象外")
+            cmb振替除外.Items.Add("対象")
+
         Catch ex As Exception
 
             log.Error(Set_ErrMSG(Err.Number, ex.ToString))
@@ -229,6 +233,10 @@ Public Class HARK100S1
                 Case "ID3"
 
                     xxxint取込除外 = cmb取込除外.SelectedIndex
+
+                Case "ID4"
+
+                    xxxint振替除外 = cmb振替除外.SelectedIndex
 
             End Select
 
@@ -284,10 +292,12 @@ Public Class HARK100S1
             lblID.Text = ""
             cmb出荷連携.SelectedIndex = 0
             cmb取込除外.SelectedIndex = 0
+            cmb振替除外.SelectedIndex = 0
 
             xxxint受注形態 = 9
             xxxint出荷連携 = 0
             xxxint取込除外 = 0
+            xxxint振替除外 = 0
 
         Catch ex As Exception
 
@@ -438,7 +448,7 @@ Public Class HARK100S1
 
                     End If
 
-                Case "ID3"  '取込除外
+                Case "ID4"  '振替除外
 
                     If e.Shift = False Then
 
@@ -580,7 +590,7 @@ Public Class HARK100S1
 
                     End If
 
-                    gintRtn = DLTP0101_PROC0032(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt商品コード.Text.Trim, txt院内コード.Text.Trim, xxxint受注形態, xxxint出荷連携, xxxint取込除外, gintSQLCODE, gstrSQLERRM)
+                    gintRtn = DLTP0101_PROC0032(xxxstrProgram_ID, xxxintSubProgram_ID, xxxintSPDSystemCode, txt商品コード.Text.Trim, txt院内コード.Text.Trim, xxxint受注形態, xxxint出荷連携, xxxint取込除外, xxxint振替除外, gintSQLCODE, gstrSQLERRM)
 
                     Select Case gintRtn
                         Case 0
@@ -685,6 +695,8 @@ Public Class HARK100S1
             lblID.Text = Results(0).strBuff(0)
             cmb出荷連携.SelectedIndex = CInt(Results(0).strBuff(9))
             cmb取込除外.SelectedIndex = CInt(Results(0).strBuff(10))
+            cmb振替除外.SelectedIndex = CInt(Results(0).strBuff(11))
+
 
             データ表示処理 = True
 
