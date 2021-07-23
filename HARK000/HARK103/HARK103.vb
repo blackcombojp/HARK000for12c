@@ -579,7 +579,7 @@ Public Class HARK103
 
         Try
 
-            If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
+            If xxxintSubProgram_ID > 50 Then 'オンライン注文書(共通)
                 strFilter = "Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
             Else
                 Select Case My.Settings.事業所コード
@@ -821,7 +821,7 @@ Public Class HARK103
 
                     lb_Msg.Items.Add("")
 
-                    If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
+                    If xxxintSubProgram_ID > 50 Then 'オンライン注文書(共通)
                         If Read_共通ExcelData(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
 
                         '受注テキスト取込＆チェック
@@ -918,7 +918,7 @@ Public Class HARK103
                     Set_ListItem(0, "")
                     Set_ListItem(1, MSG_101114)
 
-                    If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
+                    If xxxintSubProgram_ID > 50 Then 'オンライン注文書(共通)
                         'Aptage汎用受注データ作成
                         gintRtn = DLTP0107_PROC0028(xxxstrProgram_ID, gintSPDシステムコード, CLng(txt入力担当コード.Text.Trim), xxxintNo, xxxintSubProgram_ID, xxxstr得意先情報, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
                     Else
@@ -1093,7 +1093,7 @@ EndExecute:
                 Exit Function
             End If
 
-            If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
+            If xxxintSubProgram_ID > 50 Then 'オンライン注文書(共通)
 
                 If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP1071ImpFileName) Then
                     MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
@@ -1369,7 +1369,7 @@ EndExecute:
 
             エラーデータ出力処理 = False
 
-            If xxxintSubProgram_ID = 0 Then 'オンライン注文書(共通)
+            If xxxintSubProgram_ID > 50 Then 'オンライン注文書(共通)
                 FileName = Set_FilePath(txtエラー出力先.Text, "オンライン注文書-エラーデータ_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
             Else
                 Select Case My.Settings.事業所コード
@@ -1851,6 +1851,7 @@ EndExecute:
         Dim i As Integer
         ' Dim iColCnt As Integer
         Dim strLineData As String
+        Dim intEXCELレイアウト As Integer
 
         Try
 
@@ -1877,7 +1878,7 @@ EndExecute:
 
                 '得意先コード、需要先コード取得
                 If iRowCnt = 0 Or iRowCnt = 1 Then
-                    lCell(iRowCnt) = lRow.GetCell(7)
+                    lCell(iRowCnt) = lRow.GetCell(8)
                     If lCell(iRowCnt) IsNot Nothing Then
                         Select Case lCell(iRowCnt).CellType
                             Case CellType.Numeric
@@ -1887,6 +1888,20 @@ EndExecute:
                             Case Else
                                 strCellValue(iRowCnt) = vbNullString
                         End Select
+                        intEXCELレイアウト = 1 '定数記入欄なし
+                    Else
+                        lCell(iRowCnt) = lRow.GetCell(7)
+                        If lCell(iRowCnt) IsNot Nothing Then
+                            Select Case lCell(iRowCnt).CellType
+                                Case CellType.Numeric
+                                    strCellValue(iRowCnt) = CStr(lCell(iRowCnt).NumericCellValue)
+                                Case CellType.String
+                                    strCellValue(iRowCnt) = lCell(iRowCnt).StringCellValue
+                                Case Else
+                                    strCellValue(iRowCnt) = vbNullString
+                            End Select
+                            intEXCELレイアウト = 2 '定数記入欄あり
+                        End If
                     End If
                     Continue For
                 End If
@@ -1902,7 +1917,12 @@ EndExecute:
                 '         lRow = lSheet.GetRow(iRowCnt)   '行取得
 
                 lCell(2) = lRow.GetCell(0)  '商品コード
-                lCell(3) = lRow.GetCell(5)  '発注数量
+                If intEXCELレイアウト = 2 Then '定数記入欄なし
+                    lCell(3) = lRow.GetCell(5)  '発注数量
+                Else
+                    lCell(3) = lRow.GetCell(6)  '発注数量
+                End If
+
 
                 '発注数量セルにデータがあれば格納
                 If IsNull(lCell(3).ToString) = False Then

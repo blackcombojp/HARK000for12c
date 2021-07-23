@@ -268,7 +268,8 @@ Public Class HARK401
             cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
             txtDate.Text = ""
 
-            txt取込ファイル.Text = ""
+            txt取込ファイル１.Text = ""
+            txt取込ファイル２.Text = ""
             txtデータ出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
 
         Catch ex As Exception
@@ -294,27 +295,72 @@ Public Class HARK401
 
                 Case 1 '請求情報チェック処理(WEB在庫移動ログ)
 
-                    lbl取込ファイル.Text = "【WEB在庫移動ログ】"
+                    lbl取込ファイル１.Text = "【WEB在庫移動ログ】"
+                    lbl取込ファイル２.Text = "【取込ファイル】"
+
+                    txtDate.Text = ""
+                    txtDate.Enabled = True
+                    txt取込ファイル１.Text = ""
+                    txt取込ファイル１.Enabled = True
+                    txt取込ファイル２.Text = ""
+                    txt取込ファイル２.Enabled = False
+                    btnファイル参照２.Enabled = False
 
                 Case 2 '請求情報チェック処理(請求明細)
 
-                    lbl取込ファイル.Text = "【請求明細】"
+                    lbl取込ファイル１.Text = "【請求明細】"
+                    lbl取込ファイル２.Text = "【取込ファイル】"
+
+                    txtDate.Text = ""
+                    txtDate.Enabled = True
+                    txt取込ファイル１.Text = ""
+                    txt取込ファイル１.Enabled = True
+                    txt取込ファイル２.Text = ""
+                    txt取込ファイル２.Enabled = False
+                    btnファイル参照２.Enabled = False
 
                 Case 3 '値引作成処理(請求明細)
 
-                    lbl取込ファイル.Text = "【請求明細】"
+                    lbl取込ファイル１.Text = "【請求明細】"
+                    lbl取込ファイル２.Text = "【取込ファイル】"
+
+                    txtDate.Text = ""
+                    txtDate.Enabled = True
+                    txt取込ファイル１.Text = ""
+                    txt取込ファイル１.Enabled = True
+                    txt取込ファイル２.Text = ""
+                    txt取込ファイル２.Enabled = False
+                    btnファイル参照２.Enabled = False
+
+                Case 4 '比較表作成処理(請求明細)
+
+                    lbl取込ファイル１.Text = "【請求明細１】"
+                    lbl取込ファイル２.Text = "【請求明細２】"
+
+                    txtDate.Text = ""
+                    txtDate.Enabled = False
+                    txt取込ファイル１.Text = ""
+                    txt取込ファイル１.Enabled = True
+                    txt取込ファイル２.Text = ""
+                    txt取込ファイル２.Enabled = True
+                    btnファイル参照２.Enabled = True
 
                 Case Else
 
-                    lbl取込ファイル.Text = "【取込ファイル】"
+                    lbl取込ファイル１.Text = "【取込ファイル】"
+                    lbl取込ファイル２.Text = "【取込ファイル】"
+
+                    txtDate.Text = ""
+                    txtDate.Enabled = True
+                    txt取込ファイル１.Text = ""
+                    txt取込ファイル１.Enabled = True
+                    txt取込ファイル２.Text = ""
+                    txt取込ファイル２.Enabled = True
+                    btnファイル参照２.Enabled = True
 
             End Select
 
-            txtDate.Text = ""
-            txt取込ファイル.Text = ""
-            txtDate.Enabled = True
-            txt取込ファイル.Enabled = True
-            btnファイル参照.Enabled = True
+            btnファイル参照１.Enabled = True
 
         Catch ex As Exception
 
@@ -408,7 +454,7 @@ Public Class HARK401
 
                 '    End If
 
-                Case "ID2"  'データ出力先
+                Case "ID3"  'データ出力先
 
                     If e.Shift = False Then
 
@@ -562,7 +608,7 @@ Public Class HARK401
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt取込ファイル.Focus()
+            txt取込ファイル１.Focus()
             Exit Sub
 
         End If
@@ -586,7 +632,7 @@ Public Class HARK401
         Else
 
             MsgBox(MSG_COM002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-            txt取込ファイル.Focus()
+            txt取込ファイル１.Focus()
             Exit Sub
 
         End If
@@ -600,29 +646,52 @@ Public Class HARK401
     ' *　引数２　　　　　：　e      -- イベントデータクラス
     ' *　戻値　　　　　　：　なし
     ' *-----------------------------------------------------------------------------/
-    Private Sub Btnファイル参照_Click(sender As Object, e As EventArgs) Handles btnファイル参照.Click
+    Private Sub Btnファイル参照_Click(sender As Object, e As EventArgs) Handles btnファイル参照１.Click, btnファイル参照２.Click
 
         Dim OFDlg As New OpenFileDialog
         Dim strFilter As String = Nothing
+        Dim Tag As String
 
         Try
+
+            Tag = CStr(CType(sender, GrapeCity.Win.Buttons.GcButton).Tag)
 
             OFDlg.InitialDirectory = Get_DesktopPath()
             OFDlg.Filter = "csv Files (*.csv)|*.csv|All Files (*.*)|*.*"
             OFDlg.FilterIndex = 1
             OFDlg.RestoreDirectory = True
 
-            If OFDlg.ShowDialog() = DialogResult.OK Then
+            Select Case Tag
 
-                txt取込ファイル.Text = OFDlg.FileName
-                txtデータ出力先.Focus()
+                Case "ID1" '取込ファイル１
 
-            Else
+                    If OFDlg.ShowDialog() = DialogResult.OK Then
 
-                txt取込ファイル.Text = ""
-                txt取込ファイル.Focus()
+                        txt取込ファイル１.Text = OFDlg.FileName
+                        txtデータ出力先.Focus()
 
-            End If
+                    Else
+
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
+
+                    End If
+
+                Case "ID2" '取込ファイル２
+
+                    If OFDlg.ShowDialog() = DialogResult.OK Then
+
+                        txt取込ファイル２.Text = OFDlg.FileName
+                        txtデータ出力先.Focus()
+
+                    Else
+
+                        txt取込ファイル２.Text = ""
+                        txt取込ファイル２.Focus()
+
+                    End If
+
+            End Select
 
         Catch ex As Exception
 
@@ -826,7 +895,7 @@ Public Class HARK401
 
                     'm_lording.Start()
 
-                    If テキスト取込処理(txt取込ファイル.Text.Trim) = False Then GoTo EndExecute
+                    If テキスト取込処理(txt取込ファイル１.Text.Trim) = False Then GoTo EndExecute
 
                     Select Case xxxintSubProgram_ID
 
@@ -838,9 +907,9 @@ Public Class HARK401
                             'テキスト取込
                             gintRtn = DLTP0401_PROC0001(xxxstrProgram_ID, gintSPDシステムコード, 0, txtDate.Text.Trim, "請求明細", xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
 
-                        Case 3 '値引作成処理(請求明細)
+                        Case 3, 4 '値引作成処理(請求明細)/比較表作成処理(請求明細)
                             'テキスト取込
-                            gintRtn = DLTP0401_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxstr病院コード, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+                            gintRtn = DLTP0401_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxstr病院コード, 0, 1, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
 
                     End Select
 
@@ -889,6 +958,69 @@ Public Class HARK401
                             gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "請求情報", 1)
 
                             GoTo EndExecute
+
+                    End Select
+
+                    Select Case xxxintSubProgram_ID
+
+                        Case 4 '比較表作成処理(請求明細)
+
+                            If テキスト取込処理(txt取込ファイル２.Text.Trim) = False Then GoTo EndExecute
+
+                            'テキスト取込
+                            gintRtn = DLTP0401_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, xxxstr病院コード, 1, 2, xxxintCnt(0), xxxintCnt(1), xxxintCnt(2), gintSQLCODE, gstrSQLERRM)
+
+                            Select Case gintRtn
+
+                                Case 0 '正常終了
+
+                                    Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
+                                    Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
+                                    Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
+                                    Set_ListItem(1, MSG_301015)
+                                    Set_ListItem(2, "")
+
+                                    'セッション情報削除
+                                    gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "請求情報", 1)
+
+                                Case 8 'エラーデータあり
+
+                                    Set_ListItem(1, MSG_101111 & "【" & xxxintCnt(0) & "】")
+                                    Set_ListItem(1, MSG_101112 & "【" & xxxintCnt(1) & "】")
+                                    Set_ListItem(1, MSG_101113 & "【" & xxxintCnt(2) & "】")
+                                    Set_ListItem(1, MSG_301015)
+                                    Set_ListItem(2, "")
+
+                                    'セッション情報削除
+                                    gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "請求情報", 1)
+
+                                    Set_ListItem(0, "")
+                                    Set_ListItem(1, MSG_101115)
+
+                                    gblRtn = エラーデータ検索処理()
+
+                                    GoTo EndExecute
+
+                                Case 9 'ORACLEエラー
+
+                                    取込エラーファイル複製処理()
+
+                                    Set_ListItem(1, MSG_COM899 & gintSQLCODE)
+                                    Set_ListItem(1, MSG_COM900 & gstrSQLERRM)
+                                    Set_ListItem(1, MSG_301016)
+                                    Set_ListItem(1, MSG_COM901)
+                                    Set_ListItem(2, "")
+
+                                    'セッション情報削除
+                                    gintRtn = DLTP0998S_PROC0013(xxxstrProgram_ID, "請求情報", 1)
+
+                                    GoTo EndExecute
+
+                            End Select
+
+                        Case Else
+
+                            Exit Select
 
                     End Select
 
@@ -998,6 +1130,24 @@ Public Class HARK401
                             Set_ListItem(1, MSG_401009)
                             Set_ListItem(2, "")
 
+                        Case 4 '比較表作成処理
+
+                            Set_ListItem(0, "")
+                            Set_ListItem(1, MSG_401016)
+
+                            If 比較表作成処理() = False Then
+
+                                Set_ListItem(1, MSG_401017)
+                                Set_ListItem(1, MSG_COM901)
+                                Set_ListItem(2, "")
+
+                                GoTo EndExecute
+
+                            End If
+
+                            Set_ListItem(1, MSG_401018)
+                            Set_ListItem(2, "")
+
                     End Select
 
 EndExecute:
@@ -1006,7 +1156,6 @@ EndExecute:
                     cmbサブプログラム.Focus()
 
                     Exit Sub
-
 
                 Case "ID6" 'なし
                 Case "ID7" 'なし
@@ -1087,39 +1236,49 @@ EndExecute:
                 Exit Function
             End If
 
-            '対象日
-            If IsNull(txtDate.Text.Trim) = True Then
-                MsgBox(MSG_301011, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txtDate.Focus()
-                Exit Function
-            End If
+            Select Case xxxintSubProgram_ID
 
-            If Chk_Date(txtDate.Text.Trim, 1) = False Then
-                txtDate.Text = ""
-                MsgBox(MSG_301012, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
-                txtDate.Focus()
-                Exit Function
-            End If
+                Case 1, 2, 3 '請求情報チェック処理(WEB在庫移動ログ)/請求情報チェック処理(請求明細)/値引金額作成処理(請求明細)
+
+                    '対象日
+                    If IsNull(txtDate.Text.Trim) = True Then
+                        MsgBox(MSG_301011, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txtDate.Focus()
+                        Exit Function
+                    End If
+
+                    If Chk_Date(txtDate.Text.Trim, 1) = False Then
+                        txtDate.Text = ""
+                        MsgBox(MSG_301012, MsgBoxStyle.OkOnly Or MsgBoxStyle.Information, My.Application.Info.Title)
+                        txtDate.Focus()
+                        Exit Function
+                    End If
+
+                Case Else
+
+                    Exit Select
+
+            End Select
 
             '取込ファイルチェック
-            If IsNull(txt取込ファイル.Text.Trim) = True Then
+            If IsNull(txt取込ファイル１.Text.Trim) = True Then
                 MsgBox(MSG_101001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt取込ファイル.Focus()
+                txt取込ファイル１.Focus()
                 Exit Function
             End If
 
-            If Chk_FileExists(txt取込ファイル.Text.Trim) = False Then
+            If Chk_FileExists(txt取込ファイル１.Text.Trim) = False Then
                 MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt取込ファイル.Text = ""
-                txt取込ファイル.Focus()
+                txt取込ファイル１.Text = ""
+                txt取込ファイル１.Focus()
                 Exit Function
             End If
 
             '拡張子比較
-            If Get_Extension(txt取込ファイル.Text).CompareTo(CSVExtension) <> 0 Then
+            If Get_Extension(txt取込ファイル１.Text).CompareTo(CSVExtension) <> 0 Then
                 MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                txt取込ファイル.Text = ""
-                txt取込ファイル.Focus()
+                txt取込ファイル１.Text = ""
+                txt取込ファイル１.Focus()
                 Exit Function
             End If
 
@@ -1127,27 +1286,75 @@ EndExecute:
 
                 Case 1 '請求情報チェック処理(WEB在庫移動ログ)
 
-                    If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP4011ImpFileName) Then
+                    If Not Get_FileNameWithoutExtension(txt取込ファイル１.Text).Contains(HARKP4011ImpFileName) Then
                         MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Text = ""
-                        txt取込ファイル.Focus()
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
                         Exit Function
                     End If
 
 
-                Case 2, 3 '請求情報チェック処理(請求明細)/値引金額作成処理(請求明細)
+                Case 2, 3, 4 '請求情報チェック処理(請求明細)/値引金額作成処理(請求明細)/比較表作成処理(請求明細)
 
-                    If Not Get_FileNameWithoutExtension(txt取込ファイル.Text).Contains(HARKP4012ImpFileName) Then
+                    If Not Get_FileNameWithoutExtension(txt取込ファイル１.Text).Contains(HARKP4012ImpFileName) Then
                         MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
-                        txt取込ファイル.Text = ""
-                        txt取込ファイル.Focus()
+                        txt取込ファイル１.Text = ""
+                        txt取込ファイル１.Focus()
                         Exit Function
                     End If
 
+                    xxxstr比較表作成用出力年月(0) = Mid(Get_FileNameWithoutExtension(txt取込ファイル１.Text), Get_FileNameWithoutExtension(txt取込ファイル１.Text).IndexOf(HARKP4012ImpFileName) + 5, 6)
 
                 Case Else
 
                     Exit Function
+
+            End Select
+
+            Select Case xxxintSubProgram_ID
+
+                Case 4 '比較表作成処理(請求明細)
+
+                    '取込ファイルチェック
+                    If IsNull(txt取込ファイル２.Text.Trim) = True Then
+                        MsgBox(MSG_101001, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル２.Focus()
+                        Exit Function
+                    End If
+
+                    If Chk_FileExists(txt取込ファイル２.Text.Trim) = False Then
+                        MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル２.Text = ""
+                        txt取込ファイル２.Focus()
+                        Exit Function
+                    End If
+
+                    '拡張子比較
+                    If Get_Extension(txt取込ファイル２.Text).CompareTo(CSVExtension) <> 0 Then
+                        MsgBox(MSG_101103, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                        txt取込ファイル２.Text = ""
+                        txt取込ファイル２.Focus()
+                        Exit Function
+                    End If
+
+                    Select Case xxxintSubProgram_ID
+
+                        Case 4 '比較表作成処理(請求明細)
+
+                            If Not Get_FileNameWithoutExtension(txt取込ファイル２.Text).Contains(HARKP4012ImpFileName) Then
+                                MsgBox(MSG_101002, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                                txt取込ファイル２.Text = ""
+                                txt取込ファイル２.Focus()
+                                Exit Function
+                            End If
+
+                            xxxstr比較表作成用出力年月(1) = Mid(Get_FileNameWithoutExtension(txt取込ファイル２.Text), Get_FileNameWithoutExtension(txt取込ファイル２.Text).IndexOf(HARKP4012ImpFileName) + 5, 6)
+
+                        Case Else
+
+                            Exit Select
+
+                    End Select
 
             End Select
 
@@ -1340,6 +1547,18 @@ EndExecute:
                     ColMax = gintDLTP0997S_FUNC004
 
                     strSheetName = "値引作成処理-取込情報エラー"
+
+                Case 4 '比較表作成処理
+
+                    '出力ヘッダ取得
+                    gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "出力ヘッダ")
+                    strHeaderText = gstrDLTP0997S_FUNC005
+
+                    '項目数取得
+                    gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 3, 99, "項目数")
+                    ColMax = gintDLTP0997S_FUNC004
+
+                    strSheetName = "比較表作成処理-取込情報エラー"
 
             End Select
 
@@ -1806,6 +2025,13 @@ EndExecute:
                     gintRtn = DLTP0401_PROC0031(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
 
                     strファイル名 = Set_FilePath(txtデータ出力先.Text, "値引作成処理-取込情報エラー_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+
+                Case 4 '比較表作成処理(請求明細)
+
+                    'エラーデータ検索
+                    gintRtn = DLTP0401_PROC0031(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
+
+                    strファイル名 = Set_FilePath(txtデータ出力先.Text, "比較表作成処理-取込情報エラー_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
 
             End Select
 
@@ -2528,11 +2754,11 @@ EndExecute:
             strBackupDir = Set_FilePath(gstrAppFilePath, "error\" & Reflection.MethodBase.GetCurrentMethod.DeclaringType.Name)
             If Chk_DirExists(strBackupDir) = False Then gblRtn = Create_Dir(strBackupDir)
 
-            strBackupFileName = Get_FileName(txt取込ファイル.Text)
+            strBackupFileName = Get_FileName(txt取込ファイル１.Text)
             strCopyFile = strBackupDir & "\" & strBackupFileName
             If Chk_FileExists(strCopyFile) = True Then gintRtn = Delete_File(strCopyFile)
 
-            File.Copy(txt取込ファイル.Text, strCopyFile)
+            File.Copy(txt取込ファイル１.Text, strCopyFile)
 
         Catch ex As Exception
 
@@ -2542,4 +2768,132 @@ EndExecute:
         End Try
 
     End Sub
+    '/*-----------------------------------------------------------------------------
+    ' *　モジュール機能　：　比較表作成処理
+    ' *
+    ' *　注意、制限事項　：　なし
+    ' *　引数１　　　　　：　なし
+    ' *　戻値　　　　　　：　True -- 成功 false -- 失敗
+    ' *-----------------------------------------------------------------------------/
+    Private Function 比較表作成処理() As Boolean
+
+        '  Dim ColCnt As Integer
+        Dim ColMax As Integer
+        Dim RowCnt As Integer
+        Dim RowMax As Integer
+        Dim strHeaderText As String
+        Dim stArrayData As String()
+        Dim i As Integer
+        Dim str出力ファイル As String
+        Dim dtNow As DateTime = Now
+
+        Try
+
+            比較表作成処理 = False
+
+            str出力ファイル = Set_FilePath(txtデータ出力先.Text, "購入金額比較表_" & dtNow.ToString("yyyyMMddHHmmss") & ".xlsx")
+
+            With ExcelCreator
+
+                .ExcelFileType = ExcelFileType.xlsx
+
+                'EXCEL作成
+                .CreateBook(str出力ファイル, 1, xlsxVersion.ver2013)
+
+                '出力ヘッダ取得
+                strHeaderText = ""
+                i = 0
+                gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 4, 4, 99, "出力ヘッダ")
+                strHeaderText = gstrDLTP0997S_FUNC005
+
+                '項目数取得
+                gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 4, 4, 99, "項目数")
+                ColMax = gintDLTP0997S_FUNC004
+
+                '出力ヘッダを分割
+                stArrayData = strHeaderText.Split(","c)
+
+                'チェック結果データ検索
+                gintRtn = DLTP0401_PROC0013(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, gintSQLCODE, gstrSQLERRM)
+
+                Select Case gintRtn
+                    Case 0
+                        Exit Select
+                    Case 2
+                        MsgBox(MSG_301005, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                    Case 9
+                        MsgBox(gintSQLCODE & "-" & gstrSQLERRM, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                        Exit Function
+                End Select
+
+                RowMax = gintResultCnt
+
+                .DefaultFontName = "メイリオ"                                                          'デフォルトフォント
+                .DefaultFontPoint = 9                                                                  'デフォルトフォントポイント
+                .SheetName = "購入金額比較表"                                                          'シート名
+                .Pos(0, 0, ColMax - 1, 1).Attr.FontColor2 = xlColor.White                              '文字列色＝白
+                .Pos(0, 0, ColMax - 1, 1).Attr.FontStyle = FontStyle.Bold                              '文字列修飾＝太字
+                .Pos(0, 0, ColMax - 1, 1).Attr.BackColor = Color.FromArgb(91, 155, 213)                '背景色＝青
+                .Pos(3, 0, 4, 0).Attr.MergeCells = True                                                 '結合
+                .Pos(5, 0, 6, 0).Attr.MergeCells = True                                                 '結合
+                .Pos(0, 0, ColMax - 1, RowMax + 1).Attr.VerticalAlignment = VerticalAlignment.Center   'テキスト縦位置=中心
+                .Pos(3, 2, 7, RowMax + 1).Attr.HorizontalAlignment = HorizontalAlignment.Right         'テキスト横位置=右(金額)
+                .Pos(3, 2, 6, RowMax + 2).Attr.Format = "#,##0_ "                                      '数値表示
+                .Pos(7, 2, 7, RowMax + 2).Attr.Format = "#,##0;[赤]-#,##0"
+
+                .Pos(0, 0, ColMax - 1, 2).Attr.Box(BoxType.Box, BorderStyle.Medium, xlColor.White)
+                .Pos(0, 0, ColMax - 1, 2).Attr.Box(BoxType.Ltc, BorderStyle.Medium, xlColor.White)
+                .Pos(0, 2, ColMax - 1, RowMax + 1).Attr.LineLeft(BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 2, ColMax - 1, RowMax + 1).Attr.LineTop(BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 2, ColMax - 1, RowMax + 1).Attr.LineRight(BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+                .Pos(0, 2, ColMax - 1, RowMax + 1).Attr.LineBottom(BorderStyle.Thin, Color.FromArgb(91, 155, 213))
+
+                'ヘッダ項目出力
+                .Pos(3, 0).Str = xxxstr比較表作成用出力年月(0)
+                .Pos(5, 0).Str = xxxstr比較表作成用出力年月(1)
+                .Pos(3, 0).Attr.HorizontalAlignment = HorizontalAlignment.Center
+                .Pos(5, 0).Attr.HorizontalAlignment = HorizontalAlignment.Center
+                For Each stData As String In stArrayData
+                    .Pos(i, 1).Str = stData
+                    .Pos(i, 1).Attr.HorizontalAlignment = HorizontalAlignment.Center
+                    i += 1
+                Next stData
+
+                '明細行出力
+                For RowCnt = 0 To RowMax - 1
+
+                    .Pos(0, RowCnt + 2).Str = Results(RowCnt).strBuff(0)
+                    .Pos(1, RowCnt + 2).Str = Results(RowCnt).strBuff(1)
+                    .Pos(2, RowCnt + 2).Str = Results(RowCnt).strBuff(2)
+                    .Pos(3, RowCnt + 2).Long = CInt(Results(RowCnt).strBuff(3))
+                    .Pos(4, RowCnt + 2).Long = CInt(Results(RowCnt).strBuff(4))
+                    .Pos(5, RowCnt + 2).Long = CInt(Results(RowCnt).strBuff(5))
+                    .Pos(6, RowCnt + 2).Long = CInt(Results(RowCnt).strBuff(6))
+                    .Pos(7, RowCnt + 2).Long = CInt(Results(RowCnt).strBuff(7))
+
+                Next
+
+                '最終行に合計追加
+                .Pos(3, RowMax + 2).Func("=SUM(D3:D" & RowMax + 2 & ")", Nothing)
+                .Pos(4, RowMax + 2).Func("=SUM(E3:E" & RowMax + 2 & ")", Nothing)
+                .Pos(5, RowMax + 2).Func("=SUM(F3:F" & RowMax + 2 & ")", Nothing)
+                .Pos(6, RowMax + 2).Func("=SUM(G3:G" & RowMax + 2 & ")", Nothing)
+                .Pos(7, RowMax + 2).Func("=SUM(H3:H" & RowMax + 2 & ")", Nothing)
+
+                .CloseBook(True)
+
+            End With
+
+            比較表作成処理 = True
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        End Try
+
+    End Function
+
 End Class

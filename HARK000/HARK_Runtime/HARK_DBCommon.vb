@@ -10692,6 +10692,8 @@ Public Class HARK_DBCommon
                                              ByVal PI_intSPDSystemcode As Integer,
                                              ByVal PI_intSubProgram_ID As Integer,
                                              ByVal PI_病院コード As String,
+                                             ByVal PI_ワーク初期化区分 As Integer,
+                                             ByVal PI_明細識別区分 As Integer,
                                              ByRef PO_intCnt0 As Integer,
                                              ByRef PO_intCnt1 As Integer,
                                              ByRef PO_intCnt2 As Integer,
@@ -10706,6 +10708,8 @@ Public Class HARK_DBCommon
         Dim PI_03 As OracleParameter
         Dim PI_04 As OracleParameter
         Dim PI_05 As OracleParameter
+        Dim PI_06 As OracleParameter
+        Dim PI_07 As OracleParameter
         Dim PO_01 As OracleParameter
         Dim PO_02 As OracleParameter
         Dim PO_03 As OracleParameter
@@ -10739,6 +10743,8 @@ Public Class HARK_DBCommon
             PI_03 = Oracmd.Parameters.Add("PI_03", OracleDbType.Int32, ParameterDirection.Input)
             PI_04 = Oracmd.Parameters.Add("PI_04", OracleDbType.Int32, ParameterDirection.Input)
             PI_05 = Oracmd.Parameters.Add("PI_05", OracleDbType.Varchar2, ParameterDirection.Input)
+            PI_06 = Oracmd.Parameters.Add("PI_06", OracleDbType.Int32, ParameterDirection.Input)
+            PI_07 = Oracmd.Parameters.Add("PI_07", OracleDbType.Int32, ParameterDirection.Input)
 
             'Outputパラメータ設定
             PO_01 = Oracmd.Parameters.Add("PO_01", OracleDbType.Int32, ParameterDirection.Output)
@@ -10757,6 +10763,9 @@ Public Class HARK_DBCommon
             PI_03.Value = 0
             PI_04.Value = My.Settings.事業所コード
             PI_05.Value = PI_病院コード
+            PI_06.Value = PI_ワーク初期化区分
+            PI_07.Value = PI_明細識別区分
+
 
             'ストアドプロシージャCall
             Oracmd.ExecuteNonQuery()
@@ -11051,6 +11060,127 @@ Public Class HARK_DBCommon
                 DLTP0401_PROC0012 = 2
             Else
                 DLTP0401_PROC0012 = 0
+            End If
+
+        Catch Oraex As OracleException
+
+            log.Error(Set_ErrMSG(Oraex.Number, Oraex.ToString))
+            Throw
+
+        Catch ex As Exception
+
+            log.Error(Set_ErrMSG(Err.Number, ex.ToString))
+            Throw
+
+        Finally
+
+            Oracmd.Dispose()
+
+        End Try
+
+    End Function
+    ''' <summary>
+    ''' 請求情報結果出力（比較表用）
+    ''' </summary>
+    ''' <param name="PI_strProgram_ID">プログラム_ID</param>
+    ''' <param name="PI_intSPDSystemcode">SPDシステムコード</param>
+    ''' <param name="PI_intSubProgram_ID">サブプログラム_ID</param>
+    ''' <param name="PO_intSQLCODE">Oracleエラーコード（戻値）</param>
+    ''' <param name="PO_strSQLERRM">Oracleエラーメッセージ（戻値）</param>
+    ''' <returns>0 -- 正常取得 2 -- レコード無 9 -- エラー</returns>
+    Public Shared Function DLTP0401_PROC0013(ByVal PI_strProgram_ID As String,
+                                             ByVal PI_intSPDSystemcode As Integer,
+                                             ByVal PI_intSubProgram_ID As Integer,
+                                             ByRef PO_intSQLCODE As Integer,
+                                             ByRef PO_strSQLERRM As String) As Integer
+
+        Dim PI_01 As OracleParameter
+        Dim PI_02 As OracleParameter
+        Dim PO_01 As OracleParameter
+        Dim PO_02 As OracleParameter
+        Dim PO_03 As OracleParameter
+        Dim RowCnt As Integer
+        Dim ColCnt As Integer
+        Dim ColMax As Integer
+        Dim strPROC As String
+
+        Try
+            DLTP0401_PROC0013 = 9
+            gintResultCnt = 0
+
+            'プログラム_ID取得
+            gintRtn = DLTP0997S_FUNC005(PI_strProgram_ID, PI_intSPDSystemcode, PI_intSubProgram_ID, 4, 1, "処理関数")
+            strPROC = gstrDLTP0997S_FUNC005
+
+            '項目数取得
+            gintRtn = DLTP0997S_FUNC004(PI_strProgram_ID, PI_intSPDSystemcode, PI_intSubProgram_ID, 4, 99, "項目数")
+            ColMax = gintDLTP0997S_FUNC004
+
+            'ストアドプロシージャ設定
+            Oracmd = Oracomm.CreateCommand()
+            Oracmd.CommandText = strPROC
+            Oracmd.CommandType = CommandType.StoredProcedure
+
+            'インプットパラメータ設定
+            PI_01 = Oracmd.Parameters.Add("PI_01", OracleDbType.Int32, ParameterDirection.Input)
+            PI_02 = Oracmd.Parameters.Add("PI_02", OracleDbType.Int32, ParameterDirection.Input)
+
+            'インプット値設定
+            PI_01.Value = PI_intSPDSystemcode
+            PI_02.Value = 0
+
+
+            'アウトプットパラメータ設定
+            PO_01 = Oracmd.Parameters.Add("PO_01", OracleDbType.RefCursor, ParameterDirection.Output)
+            PO_02 = Oracmd.Parameters.Add("PO_02", OracleDbType.Int32, ParameterDirection.Output)
+            PO_03 = Oracmd.Parameters.Add("PO_03", OracleDbType.Varchar2, 1024, DBNull.Value, ParameterDirection.Output)
+
+            'ストアドプロシージャcall
+            OraDr = Oracmd.ExecuteReader
+
+            PO_intSQLCODE = CType(PO_02.Value.ToString, Integer)
+            PO_strSQLERRM = PO_03.Value.ToString
+
+            Results = Nothing
+
+            'リターンコードでの振り分け
+            If PO_intSQLCODE = 0 Then
+
+                RowCnt = 0
+
+                While OraDr.Read
+
+                    ReDim Preserve Results(RowCnt)
+
+                    For ColCnt = 0 To ColMax - 1
+
+                        ReDim Preserve Results(RowCnt).strBuff(ColCnt)
+
+                        If OraDr.IsDBNull(ColCnt) = False Then
+                            Results(RowCnt).strBuff(ColCnt) = ""
+                            Results(RowCnt).strBuff(ColCnt) = CType(OraDr.GetValue(ColCnt), String)
+                        End If
+
+                    Next
+
+                    RowCnt += 1
+
+                End While
+
+                gintResultCnt = RowCnt
+
+            Else
+
+                log.Error(Set_ErrMSG(PO_intSQLCODE, PO_strSQLERRM))
+
+                Exit Function
+
+            End If
+
+            If gintResultCnt = 0 Then
+                DLTP0401_PROC0013 = 2
+            Else
+                DLTP0401_PROC0013 = 0
             End If
 
         Catch Oraex As OracleException
@@ -12686,11 +12816,11 @@ Public Class HARK_DBCommon
             gintResultCnt = 0
 
             'プログラム_ID取得
-            gintRtn = DLTP0997S_FUNC005(PI_strProgram_ID, PI_intSPDSystemcode, 0, 1, 1, "処理関数")
+            gintRtn = DLTP0997S_FUNC005(PI_strProgram_ID, PI_intSPDSystemcode, PI_intSubProgram_ID, 1, 1, "処理関数")
             strPROC = gstrDLTP0997S_FUNC005
 
             '項目数取得
-            gintRtn = DLTP0997S_FUNC004(PI_strProgram_ID, PI_intSPDSystemcode, 0, 1, 99, "項目数")
+            gintRtn = DLTP0997S_FUNC004(PI_strProgram_ID, PI_intSPDSystemcode, PI_intSubProgram_ID, 1, 99, "項目数")
             ColMax = gintDLTP0997S_FUNC004
 
             'ストアドプロシージャ設定

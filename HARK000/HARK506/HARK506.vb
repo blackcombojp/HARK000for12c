@@ -203,6 +203,24 @@ Public Class HARK506
             '空白行追加
             cmb事業所.Items.Add(New 事業所一覧("", 0))
 
+            'サブプログラム一覧取得
+            If DLTP0901_PROC0002(xxxstrProgram_ID, gintSPDシステムコード, gintSQLCODE, gstrSQLERRM) = False Then
+
+                MsgBox(gintSQLCODE & "-" & gstrSQLERRM & vbCr & MSG_COM902 & vbCr & MSG_COM901, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, MsgBoxStyle), My.Application.Info.Title)
+                Exit Sub
+
+            End If
+
+            'サブプログラム一覧
+            For i = 0 To gintサブプログラムCnt - 1
+
+                cmbサブプログラム.Items.Add(New サブプログラム一覧(サブプログラムArray(i).strサブプログラム名, サブプログラムArray(i).intサブプログラムコード))
+
+            Next
+
+            '空白行追加
+            cmbサブプログラム.Items.Add(New サブプログラム一覧("", 0))
+
         Catch ex As Exception
 
             log.Error(Set_ErrMSG(Err.Number, ex.ToString))
@@ -272,6 +290,9 @@ Public Class HARK506
             lbl得意先名.Text = ""
             txt需要先コード.Text = ""
             lbl需要先名.Text = ""
+            cmbサブプログラム.SelectedIndex = gintサブプログラムCnt
+
+            xxxintSubProgram_ID = 0
 
         Catch ex As Exception
 
@@ -428,6 +449,12 @@ Public Class HARK506
                             txtデータ出力先.Text = CStr(Nvl(gudt処理端末情報.str出力先１, Get_DesktopPath))
                         End If
                     End If
+
+                Case "ID2" 'サブプログラム
+
+                    With DirectCast(cmbサブプログラム.SelectedItem, サブプログラム一覧)
+                        xxxintSubProgram_ID = .intサブプログラムコード
+                    End With
 
             End Select
 
@@ -832,6 +859,13 @@ Public Class HARK506
                 lbl需要先名.Text = gstr得意先名
             End If
 
+            'サブプログラムチェック
+            If IsNull(cmbサブプログラム.Text.Trim) = True Then
+                MsgBox(MSG_COM012, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
+                cmbサブプログラム.Focus()
+                Exit Function
+            End If
+
             'データ出力先チェック
             If IsNull(txtデータ出力先.Text.Trim) = True Then
                 MsgBox(MSG_301021, CType(MsgBoxStyle.OkOnly + MsgBoxStyle.Information, MsgBoxStyle), My.Application.Info.Title)
@@ -876,6 +910,7 @@ Public Class HARK506
         Dim stArrayData As String()
         Dim i As Integer
         Dim dtNow As DateTime = Now
+        Dim int発注数カラム番号 As Integer
 
         Try
 
@@ -884,11 +919,11 @@ Public Class HARK506
             strSheetName = "注文書"
 
             '出力ヘッダ取得
-            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, 0, 1, 99, "出力ヘッダ")
+            gintRtn = DLTP0997S_FUNC005(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 1, 99, "出力ヘッダ")
             strHeaderText = gstrDLTP0997S_FUNC005
 
             '項目数取得
-            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, 0, 1, 99, "項目数")
+            gintRtn = DLTP0997S_FUNC004(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, 1, 99, "項目数")
             ColMax = gintDLTP0997S_FUNC004
 
             RowMax = gintResultCnt
@@ -937,6 +972,7 @@ Public Class HARK506
                 .Pos(0, 2, ColMax - 1, 2).Attr.HorizontalAlignment = HorizontalAlignment.Center       'テキスト横位置=中心
                 .Pos(0, 3, ColMax - 1, RowMax + 2).Attr.Box(BoxType.Ltc, BorderStyle.Thin, Color.FromArgb(91, 155, 213))
 
+                int発注数カラム番号 = xxxintSubProgram_ID + 4
 
                 'ヘッダ項目出力
                 For Each stData As String In stArrayData
@@ -963,8 +999,8 @@ Public Class HARK506
                 Next
 
                 .Pos(0, 3, ColMax - 1, RowMax + 2).Attr.Box(BoxType.Box, BorderStyle.Medium, Color.FromArgb(91, 155, 213))
-                .Pos(5, 3, 5, RowMax + 2).Attr.Box(BoxType.Box, BorderStyle.Medium, Color.FromArgb(91, 155, 213))
-                .Pos(5, 3, 5, RowMax + 2).Attr.Box(BoxType.Ltc, BorderStyle.Medium, Color.FromArgb(91, 155, 213))
+                .Pos(int発注数カラム番号, 3, int発注数カラム番号, RowMax + 2).Attr.Box(BoxType.Box, BorderStyle.Medium, Color.FromArgb(91, 155, 213))
+                .Pos(int発注数カラム番号, 3, int発注数カラム番号, RowMax + 2).Attr.Box(BoxType.Ltc, BorderStyle.Medium, Color.FromArgb(91, 155, 213))
 
 
                 .CloseBook(True)

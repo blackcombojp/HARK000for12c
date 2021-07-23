@@ -130,11 +130,8 @@ Public Class HARK001
     Private Sub Fm_MouseDown(sender As Object, e As MouseEventArgs)
 
         Try
-
-            If (e.Button And MouseButtons.Left) = MouseButtons.Left Then
-                '位置を記憶する
-                mousePoint = New Point(e.X, e.Y)
-            End If
+            '位置を記憶する
+            If (e.Button And MouseButtons.Left) = MouseButtons.Left Then mousePoint = New Point(e.X, e.Y)
 
         Catch ex As Exception
 

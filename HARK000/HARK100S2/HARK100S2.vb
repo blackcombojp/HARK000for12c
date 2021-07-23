@@ -271,7 +271,7 @@ Public Class HARK100S2
 
                 Case "HARKP107" '汎用連携
 
-                    If xxxintSubProgram_ID = 0 Then
+                    If xxxintSubProgram_ID > 50 Then
 
                         txt得意先コード.Text = ""
                         txt需要先コード.Text = ""

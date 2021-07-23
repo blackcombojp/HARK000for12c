@@ -163,6 +163,10 @@ Module HARK_Define
     Public Const MSG_401013 As String = "値引金額一覧出力中"
     Public Const MSG_401014 As String = "値引金額一覧作成処理は異常終了しました"
     Public Const MSG_401015 As String = "値引金額一覧作成処理は正常終了しました"
+    Public Const MSG_401016 As String = "比較表作成処理中"
+    Public Const MSG_401017 As String = "比較表作成処理は異常終了しました"
+    Public Const MSG_401018 As String = "比較表作成処理は正常終了しました"
+
 
 
     Public Const MSG_402001 As String = "仕入一覧データを指定してください"

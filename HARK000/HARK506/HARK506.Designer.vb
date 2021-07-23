@@ -63,6 +63,8 @@ Partial Class HARK506
         Me.Bt_Close = New System.Windows.Forms.Button()
         Me.BT_ID5 = New System.Windows.Forms.Button()
         Me.ExcelCreator = New AdvanceSoftware.ExcelCreator.Creator(Me.components)
+        Me.cmbサブプログラム = New System.Windows.Forms.ComboBox()
+        Me.lblサブプログラム = New System.Windows.Forms.Label()
         Me.CntMenuStrip.SuspendLayout()
         CType(Me.lb_Msg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtデータ出力先, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,10 +137,10 @@ Partial Class HARK506
         'btnフォルダ参照
         '
         Me.btnフォルダ参照.BackColor = System.Drawing.SystemColors.Control
-        Me.btnフォルダ参照.Location = New System.Drawing.Point(402, 152)
+        Me.btnフォルダ参照.Location = New System.Drawing.Point(402, 208)
         Me.btnフォルダ参照.Name = "btnフォルダ参照"
         Me.btnフォルダ参照.Size = New System.Drawing.Size(60, 23)
-        Me.btnフォルダ参照.TabIndex = 14
+        Me.btnフォルダ参照.TabIndex = 15
         Me.btnフォルダ参照.TabStop = False
         Me.btnフォルダ参照.Tag = "ID1"
         Me.btnフォルダ参照.Text = "参照"
@@ -147,17 +149,17 @@ Partial Class HARK506
         'txtデータ出力先
         '
         Me.txtデータ出力先.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.txtデータ出力先.Location = New System.Drawing.Point(12, 151)
+        Me.txtデータ出力先.Location = New System.Drawing.Point(12, 207)
         Me.txtデータ出力先.Name = "txtデータ出力先"
         Me.txtデータ出力先.Size = New System.Drawing.Size(382, 24)
-        Me.txtデータ出力先.TabIndex = 13
+        Me.txtデータ出力先.TabIndex = 14
         Me.txtデータ出力先.Tag = "ID3"
         '
         'lblエラーデータ出力先
         '
         Me.lblエラーデータ出力先.AutoSize = True
         Me.lblエラーデータ出力先.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.lblエラーデータ出力先.Location = New System.Drawing.Point(12, 128)
+        Me.lblエラーデータ出力先.Location = New System.Drawing.Point(12, 184)
         Me.lblエラーデータ出力先.Name = "lblエラーデータ出力先"
         Me.lblエラーデータ出力先.Size = New System.Drawing.Size(113, 20)
         Me.lblエラーデータ出力先.TabIndex = 165
@@ -168,6 +170,8 @@ Partial Class HARK506
         '
         Me.pnl操作.BackColor = System.Drawing.Color.FromArgb(CType(CType(211, Byte), Integer), CType(CType(233, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.pnl操作.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.pnl操作.Controls.Add(Me.cmbサブプログラム)
+        Me.pnl操作.Controls.Add(Me.lblサブプログラム)
         Me.pnl操作.Controls.Add(Me.txt需要先コード)
         Me.pnl操作.Controls.Add(Me.lbl需要先)
         Me.pnl操作.Controls.Add(Me.lbl需要先名)
@@ -420,6 +424,28 @@ Partial Class HARK506
         Me.ExcelCreator.ExcelFileType = AdvanceSoftware.ExcelCreator.ExcelFileType.xlsx
         Me.ExcelCreator.TemporaryPath = ""
         '
+        'cmbサブプログラム
+        '
+        Me.cmbサブプログラム.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbサブプログラム.Font = New System.Drawing.Font("メイリオ", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.cmbサブプログラム.FormattingEnabled = True
+        Me.cmbサブプログラム.Location = New System.Drawing.Point(12, 151)
+        Me.cmbサブプログラム.Name = "cmbサブプログラム"
+        Me.cmbサブプログラム.Size = New System.Drawing.Size(382, 26)
+        Me.cmbサブプログラム.TabIndex = 13
+        Me.cmbサブプログラム.Tag = "ID2"
+        '
+        'lblサブプログラム
+        '
+        Me.lblサブプログラム.AutoSize = True
+        Me.lblサブプログラム.Font = New System.Drawing.Font("メイリオ", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.lblサブプログラム.Location = New System.Drawing.Point(12, 128)
+        Me.lblサブプログラム.Name = "lblサブプログラム"
+        Me.lblサブプログラム.Size = New System.Drawing.Size(126, 20)
+        Me.lblサブプログラム.TabIndex = 182
+        Me.lblサブプログラム.Text = "【サブプログラム】"
+        Me.lblサブプログラム.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
         'HARK506
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
@@ -496,6 +522,8 @@ Partial Class HARK506
     Private WithEvents txt得意先コード As GrapeCity.Win.Editors.GcTextBox
     Private WithEvents lbl得意先 As Label
     Private WithEvents lbl得意先名 As Label
+    Private WithEvents cmbサブプログラム As ComboBox
+    Private WithEvents lblサブプログラム As Label
 
     Private Shared ReadOnly log As log4net.ILog = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)
 
@@ -529,9 +557,12 @@ Partial Class HARK506
         'KeyDownイベントハンドラの追加
         AddHandler txt得意先コード.KeyDown, AddressOf Txt_KeyDown
         AddHandler txt需要先コード.KeyDown, AddressOf Txt_KeyDown
+        AddHandler cmbサブプログラム.KeyDown, AddressOf Txt_KeyDown
 
         'SelectedValueChangedイベントハンドラの追加
         AddHandler cmb事業所.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+        AddHandler cmbサブプログラム.SelectedValueChanged, AddressOf Cmb_SelectedValueChanged
+
 
         'Validatedイベントハンドラの追加
         AddHandler txt得意先コード.Validated, AddressOf txt_Validated
@@ -549,6 +580,7 @@ Partial Class HARK506
         AddHandler BT_ID8.Click, AddressOf Bt_ID_Click
 
     End Sub
+
 
 
 

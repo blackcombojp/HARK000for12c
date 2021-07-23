@@ -1832,7 +1832,7 @@ EndExecute:
                         Set_ListItem(0, "")
                         Set_ListItem(1, "【仕入先：マルビシ】" & MSG_501023)
 
-                        gintRtn = DLTP0501_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, txtDate.Text.Trim, 1, gintSQLCODE, gstrSQLERRM)
+                        gintRtn = DLTP0501_PROC0012(xxxstrProgram_ID, gintSPDシステムコード, xxxintSubProgram_ID, txtDate.Text.Trim, 2, gintSQLCODE, gstrSQLERRM)
                     End If
             End Select
 
